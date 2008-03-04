@@ -1,4 +1,4 @@
-#summary 1 Valorisation des variables de déploiements.
+#summary Valorisation des variables de déploiements.
 
 =  Valorisation des variables de déploiements =
 
