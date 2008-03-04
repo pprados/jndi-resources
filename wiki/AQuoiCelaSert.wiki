@@ -1,0 +1,5 @@
+#summary A quoi sert l'outil jndi-resources ?
+
+= À quoi cela sert ? =
+
+`jndi-resources` est un utilitaire permettant d'installer facilement et uniformément des composants JEE sur différents serveurs d'applications. Il permet de combler le maillon manquant des spécifications JEE, entraînant que malgré les efforts de normalisation, les paquetages standards WAR et EAR ne sont pas utilisables tels quels par les serveurs d'applications.
