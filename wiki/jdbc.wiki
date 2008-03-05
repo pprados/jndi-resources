@@ -3,7 +3,7 @@
 
 = Famille JDBC =
 
-La famille jdbc permet de décrire une source de données de type SQL.
+La famille `jdbc` permet de décrire une source de données de type SQL.
 
 == Déclaration JEE ==
 La ressource doit être déclarée dans le fichier `web.xml` ou `application.xml`.
