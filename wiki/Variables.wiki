@@ -55,3 +55,5 @@ Cette organisation propose la démarche suivante :
  * Des paramètres par défaut peuvent faciliter l'utilisation de l'installation. Ils seront présent dans `$PACKAGES/$APPSRV/` s'ils sont spécifique à une famille de serveur.
  * Des paramètres spécifiques à l'utilisateur, correspondant à ses choix par défauts pour ses bases de données par exemples, seront présent dans le répertoire `~/.jndi-resources/`.
  * Enfin, des modifications de dernières minutes, ou les quelques informations manquantes seront indiquées dans la ligne de commande.
+
+Suite : [ArchitecturesJNDI Architecture des serveurs d'applications]
