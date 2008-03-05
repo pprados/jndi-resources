@@ -134,3 +134,5 @@ Voici l'installation sur un serveur Tomcat 4.1, directement à partir du composa
 	--dest catalina.home=/opt/apache-tomcat-4.1 \
 	-Djdbc.username=sa -Djdbc.password= -Djdbc.hsqldb.file=A
 }}}
+
+Suite: [LigneDeCommandes Lignes de commandes]
