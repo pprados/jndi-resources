@@ -60,3 +60,5 @@ Pour indiquer d'autres paramètres, il faut utiliser le marqueur `<extends/>` en
 }}}
 
 Toutes les propriétés et les extensions peuvent utiliser des variables qui seront valorisées lors de l'installation. Les variables sont de la forme `${...}`.
+
+Suite : [ressources Les ressources globales]
