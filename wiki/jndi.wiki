@@ -2,7 +2,7 @@
 
 = Famille JNDI =
 
-La famille JNDI permet de lier plusieurs annuaires.
+La famille `jndi` permet de lier plusieurs annuaires.
 
 == Déclaration JEE ==
 La ressource doit être déclarée dans le fichier `web.xml` ou `application.xml`.
