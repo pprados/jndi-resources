@@ -1,4 +1,5 @@
 #summary Désinstallation des ressources
+#labels Phase-Deploy
 = Désinstallation des ressources =
 
 Les normes d'installations permettent une dé-installation facile du composant dans le serveur d'application.
