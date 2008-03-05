@@ -2,21 +2,25 @@
 
 = Description des ressources =
 
-Un fichier `jndi-resources.xml` permet d'enrichir de méta-informations la description des ressources des fichiers `web.xml` et `application.xml`. Le format est très simple. Un schéma et un espace de noms sont associés à la description.
+Un fichier `jndi-resources.xml` permet d'enrichir de méta-informations la description des ressources des fichiers `web.xml` et `application.xml`. Le format est très simple. Un [http://www.prados.fr/xsd/1.0/jndi-resources.xsd schéma] et un espace de noms sont associés à la description.
 
 Voici un premier exemple :
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 
-<resources xmlns="http://www.jndi-resources.org/1.0/"
-	id="jndi-web-sample">
+<resources
+  xmlns="http://jndi-resources.googlecode.com/1.0/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://jndi-resources.googlecode.com/1.0/ http://www.prados.fr/xsd/1.0/jndi-resources.xsd"
+  id="jndi-web-sample"
+>
 	<resource name="jndi-web-sample/jdbc/Default" familly="jdbc/default" />
 </resources>
 }}}
 
-Ce fichier décrit que pour la ressource `jndi-web-sample/jdbc/Default`, il faut utiliser la famille `jdbc/default`. Cela correspond à une source de données par défaut, suivant le serveur d'applications utilisé.
+Ce fichier décrit que pour la ressource `jndi-web-sample/jdbc/Default`, il faut utiliser la [Familles famille] `jdbc/default`. Cela correspond à une source de données par défaut, suivant le serveur d'applications utilisé.
 
-En modifiant la famille par `jdbc/oracle`, la source de donnée sera une base de donnée de type Oracle. Le driver Java sera automatiquement installée dans le serveur d'applications si nécessaire.
+En modifiant la [Familles famille] par `jdbc/oracle`, la source de donnée sera une base de donnée de type Oracle. Le driver Java sera automatiquement installée dans le serveur d'applications si nécessaire.
 
 Il est possible d'indiquer plus de précisions pour déclarer une ressource.
 {{{
@@ -59,6 +63,6 @@ Pour indiquer d'autres paramètres, il faut utiliser le marqueur `<extends/>` en
 </resources>
 }}}
 
-Toutes les propriétés et les extensions peuvent utiliser des variables qui seront valorisées lors de l'installation. Les variables sont de la forme `${...}`.
+Toutes les propriétés et les extensions peuvent utiliser des [Variables variables] qui seront valorisées lors de l'installation. Les variables sont de la forme `${...}`.
 
 Suite : [ressources Les ressources globales]
