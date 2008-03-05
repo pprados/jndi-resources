@@ -42,7 +42,7 @@ Notez la valeur du paramètre id du marqueur `<web-app/>`. Il correspond génér
 
 Ce fichier déclare, dans `<resource-ref/>`,  le besoin d'une ressource de type `javax.sql.DataSource`, pour la clef jndi `java:comp/env/jdbc/Default`.
 
-Suivant les serveurs d'applications, il faut ajouter différent fichiers permettant d'associer la ressource `java:comp/env/jdbc/Default` avec une autre clef JNDI.
+Suivant les serveurs d'applications, il faut ajouter [transformerWebXML différent] fichiers permettant d'associer la ressource `java:comp/env/jdbc/Default` avec une autre clef JNDI.
 Pour JBoss, il faut ajouter le fichier `WEB-INF/jboss-web.xml` suivant :
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
@@ -70,11 +70,11 @@ Pour Tomcat, le fichier `META-INF/context.xml` suivant :
                  type="javax.sql.DataSource"/>
 </Context>
 }}}
-Ces deux fichiers permettent d'associer la clef locale `java:comp/env/jdbc/Default`, avec la clef JVM `java:/jndi-web-sample/jdbc/Default`.
+Ces deux fichiers permettent d'associer la clef locale `java:comp/env/jdbc/Default` avec la clef JVM `java:/jndi-web-sample/jdbc/Default`.
 
 Par [Conventions conventions], les clefs locales de la branche `java:comp/env` doivent être associées aux clefs JVM de la branche `java:`, en préfixant par l'`id` présent dans le fichier `web.xml`. Cela permet de lever les ambiguïtés lorsque plusieurs composants sont installés sur le même serveur d'applications.
 
-Ces règles de transformations étant systématiques, il est facile de générer ces fichiers à partir du fichier `web.xml`. Des scripts XSLT sont proposés dans le répertoire `$JNDI_HOME/xslt`.
+Ces règles de transformations étant systématiques, il est facile de générer ces fichiers à partir du fichier `web.xml`. Des [transformerWebXML scripts XSLT] sont proposés dans le répertoire `$JNDI_HOME/xslt`.
 
 Il faut ensuite ajouter le fichier `META-INF/jndi-resources.xml`. C'est un nouveau fichier permettant de décrire sémantiquement (et non techniquement) les exigences des ressources du composant applicatif.
 {{{
@@ -93,13 +93,15 @@ Il faut ensuite ajouter le fichier `META-INF/jndi-resources.xml`. C'est un nouve
 }}}
 Ce fichier décrit simplement que nous souhaitons utiliser la base de données par défaut, associée au serveur d'applications. Pour JBoss et Tomcat, il s'agit d'une base HSQLDB.
 
+Vous pouvez [http://code.google.com/p/jndi-resources/downloads/list télécharger] l'archive d'exemple pour tester l'utilisation des différents outils.
+
 Nous désirons générer tous les fichiers de configurations des serveurs d'applications. L'utilitaire `$JNDI_HOME/bin/jndi-config.sh` s'en charge.
 {{{
 >$JNDI_HOME/bin/jndi-config.sh \
 	--war jndi-web-sample.war \
 	--packages ./packages
 }}}
-Cela génère un répertoire ./packages, avec des modèles de fichiers de paramètres pour tous les serveurs d'applications. C'est ce répertoire ainsi que `jndi-resources-<version>-install.(tar.gz|zip)` qu'il faudra utiliser pour installer le composant sur n'importe quel serveur d'applications.
+Cela génère un répertoire `./packages`, avec des modèles de fichiers de paramètres pour tous les serveurs d'applications. C'est ce répertoire ainsi que `jndi-resources-<version>-install.(tar.gz|zip)` qu'il faudra utiliser pour installer le composant sur n'importe quel serveur d'applications.
 
 Nous pouvons maintenant installer le composant sur différents serveurs d'applications.
 Voici une installation sur un Jboss 5.0:
@@ -121,11 +123,11 @@ Voici une installation sur un Tomcat 4.1:
 	--dest catalina.home=/opt/apache-tomcat-4.1 \
 	-Djdbc.username=sa -Djdbc.password= -Djdbc.hsqldb.file=A
 }}}
-Sous Tomcat, la base de donnée par défaut nécessite trois paramètres : le nom et le mot de passe de l'utilisateur de connexion, ainsi qu'un nom de fichier pour la base, géré par HSQLDB. Ces paramètres peuvent être indiqués dans un fichier de propriétés.
+Sous Tomcat, la base de donnée par défaut nécessite trois paramètres : le nom et le mot de passe de l'utilisateur de connexion, ainsi qu'un nom de fichier pour la base, géré par HSQLDB. Ces paramètres peuvent également être indiqués dans un fichier de [Variables propriétés].
 
 Ces deux étapes peuvent être combinées avec l'invocation de `$JNDI_HOME/bin/jndi-resources.sh`.
 
-Voici l'installation sur un serveur Tomcat 4.1, directement à partir du composant WAR.
+Voici l'installation sur un serveur Tomcat 4.1 directement à partir du composant WAR.
 {{{
 >$JNDI_HOME/bin/jndi-resources.sh \
 	--war jndi-web-sample.war \
