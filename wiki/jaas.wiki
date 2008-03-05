@@ -1,0 +1,25 @@
+#summary Famille JAAS, spécial JBoss
+
+= Famille JAAS, spécial JBoss =
+
+Contrairement aux autres ressources, la famille `jaas` ne fonctionne qu'avec JBoss. Elle permet de demander l'installation de driver JAAS dans le serveur.
+
+== Déclaration JEE ==
+La ressource doit être déclarée dans le fichier `web.xml` ou `application.xml`.
+{{{
+<resource-ref>
+   <res-ref-name>jaas/intranet</res-ref-name>
+   <res-type>org.jboss.security.plugins.SecurityDomainContext</res-type>
+   <res-auth>Application</res-auth>
+   <res-sharing-scope>Shareable</res-sharing-scope>
+</resource-ref>
+}}}
+
+== Déclaration jndi-resource ==
+Les métas-données pour décrire les exigences de la ressource doivent être décrite dans le fichier `jndi-resources.xml`. Par exemple :
+{{{
+<resource name="jndi-web-sample/jaas/default" familly="jaas/default" />
+}}}
+
+== Propriétés ==
+Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier `jndi-resources.xml`.
