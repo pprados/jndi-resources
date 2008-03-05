@@ -25,3 +25,5 @@ Le tableau suivant décrit les différentes familles de ressources gérés par l
 || aas/default || Authentifications par défaut de JBoss.||
 || jaas/intranet || Authentification Intranet pour JBoss.||
 || jaas/internet || Authentification Internet pour JBoss.||
+
+Suite : [Conventions]
