@@ -1,0 +1,45 @@
+#summary One-sentence summary of this page.
+
+= Les modèles de transformations =
+
+Les modèles de transformations proposent de gérer les serveurs suivants :
+ * `jboss` de la version 3.0 à la dernière à ce jour ( la version 5.x ou suivante si la compatibilité ascendante est conservée).
+ * `jboss-jms-srv`, c'est à dire un serveur JBoss jouant le rôle d'un serveur JMS pour les versions de 3.0 à 5.x.
+ * `jboss-jndi-srv`, c'est à dire un serveur JBoss jouant uniquement le rôle de serveur d'annuaire jndi pour les versions de 3.2.8 à 5.x.
+ * `jboss-jndi-cli` de la version 3.2.8 à la version 5.x. C'est à dire un serveur JBoss jouant le rôle d'un client JNDI.
+ * `tomcat` de la version 4.0 à la dernière à ce jour, la version 6.x
+
+Certains serveurs peuvent jouer plusieurs rôles simultanément. Il faut dans ce cas lancer plusieurs installations, avec des paramètres différents, sur les mêmes répertoires. Par exemple, si un serveur JBoss joue le rôle de serveur d'application web et simultanément de serveur JMS, il faut lancer les installations suivantes :
+{{{
+>$JNDI_HOME/bin/jndi-install.sh \
+	--package ./packages \
+	--appsrv jboss --version 5.0 \
+	--dest jboss.server.conf=/opt/jboss-5.0/server/default \
+	--dest jboss.server.home=/opt/jboss-5.0
+>$JNDI_HOME/bin/jndi-install.sh \
+	--package ./packages \
+	--appsrv jboss-jms-srv --version 5.0 \
+	--dest jboss.server.conf=/opt/jboss-5.0/server/default \
+	--dest jboss.server.home=/opt/jboss-5.0
+}}}
+
+Si les ressources d'un applicatif doivent être disponibles aux clients JNDI, et qu'en plus, l'instance doit également servir de serveur JMS, vous pouvez installer les cibles `jboss-jndi-cli` , `jboss-jndi-srv` et `jboss-jms-srv` dans la même instance JBoss.
+{{{
+>$JNDI_HOME/bin/jndi-install.sh \
+	--package ./packages \
+	--appsrv jboss-jndi-cli --version 5.0 \
+	--dest jboss.server.conf=/opt/jboss-5.0/server/default \
+	--dest jboss.server.home=/opt/jboss-5.0
+>$JNDI_HOME/bin/jndi-install.sh \
+	--package ./packages \
+	--appsrv jboss-jndi-srv --version 5.0 \
+	--dest jboss.server.conf=/opt/jboss-5.0/server/default \
+	--dest jboss.server.home=/opt/jboss-5.0
+>$JNDI_HOME/bin/jndi-install.sh \
+	--package ./packages \
+	--appsrv jboss-jms-srv --version 5.0 \
+	--dest jboss.server.conf=/opt/jboss-5.0/server/default \
+	--dest jboss.server.home=/opt/jboss-5.0
+}}}
+
+D'autres serveurs viendrons s'ajouter à la liste. Vous pouvez participer à l'évolution de l'outil en proposant des scripts pour d'autres serveurs. Consulter le site du projet pour avoir des précisions.
