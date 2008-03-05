@@ -35,3 +35,5 @@ Tous les modèles de déploiement peuvent alors être distribués sur différent
 Un deuxième utilitaire se charge d'exploiter ces modèles de déploiement pour une installation effective sur un ou plusieurs serveurs d'applications cibles, pas nécessairement de la même marque ou de la même version. Des fichiers de propriétés permettent alors d'indiquer les éléments spécifiques à la plate-forme d'accueil (les adresses des bases de données, les mots de passe, etc).
 
 Si nécessaire, ces deux étapes peuvent être regroupées en une seule, afin de partir du fichier des exigences de ressources à une installation directe sur les serveurs d'applications.
+
+Suite : [Familles Familles de ressources]
