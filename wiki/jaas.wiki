@@ -1,4 +1,4 @@
-#summary Famille JAAS, spécial JBoss
+#summary Famille jaas/*, spécial JBoss
 
 = Famille JAAS, spécial JBoss =
 
@@ -23,3 +23,23 @@ Les métas-données pour décrire les exigences de la ressource doivent être d�
 
 == Propriétés ==
 Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier `jndi-resources.xml`.
+
+|||| *Famille jaas* ||
+|| *Propriété* || *Description* ||
+|| _N/A_ || Il n'existe pas de paramètres spécifique à cette famille. ||
+
+== Extensions et limitations ==
+Il n'y a pas d'extension possible pour ce type de ressource.
+Cette famille ne fonctionne qu'avec les serveurs JBoss.
+
+== Déclinaisons ==
+Les déclinaisons possibles pour le paramètre `familly` du fichier `jndi-resources.xml` sont les suivantes :
+|| *Famille* || *Description* ||
+|| `jaas/default` || Utilise le module JAAS `java:jaas/jmx-console`. C'est à dire que les utilisateurs sont les mêmes que ceux ayant accès la console JMX. ||
+|| `jaas/intranet` || Utilise un module JAAS dont le modèle est présent dans `$TEMPLATES/jboss?_?/jaas/intranet/pattern.xml`. En modifiant le fichier, vous pouvez normaliser l'accès aux authentifications de type intranet, par exemple, en utilisant un serveur Ldap ou une base de donnée. L'installation du module se fera automatiquement. ||
+|| `jaas/internet` || Utilise un module JAAS dont le modèle est présent dans `$TEMPLATES/jboss?_?/jaas/internet/pattern.xml`. En modifiant le fichier, vous pouvez normaliser l'accès aux authentifications de type internet, par exemple, en utilisant un serveur Ldap ou une base de donnée. L'installation du module se fera automatiquement.||
+
+== Variables ==
+Les variables à valoriser lors de l'installation pour gérer ces ressources sont les suivantes :
+|| *Variable* || *Description* ||
+|| _N/A_ || Cette famille n'a pas de besoins de variables particulières lors de l'installation. ||
