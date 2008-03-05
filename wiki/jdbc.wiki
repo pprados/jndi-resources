@@ -75,3 +75,53 @@ Pour ajouter des paramètres spécifiques à un serveur d'application, il faut a
 == Variables ==
 Les variables à valoriser lors de l'installation pour gérer ces ressources sont les suivantes :
 || *Variable* || *Description* ||
+|| *`${jdbc.host}`* || Le host de la base de donnée. Il n'y a pas de valeur par défaut. Cette variable doit être valorisé lors de l'installation. ||
+|| *`${jdbc.username}`* || L'utilisateur de connexion. Il n'y a pas de valeur par défaut. Cette variable doit être valorisé lors de l'installation. ||
+|| *`${jdbc.password}`* || Le mot de passe de connexion. Il n'y a pas de valeur par défaut. Cette variable doit être valorisé lors de l'installation. ||
+|| `${jdbc.min-pool-size}` || Valeur par défaut : 5 ||
+|| `${jdbc.max-pool-size}` || Valeur par défaut : 20 ||
+|| `${jdbc.prepared-statement-cache-size}` || Valeur par défaut : 32 ||
+|| `${jdbc.max-wait}` || Valeur par défaut : -1 ||
+|| `${jdbc._<db>_.username}` || Valeur par défaut : `${jdbc.username}` ||
+|| `${jdbc._<db>_.password}` || Valeur par défaut : `${jdbc.password}` ||
+|| `${jdbc._<db>_.driver}` || Le driver de la base de donnée associé (mysql, oracle, etc.) ||
+|| `${jdbc._<db>_.port}` || Le port d'accès à la base de donnée. ||
+|| `${jdbc._<db>_.url.default}` || L'URL de connexion par défaut. ||
+|| `${jdbc.xa._<db>_.driver}` || Le driver de la base de donnée pour une connexion XA. ||
+|| `${jdbc.xa._<db>_.url.default}` || L'URL de connexion par défaut en cas de connexion XA. ||
+|| `${jdbc._<db>_.validation-query}` || La requête SQL de validation de la connexion. ||
+
+Chaque base de donnée définie ces variables.
+|||| *HSQLDB* ||
+|| *Variable* || *Description* ||
+|| `${jdbc.hsqldb.driver}` || Valeur : `org.hsqldb.jdbcDriver` ||
+|| `${jdbc.hsqldb.url.default}` || La valeur dépend du serveur d'application cible. Pour JBoss : `jdbc:hsqldb:file:${jboss.server.data.dir}${/}hypersonic${/}${jdbc.hsqldb.file}`||
+|| `${jdbc.hsqldb.port}` || Valeur : 1701 ||
+|| `${jdbc.hsqldb.validation-query}` || Valeur : /**/ ||
+|| `${jdbc.hsqldb.username}` || Valeur : `${jdbc.username}` ||
+|| `${jdbc.hsqldb.password}` || Valeur : `${jdbc.password}` ||
+|| *`${jdbc.hsqldb.file}`* || Le fichier utilisé par la base HSQLDB. Il n'y a pas de valeur par défaut. Cette variable doit être valorisé lors de l'installation si nécessaire. ||
+
+|||| *MySQL* ||
+|| *Variable* || *Description* ||
+|| `${jdbc.mysql.driver}` || Valeur : `com.mysql.jdbc.Driver` ||
+|| `${jdbc.mysql.port}` || Valeur : 3306 ||
+|| `${jdbc.mysql.url.default}` || Valeur : `jdbc:mysql://${jdbc.host}:${jdbc.mysql.port}/${jdbc.mysql.schema}` ||
+|| `${jdbc.mysql.username}` || Valeur : `${jdbc.username}` ||
+|| `${jdbc.mysql.password}` || Valeur : `${jdbc.password}` ||
+|| `${jdbc.mysql.xa.driver}` || Valeur : `com.mysql.jdbc.jdbc2.optional.MysqlXADataSource` ||
+|| `${jdbc.mysql.xa.url.default}` || Valeur : `jdbc:mysql://${jdbc.host}:${jdbc.mysql.port}/${jdbc.mysql.schema}` ||
+|| *`${jdbc.mysql.schema}`* || Le schéma de la base MySql. Il n'y a pas de valeur par défaut. Cette variable doit être valorisé lors de l'installation si nécessaire. ||
+|| `${jdbc.mysql.validation-query}` || Valeur : `select '1'` ||
+
+|||| *Oracle* ||
+|| *Variable* || *Description* ||
+|| `${jdbc.oracle.driver}` || Valeur : `oracle.jdbc.driver.OracleDriver` ||
+|| `${jdbc.oracle.port}` || Valeur : 1521 ||
+|| `${jdbc.oracle.sid}` || Le « service name » Oracle. Valeur par défaut : XE. ||
+|| `${jdbc.oracle.url.default}` || Valeur : `jdbc:oracle:thin:@(description=(address=(host=${jdbc.host})(protocol=tcp)(port=${jdbc.oracle.port}))(connect_data=(SERVICE_NAME=${jdbc.oracle.sid})))` ||
+|| `${jdbc.oracle.username}` || Valeur : `${jdbc.username}` ||
+|| `${jdbc.oracle.password}` || Valeur : `${jdbc.password}` ||
+|| `${jdbc.oracle.xa.driver}` || Valeur : `oracle.jdbc.xa.client.OracleXADataSource` ||
+|| `${jdbc.oracle.xa.url.default}` || Valeur : `jdbc:oracle:thin:@(description=(address=(host=${jdbc.host})(protocol=tcp)(port=${jdbc.oracle.port}))(connect_data=(SERVICE_NAME=${jdbc.oracle.sid})))`||
+|| `${jdbc.oracle.validation-query}` || Valeur : `select 1 from dual` ||
