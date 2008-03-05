@@ -28,3 +28,5 @@ Les bénéfices attendus de la démarche sont les suivants :
  * Migration immédiate d'un serveur à un autre, ou d'une version à la suivante ;
  * Normalisation de l'utilisation des ressources de l'entreprise ;
  * Qualifications des paramètres de déploiements ;
+
+Suite : [AQuoiCelaSert  A quoi cela sert ?]
