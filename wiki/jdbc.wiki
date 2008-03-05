@@ -91,7 +91,7 @@ Les variables à valoriser lors de l'installation pour gérer ces ressources son
 || `${jdbc.xa._<db>_.url.default}` || L'URL de connexion par défaut en cas de connexion XA. ||
 || `${jdbc._<db>_.validation-query}` || La requête SQL de validation de la connexion. ||
 
-Chaque base de donnée définie ces variables.
+Chaque base de données définie ces variables.
 |||| *HSQLDB* ||
 || *Variable* || *Description* ||
 || `${jdbc.hsqldb.driver}` || Valeur : `org.hsqldb.jdbcDriver` ||
