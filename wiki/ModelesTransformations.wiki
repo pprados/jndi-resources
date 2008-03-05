@@ -43,3 +43,5 @@ Si les ressources d'un applicatif doivent être disponibles aux clients JNDI, et
 }}}
 
 D'autres serveurs viendrons s'ajouter à la liste. Vous pouvez participer à l'évolution de l'outil en proposant des scripts pour d'autres serveurs. Consulter le site du projet pour avoir des précisions.
+
+Suite : [jndiResourcesXML Description des ressources]
