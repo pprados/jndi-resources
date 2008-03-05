@@ -2,11 +2,12 @@
 
 = Famille Mail =
 
-La famille mail permet de demander l'installation de sessions Javamail pour envoyer ou recevoir des mails avec les protocoles SMTP, POP3 et IMAP.
+La famille `mail` permet de demander l'installation de sessions Javamail pour envoyer ou recevoir des mails avec les protocoles SMTP, POP3 et IMAP.
 
 == Déclaration JEE ==
 La ressource doit être déclarée dans le fichier `web.xml` ou `application.xml`.
 {{{
+...
 <resource-ref>
    <description>Accès mail</description>
    <res-ref-name>mail/MonMail</res-ref-name>
@@ -14,11 +15,13 @@ La ressource doit être déclarée dans le fichier `web.xml` ou `application.xml
    <res-auth>Application</res-auth>
    <res-sharing-scope>Shareable</res-sharing-scope>
 </resource-ref>
+...
 }}}
 
 == Déclaration jndi-resource ==
-Les métas-données pour décrire les exigences de la ressource doivent être décrite dans le fichier `jndi-resources.xml`. Par exemple :
+Les métas-données pour décrire les exigences de la ressource doivent être décrite dans le fichier [jndiResourcesXML jndi-resources.xml]. Par exemple :
 {{{
+...
 <resource
   name="jndi-web-sample/mail/MonMail"
   familly="mail/default"
@@ -26,16 +29,20 @@ Les métas-données pour décrire les exigences de la ressource doivent être d�
   <property name="store.protocol" value="imap"/>
   <property name="transport.protocol" value="smtp"/>
 </resource>
+<resource name="jndi-web-sample/mail/email" familly="mail/email" >
+  <property name="email" value="${myemail}"/>
+</resource>
+...
 }}}
 
 == Propriétés ==
-Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier `jndi-resources.xml`.
+Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier [jndiResourcesXML jndi-resources.xml].
 
 |||| *Famille Mail* ||
 || *Propriété* || *Description* ||
 || `user` || L'utilisateur des connexions SMTP, IMAP et POP3. Cela n'est pas équivalent au mail de l'utilisateur. La valeur par défaut est : `${mail.user}`||
 || `password` || Le mot de passe de l'utilisateur pour ouvrir les connexions des protocoles. La valeur par défaut est : `${mail.password}`||
-|| `from` || Le mail source lors de l'envoie de messages. La valeur par défaut est : `${mail.from}`||
+|| `from` || L'email source lors de l'envoie de messages. La valeur par défaut est : `${mail.from}`||
 || `host` || Le nom du poste accueillant les protocoles SMTP et IMAP ou POP3. La valeur par défaut est : `${mail.host}`||
 || `debug` || Pour activer le déverminage de Javamail. La valeur par défaut est : `${mail.debug}` ||
 || `store.protocol` || Le protocole à utiliser pour la boite aux lettres. Valeurs possibles  : `imap` ou `pop3` La valeur par défaut est : `${mail.store.protocol}` ||
@@ -44,7 +51,7 @@ Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier `jnd
 || `store.user` || L'utilisateur de connexion pour accéder à la boite aux lettres. La valeur par défaut est : `${mail.store.user}`||
 || `store.connectiontimeout` || Le délais maximum pour ouvrir la connexion d'accès à la boite aux lettres. La valeur par défaut est : `${mail.store.connectiontimeout}`||
 || `store.timeout` || Le délais maximum pour effectuer une action sur la boite aux lettres. La valeur par défaut est : `${mail.store.timeout}`||
-|| `transport.protocol` || Le protocole de transport. Par défaut : `smtp`. D'autres protocoles sont possibles, avec des drivers complémentaires. La valeur par défaut est : `${mail.transport.protocol}`||
+|| `transport.protocol` || Le protocole de transport. La valeur par défaut est : `${mail.transport.protocol}`||
 || `transport.host` || Le nom du serveur du protocole de transport. La valeur par défaut est : `${mail.transport.host}`||
 || `transport.port` || Le port du protocole de transport. La valeur par défaut est : `${mail.transport.port}`||
 || `transport.user` || L'utilisateur de connexion pour le protocole de transport. La valeur par défaut est : `${mail.transport.user}`||
@@ -55,6 +62,7 @@ Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier `jnd
 == Extensions et limitations ==
 Pour ajouter des paramètres spécifiques à un serveur d'application, il faut ajouter à la déclaration de ressources, des informations complémentaires dont voici des exemples.
 {{{
+...
 <resource name="jndi-web-sample/mail/MonMail" familly="mail/default">
   <property name="store.protocol" value="imap"/>
   <property name="transport.protocol" value="smtp"/>
@@ -65,25 +73,23 @@ Pour ajouter des paramètres spécifiques à un serveur d'application, il faut a
     <attribute name="mail.smtp.user">moi@chezmoi.maison</attribute>
   </extends>
 </resource>
-<resource name="jndi-web-sample/mail/email" familly="mail/email" >
-  <property name="email" value="${myemail}"/>
-</resource>
+...
 }}}
 
 == Déclinaisons ==
-Les déclinaisons possibles pour le paramètre familly du fichier jndi-resources.xml sont les suivantes :
+Les déclinaisons possibles pour le paramètre [Familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
 || *Famille* || *Description* ||
-|| `mail/default` || Utilise les drivers par défauts de Javamail, à savoir SMTP pour le transport, et POP3 ou IMAP pour la sauvegarde des messages. ||
-|| `mail/email` || Un email, complémentaire à l'e-mail de la session Javamail. ||
+|| `mail/default` || Utilise les _drivers_ par défauts de Javamail, à savoir SMTP pour le transport et POP3 ou IMAP pour la sauvegarde des messages. ||
+|| `mail/email` || Un email unique, complémentaire à l'e-mail de la session Javamail. ||
 
 == Variables ==
 Les variables à valoriser lors de l'installation pour gérer ces ressources sont les suivantes :
 || *Variable* || *Description* ||
 || *`${mail.host}`* || Le serveur gérant les protocoles de transport et de messagerie. Il n'y a pas de valeur par défaut. Ce paramètre doit être valorisé lors de l'installation.||
-|| *`${mail.from}`* || L'émail de l'émetteur des messages. Il n'y a pas de valeur par défaut.||
+|| *`${mail.from}`* || L'email de l'émetteur des messages. Il n'y a pas de valeur par défaut.||
 || `${mail.user}` || Le mot de passe de l'utilisateur de connexion. Valeur par défaut : `""`||
 || `${mail.debug}` || L'état de déverminage de Javamail. Valeur par défaut : `false` ||
-|| `${mail.store.protocol}` || Le protocole de « store ». Les valeurs possibles sans driver supplémentaires sont : `imap` et `pop3`. Valeur par défaut : `pop3` ||
+|| `${mail.store.protocol}` || Le protocole de « store ». Les valeurs possibles sans _driver_ supplémentaires sont : `imap` et `pop3`. Valeur par défaut : `pop3` ||
 || `${mail.store.host}` || Le serveur de mail. Valeur par défaut : `${mail.host}` ||
 || `${mail.store.port}` || Le port du protocole sur le serveur de mail. Valeur par défaut : `${mail.${mail.store.protocol}.default.port}` ||
 || `${mail.store.user}` || L'utilisateur de connexion pour accéder à la messagerie. Valeur par défaut : `${mail.user}`||
