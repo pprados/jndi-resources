@@ -24,6 +24,6 @@ Le tableau suivant décrit les différentes familles de ressources gérés par l
 || [url url/default] || Déclare une URL dans le annuaire JNDI.||
 || [jaas jaas/default] || Authentifications par défaut de JBoss.||
 || [jaas jaas/intranet] || Authentification Intranet pour JBoss.||
-|| jaas/internet || Authentification Internet pour JBoss.||
+|| [jaas/internet] || Authentification Internet pour JBoss.||
 
 Suite : [Conventions]
