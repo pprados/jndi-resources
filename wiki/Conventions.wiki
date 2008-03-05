@@ -37,3 +37,4 @@ Pour la clef `java:comp/env/jdbc/MaDatabase` d'une application d'identité `MonA
 || *Clef* || *Valeur* || *Description* ||
 || `/`_<idapp>_`/jms/`_<Ma clef>_ || La ressource JMS. || La ressource visible par tous.||
 
+Suite : [Installation]
