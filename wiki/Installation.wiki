@@ -15,7 +15,7 @@ Le répertoire `$JNDI_HOME/lib` possède les librairies Java nécessaires aux ut
 
 Le répertoire `$JNDI_HOME/templates` possède les règles de productions des fichiers de paramétrage pour les différents serveurs d'applications.
 
-Le répertoire `$JNDI_HOME/xslt` possède, à titre d'illustration, des scripts XSTL pour [transformer] les fichiers `web.xml` et `application.xml` vers les fichiers nécessaires aux différents serveurs d'applications (`jboss.xml`, `jboss-web.xml`, `context.xml`, etc.).
+Le répertoire `$JNDI_HOME/xslt` possède, à titre d'illustration, des scripts XSTL pour [transformerWebXML transformer] les fichiers `web.xml` et `application.xml` vers les fichiers nécessaires aux différents serveurs d'applications (`jboss.xml`, `jboss-web.xml`, `context.xml`, etc.).
 
 Les répertoires `templates` et `xslt` ne sont pas présents dans l'archive  `jndi-resources-<version>-install.(tar.gz|zip)` car ils ne sont pas nécessaires lors de l'installation des composants.
 
