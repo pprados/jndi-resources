@@ -2,7 +2,7 @@
 
 = Famille JMS =
 
-La famille JMS permet de demander l'installation de _factories_, de _queue_ ou de _topic_ pour envoyer ou recevoir des messages.
+La famille `jms` permet de demander l'installation de _factories_, de _queue_ ou de _topic_ pour envoyer ou recevoir des messages.
 
 == Déclaration JEE ==
 Les ressources doivent être déclarées dans le fichier `web.xml` ou `application.xml`.
