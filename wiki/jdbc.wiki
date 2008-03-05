@@ -8,6 +8,7 @@ La famille jdbc permet de décrire une source de données de type SQL.
 == Déclaration JEE ==
 La ressource doit être déclarée dans le fichier `web.xml` ou `application.xml`.
 {{{
+...
 <resource-ref>
   <description>Source de données SQL</description>
   <res-ref-name>jdbc/MaDataSource</res-ref-name>
@@ -15,11 +16,13 @@ La ressource doit être déclarée dans le fichier `web.xml` ou `application.xml
   <res-auth>Application</res-auth>
   <res-sharing-scope>Shareable</res-sharing-scope>
 </resource-ref>
+...
 }}}
 
 == Déclaration jndi-resource ==
-Les métas-données pour décrire les exigences de la ressource doivent être décrite dans le fichier `jndi-resources.xml`. Par exemple :
+Les métas-données pour décrire les exigences de la ressource doivent être décrite dans le fichier [jndiResourcesXML jndi-resources.xml]. Par exemple :
 {{{
+...
 <resource
   name="jndi-web-sample/jdbc/MaDataSource"
   familly="jdbc/default">
@@ -29,10 +32,11 @@ Les métas-données pour décrire les exigences de la ressource doivent être d�
   <property name="max-pool-size" value="20"/>
   <property name="prepared-statement-cache-size" value="32"/>
 </resource>
+...
 }}}
 
 == Propriétés ==
-Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier `jndi-resources.xml` pour décrire la ressource.
+Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier [jndiResourcesXML jndi-resources.xml] pour décrire la ressource.
 |||| *Famille jdbc* ||
 || *Propriété* || *Description* ||
 || `archetype` || Indique l'archétype Maven du driver à utiliser. La valeur doit suivre le format suivant : `<groupe>:<archetype>:<version>` La valeur par défaut dépend de la famille utilisées. ||
@@ -49,6 +53,7 @@ Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier `jnd
 == Extensions et limitations ==
 Pour ajouter des paramètres spécifiques à un serveur d'application, il faut ajouter à la déclaration de ressources, des informations complémentaires dont voici un exemple.
 {{{
+...
 <resource
   name="jndi-web-sample/jdbc/MaDataSource"
   familly="jdbc/oracle"
@@ -64,6 +69,7 @@ Pour ajouter des paramètres spécifiques à un serveur d'application, il faut a
     </extends>
   </extends>
 </resource>
+...
 }}}
 
 == Déclinaisons ==
