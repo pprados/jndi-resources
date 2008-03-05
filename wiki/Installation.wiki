@@ -1,4 +1,5 @@
 #summary Installation de l'utilitaire.
+#labels Phase-Deploy
 
 = Installation =
 
