@@ -9,7 +9,7 @@ Les annuaires sont reliés les uns les autres pour cacher cette organisation aux
 
 Certains publient des sources de données, d'autres la liste des utilisateurs sous LDAP. Notez qu'il est possible de mémoriser tous les objets java dans un serveur LDAP. 
 
-*jndi-resources* sait prendre en charge ces architectures, en [[transformations générant] des fichiers de paramètres adaptés pour l'annuaire JNDI et d'autres pour les clients des annuaires JNDI.
+*jndi-resources* sait prendre en charge ces architectures, en [transformations générant] des fichiers de paramètres adaptés pour l'annuaire JNDI et d'autres pour les clients des annuaires JNDI.
 Ainsi, en modifiant un paramètre sur l'annuaire JNDI centralisé, tous les clients en bénéficient.
 Cette approche garantie une uniformisation des paramètres de déploiement, dans une architecture à base de grappe ou de ferme. Il est plus facile d'ajouter un nouveau nœud et de partager des informations entres plusieurs nœuds (Queue JMS, tailles de pools, etc.) Cela réduit le risque qu'un nœuds fonctionne et pas un autre, alors qu'ils sont censé être identiques.
 
