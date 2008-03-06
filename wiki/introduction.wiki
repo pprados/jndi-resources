@@ -5,7 +5,7 @@
 Les composants JEE ne doivent pas dépendre d'une architecture de déploiement, ni avoir connaissance des localisations des différentes ressources qu'ils utilisent. Ils doivent être indépendants du type de la base de donnée, de sa localisation, de l'utilisation d'un annuaire [architecture JNDI localisé ou centralisé], du [transformations type] de serveur d'applications d'accueil (JBoss, Tomcat ou autre), etc.
 
 Les spécifications JEE offrent pour cela une norme de packaging (WAR et EAR) et une technologie : [architecture JNDI]. Il s'agit d'une base de données hiérarchiques d'objets.
-Les composants doivent indiquer les ressources dont ils ont besoins ; une [jdbc source de données], une queue [jms JMS], etc. Le serveur d'applications doit être paramétré pour offrir les ressources nécessaires au composant.
+Les composants doivent indiquer les ressources dont ils ont besoins ; une [jdbc source de données], une queue [jms JMS], un serveur de [mail], une [url], un [jdbc annuaire], etc. Le serveur d'applications doit être paramétré pour offrir les ressources nécessaires au composant.
 
 Mais, comme le paramétrage de ces ressources n'est pas normalisé, chaque serveur utilise une approche qui lui est propre. Il faut alors écrire des scripts d'installations spécifique à chaque serveur, voir à chaque version de chaque serveur. Sinon, le composant JEE ne fonctionne pas, en l'absence des ressources nécessaires.
 
