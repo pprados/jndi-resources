@@ -121,7 +121,7 @@ Voici une installation sur un Tomcat 4.1:
 	--dest catalina.home=/opt/apache-tomcat-4.1 \
 	-Djdbc.username=sa -Djdbc.password= -Djdbc.hsqldb.file=A
 }}}
-Sous Tomcat, la base de donnée par défaut nécessite trois paramètres : le nom et le mot de passe de l'utilisateur de connexion, ainsi qu'un nom de fichier pour la base gérée par HSQLDB. Ces paramètres peuvent également être indiqués dans un fichier de [Variables propriétés].
+Sous Tomcat, la base de donnée par défaut nécessite trois paramètres : le nom et le mot de passe de l'utilisateur de connexion, ainsi qu'un nom de fichier pour la base gérée par HSQLDB. Ces paramètres peuvent également être indiqués dans un fichier de [variables propriétés].
 
 Ces deux étapes peuvent être combinées avec l'invocation de `$JNDI_HOME/bin/jndi-resources.sh`.
 
