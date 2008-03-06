@@ -28,11 +28,11 @@ Les métas-données pour décrire les exigences de la ressource doivent être d�
 }}}
 
 == Propriétés ==
-Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier [jndiResourcesXML jndi-resources.xml].
+Voici la propriété obligatoire que vous devez ajouter dans le fichier [jndiResourcesXML jndi-resources.xml].
 
 |||| *Famille host* ||
 || *Propriété* || *Description* ||
-|| `host` || Ce paramètre permet d'indiquer une variable décrivant le serveur qui devra être valorisé lors de l'installation du composant. ||
+|| *`host`* || Ce paramètre permet d'indiquer une variable décrivant le serveur qui devra être valorisé lors de l'installation du composant. ||
 
 == Extensions et limitations ==
 Il n'y a pas d'extension possible pour ce type de ressource.
