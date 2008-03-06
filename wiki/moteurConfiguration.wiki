@@ -6,7 +6,7 @@ Pour bien comprendre le moteur de configuration, il faut auparavant avoir saisie
 
 Comme pour l'[moteurInstallation installation], la génération des différentes configurations pour les différents serveurs d'applications s'appuie sur un moteur et des transformations XSL 2.0.
 
-Un modèle de transformation est proposé pour générer toutes les déclinaisons à partir du fichier [jndiPropertiesXML jndi-properties.xml]. Une implantation est disponible par défaut dans le répertoire `$JNDI_HOME/templates`. Elle peut être enrichie ou modifiée pour tenir compte des spécificités de votre entreprise. Cela permet de garantir une approche uniforme dans la gestion des ressources des composants JEE sur les différentes plate-formes de pré-intégration, intégration, etc.
+Un modèle de transformation est proposé pour générer toutes les déclinaisons à partir du fichier [jndiResourcesXML jndi-properties.xml]. Une implantation est disponible par défaut dans le répertoire `$JNDI_HOME/templates`. Elle peut être enrichie ou modifiée pour tenir compte des spécificités de votre entreprise. Cela permet de garantir une approche uniforme dans la gestion des ressources des composants JEE sur les différentes plate-formes de pré-intégration, intégration, etc.
 
 Par exemple, vous pouvez décider que par défaut, les [jdbc sources de données] sont de type Oracle, même s'il existe d'autres choix dans le modèle original. Vous pouvez également indiquer des valeurs par défaut pour les paramètres, différents de ceux proposés dans le modèle livré avec l'utilitaire.
 
