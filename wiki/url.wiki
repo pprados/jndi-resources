@@ -43,7 +43,7 @@ Voici la propriété obligatoire que vous devez ajouter dans le fichier [jndiRes
 
 |||| *Famille URL* ||
 || *Propriété* || *Description* ||
-|| `url` || Ce paramètre permet d'indiquer une variable décrivant l'URL qui devra être valorisée lors de l'installation du composant. Cette URL est par défaut de type `file:` et peut alors référencer un répertoire partagé ou un répertoire relatif au serveur d'application.||
+|| *`url`* || Ce paramètre permet d'indiquer une variable décrivant l'URL qui devra être valorisée lors de l'installation du composant. Cette URL est par défaut de type `file:` et peut alors référencer un répertoire partagé ou un répertoire relatif au serveur d'application.||
 
 == Extensions et limitations ==
 Il n'y a pas d'extension possible pour ce type de ressource.
