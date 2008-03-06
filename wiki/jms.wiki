@@ -83,7 +83,7 @@ Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier [jnd
 || `xa` || Indique si la manipulation de la ressource fait partie d'une transaction ou non. La valeur par défaut est : `false`. ||
 
 |||| *Famille jms/_xxx_/topic ||
-Les déclinaisons possibles pour le paramètre [familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
+Les propriétés optionelles pour topic :
 || *Propriété* || *Description* ||
 || `dead-letter-queue` || La référence à une queue pour mémoriser les messages n'ayant pu être délivrés. Il n'y a pas de valeur par défaut. Dans ce cas, la stratégie du serveur JMS s'applique. ||
 || `expiry-queue` || La référence à une queue pour mémoriser les messages trop anciens. Il n'y a pas de valeur par défaut. Dans ce cas, la stratégie du serveur JMS s'applique. ||
