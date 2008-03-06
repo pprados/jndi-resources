@@ -1,0 +1,10 @@
+#summary Les règles de codage
+
+= Les règles de codage =
+
+Si vous ajoutez de nouvelles ressources ou de nouveaux serveurs d'application, vous devez suivre les règles suivantes :
+ * Le package d'installation doit être auto-suffisant. Il ne doit pas exiger la présence de [http://maven.apache.org Maven], ou d'autres utilitaires qui ne sont pas disponible par défaut dans les serveurs d'applications.
+ * Tous les fichiers nécessaire à l'exécution du script d'installation doivent être recopier dans le package d'installation (feuilles XSLT, etc.)
+ * Le JDK nécessaire ne doit pas être supérieur à 1.4, afin de permettre une installation avec de vieux serveurs, toujours en activités.
+ * Les nouvelles variables doivent suivre les conventions utilisés pour les autres ressources. Si une variable peut avoir une valeur spécifique, mais également une valeur générique, déclarée la variable spécifique à le nom de la variable générique ( `jdbc.myds.username=${jdbc.username}` )
+ * Partagez vos codes avec la communauté !
