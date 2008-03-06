@@ -24,7 +24,7 @@ Le processus est le suivant :
  * exécution de `$TEMPLATES/process.xslt` ;
  * pour chaque répertoire présent dans `$TEMPLATES`, sauf pour `$TEMPLATES/tools` :
    * exécution de `$TEMPLATES/`_modèle_`/process.xslt`,
- * pour chaque famille trouvée dans le fichier [jndiPropertiesXML jndi-properties.xml] :
+ * pour chaque famille trouvée dans le fichier [jndiResourcesXML jndi-properties.xml] :
    * exécution de `$TEMPLATES/`_modèle_`/`_famille_`/process.xslt`
 
 Par exemple, si le fichier ne possède que la famille `jdbc/default`, avec uniquement les modèles `tomcat4_0` et `jboss3_x`, les fichiers suivants sont exécutés :
