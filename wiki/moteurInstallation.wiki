@@ -76,7 +76,7 @@ Deux variables XSLT sont valorisées et peuvent être exploitées par les feuill
 
 Vous pouvez ajouter d'autres variables à l'aide de la ligne de commande avec le paramètre `--xsl`.
 
-L'utilitaire *jndi-config* se charge d'[moteurConfiguration alimenter] le répertoire `$PACKAGES` à partir des descriptions des ressources, mais vous n'êtes pas obligés de l'utiliser pour exploiter le moteur d'installation. Vous pouvez également enrichir le résultat proposé en ajoutant d'autres fichiers à recopier dans la configuration des différents serveurs d'applications, ou d'autres fichiers `.jndi` suivant le modèle de transformation proposé.
+L'utilitaire *jndi-config* se charge d'[moteurConfiguration alimenter] le répertoire `$PACKAGES` à partir des descriptions des ressources, mais vous n'êtes pas obligé de l'utiliser pour exploiter le moteur d'installation. Vous pouvez également enrichir le résultat proposé en ajoutant d'autres fichiers à recopier dans la configuration des différents serveurs d'applications, ou d'autres fichiers `.jndi` suivant le modèle de transformation proposé.
 
 Cela permet, par exemple, d'adapter des paramètres spécifique au serveur d'applications lors de l'installation du composant. Cela présente des risques d'effet de bord sur les autres composants déjà présents dans le même serveur. Un paramètre d'un serveur à un impact sur tous les composants hébergés par ce dernier.
 
