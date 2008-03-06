@@ -92,6 +92,9 @@ Il faut ensuite ajouter le fichier `META-INF/jndi-resources.xml`. C'est un [jndi
 Ce fichier décrit simplement que nous souhaitons une ressouce pour la clef `jndi-web-sample/jdbc/Default`, et y publier la base de données par défaut, associée au serveur d'applications. Pour JBoss et Tomcat, il s'agit d'une base HSQLDB.
 
 Vous pouvez [http://code.google.com/p/jndi-resources/downloads/list télécharger] l'archive d'exemple pour tester l'utilisation des différents outils.
+{{
+>wget http://jndi-resources.googlecode.com/files/jndi-web-sample.war
+}}
 
 Nous désirons générer tous les fichiers de configurations des serveurs d'applications. L'utilitaire `$JNDI_HOME/bin/jndi-config.sh` s'en charge.
 {{{
