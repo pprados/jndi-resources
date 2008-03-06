@@ -52,4 +52,4 @@ Ensuite, tous dépend des transformations effectuées dans les modèles de trans
 
 Les transformations étant généralement proches d'une version de serveur à une autre, des `<xsl:include/>` permettent de récupérer le code décrit pour une autre version. Par convention, la version de référence est la plus récente. Les autres en dépendent généralement. Il est alors possible de supprimer du modèle les anciennes versions qui ne sont plus maintenues, par effacement des répertoires.
 
-Voir aussi : [moteurInstallation Le moteur d'installation], [extensionTomcat Nouvelle ressource pour Tomcat], [extensionJBoss Nouvelle ressource pour JBoss]
+Voir aussi : [moteurInstallation Le moteur d'installation], [extensionTomcat Nouvelle ressource pour Tomcat], [extensionJBoss Nouvelle ressource pour JBoss], [reglesCodage Les règles de codage]
