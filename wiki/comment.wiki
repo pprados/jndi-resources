@@ -4,7 +4,7 @@
 
 Les projets doivent enrichir la description des ressources dont ils ont besoin, permettant une génération des différents fichiers de configuration des serveurs d'applications. Ainsi, il sera possible d'installer les composants partout, sans exprimer autre-chose que des besoins en terme de ressources.
 
-Par exemple, si un composant désire une source de données de type Oracle, il l'indique dans un fichier XML spécifique, et c'est tout. Les utilitaires se chargent d'installer tous les fichiers, les drivers, etc. pour permettre au composant d'être installé dans tous les serveurs d'applications.
+Par exemple, si un composant désire une source de données de type Oracle, il l'indique dans un [jndiResourcesXML fichier XML] spécifique, et c'est tout. Les utilitaires se chargent d'installer tous les fichiers, les drivers, etc. pour permettre au composant d'être installé dans tous les serveurs d'applications.
 
 Pour cela, l'application doit respecter rigoureusement les spécifications JEE pour la gestion des paramètres de déploiement. Il faut utiliser systématiquement les ressources JNDI pour tous les paramètres de déploiement.
 
