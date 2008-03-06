@@ -18,4 +18,5 @@ Les autres familles possibles :
  * [mail]
  * [url]
 
-Suite : [UtilisationAvancee Utilisation avancée]
+Précédent : [jndiResourcesXML jndi-resources.xml]
+Suite : [utilisationAvancee Utilisation avancée]

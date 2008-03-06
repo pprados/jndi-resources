@@ -49,7 +49,7 @@ Voici la propriété obligatoire que vous devez ajouter dans le fichier [jndiRes
 Il n'y a pas d'extension possible pour ce type de ressource.
 
 == Déclinaisons ==
-Les déclinaisons possibles pour le paramètre [Familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
+Les déclinaisons possibles pour le paramètre [familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
 || *Famille* || *Description* ||
 || `url/default` || Déclare une URL à l'aide de la propriété `url`. ||
 
@@ -59,3 +59,5 @@ D'autres familles - _à écrire_ - peuvent donner l'accès à un annuaire UDDI.
 Les variables à valoriser lors de l'installation pour gérer ces ressources sont les suivantes :
 || *Variable* || *Description* ||
 || `${`_Utilisateur_`}` ||  Vous devez déclarer vos propres variables pour permettre une valorisation lors de l'installation du composant. ||
+
+[ressources Les autres ressources]

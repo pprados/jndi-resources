@@ -77,7 +77,7 @@ Pour ajouter des paramètres spécifiques à un serveur d'application, il faut a
 }}}
 
 == Déclinaisons ==
-Les déclinaisons possibles pour le paramètre [Familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
+Les déclinaisons possibles pour le paramètre [familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
 || *Famille* || *Description* ||
 || `mail/default` || Utilise les _drivers_ par défauts de Javamail, à savoir SMTP pour le transport et POP3 ou IMAP pour la sauvegarde des messages. ||
 || `mail/email` || Un email unique, complémentaire à l'e-mail de la session Javamail. ||
@@ -119,3 +119,5 @@ Les variables à valoriser lors de l'installation pour gérer ces ressources son
 || `${mail.smtp.timeout}` || Valeur : `${mail.transport.timeout}`||
 
 Référence : http://java.sun.com/products/javamail/javadocs/overview-summary.html
+
+[ressources Les autres ressources]

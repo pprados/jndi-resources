@@ -73,7 +73,7 @@ Pour ajouter des paramètres spécifiques à un serveur d'application, il faut a
 }}}
 
 == Déclinaisons ==
-Les déclinaisons possibles pour le paramètre [Familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
+Les déclinaisons possibles pour le paramètre [familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
 || *Famille* || *Description* ||
 || `jdbc/default` || Utilise la base de données par défaut du serveur d'application. Pour JBoss, il s'agit de la base décrite sous `java:DefaultDS`. C'est une base HSQLDB, entièrement codée en Java et s'exécutant dans le même processus. Pour l'architecture JBoss avec un annuaire JNDI déporté, une base HSQLDB est lancée en mode serveur à coté de l'annuaire JNDI de référence. Cette base est utilisée par les clients de l'annuaire JNDI. Pour Tomcat, il s'agit également d'une base HSQLDB dont il faut préciser l'utilisateur, le mot de passe et le fichier. ||
 || `jdbc/hsqldb` || Utilise une base de données de type HSQLDB in process. Pour l'architecture JBoss avec un annuaire JNDI déporté, une base HSQLDB est lancée en mode serveur à coté de l'annuaire JNDI de référence. Cette base est utilisée par les clients de l'annuaire JNDI. ||
@@ -133,3 +133,5 @@ Chaque base de données définie ses variables.
 || `${jdbc.oracle.xa.driver}` || Valeur : `oracle.jdbc.xa.client.OracleXADataSource` ||
 || `${jdbc.oracle.xa.url.default}` || Valeur : `jdbc:oracle:thin:@(description=(address=(host=${jdbc.host})(protocol=tcp)(port=${jdbc.oracle.port}))(connect_data=(SERVICE_NAME=${jdbc.oracle.sid})))`||
 || `${jdbc.oracle.validation-query}` || Valeur : `select 1 from dual` ||
+
+[ressources Les autres ressources]

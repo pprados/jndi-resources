@@ -18,9 +18,9 @@ Voici un premier exemple :
 </resources>
 }}}
 
-Ce fichier décrit que pour la ressource `jndi-web-sample/jdbc/Default`, il faut utiliser la [Familles famille] `jdbc/default`. Cela correspond à une source de données par défaut, suivant le serveur d'applications utilisé.
+Ce fichier décrit que pour la ressource `jndi-web-sample/jdbc/Default`, il faut utiliser la [familles famille] `jdbc/default`. Cela correspond à une source de données par défaut, suivant le serveur d'applications utilisé.
 
-En modifiant la [Familles famille] par `jdbc/oracle`, la source de donnée sera une base de donnée de type Oracle. Le driver Java sera automatiquement installée dans le serveur d'applications si nécessaire.
+En modifiant la [familles famille] par `jdbc/oracle`, la source de donnée sera une base de donnée de type Oracle. Le driver Java sera automatiquement installée dans le serveur d'applications si nécessaire.
 
 Il est possible d'indiquer plus de précisions pour déclarer une ressource.
 {{{
@@ -63,6 +63,7 @@ Pour indiquer d'autres paramètres, il faut utiliser le marqueur `<extends/>` en
 </resources>
 }}}
 
-Toutes les propriétés et les extensions peuvent utiliser des [Variables variables] qui seront valorisées lors de l'installation. Les variables sont de la forme `${...}`.
+Toutes les propriétés et les extensions peuvent utiliser des [variables] qui seront valorisées lors de l'installation. Les variables sont de la forme `${...}`.
 
+Précédent : [transformations]
 Suite : [ressources Les ressources globales]

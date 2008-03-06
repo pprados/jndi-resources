@@ -127,4 +127,4 @@ Avec Maven, il suffit d'indiquer dans le fichier POM, le plugin suivant :
 </build>
 }}}
 
-Suite : [ExempleRapide Exemple rapide]
+Suite : [exemple Exemple rapide]

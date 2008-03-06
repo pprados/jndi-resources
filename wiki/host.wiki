@@ -38,7 +38,7 @@ Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier [jnd
 Il n'y a pas d'extension possible pour ce type de ressource.
 
 == Déclinaisons ==
-Les déclinaisons possibles pour le paramètre [Familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
+Les déclinaisons possibles pour le paramètre [familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
 || *Famille* || *Description* ||
 || `host/default` || Déclare un host à l'aide de la propriété `host`. ||
 
@@ -46,3 +46,5 @@ Les déclinaisons possibles pour le paramètre [Familles familly] du fichier [jn
 Les variables à valoriser lors de l'installation pour gérer ces ressources sont les suivantes :
 || *Variable* || *Description* ||
 || `${`_Utilisateur_`}` || Vous devez déclarer vos propres variables pour permettre une valorisation lors de l'installation du composant. ||
+
+[ressources Les autres ressources]

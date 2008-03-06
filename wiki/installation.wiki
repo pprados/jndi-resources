@@ -21,4 +21,5 @@ Les répertoires `templates` et `xslt` ne sont pas présents dans l'archive  `jn
 
 Si des drivers sont nécessaires à la publication de ressources, il faut utiliser un repository Maven ( http://maven.apache.org ) et déclarer un repository local (généralement dans `~/.m2/repository`). Cela est nécessaire lors de la phase de paramétrage, mais pas lors de la phase d'installation du composant.  Les différents drivers sont récupérés du repository Maven et recopiés dans le repository local.
 
-Suite: [ExempleRapide Exemple Rapide]
+Précédent : [conventions Conventions de mapping des clefs JNDI]
+Suite: [exemple Exemple Rapide]

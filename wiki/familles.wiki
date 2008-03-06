@@ -26,4 +26,5 @@ Le tableau suivant décrit les différentes familles de ressources gérés par l
 || [jaas jaas/intranet] || Authentification Intranet pour JBoss.||
 || [jaas jaas/internet] || Authentification Internet pour JBoss.||
 
-Suite : [Conventions]
+Précédent : [comment Comment faire ?]
+Suite : [conventions]

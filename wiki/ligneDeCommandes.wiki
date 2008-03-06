@@ -60,4 +60,5 @@ Usage: jndi-resources.sh [-h] (-w <war|ear> | -j <jndi-resources.xml>) \
 (-h|--help)                        : This help 
 }}}
 
-Suite : [Desinstallation Désinstallation]
+Précédent : [exemple]
+Suite : [desinstallation Désinstallation]

@@ -44,7 +44,7 @@ Pour ajouter des paramètres spécifiques à un serveur d'application, il faut a
 }}}
 
 == Déclinaisons ==
-Les déclinaisons possibles pour le paramètre [Familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
+Les déclinaisons possibles pour le paramètre [familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
 || *Famille* || *Description* ||
 || `jndi/default` || Propose un lien vers un annuaire JNDI de la même famille que celle du serveur d'application. ||
 || `jndi/cos` || Propose un lien vers un annuaire d'objets CORBA. ||
@@ -66,3 +66,5 @@ Les variables à valoriser lors de l'installation pour gérer ces ressources son
 || `${jndi.ldap.security.authentication}` || Le type d'authentification au serveur LDAP. La valeur par défaut est : `simple`||
 || *`${jndi.ldap.security.principal}`* || L'identité de connexion au serveur LDAP. Il n'y a pas de valeur par défaut.||
 || *`${jndi.ldap.security.credentials}`* || Le mot de passe pour la connexion LDAP. Il n'y a pas de valeur par défaut.||
+
+[ressources Les autres ressources]

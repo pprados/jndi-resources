@@ -83,7 +83,7 @@ Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier [jnd
 || `xa` || Indique si la manipulation de la ressource fait partie d'une transaction ou non. La valeur par défaut est : `false`. ||
 
 |||| *Famille jms/_xxx_/topic ||
-Les déclinaisons possibles pour le paramètre [Familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
+Les déclinaisons possibles pour le paramètre [familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
 || *Propriété* || *Description* ||
 || `dead-letter-queue` || La référence à une queue pour mémoriser les messages n'ayant pu être délivrés. Il n'y a pas de valeur par défaut. Dans ce cas, la stratégie du serveur JMS s'applique. ||
 || `expiry-queue` || La référence à une queue pour mémoriser les messages trop anciens. Il n'y a pas de valeur par défaut. Dans ce cas, la stratégie du serveur JMS s'applique. ||
@@ -114,7 +114,7 @@ Pour ajouter des paramètres spécifiques à un serveur d'application, il faut a
 Notez que les queues JbossMQ ne savent pas gérer des queues de messages morts spécifiques à chaque queue. Le paramètre `dead-letter-queue` est alors ignoré.
 
 == Déclinaisons ==
-Les déclinaisons possibles pour le paramètre [Familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
+Les déclinaisons possibles pour le paramètre [familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
 || *Famille* || *Description* ||
 || `jms/default` || Utilise les _drivers_ par défauts du serveur d'application. ||
 || `jms/jboss` || Utilise les _drivers_ du serveur JMS du JBoss courant (JBoss MQ ou JBoss Messaging suivant les cas). ||
@@ -131,3 +131,5 @@ Les variables à valoriser lors de l'installation pour gérer ces ressources son
 Références :
  * http://labs.jboss.com/file-access/default/members/jbossmessaging/freezone/docs/userguide-1.4.0.SP2/html/configuration.html#conf.destination.queue
  * http://wiki.jboss.org/wiki/Wiki.jsp?page=ConfigTopic
+ 
+[ressources Les autres ressources]

@@ -70,4 +70,5 @@ Cette organisation propose la démarche suivante :
  * Des paramètres spécifiques à l'utilisateur, correspondant à ses choix par défauts pour ses bases de données par exemples, seront présent dans le répertoire `~/.jndi-resources/`.
  * Enfin, des modifications de dernières minutes ou les quelques informations manquantes seront indiquées dans la ligne de commande.
 
-Suite : [ArchitecturesJNDI Architecture des serveurs d'applications]
+Précédent : [desinstallation Désinstallation]
+Suite : [architecture Architecture  des serveurs d'applications]

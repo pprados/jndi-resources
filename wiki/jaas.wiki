@@ -47,3 +47,5 @@ Les déclinaisons possibles pour le paramètre [Famille familly] du fichier [jnd
 Les variables à valoriser lors de l'installation pour gérer ces ressources sont les suivantes :
 || *Variable* || *Description* ||
 || _N/A_ || Cette famille n'a pas de besoins de variables particulières lors de l'installation. ||
+
+[ressources Les autres ressources]

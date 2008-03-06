@@ -72,7 +72,7 @@ Pour Tomcat, le fichier `META-INF/context.xml` suivant :
 }}}
 Ces deux fichiers permettent d'associer la clef locale `java:comp/env/jdbc/Default` avec la clef JVM `java:/jndi-web-sample/jdbc/Default`.
 
-Par [Conventions conventions], les clefs locales de la branche `java:comp/env` doivent être associées aux clefs JVM de la branche `java:`, en préfixant par l'`id` présent dans le fichier `web.xml`. Cela permet de lever les ambiguïtés lorsque plusieurs composants sont installés sur le même serveur d'applications.
+Par [conventions], les clefs locales de la branche `java:comp/env` doivent être associées aux clefs JVM de la branche `java:`, en préfixant par l'`id` présent dans le fichier `web.xml`. Cela permet de lever les ambiguïtés lorsque plusieurs composants sont installés sur le même serveur d'applications.
 
 Ces règles de transformations étant systématiques, il est facile de générer ces fichiers à partir du fichier `web.xml`. Des [transformerWebXML scripts XSLT] sont proposés dans le répertoire `$JNDI_HOME/xslt`.
 
@@ -135,4 +135,5 @@ Voici l'installation sur un serveur Tomcat 4.1 directement à partir du composan
 	-Djdbc.username=sa -Djdbc.password= -Djdbc.hsqldb.file=A
 }}}
 
-Suite: [LigneDeCommandes Lignes de commandes]
+Précédent : [installation]
+Suite: [ligneDeCommandes Lignes de commandes]

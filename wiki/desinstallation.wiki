@@ -8,4 +8,5 @@ Pour le serveur JBoss, un répertoire est créé par composant, regroupant l'arc
 
 Pour le serveur Tomcat, il faut éditer le fichier `conf/server.xml` et supprimer les marqueurs dans  `<GlobalNamingResources/>`. 
 
-Suite : [Variables Valorisation des variables de déploiements]
+Précédent : [ligneDeCommandes Ligne de Commandes]
+Suite : [variables Valorisation des variables de déploiements]
