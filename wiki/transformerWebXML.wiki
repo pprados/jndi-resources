@@ -4,7 +4,7 @@
 
 Différents filtres XSLT sont proposé pour transformer le fichier `web.xml` en fichiers nécessaires aux différents serveurs d'applications.
 
-Avec Maven, il suffit d'indiquer dans le fichier POM, le plugin suivant :
+Avec [http://maven.apache.org Maven], il suffit d'indiquer dans le fichier POM, le plugin suivant :
 {{{
 <build>
 <plugins>
