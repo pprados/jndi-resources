@@ -16,7 +16,7 @@ Le répertoire `$JNDI_HOME/templates/` est organisé comme ci-dessous.
 
 Il est possible d'utiliser un répertoire différent, grâce à un paramètre de la ligne de commande (`--templates`). Dans la suite de ce document, ce répertoire est identifié par `$TEMPLATES`.
 
-Chaque modèle de transformation est porté par un répertoire (`jboss3_x`, `tomcat4_0`, `tomcat5_5`, etc.). Pour chacun des modèles, un répertoire est proposé pour chaque famille de ressource décrite dans le fichier [jndiPropertiesXML jndi-properties.xml].
+Chaque modèle de transformation est porté par un répertoire (`jboss3_x`, `tomcat4_0`, `tomcat5_5`, etc.). Pour chacun des modèles, un répertoire est proposé pour chaque famille de ressource décrite dans le fichier [jndiResourcesXML jndi-properties.xml].
 
 Le moteur exécute successivement différents fichiers XSL, avec le fichier de ressources en entrée et différents paramètres permettant d'aider les traitements.
 
