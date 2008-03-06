@@ -19,7 +19,7 @@ Le répertoire `$JNDI_HOME/xslt` possède, à titre d'illustration, des scripts 
 
 Les répertoires `templates` et `xslt` ne sont pas présents dans l'archive  `jndi-resources-<version>-install.(tar.gz|zip)` car ils ne sont pas nécessaires lors de l'installation des composants.
 
-Si des drivers sont nécessaires à la publication de ressources, il faut utiliser un repository Maven ( http://maven.apache.org ) et déclarer un repository local (généralement dans `~/.m2/repository`). S'il n'existe pas, le repository est construit automatiquement lors de la première exécution. Cela est nécessaire lors de la phase de paramétrage, mais pas lors de la phase d'installation du composant.  Les différents drivers sont récupérés du repository Maven et recopiés dans le repository local. Puis du repository local vers le script d'installation.
+Si des drivers sont nécessaires à la publication de ressources, il faut utiliser un repository [http://maven.apache.org Maven] et déclarer un repository local (généralement dans `~/.m2/repository`). S'il n'existe pas, le repository est construit automatiquement lors de la première exécution. Cela est nécessaire lors de la phase de paramétrage, mais pas lors de la phase d'installation du composant.  Les différents drivers sont récupérés du repository Maven et recopiés dans le repository local. Puis du repository local vers le script d'installation.
 
 Précédent : [conventions Conventions de mapping des clefs JNDI]
 Suite: [exemple Exemple Rapide]
