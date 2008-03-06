@@ -134,7 +134,7 @@ Ensuite, nous devons déclarer un template XSLT pour générer toutes les ressou
 </xsl:template>
 }}}
 
-Nous y avons inclus le modèle de production, à l'exclusion du marqueur racine `<datasources/>`. Nous injectons le nom de la ressource à dans le marqueur <jndi-name/>.
+Nous y avons inclus le modèle de production, à l'exclusion du marqueur racine `<datasources/>`. Nous injectons le nom de la ressource dans le marqueur <jndi-name/>.
 
 Notre script est maintenant capable de produire le fichier de ressource pour le serveur indiqué. Si un fichier [jndiResourcesXML jndi-resources.xml] déclare la famille `jdbc/mydatasource`, pour tous les autres serveurs, une alerte indique que la ressource n'est pas gérées pour le moment. En reproduisant les mêmes étapes pour les différents serveurs, vous pouvez faire sauter les alertes, et générer la ressource pour les différents environnement d'exécution.
 
