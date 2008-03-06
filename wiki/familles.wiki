@@ -21,7 +21,7 @@ Le tableau suivant décrit les différentes familles de ressources gérés par l
 || [jndi jndi/rmi] || Consulte une référentiel RMI. ||
 || [mail mail/default] || Une session Javamail.||
 || [mail mail/email] || Une adresse email.||
-|| [url url/default] || Déclare une URL dans le annuaire JNDI.||
+|| [url url/default] || Déclare une URL dans l'annuaire JNDI.||
 || [jaas jaas/default] || Authentifications par défaut de JBoss.||
 || [jaas jaas/intranet] || Authentification Intranet pour JBoss.||
 || [jaas jaas/internet] || Authentification Internet pour JBoss.||
