@@ -2,7 +2,7 @@
 
 = Paramètres de la ligne de commandes =
 
-Il existe trois utilitaires : l'un se charge de générer les fichiers de configuration à partir de fichiers `jndi-resources.xml`, le deuxième se charge d'installer les fichiers pour un serveur d'applications et le troisième est un enchaînement des deux premiers.
+Il existe trois utilitaires : l'un se charge de générer les fichiers de configuration à partir de fichiers [jndiResourcesXML jndi-resources.xml], le deuxième se charge d'installer les fichiers pour un serveur d'applications et le troisième est un enchaînement des deux premiers.
 
 `jndi-config.sh` accepte différents paramètres.
 {{{
@@ -16,7 +16,7 @@ Usage: jndi-config.sh [-h] (-w <war|ear> | -j <jndi-resources.xml>) \
 -ll                             : Log debug. 
 (-h|--help)                     : This help 
 }}}
-Vous pouvez indiquer un fichier `jndi-resources.xml` à l'aide du paramètre `-j`, indiquer une archive `.war` possédant déjà un fichier `META-INF/jndi-resources.xml` ou une combinaison des deux paramètres.
+Vous pouvez indiquer un fichier [jndiResourcesXML jndi-resources.xml] à l'aide du paramètre `-j`, indiquer une archive `.war` possédant déjà un fichier `META-INF/jndi-resources.xml` ou une combinaison des deux paramètres.
 
 Cet utilitaire exploite les repositories [http://maven.apache.org Maven] pour y extraire les drivers nécessaires à l'application à installer.
 
