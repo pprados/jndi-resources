@@ -82,4 +82,4 @@ Cela permet, par exemple, d'adapter des paramètres spécifique au serveur d'app
 
 Ceci est possible, mais pas recommandé, car cela peut entraîner une spécialisation du serveur d'applications à une application particulière. Il est alors plus difficile de mutualiser les ressources.
 
-Voir aussi : [moteurConfiguration Moteur de configuration], [extensionTomcat Nouvelle ressource pour Tomcat], [extensionJBoss Nouvelle ressource pour JBoss]
+Voir aussi : [moteurConfiguration Moteur de configuration], [extensionTomcat Nouvelle ressource pour Tomcat], [extensionJBoss Nouvelle ressource pour JBoss], [reglesCodage Les règles de codage]
