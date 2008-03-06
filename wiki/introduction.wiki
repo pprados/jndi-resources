@@ -13,7 +13,7 @@ Les fichiers `web.xml` et `application.xml` permettent d'indiquer les ressources
 
 Dans le monde réel, les exigences des projets sont plus complexes. En effet, le composant doit préciser qu'il désire une source de donnée de type Oracle, un pool de connexion de telle taille, etc. Mais, il n'a pas besoin d'indiquer l'utilisateur et le mot de passe à utiliser. Ces informations sont du ressort de l'assembleur de composants, comme décrit dans les spécifications JEE.
 
-Pour combler ces lacunes, des fichiers README indiquent comment paramétrer chaque ressource. Souvent, cela exige une intervention manuelle. Ou bien, des scripts d'installations sont proposés, mais limités à certains serveurs ou à certaines architectures. Ils interviennent si profondément, qu'il n'est plus possible d'installer plusieurs composants sur le même serveur. Le 's' de serveur d'applications est alors inutile. Chaque serveur ne gère qu'une seule application.
+Pour combler ces lacunes, des fichiers README indiquent généralement comment paramétrer chaque ressource. Souvent, cela exige une intervention manuelle. Ou bien, des scripts d'installations sont proposés, mais limités à certains serveurs ou à certaines architectures. Ils interviennent si profondément, qu'il n'est plus possible d'installer plusieurs composants sur le même serveur. Le 's' de serveur d'applications est alors inutile. Chaque serveur ne gère qu'une seule application.
 
 Vingt-cinq à quarante pour-cent du temps consacré aux déploiements des composants est perdu à corriger des problèmes de paramètres. Souvent, un serveur fonctionne mais pas l'autre. Où est l'erreur ?
 
