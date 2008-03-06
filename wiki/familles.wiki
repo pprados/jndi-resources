@@ -5,9 +5,9 @@ Le tableau suivant décrit les différentes familles de ressources gérés par l
 || *Famille* || *Description* ||
 || [host host/default] || Déclare un host dans l'arbre JNDI. ||
 || [jdbc jdbc/default] || Utilise la base de donnée par défaut du serveur d'application. ||
-|| [jdbc jdbc/hsqldb] || Utilise une base de donnée de type HSQLDB.||
-|| [jdbc jdbc/mysql] || Utilise une base de donnée MySql. ||
-|| [jdbc jdbc/oracle] || Utilise une base de donnée Oracle. ||
+|| [jdbc jdbc/hsqldb] || Utilise une base de donnée de type [http://www.hsqldb.org HSQLDB].||
+|| [jdbc jdbc/mysql] || Utilise une base de donnée [http://www.mysql.com MySql]. ||
+|| [jdbc jdbc/oracle] || Utilise une base de donnée [http://www.oracle.com Oracle]. ||
 || [jms jms/default] || Utilise les serveur JMS par défauts du serveur d'application.||
 || [jms jms/jboss] || Utilise les drivers du serveur JMS du JBoss courant (JBoss MQ ou JBoss Messaging suivant les cas). ||
 || [jms jms/jbossmq] || Utilise spécifiquement un serveur JMS JBoss MQ. ||
