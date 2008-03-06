@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary Les choses à faires
 
 = TODO =
 
@@ -7,3 +7,4 @@
  * Les commandes pour fonctionner sous Windows
  * http://code.google.com/p/support/issues/detail?id=838#makechanges
  * Vérifier l'utilisation avec un EAR
+ * Dans le [http://www.prados.fr/mvn/jndi-resources/command-line/taglist.html source]
