@@ -1,12 +1,12 @@
-#summary One-sentence summary of this page.
+#summary Les modèles de transformations en fichiers de paramètres pour les serveurs d'applications.
 
 = Les modèles de transformations =
 
 Les modèles de transformations proposent de gérer les serveurs suivants :
  * `jboss` de la version 3.0 à la dernière à ce jour ( la version 5.x ou suivante si la compatibilité ascendante est conservée).
- * `jboss-jms-srv`, un serveur JBoss jouant le rôle de serveur JMS pour les versions de 3.0 à 5.x.
- * `jboss-jndi-srv`, Un serveur JBoss jouant uniquement le rôle de serveur d'annuaire JNDI pour les versions de 3.2.8 à 5.x.
- * `jboss-jndi-cli` de la version 3.2 à la version 5.x. Un serveur JBoss jouant le rôle d'un client JNDI.
+ * `jboss-jms-srv`, un serveur [JBoss] jouant le rôle de serveur JMS pour les versions de 3.0 à 5.x.
+ * `jboss-jndi-srv`, un serveur [JBoss] jouant uniquement le rôle de serveur d'annuaire JNDI pour les versions de 3.2.8 à 5.x.
+ * `jboss-jndi-cli` de la version 3.2 à la version 5.x. Un serveur [JBoss] jouant le rôle d'un client JNDI.
  * `tomcat` de la version 4.0 à la dernière à ce jour, la version 6.x
 
 Certains serveurs peuvent jouer plusieurs rôles simultanément. Il faut dans ce cas lancer plusieurs installations, avec des paramètres différents, sur les mêmes répertoires. Par exemple, si un serveur JBoss joue le rôle de serveur d'application web et simultanément de serveur JMS, il faut lancer les installations suivantes :
