@@ -1,0 +1,256 @@
+#summary Création d'une nouvelle ressource pour JBoss
+
+= Création d'une nouvelle ressource pour JBoss =
+
+Pour ajouter une nouvelle ressource, sans possibilité de paramétrage autre que des variables, il faut créer un simple fichier XSLT dans un répertoire.
+
+Nous désirons utiliser une ressource de la nouvelle famille `jdbc/mydatasource`. Nous souhaitons, dans un premier temps, générer la ressource pour un serveur Jboss, version 4.0 et supérieur.
+
+Consultons le fichier `templates/versions.xml`.
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../xslt/xslt-to-xhtml.xslt" ?>
+<versions
+  xmlns="http://jndi-resources.googlecode.com/1.0/versions"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://jndi-resources.googlecode.com/1.0/versions tools/xsd/jndi-resources-versions.xsd"
+>
+  <appsrv name="jboss"          versions="[3.0,4.0)"   target="jboss3_x"/>
+  <appsrv name="jboss"          versions="[4.0,)"      target="jboss4_x"/>
+  <appsrv name="jboss-jms-srv"  versions="[3.0,5.0)"   target="jboss3_x-jms-srv"/>
+  <appsrv name="jboss-jms-srv"  versions="[5.0,)"      target="jboss5_x-jms-srv"/>
+  <appsrv name="jboss-jndi-srv" versions="[3.2,4.0)"   target="jboss3_x-jndi-srv"/>
+  <appsrv name="jboss-jndi-srv" versions="[4.0,)"      target="jboss4_x-jndi-srv"/>
+  <appsrv name="jboss-jndi-cli" versions="[3.2,)"      target="jboss3_x-jndi-cli"/>
+  <appsrv name="tomcat"         versions="[4.0,5.5)"   target="tomcat4_0"/>
+  <appsrv name="tomcat"         versions="[5.5,6.0)"   target="tomcat5_5"/>
+  <appsrv name="tomcat"         versions="[6.0,)"      target="tomcat6_0"/>
+</versions>
+}}}
+Ce fichier indique que la production pour le serveur Jboss, version 4.0+ est porté par le répertoire `templates/jboss4_x`. Nous créons alors un répertoire `templates/jboss4_x/jdbc/mydatasource`. Dans ce répertoire, nous devons rédiger un fichier `process.xslt` qui se chargera de produire le fichier de paramètres.
+
+Commençons par rédiger une version « à la main » du fichier à produire. Par exemple, le fichier `madatasource.xml`.
+{{{
+<?xml version="1.0" encoding="utf-8"?>
+<datasources>
+   <local-tx-datasource>
+      <jndi-name>${jndi-prefix}JNDI-test/jdbc/MyDS</jndi-name>
+      <use-java-context>true</use-java-context>
+      <driver-class>${jdbc.myds.driver}</driver-class>
+      <connection-url>${jdbc.myds.url.default}</connection-url>
+      <user-name>${jdbc.myds.username}</user-name>
+      <password>${jdbc.myds.password}</password>
+      <min-pool-size>${jdbc.min-pool-size}</min-pool-size>
+      <max-pool-size>${jdbc.max-pool-size}</max-pool-size>
+      <prepared-statement-cache-size>${jdbc.prepared-statement-cache-size}</prepared-statement-cache-size>
+      <check-valid-connection-sql>${jdbc.myds.validation-query}</check-valid-connection-sql>
+      <query-timeout>${jdbc.max-wait}</query-timeout>
+      <transaction-isolation>${jdbc.transaction-isolation}</transaction-isolation>
+   </local-tx-datasource>
+
+</datasources>
+}}}
+Nous utilisons des variables pour les différents champs, afin de permettre une adaptation de la ressource lors de l'installation.
+
+Renommons ce fichier en `process.xslt`. Ensuite, nous devons ajouter quelques lignes.
+
+Commençons par ajouter les déclarations pour indiquer que le fichier est un filtre XSLT et ajoutons les différents espaces de noms. Nous déclarons également les différents variables accessibles dans le filtre.
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet
+	version="2.0"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:sch="http://www.w3.org/2001/XMLSchema"
+	xmlns:jndi="http://jndi-resources.googlecode.com/1.0"
+	xmlns:tools="http://www.jndi-resources.org/1.0/java/org.jndiresources.tools.XSLTools"
+	exclude-result-prefixes="#all"
+>
+
+<xsl:strip-space elements="*"/>
+<xsl:output method="xml" indent="yes" encoding="utf-8" omit-xml-declaration="no"/>
+<xsl:param name="version"/>
+<xsl:param name="appsrv"/>
+<xsl:param name="familly"/>
+<xsl:param name="currentid"/>
+<xsl:param name="targetdir"/>
+...
+}}}
+L'espace de nom `jndi` correspond à l'espace de nom de la syntaxe de l'utilitaire. L'espace de nom `tools` est un lien vers la classe [http://jndi-resources.googlecode.com/svn/trunk/jndi-resources/jndi-resources-cmd-line/src/main/java/org/jndiresources/tools/XSLTools.java XSLTools] de l'utilitaire permettant des copies de fichiers, des traces, la récupération des librairies à travers le repository [http://maven.apache.org Maven], etc.
+
+Déclarons ensuite deux variables pour le nom du fichier à produire.
+{{{
+<xsl:variable  name="basefilename"><xsl:value-of select="concat('deploy/',$currentid,'/',$currentid,'_myds-ds')"/></xsl:variable>
+<xsl:variable  name="filename"><xsl:value-of select="concat($targetdir,'jboss.server.conf/',$basefilename,'.jndi')"/></xsl:variable>
+Nous pouvons ensuite déclarer un premier template XSLT pour gérer toutes les ressources de la mêmes famille à partir du même script.
+<xsl:template match="jndi:resources[@id=$currentid]">
+<xsl:value-of select="tools:info(concat('Generate ',$filename))"/>
+<xsl:result-document  href="{$filename}">
+<xsl:processing-instruction name="jndi-stylesheet">href="xslt/save.xslt" target="<xsl:value-of select="concat($basefilename,'.xml')"/>"</xsl:processing-instruction>
+<datasources>
+	<xsl:apply-templates />
+</datasources>
+</xsl:result-document>
+</xsl:template>
+}}}
+Nous retrouvons le marqueur racine du fichier à produire, à savoir `<datasources/>`. Nous pouvons supprimer ce marqueur du modèle à produire.
+
+Notez la présence d'une `processing-instruction`. C'est cette instruction qui permettra la transformation des variables lors de l'installation effective du fichier dans le serveur d'application.
+
+Comme l'instruction invoque le [moteurInstallation filtre] `save.xslt`, nous devons le copier dans le répertoire d'installation pour qu'il soit disponible.
+{{{
+<xsl:value-of select="tools:fileCopy('../../../tools/xslt/save.xslt',concat($targetdir,'../xslt/'))"/>
+}}}
+
+Ensuite, nous devons déclarer un template XSLT pour générer toutes les ressources de la famille.
+{{{
+<xsl:template match="jndi:resources[@id=$currentid]/jndi:resource[@familly=$familly]">
+
+   <local-tx-datasource>
+      <jndi-name>${jndi-prefix}<xsl:value-of select="@name"/></jndi-name>
+      <use-java-context>true</use-java-context>
+      <driver-class>${jdbc.myds.driver}</driver-class>
+      <connection-url>${jdbc.myds.url.default}</connection-url>
+      <user-name>${jdbc.myds.username}</user-name>
+      <password>${jdbc.myds.password}</password>
+      <min-pool-size>${jdbc.min-pool-size}</min-pool-size>
+      <max-pool-size>${jdbc.max-pool-size}</max-pool-size>
+      <prepared-statement-cache-size>${jdbc.prepared-statement-cache-size}</prepared-statement-cache-size>
+      <check-valid-connection-sql>${jdbc.myds.validation-query}</check-valid-connection-sql>
+      <query-timeout>${jdbc.max-wait}</query-timeout>
+      <transaction-isolation>${jdbc.transaction-isolation}</transaction-isolation>
+   </local-tx-datasource>
+</xsl:template>
+}}}
+
+Nous y avons inclus le modèle de production, à l'exclusion du marqueur racine `<datasources/>`. Nous injectons le nom de la ressource à sa place.
+
+Notre script est maintenant capable de produire le fichier de ressource pour le serveur indiqué. Si un fichier [jndiResourcesXML jndi-resources.xml] déclare la famille `jdbc/mydatasource`, pour tous les autres serveurs, une alerte indique que la ressource n'est pas gérées pour le moment. En reproduisant les mêmes étapes pour les différents serveurs, vous pouvez faire sauter les alertes, et générer la ressource pour les différents environnement d'exécution.
+
+Le fichier complet est alors comme ceci :
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet
+	version="2.0"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:sch="http://www.w3.org/2001/XMLSchema"
+	xmlns:jndi="http://www.jndi-resources.org/1.0/"
+	xmlns:tools="http://www.jndi-resources.org/1.0/java/org.jndiresources.tools.XSLTools"
+	exclude-result-prefixes="#all"
+>
+
+<xsl:strip-space elements="*"/>
+<xsl:output method="xml" indent="yes" encoding="utf-8" omit-xml-declaration="no"/>
+<xsl:param name="version"/>
+<xsl:param name="appsrv"/>
+<xsl:param name="familly"/>
+<xsl:param name="currentid"/>
+<xsl:param name="targetdir"/>
+
+<xsl:variable  name="basefilename"><xsl:value-of select="concat('deploy/',$currentid,'/',$currentid,'_myds-ds')"/></xsl:variable>
+<xsl:variable  name="filename"><xsl:value-of select="concat($targetdir,'jboss.server.conf/',$basefilename,'.jndi')"/></xsl:variable>
+
+<xsl:template match="text()|comment()" />
+
+<xsl:template match="jndi:resources[@id=$currentid]">
+<xsl:value-of select="tools:info(concat('Generate ',$filename))"/>
+<xsl:result-document  href="{$filename}">
+<xsl:processing-instruction name="jndi-stylesheet">href="xslt/save.xslt" target="<xsl:value-of select="concat($basefilename,'.xml')"/>"</xsl:processing-instruction>
+<datasources>
+	<xsl:apply-templates />
+</datasources>
+</xsl:result-document>
+</xsl:template>
+
+<xsl:template match="jndi:resources[@id=$currentid]/jndi:resource[@familly=$familly]">
+
+   <local-tx-datasource>
+      <jndi-name>${jndi-prefix}<xsl:value-of select="@name"/></jndi-name>
+      <use-java-context>true</use-java-context>
+      <driver-class>${jdbc.myds.driver}</driver-class>
+      <connection-url>${jdbc.myds.url.default}</connection-url>
+      <user-name>${jdbc.myds.username}</user-name>
+      <password>${jdbc.myds.password}</password>
+      <min-pool-size>${jdbc.min-pool-size}</min-pool-size>
+      <max-pool-size>${jdbc.max-pool-size}</max-pool-size>
+      <prepared-statement-cache-size>${jdbc.prepared-statement-cache-size}</prepared-statement-cache-size>
+      <check-valid-connection-sql>${jdbc.myds.validation-query}</check-valid-connection-sql>
+      <query-timeout>${jdbc.max-wait}</query-timeout>
+      <transaction-isolation>${jdbc.transaction-isolation}</transaction-isolation>
+   </local-tx-datasource>
+</xsl:template>
+
+</xsl:stylesheet>
+}}}
+
+S'il est également nécessaire d'ajouter une librairie dans le serveur d'application, il faut utiliser des utilitaires à cet effet. Ajoutons les deux lignes suivantes :
+{{{
+<xsl:include href="../../install-drivers.xslt"/>
+<xsl:variable name="lib"><xsl:value-of select="concat($targetdir,'jboss.server.conf/lib/')"/></xsl:variable>
+}}}
+Elles permettent de gérer la récupération d'une archive dans un repository [http://maven.apache.org Maven], et son installation future dans le serveur d'application. La variable `lib` correspond à l'emplacement définitif du la librairie.
+
+Nous devons invoquer le template `install-drivers` dans le template principal.
+{{{
+<xsl:template match="jndi:resources[@id=$currentid]">
+<xsl:value-of select="tools:info(concat('Generate ',$filename))"/>
+<xsl:result-document  href="{$filename}">
+<xsl:processing-instruction name="jndi-stylesheet">href="xslt/save.xslt" target="<xsl:value-of select="concat($basefilename,'.xml')"/>"</xsl:processing-instruction>
+<datasources>
+	<xsl:apply-templates />
+</datasources>
+</xsl:result-document>
+<xsl:call-template name="install-drivers"/>
+</xsl:template>
+}}}
+Sans paramètre, le _driver_ à utiliser est récupérer dans le fichier `templates/drivers.xslt`.
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../../xslt/xslt-to-xhtml.xslt" ?>
+<xsl:stylesheet
+	version="2.0"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:jndi="http://www.jndi-resources.org/1.0/"
+	xmlns:tools="http://www.jndi-resources.org/1.0/java/org.jndiresources.tools.XSLTools"
+	exclude-result-prefixes="#all"
+>
+<xsl:variable name="drivers">
+
+	<familly name="jdbc/hsqldb" value="hsqldb:hsqldb:1.8.0.7"/>
+	<familly name="jdbc/oracle" value="ojdbc:ojdbc:14"/>
+	<familly name="jdbc/mysql"  value="mysql:mysql-connector-java:5.1.5"/>
+
+	<familly name="jms/jbossmq" value="jboss:jbossmq-client:4.0.2"/>
+
+	<familly name="jndi/default"  value="org.jndi-resources:plugins:0.2-SNAPSHOT"/>
+	<familly name="jndi/file">
+		<jar>com.sun.jndi:fscontext:1.2-beta-3</jar>
+		<jar>com.sun.jndi:providerutil:1.2</jar>
+	</familly>   
+	<familly name="jndi/jboss">
+	  	<jar>jboss:jboss-common:4.0.2</jar>
+	  	<jar>jboss:jnp-client:4.0.2</jar>
+	</familly>
+
+	<familly name="host/default"  value="org.jndi-resources:plugins:0.2-SNAPSHOT"/>
+	<familly name="mail/email"    value="org.jndi-resources:plugins:0.2-SNAPSHOT"/>
+
+	<familly name="javamail">
+		<jar>javax.activation:activation:1.1</jar>
+		<jar>javax.mail:mail:1.4</jar>
+	</familly>
+	
+</xsl:variable>
+</xsl:stylesheet>
+}}}
+
+Ce fichier permet d'associer une ou plusieurs artifacts Maven avec une famille de ressource. Vous pouvez ajouter votre nouvelle famille dans ce fichier.
+
+Sinon, vous pouvez valoriser différents paramètres lors de l'invocation du template.
+
+De même, vous pouvez proposer des valeurs par défaut pour les nouvelles [variables], dans le fichier `templates/templates.properties`.
+
+Il faut procéder de même pour les différentes versions du serveur Jboss.
+
+Voilà pour la description rapide de la production d'une ressource spécifique. La meilleur documentation est le source lui-même. N'hésitez pas à y jeter un oeil pour vous inspirer des différentes approches utilisées lors de la production des différentes ressources.
+
+Voir aussi : [extensionTomcat Création d'une nouvelle ressource pour Tomcat]
