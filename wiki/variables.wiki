@@ -65,7 +65,7 @@ Les propriétés sont assemblées dans un ordre précis, avant d'effectuer les t
 || Les paramètres de la ligne de commande. ||
 
 Cette organisation propose la démarche suivante :
- * Il existe des paramètres spécifique à une plate-forme. Il seront présent dans `/var/share/jndi-resources/`. Par exemple, le compte utilisateur et le mot de passe par défaut pour les bases de données.
+ * Il existe des paramètres spécifiques à une plate-forme. Il seront présent dans `/var/share/jndi-resources/`. Par exemple, le compte utilisateur et le mot de passe par défaut pour les bases de données.
  * Des paramètres par défaut peuvent faciliter l'utilisation de l'installation. Ils seront présent dans `$PACKAGES/$APPSRV/` s'ils sont spécifique à une famille de serveur.
  * Des paramètres spécifiques à l'utilisateur, correspondant à ses choix par défauts pour ses bases de données par exemples, seront présent dans le répertoire `~/.jndi-resources/`.
  * Enfin, des modifications de dernières minutes ou les quelques informations manquantes seront indiquées dans la ligne de commande.
