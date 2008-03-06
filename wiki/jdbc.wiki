@@ -112,7 +112,7 @@ Chaque base de données définie ses variables.
 
 |||| *MySQL* ||
 || *Variable* || *Description* ||
-|| *`${jdbc.mysql.schema}`* || Le schéma de la base MySql. Il n'y a pas de valeur par défaut. Cette variable doit être valorisée lors de l'installation si nécessaire. ||
+|| *`${jdbc.mysql.schema}`* || Le schéma de la base [http://www.mysql.org MySql]. Il n'y a pas de valeur par défaut. Cette variable doit être valorisée lors de l'installation si nécessaire. ||
 || `${jdbc.mysql.driver}` || Valeur : `com.mysql.jdbc.Driver` ||
 || `${jdbc.mysql.port}` || Valeur : 3306 ||
 || `${jdbc.mysql.url.default}` || Valeur : `jdbc:mysql://${jdbc.host}:${jdbc.mysql.port}/${jdbc.mysql.schema}` ||
