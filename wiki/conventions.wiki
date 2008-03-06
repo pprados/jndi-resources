@@ -1,16 +1,16 @@
 #summary Conventions de mapping des clefs JNDI.
 
-= Convetions de mapping des clefs JNDI =
+= Conventions de mapping des clefs JNDI =
 
-jndi-resources utilise certaines conventions pour les clefs JNDI utilisées.
-Ces liens successifs permettent le maximum de souplesse lors du déploiement. Il est possible de choisir tardivement si une ressource doit être locale ou globales, si elle doit être partagés avec une autre application, etc.
+*jndi-resources* utilise certaines conventions pour les clefs JNDI utilisées.
+Ces liens successifs permettent le maximum de souplesse lors du déploiement. Il est possible de choisir tardivement si une ressource doit être locale ou globale, si elle doit être partagée avec une autre application, etc.
 
 == Utilisation d'un annuaire JNDI local au serveur d'applications ==
 
 || *Clef* || *Valeur* || *Description* ||
-|| `java:comp/env/`_<Ma clef>_ || `java:`_<idapp>_`/`_<Ma clef>_ || Mapping des clefs locales aux composants vers une clef globale JVM préfixé par un identifiant. ||
+|| `java:comp/env/`_<Ma clef>_ || `java:`_<idapp>_`/`_<Ma clef>_ || Mapping des clefs locales aux composants vers des clefs globales JVM préfixées par un identifiant. ||
 || `java:`_<idapp>_`/`_<Ma clef>_ || La ressource sauf pour les queues JMS. || La ressource est directement publiée ici, sauf pour les clefs JMS. ||
-|| `java:`_<idapp>_`/jms/`_<Ma clef>_ || `/`_<idapp>_`/jms/`_<Ma clef>_ || Les queues et Topics JMS servent à plusieurs serveurs et doivent alors être publiées globalement. ||
+|| `java:`_<idapp>_`/jms/`_<Ma clef>_ || `/`_<idapp>_`/jms/`_<Ma clef>_ || Les _queues_ et _topics_ JMS servent à plusieurs serveurs et doivent alors être publiés globalement. ||
 || `/`_<idapp>_`/jms/`_<Ma clef>_ || La ressource JMS. || La ressource JMS visible par tous. ||
 
 Par exemple, pour la clef `java:comp/env/jdbc/MaDatabase` d'une application d'identité `MonApp`, le chemin suivit est le suivant :
@@ -35,6 +35,11 @@ Pour la clef `java:comp/env/jdbc/MaDatabase` d'une application d'identité `MonA
 || *Clef* || *Valeur* || *Description* ||
 || `java:comp/env/`_<Ma clef>_ || `java:`_<idapp>_`/`_<Ma clef>_ || Mapping des clefs locales aux composants vers une clef globale JVM. ||
 || `java:`_<idapp>_`/`_<Ma clef>_ || `/`_<idapp>_`/`_<Ma clef>_ || Les ressources sont toujours liées à une clef globale. ||
+
+Pour la clef `java:comp/env/jdbc/MaDatabase` d'une application d'identité `MonApp`, cliente de l'annuaire, le chemin suivit est le suivant :
+
+`java:comp/env/jdbc/MaDatabase` [_local_] => `java:MonApp/jdbc/MaDatabase` [_local_]=> `/MonApp/jdbc/MaDataBase` => La ressource
+
 
 == Publication de queues JMS ==
 || *Clef* || *Valeur* || *Description* ||
