@@ -1,4 +1,4 @@
-#summary Les choses à faires
+#summary Les choses à faire
 
 = TODO =
 
