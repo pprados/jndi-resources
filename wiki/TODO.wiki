@@ -5,3 +5,4 @@
  * Adapter le nom de packages java dans les exemples
  * [extensionTomcat]
  * Les commandes pour fonctionner sous Windows
+ * http://code.google.com/p/support/issues/detail?id=838#makechanges
