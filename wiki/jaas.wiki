@@ -37,7 +37,7 @@ Il n'y a pas d'extension possible pour ce type de ressource.
 Cette famille ne fonctionne qu'avec les serveurs JBoss.
 
 == Déclinaisons ==
-Les déclinaisons possibles pour le paramètre [famille familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
+Les déclinaisons possibles pour le paramètre [familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
 || *Famille* || *Description* ||
 || `jaas/default` || Utilise le module JAAS `java:jaas/jmx-console`. C'est à dire que les utilisateurs sont les mêmes que ceux ayant accès la console JMX. ||
 || `jaas/intranet` || Utilise un module JAAS dont le modèle est présent dans `$TEMPLATES/jboss?_?/jaas/intranet/pattern.xml`. En modifiant le fichier, vous pouvez normaliser l'accès aux authentifications de type intranet, par exemple, en utilisant un serveur Ldap ou une base de donnée. L'installation du module se fera automatiquement. ||
