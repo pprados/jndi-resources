@@ -23,7 +23,7 @@ Pour mémoire, le tableau suivant reprend les conventions JEE.
 D'autres clefs sont parfois utiles, même s'il n'existe pas de conventions pour cela.
 || *Clef JNDI* || *Type* || *Exemple* ||
 || [jndi java:comp/env/jndi/*] || `javax.naming.Context` || Pour lier d'autres annuaires JNDI tel que LDAP ou un annuaire JNDI distant par exemple.||
-|| [host java:comp/env/host/*] || `java.net.InetAddress` || Le nom d'un DNS d'une machine ou d'une grappe (plusieurs IP pour le même nom), ou bien directement l'adresse IP mais ce n'est pas conseillé.||
+|| [host java:comp/env/host/*] || `java.net.InetAddress` || Le nom DNS d'une machine ou d'une grappe (plusieurs IP pour le même nom), ou bien directement l'adresse IP mais ce n'est pas conseillé.||
 || java:comp/env/etc/* || `java.lang.Object` || Autres ressources non prévues pour le moment dans ces spécifications.||
 
 Il faut ensuite décrire les exigences sur les ressources dans un fichier [jndiResourcesXML `jndi-resources.xml`] et le placer éventuellement dans le répertoire `META-INF` ou bien en dehors de l'archive.
@@ -34,7 +34,7 @@ Tous les modèles de déploiement peuvent alors être distribués sur différent
 
 Un deuxième utilitaire se charge d'exploiter ces modèles de déploiement pour une installation effective sur un ou plusieurs serveurs d'applications cibles, pas nécessairement de la même marque ou de la même version. Des fichiers de [variables propriétés] permettent alors d'indiquer les éléments spécifiques à la plate-forme d'accueil (les adresses des bases de données, les mots de passe, etc).
 
-Si nécessaire, ces deux étapes peuvent être regroupées en une seule, afin de partir du fichier des exigences de ressources à une installation directe sur les serveurs d'applications.
+Si nécessaire, ces deux étapes peuvent être regroupées en une seule, afin de partir du [jndiResourcesXML fichier] des exigences de ressources à une installation directe sur les serveurs d'applications.
 
 Précédant : [aQuoiCelaSert À quoi cela sert ?]
 Suite : [familles Familles de ressources]
