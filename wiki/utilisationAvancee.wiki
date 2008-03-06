@@ -2,7 +2,7 @@
 
 = Utilisation avancée =
 
-Les programmes [ligneDeCommandes jndi-config] et [ligneDeCommandes jndi-resources] manipulent un fichier [jndiResourcesXML jndi-resources.xml] dont la syntaxe est portée par un [http://www.prados.fr/xsd/1.0/jndi-resources.xsd" schéma] et un espace de noms.
+Les programmes [ligneDeCommandes jndi-config] et [ligneDeCommandes jndi-resources] manipulent un fichier [jndiResourcesXML jndi-resources.xml] dont la syntaxe est portée par un [http://www.prados.fr/xsd/1.0/jndi-resources.xsd schéma] et un espace de noms.
 
 Les paramètres d'un composant applicatif ne sont qu'une partie nécessaire à l'installation d'une application dans son ensemble. Il faut en effet installer une ou plusieurs base de données, un ou plusieurs serveurs HTTP, un ou plusieurs serveur d'applications, les paramétrer chacun de façon cohérente afin que l'ensemble puisse fonctionner. Par exemple, le paramètre `${jdbc.host}` doit être consistant avec la localisation de la base de données installée pour l'application.
 
