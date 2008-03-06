@@ -278,4 +278,5 @@ Voilà pour la description rapide de la production d'une ressource spécifique. 
 
 Pour tenir compte des différents paramètres présent dans le fichier [jndiResourcesXML jndi-resources.xml], il faut adapter la production du fichier `.jndi`.
 
-Voir aussi : [extensionTomcat Nouvelle ressource pour Tomcat]
+
+Voir aussi : [moteurConfiguration Moteur de configuration], [extensionTomcat Nouvelle ressource pour Tomcat]
