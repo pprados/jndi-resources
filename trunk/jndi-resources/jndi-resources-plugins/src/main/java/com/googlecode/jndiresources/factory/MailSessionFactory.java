@@ -1,4 +1,4 @@
-package org.jndiresources.factory;
+package com.googlecode.jndiresources.factory;
 
 /*
  * Copyright 2008 Philippe Prados.
