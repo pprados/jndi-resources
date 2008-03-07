@@ -4,7 +4,9 @@
 
  * Adapter le nom de packages java dans les exemples
  * [extensionTomcat]
- * Les commandes pour fonctionner sous Windows
+ * Les commandes pour fonctionner sous Windows (laisser le suffix .sh ?)
  * http://code.google.com/p/support/issues/detail?id=838#makechanges
  * Vérifier l'utilisation avec un EAR
- * Dans le [http://www.prados.fr/mvn/jndi-resources/command-line/taglist.html source]
+ * [JBoss Comment paramétrer JBoss comme annuaire JNDI uniquement]
+ * Image dans [moteurConfiguration] et [moteurInstallation]
+ * Autre TODO dans le [http://www.prados.fr/mvn/jndi-resources/command-line/taglist.html source]
