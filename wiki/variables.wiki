@@ -4,9 +4,9 @@
 
 Il est nécessaire de valoriser quelques variables lors de l'installation comme, par exemple, l'utilisateur et le mot de passe d'une source de données.
 
-Les variables sont de la forme `${...}` dans les fichiers de paramètres générés par `jndi-config`.
+Les variables sont de la forme `${...}` dans les fichiers de paramètres générés par *jndi-config*.
 
-`jndi-install` s'occupe d'installer les fichiers de paramètres après valorisation des variables. Ainsi, les fichiers sont spécialisés à une plate-forme lors de l'installation et non lors de la génération.
+*jndi-install* s'occupe d'installer les fichiers de paramètres après valorisation des variables. Ainsi, les fichiers sont spécialisés à une plate-forme lors de l'installation et non lors de la génération.
 
 Les variables sont initialisées à l'aide de fichiers de propriétées de la forme `clef=valeur`.
 {{{
