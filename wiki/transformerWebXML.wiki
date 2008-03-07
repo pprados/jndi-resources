@@ -2,7 +2,7 @@
 
 = Transformations de web.xml =
 
-Différents filtres XSLT sont proposé pour transformer le fichier `web.xml` en fichiers nécessaires aux différents serveurs d'applications.
+Différents filtres XSLT sont proposés pour transformer le fichier `web.xml` en fichiers nécessaires aux différents serveurs d'applications.
 
 Avec [http://maven.apache.org Maven], il suffit d'indiquer dans le fichier POM, le plugin suivant :
 {{{
@@ -127,4 +127,5 @@ Avec [http://maven.apache.org Maven], il suffit d'indiquer dans le fichier POM, 
 </build>
 }}}
 
+Les transforamtions WAS ne fonctionnent qu'a condition d'avoir un attribut `id` pour chaque ressource.
 Suite : [exemple Exemple rapide]
