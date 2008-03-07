@@ -200,7 +200,7 @@ S'il est également nécessaire d'ajouter une librairie dans le serveur d'applic
 <xsl:include href="../../install-drivers.xslt"/>
 <xsl:variable name="lib"><xsl:value-of select="concat($targetdir,'jboss.server.conf/lib/')"/></xsl:variable>
 }}}
-Elles permettent de gérer la récupération d'une archive dans un repository [http://maven.apache.org Maven], et son installation future dans le serveur d'application. La variable `lib` correspond à l'emplacement définitif du la librairie.
+Elles permettent de gérer la récupération d'une archive dans un repository [http://maven.apache.org Maven], et son installation future dans le serveur d'application. La variable `lib` correspond à l'emplacement définitif de la librairie.
 
 Nous devons invoquer le template `install-drivers` dans le template principal.
 {{{
