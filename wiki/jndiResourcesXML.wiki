@@ -37,7 +37,7 @@ Il est possible d'indiquer plus de précisions pour déclarer une ressource.
 }}}
 En ajoutant des propriétés à la ressource, les fichiers de paramètres des serveurs d'applications seront adaptés.
 
-Chaque serveur utilisant des paramètres différents, les paramètres indiqués dans le fichier `jndi-resources.xml` sont convertis suivant les exigences des serveurs et des versions des serveurs.
+Chaque serveur utilisant des paramètres différents, les données indiquées dans le fichier `jndi-resources.xml` sont converties suivant les exigences des serveurs et des versions des serveurs.
 
 Une liste limitée de paramètres peut être indiquée. Cela correspond aux paramètres principaux, présents sur tous les serveurs. Pour les autres paramètres, plus spécifiques à un serveur particulier, il est possible d'indiquer des compléments. Cela est fortement déconseillé, car cela crée une adhérence avec une version particulière d'un serveur. Un équivalent n'est pas toujours disponible sur d'autres serveurs.
 
