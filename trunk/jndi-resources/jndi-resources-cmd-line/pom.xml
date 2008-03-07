@@ -23,14 +23,14 @@
 >
 	
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.jndi-resources</groupId>
+	<groupId>com.googlecode.jndi-resources</groupId>
 	<artifactId>jndi-resources</artifactId>
 	<name>command-line</name>
 	<description>Les utilitaires en ligne de commande.</description>
 	<url>${url.home}/${project.name}</url>
 
 	<parent>
-		<groupId>org.jndi-resources</groupId>
+		<groupId>com.googlecode.jndi-resources</groupId>
 		<artifactId>main</artifactId>
 		<version>0.2-SNAPSHOT</version>
 	</parent>
@@ -184,7 +184,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.jndi-resources</groupId>
+			<groupId>com.googlecode.jndi-resources</groupId>
 			<artifactId>jndi-resources-plugins</artifactId>
 			<version>${current.version}</version>
 		</dependency>

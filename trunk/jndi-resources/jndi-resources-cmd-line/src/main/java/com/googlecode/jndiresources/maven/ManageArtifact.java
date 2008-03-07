@@ -61,7 +61,7 @@ public final class ManageArtifact
 		
 		String result=(String)caches_.get(artifact);
 		if (result!=null) return result;
-		if (artifact.startsWith("org.jndi-resources:jndi-resources-plugins"))
+		if (artifact.startsWith("com.googlecode.jndi-resources:jndi-resources-plugins"))
 		{
 			result=Plugin.class.getProtectionDomain().getCodeSource().getLocation().getFile();
 		}

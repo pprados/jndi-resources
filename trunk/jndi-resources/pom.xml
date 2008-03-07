@@ -21,7 +21,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.jndi-resources</groupId>
+	<groupId>com.googlecode.jndi-resources</groupId>
 	<artifactId>main</artifactId>
 	<packaging>pom</packaging>
 	<version>0.2-SNAPSHOT</version>
@@ -398,12 +398,12 @@
 			</dependency>
 
 			<dependency>
-				<groupId>org.jndi-resources</groupId>
+				<groupId>com.googlecode.jndi-resources</groupId>
 				<artifactId>plugins</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.jndi-resources</groupId>
+				<groupId>com.googlecode.jndi-resources</groupId>
 				<artifactId>jndi-resources-plugins</artifactId>
 				<version>${current.version}</version>
 			</dependency>

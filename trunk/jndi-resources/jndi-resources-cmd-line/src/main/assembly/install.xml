@@ -74,7 +74,7 @@
 
 				<include>org.apache.maven:maven-artifact:jar</include>
 
-				<include>org.jndi-resources:jndi-resources-plugins:jar</include>
+				<include>com.googlecode.jndi-resources:jndi-resources-plugins:jar</include>
 			</includes>
 			<outputDirectory>/lib</outputDirectory>
 			<directoryMode>750</directoryMode>

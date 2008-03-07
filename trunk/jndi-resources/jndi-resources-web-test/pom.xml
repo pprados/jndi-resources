@@ -5,7 +5,7 @@
 >
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.jndi-resources</groupId>
+	<groupId>com.googlecode.jndi-resources</groupId>
 	<artifactId>jndi-web-test</artifactId>
 	<packaging>war</packaging>
 	<name>complex-war-sample</name>
@@ -13,7 +13,7 @@
 	<url>${url.home}/${project.name}</url>
 
 	<parent>
-		<groupId>org.jndi-resources</groupId>
+		<groupId>com.googlecode.jndi-resources</groupId>
 		<artifactId>main</artifactId>
 		<version>0.2-SNAPSHOT</version>
 	</parent>

@@ -43,7 +43,7 @@
 	<familly name="jms/jbossmq" artifact="jboss:jbossmq-client:4.0.2"/>
 
 	<familly name="jndi/default">  
-		<artifact>org.jndi-resources:jndi-resources-plugins:*</artifact>
+		<artifact>com.googlecode.jndi-resources:jndi-resources-plugins:*</artifact>
 	</familly>
 
 	<familly name="jndi/file">
@@ -56,10 +56,10 @@
 	</familly>
 
 	<familly name="host/default">
-	  	<artifact>org.jndi-resources:jndi-resources-plugins:*</artifact>
+	  	<artifact>com.googlecode.jndi-resources:jndi-resources-plugins:*</artifact>
 	 </familly>
 	<familly name="mail/email">
-	  	<artifact>org.jndi-resources:jndi-resources-plugins:*</artifact>
+	  	<artifact>com.googlecode.jndi-resources:jndi-resources-plugins:*</artifact>
 	</familly>
 
 </xsl:variable>

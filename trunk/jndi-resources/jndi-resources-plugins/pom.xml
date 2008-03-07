@@ -19,14 +19,14 @@
 
 <project>
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.jndi-resources</groupId>
+	<groupId>com.googlecode.jndi-resources</groupId>
 	<artifactId>jndi-resources-plugins</artifactId>
 	<name>mbean-and-factories</name>
 	<description>MBean and Resources factories</description>
 	<url>${url.home}/${project.name}</url>
 
 	<parent>
-		<groupId>org.jndi-resources</groupId>
+		<groupId>com.googlecode.jndi-resources</groupId>
 		<artifactId>main</artifactId>
 		<version>0.2-SNAPSHOT</version>
 	</parent>
