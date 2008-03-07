@@ -1,4 +1,4 @@
-package org.jndiresources.install;
+package com.googlecode.jndiresources.install;
 
 /*
  * Copyright 2008 Philippe Prados.
@@ -56,13 +56,6 @@ import org.apache.maven.artifact.versioning.ArtifactVersion;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.apache.maven.artifact.versioning.InvalidVersionSpecificationException;
 import org.apache.maven.artifact.versioning.VersionRange;
-import org.jndiresources.config.JNDIConfig;
-import org.jndiresources.tools.CommandLineException;
-import org.jndiresources.tools.RecursiveFiles;
-import org.jndiresources.tools.XMLContext;
-import org.jndiresources.tools.XSLTools;
-import org.jndiresources.var.ExtendedProperties;
-import org.jndiresources.var.VariableReader;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -71,6 +64,14 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLFilterImpl;
+
+import com.googlecode.jndiresources.config.JNDIConfig;
+import com.googlecode.jndiresources.tools.CommandLineException;
+import com.googlecode.jndiresources.tools.RecursiveFiles;
+import com.googlecode.jndiresources.tools.XMLContext;
+import com.googlecode.jndiresources.tools.XSLTools;
+import com.googlecode.jndiresources.var.ExtendedProperties;
+import com.googlecode.jndiresources.var.VariableReader;
 
 /**
  * Install a JNDI resources in JEE server.
