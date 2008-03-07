@@ -2,7 +2,7 @@
 
 = Les modèles de transformations =
 
-Les modèles de transformations proposent de gérer les serveurs suivants :
+Les [http://www.prados.fr/mvn/jndi-resources/command-line/templates/ modèles] de transformations proposent de gérer les serveurs suivants :
  * `jboss` de la version 3.0 à la dernière à ce jour ( la version 5.x ou suivante si la compatibilité ascendante est conservée).
  * `jboss-jms-srv`, un serveur [JBoss] jouant le rôle de serveur JMS pour les versions de 3.0 à 5.x.
  * `jboss-jndi-srv`, un serveur [JBoss] jouant uniquement le rôle de serveur d'annuaire JNDI pour les versions de 3.2.8 à 5.x.
@@ -41,6 +41,8 @@ Par défaut, les ressources ne sont pas publiques car portée par des clefs JNDI
 	--dest jboss.server.conf=/opt/jboss-5.0/server/default \
 	--dest jboss.server.home=/opt/jboss-5.0
 }}}
+
+Les sources des transformations sont [http://www.prados.fr/mvn/jndi-resources/command-line/templates/ ici]
 
 D'autres serveurs viendrons s'ajouter à la liste. Vous pouvez participer à l'évolution de l'outil en proposant des scripts pour d'autres serveurs. Consulter le site du projet pour avoir des précisions.
 
