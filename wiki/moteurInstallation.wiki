@@ -2,7 +2,7 @@
 
 = Moteur d'installation =
 
-Il s'agit d'un moteur d'installation très simple. Il se base sur une structure de répertoires, des fichiers aux extensions particulières et des paramètres.
+*jndi-install* est un moteur d'installation très simple. Il se base sur une structure de répertoires, des fichiers aux extensions particulières et des paramètres.
 
 Un script d'installation est décrit à partir d'un répertoire racine que nous appelons `$PACKAGES` dans ce document. Dans ce répertoire, il doit y avoir un répertoire par serveur d'applications cible.
 
