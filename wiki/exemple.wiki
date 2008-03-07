@@ -104,6 +104,8 @@ Nous désirons générer tous les fichiers de configurations des serveurs d'appl
 }}}
 Cela génère un répertoire `./packages`, avec des modèles de fichiers de configurations pour tous les serveurs d'applications. C'est ce répertoire ainsi que `jndi-resources-<version>-install.(tar.gz|zip)` qu'il faudra utiliser pour installer le composant sur n'importe quel serveur d'applications.
 
+Pour avoir plus de détail sur la génération, ajoutez le paramètre `-l` ou `-ll`.
+
 Nous pouvons maintenant installer le composant sur différents serveurs d'applications.
 Voici une installation sur un Jboss 5.0:
 {{{
