@@ -57,18 +57,18 @@ Par exemple :
 
 <resource name="JNDI-test/jms/Queue"           familly="jms/default/queue"/>
 <resource name="JNDI-test/jms/QueueSpec"       familly="jms/default/queue">
-	<property name="dead-letter-queue" value="JNDI-test/jms/DeadLetterQueue"/>
-	<property name="expiry-queue" value="JNDI-test/jms/ExpiryQueue"/>
+	<property name="dead-letter-queue"     value="JNDI-test/jms/DeadLetterQueue"/>
+	<property name="expiry-queue"          value="JNDI-test/jms/ExpiryQueue"/>
 	
-	<property name="redelivery-delay" value="0"/>
+	<property name="redelivery-delay"      value="0"/>
 	<property name="max-delivery-attempts" value="-1"/>
-	<property name="max-size" value="-1"/>
+	<property name="max-size"              value="-1"/>
 	<property name="message-counter-history-day-limit" value="-1"/>
-	<property name="preserve-ordering" value="false"/>
+	<property name="preserve-ordering"     value="false"/>
 </resource>
 	
 <resource name="JNDI-test/jms/QueueSpec"       familly="jms/default/queue">
-	<property name="dead-letter-queue" value="JNDI-test/jms/DeadLetterQueue"/>
+	<property name="dead-letter-queue"     value="JNDI-test/jms/DeadLetterQueue"/>
 </resource>
 
 <resource name="JNDI-test/jms/Topic"           familly="jms/default/topic"/>
