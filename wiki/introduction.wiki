@@ -10,6 +10,17 @@ Les composants doivent indiquer les ressources dont ils ont besoins ; une [jdbc 
 Mais, comme le paramétrage de ces ressources n'est pas normalisé, chaque serveur utilise une approche qui lui est propre. Il faut alors écrire des scripts d'installations spécifique à chaque serveur, voir à chaque version de chaque serveur. Sinon, le composant JEE ne fonctionne pas, en l'absence des ressources nécessaires.
 
 Les fichiers `web.xml` et `application.xml` permettent d'indiquer les ressources nécessaires aux composants. Il est possible d'indiquer une clef JNDI locale au composant et une classe Java. Le serveur doit alimenter les clefs avec des objets répondants aux classes.
+{{{
+...
+<resource-ref>
+   <description>La base de donnée</description>
+   <res-ref-name>jdbc/Default</res-ref-name>
+   <res-type>javax.sql.DataSource</res-type>
+   <res-auth>Application</res-auth>
+   <res-sharing-scope>Shareable</res-sharing-scope>
+</resource-ref>
+...
+}}}
 
 Dans le monde réel, les exigences des projets sont plus complexes. En effet, le composant doit préciser qu'il désire une source de donnée de type Oracle, un pool de connexion de telle taille, etc. Mais, il n'a pas besoin d'indiquer l'utilisateur et le mot de passe à utiliser. Ces informations sont du ressort de l'assembleur de composants, comme décrit dans les spécifications JEE.
 
