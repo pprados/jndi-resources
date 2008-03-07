@@ -24,7 +24,7 @@ D'autres clefs sont parfois utiles, même s'il n'existe pas de conventions pour 
 || *Clef JNDI* || *Type* || *Exemple* ||
 || [jndi java:comp/env/jndi/*] || `javax.naming.Context` || Pour lier d'autres annuaires JNDI tel que LDAP ou un annuaire JNDI distant par exemple.||
 || [host java:comp/env/host/*] || `java.net.InetAddress` || Le nom DNS d'une machine ou d'une grappe (plusieurs IP pour le même nom), ou bien directement l'adresse IP mais ce n'est pas conseillé.||
-|| java:comp/env/etc/* || `java.lang.Object` || Autres ressources non prévues pour le moment dans ces spécifications.||
+|| `java:comp/env/etc/*` || `java.lang.Object` || Autres ressources non prévues pour le moment dans ces spécifications.||
 
 Il faut ensuite décrire les exigences sur les ressources dans un fichier [jndiResourcesXML `jndi-resources.xml`] et le placer éventuellement dans le répertoire `META-INF` ou bien en dehors de l'archive.
 
