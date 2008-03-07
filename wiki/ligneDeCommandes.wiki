@@ -19,7 +19,7 @@ Usage: jndi-config.sh [-h] (-w <war|ear> | -j <jndi-resources.xml>) \
 Vous pouvez indiquer un fichier [jndiResourcesXML jndi-resources.xml] à l'aide du paramètre `-j`, indiquer une archive `.war` possédant déjà un fichier `META-INF/jndi-resources.xml` ou une combinaison des deux paramètres.
 Si vous utilisez le paramètre `-w`, le composant sera également installé dans le serveur d'application. Sinon, seule les ressources seront publiées.
 
-Pour demander uniquement la publication des ressources nécessaires à un composant, utiliser une URL de type `jar:file:` pour le paramètre `-j`.
+Pour demander uniquement la publication des ressources nécessaires à un composant, utilisez une URL de type `jar:file:` pour le paramètre `-j`.
 {{{
 jndi-config.sh -j jar:file:application.war!/META-INF/jndi-resources.xml ...
 }}}
