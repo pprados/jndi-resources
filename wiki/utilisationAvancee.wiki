@@ -1,4 +1,4 @@
-#summary Utilisation avancée
+#summary Utilisation avancée.
 
 = Utilisation avancée =
 

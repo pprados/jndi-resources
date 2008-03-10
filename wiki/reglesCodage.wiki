@@ -1,4 +1,4 @@
-#summary Les règles de codage
+#summary Les règles de codage.
 
 = Les règles de codage =
 

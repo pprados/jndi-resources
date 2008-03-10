@@ -1,4 +1,4 @@
-#summary Description du moteur d'installation
+#summary Description du moteur d'installation.
 
 = Moteur d'installation =
 

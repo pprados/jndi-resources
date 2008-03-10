@@ -1,4 +1,4 @@
-#summary Comment faire pour utiliser jndi-resources
+#summary Comment faire pour utiliser jndi-resources ?
 #labels jndi
 = Comment faire ? =
 

@@ -1,4 +1,4 @@
-#summary Les ressources globales
+#summary Les ressources globales.
 
 = Les ressources globales =
 
