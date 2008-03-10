@@ -12,7 +12,7 @@
 ||[installation]||Installation de l'utilitaire.||
 ||[introduction]||Introduction à l'outil jndi-resources||
 ||[jaas]||Famille jaas/*, spécial JBoss||
-||[jdbc]||Famille jdbc/*.
+||[jdbc]||Famille jdbc/*.||
 ||[jms]||Famille jms/*||
 ||[jndi]||Famille jndi/*||
 ||[jndiResourcesXML]||Descriptions des ressources, syntaxe du fichier  `jndi-resources.xml`||
