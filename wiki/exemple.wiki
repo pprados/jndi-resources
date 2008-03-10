@@ -1,0 +1,144 @@
+#summary Un exemple rapide d'utilisation.
+
+= Exemple rapide =
+
+Prenons l'exemple d'une archive WAR possédant le fichier `WEB-INF/web.xml` suivant :
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+  PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+         "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app
+	id="jndi-web-sample"
+>
+	<display-name>jndi-resources-web-sample</display-name>
+
+      <servlet>
+        <servlet-name>HelloServlet</servlet-name>
+        <display-name>Hello Servlet</display-name>
+        <servlet-class>org.sample.HelloJNDIServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+      </servlet>
+	<servlet-mapping>
+		<servlet-name>HelloServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>/</welcome-file>
+	</welcome-file-list>
+
+	<resource-ref>
+	   <description>La base par defaut</description>
+	   <res-ref-name>jdbc/Default</res-ref-name>
+	   <res-type>javax.sql.DataSource</res-type>
+	   <res-auth>Application</res-auth>
+	   <res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+</web-app>
+}}}
+
+Notez la valeur du paramètre id du marqueur `<web-app/>`. Il correspond généralement au path de déploiement de l'archive.
+
+Conformément aux [comment spécifications], ce fichier déclare, dans `<resource-ref/>`,  le besoin d'une ressource de type `javax.sql.DataSource` pour la clef JNDI `java:comp/env/jdbc/Default`.
+
+Suivant les serveurs d'applications, il faut ajouter [transformerWebXML différents] fichiers permettant d'associer la ressource `java:comp/env/jdbc/Default` avec une autre clef JNDI.
+Pour JBoss, il faut ajouter le fichier `WEB-INF/jboss-web.xml` suivant :
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-web>
+   <resource-ref>
+      <res-ref-name>jdbc/Default</res-ref-name>
+      <res-type>javax.sql.DataSource</res-type>
+      <jndi-name>java:jndi-web-sample/jdbc/Default</jndi-name>
+   </resource-ref>
+</jboss-web>
+}}}
+
+Pour Tomcat, le fichier `META-INF/context.xml` suivant :
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<Context 
+	path="/jndi-web-sample"
+	reloadable="true"
+	antiResourceLocking="true" 
+	antiJARLocking="true"
+	privileged="false"
+>
+   <ResourceLink name="jdbc/Default"
+                 global="/jndi-web-sample/jdbc/Default"
+                 type="javax.sql.DataSource"/>
+</Context>
+}}}
+Ces deux fichiers permettent d'associer la clef locale `java:comp/env/jdbc/Default` avec la clef JVM `java:/jndi-web-sample/jdbc/Default`.
+
+Par [conventions], les clefs locales de la branche `java:comp/env` doivent être associées aux clefs JVM de la branche `java:`, en préfixant par l'`id` présent dans le fichier `web.xml`. Cela permet de lever les ambiguïtés lorsque plusieurs composants sont installés sur le même serveur d'applications.
+
+Ces règles de transformations étant systématiques, il est facile de générer ces fichiers à partir du fichier `web.xml`. Des [transformerWebXML scripts XSLT] sont proposés dans le répertoire `$JNDI_HOME/xslt`.
+
+Il faut ensuite ajouter le fichier `META-INF/jndi-resources.xml`. C'est un [jndiResourcesXML nouveau fichier] permettant de décrire sémantiquement (et non techniquement) les exigences des ressources du composant applicatif.
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources
+	xmlns="http://jndi-resources.googlecode.com/1.0/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jndi-resources.googlecode.com/1.0/ http://www.prados.fr/xsd/1.0/jndi-resources.xsd"
+	id="jndi-web-sample"
+>
+	<resource name="jndi-web-sample/jdbc/Default" familly="jdbc/default" />
+</resources>
+}}}
+Ce fichier décrit simplement que nous souhaitons une ressouce pour la clef `jndi-web-sample/jdbc/Default`, et y publier la base de données par défaut, associée au serveur d'applications. Pour JBoss et Tomcat, il s'agit d'une base HSQLDB.
+
+Vous pouvez [http://code.google.com/p/jndi-resources/downloads/list télécharger] l'archive d'exemple pour tester l'utilisation des différents outils.
+{{{
+>wget http://jndi-resources.googlecode.com/files/jndi-web-sample.war
+}}}
+
+Nous désirons générer tous les fichiers de configurations des serveurs d'applications. L'utilitaire `$JNDI_HOME/bin/jndi-config.sh` s'en charge.
+{{{
+>$JNDI_HOME/bin/jndi-config.sh \
+	--war jndi-web-sample.war \
+	--packages ./packages
+}}}
+Cela génère un répertoire `./packages`, avec des modèles de fichiers de configurations pour tous les serveurs d'applications. C'est ce répertoire ainsi que `jndi-resources-<version>-install.(tar.gz|zip)` qu'il faudra utiliser pour installer le composant sur n'importe quel serveur d'applications.
+
+Pour avoir plus de détail sur la génération, ajoutez le paramètre `-l` ou `-ll`.
+
+Nous pouvons maintenant installer le composant sur différents serveurs d'applications.
+Voici une installation sur un Jboss 5.0:
+{{{
+>$JNDI_HOME/bin/jndi-install.sh \
+	--package ./packages \
+	--appsrv jboss --version 5.0 \
+	--dest jboss.server.conf=/opt/jboss-5.0/server/default \
+	--dest jboss.server.home=/opt/jboss-5.0
+}}}
+Comme la source de donnée par défaut de Jboss utilise une base HSQLDB déjà installé sur le serveur, il n'est pas nécessaire d'ajouter de paramètres complémentaires.
+
+Voici une installation sur un Tomcat 4.1:
+{{{
+>$JNDI_HOME/bin/jndi-install.sh \
+	--package ./packages \
+	--appsrv tomcat --version 4.1 \
+	--dest catalina.base=/opt/apache-tomcat-4.1 \
+	--dest catalina.home=/opt/apache-tomcat-4.1 \
+	-Djdbc.username=sa -Djdbc.password= -Djdbc.hsqldb.file=A
+}}}
+Sous Tomcat, la base de donnée par défaut nécessite trois paramètres : le nom et le mot de passe de l'utilisateur de connexion, ainsi qu'un nom de fichier pour la base gérée par HSQLDB. Ces paramètres peuvent également être indiqués dans un fichier de [variables propriétés].
+
+Ces deux étapes peuvent être combinées avec l'invocation de `$JNDI_HOME/bin/jndi-resources.sh`.
+
+Voici l'installation sur un serveur Tomcat 4.1 directement à partir du composant WAR.
+{{{
+>$JNDI_HOME/bin/jndi-resources.sh \
+	--war jndi-web-sample.war \
+	--appsrv tomcat --version 4.1 \
+	--dest catalina.base=/opt/apache-tomcat-4.1 \
+	--dest catalina.home=/opt/apache-tomcat-4.1 \
+	-Djdbc.username=sa -Djdbc.password= -Djdbc.hsqldb.file=A
+}}}
+
+Précédent : [installation]
+Suite: [ligneDeCommandes Lignes de commandes]

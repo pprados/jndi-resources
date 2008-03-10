@@ -1,0 +1,131 @@
+#summary Transformation de web.xml en fichiers spécifiques pour serveurs d'applications
+
+= Transformations de web.xml =
+
+Différents filtres XSLT sont proposés pour transformer le fichier `web.xml` en fichiers nécessaires aux différents serveurs d'applications.
+
+Avec [http://maven.apache.org Maven], il suffit d'indiquer dans le fichier POM, le plugin suivant :
+{{{
+<build>
+<plugins>
+...
+<plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>xml-maven-plugin</artifactId>
+	<executions>
+		<execution>
+			<goals>
+				<goal>transform</goal>
+			</goals>
+		</execution>
+	</executions>
+	<dependencies>
+		<dependency>
+			<groupId>net.sf.saxon</groupId>
+			<artifactId>saxon</artifactId>
+			<version>8.7</version>
+		</dependency>
+	</dependencies>
+	<configuration>
+		<transformationSets>
+			<!-- JBoss transformation -->
+			<transformationSet>
+				<dir>
+					${project.build.warSourceDirectory}/WEB-INF
+				</dir>
+				<includes>
+					<include>web.xml</include>
+				</includes>
+				<stylesheet>
+					xslt/web-to-jboss-web.xslt
+				</stylesheet>
+				<outputDir>
+					target/${artifactId}-${version}/WEB-INF
+				</outputDir>
+				<fileMappers>
+					<fileMapper
+						implementation="org.codehaus.plexus.components.io.filemappers.MergeFileMapper">
+						<targetName>
+							jboss-web.xml
+						</targetName>
+					</fileMapper>
+				</fileMappers>
+			</transformationSet>
+
+			<!-- Tomcat transformation -->
+			<transformationSet>
+				<dir>
+					${project.build.warSourceDirectory}/WEB-INF
+				</dir>
+				<includes>
+					<include>web.xml</include>
+				</includes>
+				<stylesheet>
+					xslt/web-to-tomcat-context.xslt
+				</stylesheet>
+				<outputDir>
+					target/${artifactId}-${version}/META-INF
+				</outputDir>
+				<fileMappers>
+					<fileMapper
+						implementation="org.codehaus.plexus.components.io.filemappers.MergeFileMapper">
+						<targetName>context.xml</targetName>
+					</fileMapper>
+				</fileMappers>
+			</transformationSet>
+
+			<!-- IBM transformation -->
+			<transformationSet>
+				<dir>
+					${project.build.warSourceDirectory}/WEB-INF
+				</dir>
+				<includes>
+					<include>web.xml</include>
+				</includes>
+				<stylesheet>
+					xslt/web-to-ibm-web-bnd.xslt
+				</stylesheet>
+				<outputDir>
+					target/${artifactId}-${version}/WEB-INF
+				</outputDir>
+				<fileMappers>
+					<fileMapper
+						implementation="org.codehaus.plexus.components.io.filemappers.MergeFileMapper">
+						<targetName>
+							ibm-web-bnd.xmi
+						</targetName>
+					</fileMapper>
+				</fileMappers>
+			</transformationSet>
+			<transformationSet>
+				<dir>
+					${project.build.warSourceDirectory}/WEB-INF
+				</dir>
+				<includes>
+					<include>web.xml</include>
+				</includes>
+				<stylesheet>
+					xslt/web-to-ibm-web-ext.xslt
+				</stylesheet>
+				<outputDir>
+					target/${artifactId}-${version}/WEB-INF
+				</outputDir>
+				<fileMappers>
+					<fileMapper
+						implementation="org.codehaus.plexus.components.io.filemappers.MergeFileMapper">
+						<targetName>
+							ibm-web-ext.xmi
+						</targetName>
+					</fileMapper>
+				</fileMappers>
+			</transformationSet>
+		</transformationSets>
+	</configuration>
+</plugin>
+...
+</plugins>
+</build>
+}}}
+
+Les transforamtions WAS ne fonctionnent qu'a condition d'avoir un attribut `id` pour chaque ressource.
+Suite : [exemple Exemple rapide]
