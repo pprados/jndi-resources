@@ -56,13 +56,34 @@
 			<directoryMode>750</directoryMode>
 			<fileMode>640</fileMode>
 		</fileSet>
+		
 		<fileSet>
 			<lineEnding>unix</lineEnding>
 			<directory>src/main/bin</directory>
 			<outputDirectory>/bin</outputDirectory>
 			<directoryMode>750</directoryMode>
 			<fileMode>750</fileMode>
+			<includes>
+				<include>jndi-config</include>
+				<include>jndi-install</include>
+				<include>jndi-resources</include>
+				<include>_set-env.sh</include>
+			</includes>
 		</fileSet>
+		
+		<fileSet>
+			<lineEnding>dos</lineEnding>
+			<directory>src/main/bin</directory>
+			<outputDirectory>/bin</outputDirectory>
+			<directoryMode>750</directoryMode>
+			<fileMode>750</fileMode>
+			<includes>
+				<include>jndi-config.cmd</include>
+				<include>jndi-install.cmd</include>
+				<include>jndi-resources.cmd</include>
+			</includes>
+		</fileSet>
+		
 		<fileSet>
 			<lineEnding>unix</lineEnding>
 			<directory>src/main/xslt</directory>

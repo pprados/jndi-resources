@@ -30,8 +30,7 @@ import org.w3c.dom.NodeList;
 /**
  * Abstract JNDI service.
  * 
- * @version 1.0
- * @since 1.0
+ * @author Philippe PRADOS
  */
 public abstract class AbstractService
 {

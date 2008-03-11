@@ -32,8 +32,7 @@ import org.w3c.dom.Element;
 /**
  * MBean interface for Mail service.
  * 
- * @version 1.0
- * @since 1.0
+ * @author Philippe PRADOS
  */
 public interface MailServiceMBean
 {

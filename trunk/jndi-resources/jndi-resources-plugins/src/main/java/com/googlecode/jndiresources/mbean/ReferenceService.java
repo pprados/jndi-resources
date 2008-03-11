@@ -31,9 +31,8 @@ import org.apache.log4j.Logger;
 
 /**
  * Reference MBean service.
- *  
- * @version 1.0
- * @since 1.0
+ * 
+ * @author Philippe PRADOS
  */
 public class ReferenceService extends AbstractService
 	implements ReferenceServiceMBean

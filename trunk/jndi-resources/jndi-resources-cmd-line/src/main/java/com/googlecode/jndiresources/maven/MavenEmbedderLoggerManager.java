@@ -37,11 +37,9 @@ import org.codehaus.plexus.personality.plexus.lifecycle.phase.Initializable;
  * 
  * @author <a href="mailto:jason@maven.org">Jason van Zyl</a>
  * @author <a href="mailto:trygvis@inamo.no">Trygve Laugst&oslash;l</a>
- * @version $Id: MavenEmbedderLoggerManager.java 292888 2005-10-01 01:17:36Z
- *          jvanzyl $
+ * @author Philippe PRADOS
  */
-public class MavenEmbedderLoggerManager extends AbstractLoggerManager implements
-		LoggerManager, Initializable
+public class MavenEmbedderLoggerManager extends AbstractLoggerManager implements LoggerManager, Initializable
 {
 	/**
 	 * Message of this level or higher will be logged. <p/> This field is set by
@@ -68,8 +66,7 @@ public class MavenEmbedderLoggerManager extends AbstractLoggerManager implements
 
 		if (currentThreshold_ == -1)
 		{
-			debug("Could not parse the threshold level: '" + threshold_
-					+ "', setting to debug.");
+			debug("Could not parse the threshold level: '" + threshold_ + "', setting to debug.");
 			currentThreshold_ = Logger.LEVEL_DEBUG;
 		}
 	}
@@ -87,8 +84,7 @@ public class MavenEmbedderLoggerManager extends AbstractLoggerManager implements
 		return currentThreshold_;
 	}
 
-	public void setThreshold(final String role, final String roleHint,
-			final int threshold)
+	public void setThreshold(final String role, final String roleHint, final int threshold)
 	{
 		// Empty
 	}

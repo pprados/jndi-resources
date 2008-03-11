@@ -49,6 +49,10 @@ import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 /**
  * Class intended to be used by clients who wish to embed Maven into their
  * applications
+ * 
+ * @author <a href="mailto:jason@maven.org">Jason van Zyl</a>
+ * @author <a href="mailto:trygvis@inamo.no">Trygve Laugst&oslash;l</a>
+ * @author Philippe PRADOS
  */
 final class MavenEmbedder
 {
@@ -79,7 +83,7 @@ final class MavenEmbedder
 
 	private ArtifactRepositoryLayout defaultArtifactRepositoryLayout_;
 
-//TODO	private ArtifactMetadataSource defaultMetadataSource_;
+	// TODO private ArtifactMetadataSource defaultMetadataSource_;
 
 	// ----------------------------------------------------------------------
 	// Configuration
@@ -179,30 +183,36 @@ final class MavenEmbedder
 	// Artifacts
 	// ----------------------------------------------------------------------
 
-	public Artifact createArtifact(final String groupId, final String artifactId,
-			final String version, final String scope, final String type)
+	public Artifact createArtifact(final String groupId, final String artifactId, final String version,
+			final String scope, final String type)
 	{
 		return artifactFactory_.createArtifact(
 			groupId, artifactId, version, scope, type);
 	}
 
 	public void resolve(final Artifact artifact, final List remoteRepositories,
-			final ArtifactRepository localRepository)
-			throws ArtifactResolutionException, ArtifactNotFoundException
+			final ArtifactRepository localRepository) throws ArtifactResolutionException,
+			ArtifactNotFoundException
 	{
 		artifactResolver_.resolve(
 			artifact, remoteRepositories, localRepository);
 	}
 
 	public void resolveAll(final Artifact artifact, final List remoteRepositories,
-			final ArtifactRepository localRepository)
-			throws ArtifactResolutionException, ArtifactNotFoundException
+			final ArtifactRepository localRepository) throws ArtifactResolutionException,
+			ArtifactNotFoundException
 	{
 		final Set set = new HashSet();
 		set.add(artifact);
 		final ArtifactResolutionResult result = artifactResolver_.resolveTransitively(
-			set, artifact, remoteRepositories, localRepository,
-			new MavenMetadataSource()); // TODO : J'ai ajouter maven-project pour cela :-(
+			set, artifact, remoteRepositories, localRepository, new MavenMetadataSource()); // TODO
+																							// :
+																							// J'ai
+																							// ajouter
+																							// maven-project
+																							// pour
+																							// cela
+																							// :-(
 		for (final Iterator i = result.getArtifacts().iterator(); i.hasNext();)
 		{
 			System.out.println(i.next());
@@ -217,15 +227,14 @@ final class MavenEmbedder
 
 	private static final String DEFAULT_LAYOUT_ID = "default";
 
-	private ArtifactRepository createLocalRepository(final Settings settings)
-			throws ComponentLookupException
+	private ArtifactRepository createLocalRepository(final Settings settings) throws ComponentLookupException
 	{
 		return createLocalRepository(
 			settings.getLocalRepository(), DEFAULT_LOCAL_REPO_ID);
 	}
 
-	private ArtifactRepository createLocalRepository(final String url,
-			final String repositoryId) throws ComponentLookupException
+	private ArtifactRepository createLocalRepository(final String url, final String repositoryId)
+			throws ComponentLookupException
 	{
 		if (!url.startsWith("file:"))
 		{
@@ -245,24 +254,22 @@ final class MavenEmbedder
 
 		final String checksumPolicyFlag = ArtifactRepositoryPolicy.CHECKSUM_POLICY_WARN;
 
-		final ArtifactRepositoryPolicy snapshotsPolicy = new ArtifactRepositoryPolicy(
-				true, updatePolicyFlag, checksumPolicyFlag);
+		final ArtifactRepositoryPolicy snapshotsPolicy = new ArtifactRepositoryPolicy(true, updatePolicyFlag,
+				checksumPolicyFlag);
 
-		final ArtifactRepositoryPolicy releasesPolicy = new ArtifactRepositoryPolicy(
-				true, updatePolicyFlag, checksumPolicyFlag);
+		final ArtifactRepositoryPolicy releasesPolicy = new ArtifactRepositoryPolicy(true, updatePolicyFlag,
+				checksumPolicyFlag);
 
 		return artifactRepositoryFactory_.createArtifactRepository(
-			repositoryId, url, defaultArtifactRepositoryLayout_,
-			snapshotsPolicy, releasesPolicy);
+			repositoryId, url, defaultArtifactRepositoryLayout_, snapshotsPolicy, releasesPolicy);
 	}
 
 	// ----------------------------------------------------------------------
 	// Lifecycle
 	// ----------------------------------------------------------------------
 
-	public void start() throws DuplicateRealmException,
-			PlexusContainerException, ComponentLookupException, IOException,
-			XmlPullParserException
+	public void start() throws DuplicateRealmException, PlexusContainerException, ComponentLookupException,
+			IOException, XmlPullParserException
 	{
 		detectUserInstallation();
 
@@ -294,15 +301,12 @@ final class MavenEmbedder
 		artifactRepositoryFactory_ = (ArtifactRepositoryFactory) embedder_
 				.lookup(ArtifactRepositoryFactory.ROLE);
 
-		artifactFactory_ = (ArtifactFactory) embedder_
-				.lookup(ArtifactFactory.ROLE);
+		artifactFactory_ = (ArtifactFactory) embedder_.lookup(ArtifactFactory.ROLE);
 
-		artifactResolver_ = (ArtifactResolver) embedder_
-				.lookup(ArtifactResolver.ROLE);
+		artifactResolver_ = (ArtifactResolver) embedder_.lookup(ArtifactResolver.ROLE);
 
-		defaultArtifactRepositoryLayout_ = (ArtifactRepositoryLayout) embedder_
-				.lookup(
-					ArtifactRepositoryLayout.ROLE, DEFAULT_LAYOUT_ID);
+		defaultArtifactRepositoryLayout_ = (ArtifactRepositoryLayout) embedder_.lookup(
+			ArtifactRepositoryLayout.ROLE, DEFAULT_LAYOUT_ID);
 
 		// TODO : gestion Artifact
 		// defaultMetadatSource=(ArtifactMetadataSource)embedder.lookup(ArtifactMetadataSource.ROLE);
@@ -394,8 +398,7 @@ final class MavenEmbedder
 			return log_.isEnabledFor(Level.WARN);
 		}
 
-		public org.codehaus.plexus.logging.Logger getChildLogger(
-				final String arg0)
+		public org.codehaus.plexus.logging.Logger getChildLogger(final String arg0)
 		{
 			return this;
 		}
@@ -405,13 +408,18 @@ final class MavenEmbedder
 			return "Maven";
 		}
 
-		private static final int DEBUG_LEVEL=0;
-		private static final int INFO_LEVEL=1;
-		private static final int WARN_LEVEL=2;
-		private static final int ERROR_LEVEL=3;
-		private static final int FATAL_LEVEL=4;
-		private static final int OTHER_LEVEL=5;
-		
+		private static final int DEBUG_LEVEL = 0;
+
+		private static final int INFO_LEVEL = 1;
+
+		private static final int WARN_LEVEL = 2;
+
+		private static final int ERROR_LEVEL = 3;
+
+		private static final int FATAL_LEVEL = 4;
+
+		private static final int OTHER_LEVEL = 5;
+
 		public int getThreshold()
 		{
 			final Level level = log_.getLevel();
@@ -428,7 +436,7 @@ final class MavenEmbedder
 			return OTHER_LEVEL;
 		}
 	};
-	
+
 	// ----------------------------------------------------------------------
 	//
 	// ----------------------------------------------------------------------
@@ -451,8 +459,7 @@ final class MavenEmbedder
 	 * @throws IOException If error.
 	 * @throws ComponentLookupException If error.
 	 */
-	private void createMavenSettings() throws ComponentLookupException,
-			IOException, XmlPullParserException
+	private void createMavenSettings() throws ComponentLookupException, IOException, XmlPullParserException
 	{
 		if (alignWithUserInstallation_)
 		{
@@ -463,8 +470,7 @@ final class MavenEmbedder
 			// mode of operation.
 			// ----------------------------------------------------------------------
 
-			settingsBuilder_ = (MavenSettingsBuilder) embedder_
-					.lookup(MavenSettingsBuilder.ROLE);
+			settingsBuilder_ = (MavenSettingsBuilder) embedder_.lookup(MavenSettingsBuilder.ROLE);
 
 			settings_ = settingsBuilder_.buildSettings();
 		}
@@ -472,16 +478,14 @@ final class MavenEmbedder
 		{
 			if (localRepository_ == null)
 			{
-				throw new IllegalArgumentException(
-						"When not aligning with a user install you must specify "
-						+"a local repository location using the "
-						+"setLocalRepositoryDirectory( File ) method.");
+				throw new IllegalArgumentException("When not aligning with a user install you must specify "
+						+ "a local repository location using the "
+						+ "setLocalRepositoryDirectory( File ) method.");
 			}
 
 			settings_ = new Settings();
 
-			settings_.setLocalRepository(localRepositoryDirectory_
-					.getAbsolutePath());
+			settings_.setLocalRepository(localRepositoryDirectory_.getAbsolutePath());
 
 			settings_.setOffline(offline_);
 

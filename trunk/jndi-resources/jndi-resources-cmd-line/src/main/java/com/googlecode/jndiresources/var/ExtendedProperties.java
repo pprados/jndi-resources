@@ -41,8 +41,10 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * Manager .xpath and include in properties files.
+ * 
+ * @author Philippe PRADOS
  */
-// TODO : faire un cache des fichiers XPath en cas de lecture multiple des mêmes fichiers
+// TODO : faire un cache des fichiers XPath en cas de lecture multiple
 public final class ExtendedProperties
 {
 	/**
@@ -70,14 +72,13 @@ public final class ExtendedProperties
 	 * 
 	 * @see ExtendedProperties#load(File, Properties)
 	 */
-	public static Properties load(File filename, final Properties prop)
-			throws IOException, XPathExpressionException, SAXException,
-			ParserConfigurationException
+	public static Properties load(File filename, final Properties prop) throws IOException,
+			XPathExpressionException, SAXException, ParserConfigurationException
 	{
-		final String path=filename.getPath();
+		final String path = filename.getPath();
 		if (path.startsWith("~"))
 		{
-			filename=new File(System.getProperty("user.home")+path.substring(1));
+			filename = new File(System.getProperty("user.home") + path.substring(1));
 		}
 		return load(
 			filename.toURI().toURL(), prop);
@@ -127,53 +128,54 @@ public final class ExtendedProperties
 	 * @throws SAXException If the XML file is incorrect.
 	 * @throws ParserConfigurationException If the parser is not configured.
 	 */
-	public static Properties load(final URL file, final Properties prop)
-	throws IOException, XPathExpressionException, SAXException,
-		ParserConfigurationException
+	public static Properties load(final URL file, final Properties prop) throws IOException,
+			XPathExpressionException, SAXException, ParserConfigurationException
 	{
-		
-		URL filename=file;
-		String include=null;
+
+		URL filename = file;
+		String include = null;
 		do
 		{
-			log_.debug("Load "+filename);
-			final Properties p=new Properties();
-			InputStream in=filename.openStream();
-			if (filename.getPath().endsWith(".xml"))
+			log_.debug("Load " + filename);
+			final Properties p = new Properties();
+			InputStream in = filename.openStream();
+			if (filename.getPath().endsWith(
+				".xml"))
 				p.loadFromXML(in);
 			else
 				p.load(in);
 			in.close();
-			for (Iterator i=p.entrySet().iterator();
-				i.hasNext();)
+			for (Iterator i = p.entrySet().iterator(); i.hasNext();)
 			{
-				Map.Entry entry=(Map.Entry)i.next();
-				final String value=(String)entry.getValue();
-				prop.put(entry.getKey(),parseValue(value));
+				Map.Entry entry = (Map.Entry) i.next();
+				final String value = (String) entry.getValue();
+				prop.put(
+					entry.getKey(), parseValue(value));
 			}
 			p.clear();
-			include=(String)prop.get("include");
-			if (include!=null)
+			include = (String) prop.get("include");
+			if (include != null)
 			{
-				final String exform=filename.toExternalForm();
-				final int idx=exform.lastIndexOf('/');
+				final String exform = filename.toExternalForm();
+				final int idx = exform.lastIndexOf('/');
 				prop.remove("include");
 				if (include.startsWith("~"))
 				{
-					include=System.getProperty("user.home")+include.substring(1);
+					include = System.getProperty("user.home") + include.substring(1);
 				}
 				if (include.startsWith("/"))
-					filename=new File(include).toURI().toURL();
+					filename = new File(include).toURI().toURL();
 				else
-					filename=new URL(exform.substring(0,idx+1)+include);
+					filename = new URL(exform.substring(
+						0, idx + 1) + include);
 			}
-		}
-		while (include!=null);
+		} while (include != null);
 		return prop;
 	}
-	
+
 	/**
-	 * Parse the value. If the value start with xpath:, the next part will be a XPath expression.
+	 * Parse the value. If the value start with xpath:, the next part will be a
+	 * XPath expression.
 	 * 
 	 * @param value The value.
 	 * @return The value or the XPath extraction.
@@ -183,15 +185,14 @@ public final class ExtendedProperties
 	 * @throws IOException If error.
 	 * @throws ParserConfigurationException If error.
 	 */
-	public static final String parseValue(final String value) throws XPathExpressionException, SAXException, IOException, ParserConfigurationException
+	public static final String parseValue(final String value) throws XPathExpressionException, SAXException,
+			IOException, ParserConfigurationException
 	{
 		if (value.startsWith("xpath:"))
 			return parseXPathProperty(value.substring("xpath:".length()));
 		return value;
 	}
 
-	
-	
 	/**
 	 * Parse a XPath expressions with <code>document('...')</code> and return
 	 * the value. The syntax is
@@ -205,9 +206,8 @@ public final class ExtendedProperties
 	 * @throws SAXException If the XML file is incorrect.
 	 * @throws ParserConfigurationException If the parser is not configured.
 	 */
-	public static String parseXPathProperty(String tokens)
-			throws XPathExpressionException, SAXException, IOException,
-			ParserConfigurationException
+	public static String parseXPathProperty(String tokens) throws XPathExpressionException, SAXException,
+			IOException, ParserConfigurationException
 	{
 		final HashMap namespaceMapping = new HashMap();
 
@@ -217,8 +217,7 @@ public final class ExtendedProperties
 			idxcomma = tokens.indexOf(',');
 			final int idxdots = tokens.indexOf(':');
 			final int idxequal = tokens.indexOf('=');
-			if ((idxcomma < 0) || (idxdots < 0) || (idxequal < 0)
-					|| (idxdots > idxequal))
+			if ((idxcomma < 0) || (idxdots < 0) || (idxequal < 0) || (idxdots > idxequal))
 				throw new XPathExpressionException(
 						"XPath must be start with xmlns:alias=\"uri\",document('xxx')...");
 			final String alias = tokens.substring(
@@ -246,8 +245,7 @@ public final class ExtendedProperties
 		final String xpath = tokens.substring(idx2 + 1);
 
 		// 1. Catch all namespace mapping
-		final SAXParserFactory saxParserFactory = SAXParserFactory
-				.newInstance();
+		final SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 		saxParserFactory.setNamespaceAware(true);
 		URL url;
 		try
@@ -258,7 +256,7 @@ public final class ExtendedProperties
 		{
 			url = new File(filename).toURI().toURL();
 		}
-		InputStream in=url.openStream();
+		InputStream in = url.openStream();
 		try
 		{
 			saxParserFactory.newSAXParser().parse(
@@ -298,7 +296,7 @@ public final class ExtendedProperties
 		try
 		{
 			final String result = environnement.evaluate(
-				xpath, new InputSource(in=url.openStream()));
+				xpath, new InputSource(in = url.openStream()));
 			if (log_.isDebugEnabled())
 				log_.debug(tokens + '=' + result);
 			return result;
@@ -308,12 +306,12 @@ public final class ExtendedProperties
 			in.close();
 		}
 	}
-	
+
 	/**
 	 * Utility class.
 	 */
 	private ExtendedProperties()
 	{
-		
+
 	}
 }

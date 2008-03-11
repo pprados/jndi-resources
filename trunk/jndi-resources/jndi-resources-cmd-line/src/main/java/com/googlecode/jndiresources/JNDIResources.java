@@ -41,10 +41,13 @@ import com.googlecode.jndiresources.tools.CommandLineException;
 /**
  * Generate and install configurations files to publish JEE resources in JNDI
  * server.
+ * 
+ * @author Philippe PRADOS
  */
 public final class JNDIResources
 {
-	private static final int MILISECOND=1000;
+	private static final int MILISECOND = 1000;
+
 	/**
 	 * The logger.
 	 */
@@ -89,12 +92,12 @@ public final class JNDIResources
 	 */
 	private static void help(final PrintStream out)
 	{
-		out.println("Usage: jndi-resources.sh [-h] (-w <war|ear> | -j <jndi-resources.xml>) \\");
-		out.println("                         [-t <templates>] [-p <destination>] -d <appsrvconfdir=dir> \\");
-		out.println("                         [-D<key>=<value>|xpath:<[ns,]xpath>]* \\");
-		out.println("                         [--xsl key=value>|xpath:<[ns,]xpath>]* \\");
-		out.println("                         [-P <url>]* -p <sourcepackage> \\");
-		out.println("                         [-a <jboss|...> -v <version>");
+		out.println("Usage: jndi-resources [-h] (-w <war|ear> | -j <jndi-resources.xml>) \\");
+		out.println("                      [-t <templates>] [-p <destination>] -d <appsrvconfdir=dir> \\");
+		out.println("                      [-D<key>=<value>|xpath:<[ns,]xpath>]* \\");
+		out.println("                      [--xsl key=value>|xpath:<[ns,]xpath>]* \\");
+		out.println("                      [-P <url>]* -p <sourcepackage> \\");
+		out.println("                      [-a <jboss|...> -v <version>");
 		out.println("(-w|--war) <war|ear file>          : The jndi-resources descriptions in META-INF");
 		out.println("(-j|--jndi-file) <url[#id]>        : The jndi-resources descriptions fragment.");
 		out.println("(-t|--templates) <dir>             : The templates transformations to use.");
@@ -123,8 +126,8 @@ public final class JNDIResources
 	 * @throws SAXException If error.
 	 * @throws XPathExpressionException If error.
 	 */
-	public static Params parseArgs(final String[] args) throws CommandLineException,
-			SAXException, IOException, ParserConfigurationException, XPathExpressionException
+	public static Params parseArgs(final String[] args) throws CommandLineException, SAXException,
+			IOException, ParserConfigurationException, XPathExpressionException
 	{
 		final Params params = new Params();
 		// By default, use a temporary package directory
@@ -170,23 +173,23 @@ public final class JNDIResources
 	 * @throws CommandLineException If error
 	 * @throws XPathExpressionException If error
 	 */
-	private static final String LINE="----------------------------------------------------------------------------";
-	private JNDIResources(final Params params) throws XPathExpressionException,
-			CommandLineException, IOException, SAXException,
-			ParserConfigurationException, TransformerException, DOMException, InvalidVersionSpecificationException, ArtifactNotFoundException, ResourceDoesNotExistException
-																
+	private static final String LINE = "----------------------------------------------------------------------------";
+
+	private JNDIResources(final Params params) throws XPathExpressionException, CommandLineException,
+			IOException, SAXException, ParserConfigurationException, TransformerException, DOMException,
+			InvalidVersionSpecificationException, ArtifactNotFoundException, ResourceDoesNotExistException
+
 	{
 		final long start = System.currentTimeMillis();
 		log_.info(LINE);
-		log_.info("Build install scripts to " + params.config_.getPackages()
-				+ " with models presents in " + params.config_.getTemplates());
+		log_.info("Build install scripts to " + params.config_.getPackages() + " with models presents in "
+				+ params.config_.getTemplates());
 		log_.info(LINE);
 
 		new JNDIConfig(params.config_);
 
 		log_.info(LINE);
-		log_.info("Install to " + params.install_.getAppSrv() + " v"
-				+ params.install_.getVersion());
+		log_.info("Install to " + params.install_.getAppSrv() + " v" + params.install_.getVersion());
 		log_.info(LINE);
 
 		new JNDIInstall(params.install_);
@@ -194,8 +197,7 @@ public final class JNDIResources
 		log_.info(LINE);
 		log_.info("INSTALL SUCCESSFUL");
 		log_.info(LINE);
-		log_.info("Total time :" + (System.currentTimeMillis() - start)/MILISECOND
-				+ " second");
+		log_.info("Total time :" + (System.currentTimeMillis() - start) / MILISECOND + " second");
 		log_.info("Finished at : " + new Date());
 		log_.info(LINE);
 	}
@@ -209,17 +211,19 @@ public final class JNDIResources
 	{
 		try
 		{
-			if (System.getProperty("jndi.resources.home")==null)
+			if (System.getProperty("jndi.resources.home") == null)
 			{
-		        String path = JNDIConfig.class.getProtectionDomain().getCodeSource().getLocation().getFile();
-		        System.setProperty("jndi.resources.home", new File(path).getParentFile().getParentFile().getAbsolutePath());
+				String path = JNDIConfig.class.getProtectionDomain().getCodeSource().getLocation().getFile();
+				System.setProperty(
+					"jndi.resources.home", new File(path).getParentFile().getParentFile().getAbsolutePath());
 			}
 
 			final Params params = parseArgs(args);
 			if (params == null)
 				System.exit(0);
 			new JNDIResources(params);
-			System.out.println("Install "+params.install_.getAppSrv()+" version "+params.install_.getVersion()+" done.");
+			System.out.println("Install " + params.install_.getAppSrv() + " version "
+					+ params.install_.getVersion() + " done.");
 		}
 		catch (CommandLineException e)
 		{

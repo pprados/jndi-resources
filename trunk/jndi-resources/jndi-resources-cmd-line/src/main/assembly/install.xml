@@ -56,7 +56,7 @@
 			<directoryMode>750</directoryMode>
 			<fileMode>750</fileMode>
 			<includes>
-				<include>jndi-install.sh</include>
+				<include>jndi-install</include>
 				<include>_set-env.sh</include>
 			</includes>
 		</fileSet>

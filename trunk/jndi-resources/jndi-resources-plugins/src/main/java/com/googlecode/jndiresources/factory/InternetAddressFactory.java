@@ -26,10 +26,9 @@ import javax.naming.Reference;
 import javax.naming.spi.ObjectFactory;
 
 /**
- * Internet adress object factory.
+ * Internet address object factory.
  * 
- * @version 1.0
- * @since 1.0
+ * @author Philippe PRADOS
  */
 public class InternetAddressFactory implements ObjectFactory
 {

@@ -27,6 +27,8 @@ import org.xml.sax.SAXException;
 
 /**
  * Manage recursive files process.
+ * 
+ * @author Philippe PRADOS
  */
 public final class RecursiveFiles
 {
@@ -49,9 +51,8 @@ public final class RecursiveFiles
 		 * @throws ParserConfigurationException If error.
 		 * @throws TransformerException If error.
 		 */
-		void apply(File home, String parent, File cur)
-				throws XPathExpressionException, SAXException, IOException,
-				ParserConfigurationException, TransformerException;
+		void apply(File home, String parent, File cur) throws XPathExpressionException, SAXException,
+				IOException, ParserConfigurationException, TransformerException;
 	}
 
 	/**
@@ -67,9 +68,9 @@ public final class RecursiveFiles
 	 * @throws ParserConfigurationException If error.
 	 * @throws TransformerException If error.
 	 */
-	public static void recursiveFiles(final File home, final String parent,
-			final Apply apply) throws XPathExpressionException, SAXException,
-			IOException, ParserConfigurationException, TransformerException
+	public static void recursiveFiles(final File home, final String parent, final Apply apply)
+			throws XPathExpressionException, SAXException, IOException, ParserConfigurationException,
+			TransformerException
 	{
 		final String[] dir = new File(home, parent).list();
 		for (int i = 0; i < dir.length; ++i)
@@ -87,13 +88,13 @@ public final class RecursiveFiles
 					home, parent, cur);
 		}
 	}
-	
+
 	/**
 	 * Utility class.
 	 */
 	private RecursiveFiles()
 	{
-		
+
 	}
 
 }

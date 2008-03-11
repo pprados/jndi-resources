@@ -28,6 +28,8 @@ import java.util.jar.JarFile;
 /**
  * Tool to list from an url. Accept file:, jar: and in the future, http: and
  * https:
+ * 
+ * @author Philippe PRADOS
  */
 public final class URLList
 {
@@ -36,8 +38,9 @@ public final class URLList
 	 */
 	private URLList()
 	{
-		
+
 	}
+
 	/**
 	 * List an url.
 	 * 
@@ -81,9 +84,8 @@ public final class URLList
 					jarpath))
 				{
 
-					final URL url = new URL(dir.toExternalForm()
-							+ entry.getName().substring(
-								jarpath.length()));
+					final URL url = new URL(dir.toExternalForm() + entry.getName().substring(
+						jarpath.length()));
 					urls.add(url);
 				}
 			}

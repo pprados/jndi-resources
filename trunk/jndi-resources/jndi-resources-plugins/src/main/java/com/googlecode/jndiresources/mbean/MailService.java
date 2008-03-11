@@ -34,7 +34,7 @@ import com.googlecode.jndiresources.factory.MailSessionFactory;
  * MBean that gives support for JavaMail. Object of class javax.mail.Session
  * will be bound in JNDI with the name provided with method {@link #setJNDIName}.
  * 
- * @author Philippe Prados
+ * @author Philippe PRADOS
  */
 public class MailService extends AbstractService
 		implements MailServiceMBean

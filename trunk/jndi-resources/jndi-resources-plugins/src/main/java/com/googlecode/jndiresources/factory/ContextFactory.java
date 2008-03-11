@@ -31,8 +31,7 @@ import javax.naming.spi.ObjectFactory;
 /**
  * Factory to build a jndi context.
  * 
- * @version 1.0
- * @since 1.0
+ * @author Philippe PRADOS
  */
 public class ContextFactory implements ObjectFactory
 {

@@ -23,8 +23,7 @@ import org.w3c.dom.Element;
 /**
  * Interface for Reference service.
  * 
- * @version 1.0
- * @since 1.0
+ * @author Philippe PRADOS
  */
 public interface ReferenceServiceMBean
 {

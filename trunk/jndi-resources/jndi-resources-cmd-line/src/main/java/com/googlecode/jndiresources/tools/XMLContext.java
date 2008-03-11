@@ -29,6 +29,8 @@ import javax.xml.xpath.XPathFactory;
 
 /**
  * Builder for XML manipulations.
+ * 
+ * @author Philippe PRADOS
  */
 public final class XMLContext
 {
@@ -59,13 +61,15 @@ public final class XMLContext
 	{
 		public String getPrefix(final String namespaceURI)
 		{
-			if (NAMESPACESTR_VERSION.equals(namespaceURI)) return ALIAS_VERSION;
+			if (NAMESPACESTR_VERSION.equals(namespaceURI))
+				return ALIAS_VERSION;
 			return (NAMESPACESTR.equals(namespaceURI)) ? ALIAS : null;
 		}
 
 		public String getNamespaceURI(final String prefix)
 		{
-			if (ALIAS_VERSION.equals(prefix)) return NAMESPACESTR_VERSION;
+			if (ALIAS_VERSION.equals(prefix))
+				return NAMESPACESTR_VERSION;
 			return (ALIAS.equals(prefix)) ? NAMESPACESTR : null;
 		}
 
@@ -73,7 +77,7 @@ public final class XMLContext
 		{
 			return Collections.EMPTY_LIST.iterator();
 		}
-		
+
 	};
 
 	/**
@@ -106,52 +110,50 @@ public final class XMLContext
 	 */
 	static
 	{
-//		try
+		// try
 		{
 			System.setProperty(
-				"javax.xml.transform.TransformerFactory",
-				"net.sf.saxon.TransformerFactoryImpl");
+				"javax.xml.transform.TransformerFactory", "net.sf.saxon.TransformerFactoryImpl");
 			System.setProperty(
 				"javax.xml.xpath.XPathFactory:http://java.sun.com/jaxp/xpath/dom",
 				"net.sf.saxon.xpath.XPathFactoryImpl");
 			DOC_BUILDER_FACTORY = DocumentBuilderFactory.newInstance();
-//			DOC_BUILDER_FACTORY.setValidating(true);
+			// DOC_BUILDER_FACTORY.setValidating(true);
 			DOC_BUILDER_FACTORY.setAttribute(
-				"http://java.sun.com/xml/jaxp/properties/schemaLanguage",
-				"http://www.w3.org/2001/XMLSchema");
-			DOC_BUILDER_FACTORY.setAttribute("http://java.sun.com/xml/jaxp/properties/schemaSource", 
-				new File("src/main/xsd/jndi-resources-versions.xsd"));			
-	
+				"http://java.sun.com/xml/jaxp/properties/schemaLanguage", "http://www.w3.org/2001/XMLSchema");
+			DOC_BUILDER_FACTORY.setAttribute(
+				"http://java.sun.com/xml/jaxp/properties/schemaSource", new File(
+						"src/main/xsd/jndi-resources-versions.xsd"));
+
 			XPATH_FACTORY = XPathFactory.newInstance();
 			TRANSFORMER_FACTORY = TransformerFactory.newInstance();
 			SAX_PARSER_FACTORY = SAXParserFactory.newInstance();
 			SAX_PARSER_FACTORY.setNamespaceAware(true);
-//			SAX_PARSER_FACTORY.setValidating(true);
-//			SAX_PARSER_FACTORY.setFeature("http://xml.org/sax/features/validation",true); 
-//			SAX_PARSER_FACTORY.setFeature("http://apache.org/xml/features/validation/schema",true);
-//			SAX_PARSER_FACTORY.setFeature("http://apache.org/xml/features/validation/schema-full-checking",true); 
-			SAX_TRANSFORMER_FACTORY = 
-				(SAXTransformerFactory)TransformerFactory.newInstance();
+			// SAX_PARSER_FACTORY.setValidating(true);
+			// SAX_PARSER_FACTORY.setFeature("http://xml.org/sax/features/validation",true);
+			// SAX_PARSER_FACTORY.setFeature("http://apache.org/xml/features/validation/schema",true);
+			// SAX_PARSER_FACTORY.setFeature("http://apache.org/xml/features/validation/schema-full-checking",true);
+			SAX_TRANSFORMER_FACTORY = (SAXTransformerFactory) TransformerFactory.newInstance();
 		}
-//		catch (SAXNotRecognizedException e)
-//		{
-//			throw new IllegalArgumentException(e);
-//		}
-//		catch (SAXNotSupportedException e)
-//		{
-//			throw new IllegalArgumentException(e);
-//		}
-//		catch (ParserConfigurationException e)
-//		{
-//			throw new IllegalArgumentException(e);
-//		}
+		// catch (SAXNotRecognizedException e)
+		// {
+		// throw new IllegalArgumentException(e);
+		// }
+		// catch (SAXNotSupportedException e)
+		// {
+		// throw new IllegalArgumentException(e);
+		// }
+		// catch (ParserConfigurationException e)
+		// {
+		// throw new IllegalArgumentException(e);
+		// }
 	};
-	
+
 	/**
 	 * Not used.
 	 */
 	private XMLContext()
 	{
-		
+
 	}
 }

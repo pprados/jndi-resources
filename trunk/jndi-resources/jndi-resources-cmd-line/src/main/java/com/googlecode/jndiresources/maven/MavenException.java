@@ -16,6 +16,11 @@ package com.googlecode.jndiresources.maven;
  * limitations under the License.
  */
 
+/**
+ * Maven exception.
+ *  
+ * @author Philippe PRADOS
+ */
 public class MavenException extends Exception
 {
 	/**
@@ -25,6 +30,6 @@ public class MavenException extends Exception
 
 	public MavenException(final String message, final Throwable exception)
 	{
-		super(message,exception);
+		super(message, exception);
 	}
 }

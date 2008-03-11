@@ -28,8 +28,7 @@ import javax.naming.spi.ObjectFactory;
 /**
  * URL object factory.
  * 
- * @version 1.0
- * @since 1.0
+ * @author Philippe PRADOS
  */
 public class URLFactory implements ObjectFactory
 {

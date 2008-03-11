@@ -51,6 +51,18 @@ import javax.sql.DataSource;
 
 import org.jboss.security.SubjectSecurityManager;
 
+/**
+ * Sample with all kind of resources.
+ * To use this component, you must before start
+ * <ul>
+ * <li>mysql</li>
+ * <li>oracle xe</li>
+ * <li>tnameserv</li>
+ * <li>rmiregistry</li>
+ * </ul>
+ * 
+ * @author Philippe PRADOS
+ */
 public class PingServlet extends HttpServlet
 {
 	private List<DataSource> jdbc_ = new ArrayList<DataSource>();

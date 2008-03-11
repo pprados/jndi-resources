@@ -33,8 +33,7 @@ import javax.naming.spi.ObjectFactory;
 /**
  * Mail session object factory.
  * 
- * @version 1.0
- * @since 1.0
+ * @author Philippe PRADOS
  */
 public class MailSessionFactory implements ObjectFactory
 {

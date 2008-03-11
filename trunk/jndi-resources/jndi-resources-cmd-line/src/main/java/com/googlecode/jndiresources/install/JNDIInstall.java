@@ -75,6 +75,8 @@ import com.googlecode.jndiresources.var.VariableReader;
 
 /**
  * Install a JNDI resources in JEE server.
+ * 
+ * @author Philippe PRADOS
  */
 public final class JNDIInstall
 {
@@ -124,7 +126,8 @@ public final class JNDIInstall
 	 * The package directory to use.
 	 */
 	private String packageDir_; // Le répertoire de base pour la production des
-								// fichiers
+
+	// fichiers
 
 	/**
 	 * The current application server name.
@@ -152,8 +155,7 @@ public final class JNDIInstall
 		{
 			final XPath environnement = XMLContext.XPATH_FACTORY.newXPath();
 			environnement.setNamespaceContext(XMLContext.NAMESPACE);
-			xpathVersion_ = environnement
-					.compile("/jndiv:versions/jndiv:appsrv");
+			xpathVersion_ = environnement.compile("/jndiv:versions/jndiv:appsrv");
 		}
 		catch (XPathExpressionException e)
 		{
@@ -251,12 +253,12 @@ public final class JNDIInstall
 		 * {@inheritDoc}
 		 */
 		public void apply(final File home, final String parent, final File cur)
-				throws XPathExpressionException, IOException,
-				ParserConfigurationException, SAXException,
+				throws XPathExpressionException, IOException, ParserConfigurationException, SAXException,
 				TransformerException
 		{
 			if (cur.isDirectory())
 				return;
+			log_.debug("apply " + cur);
 			if (cur.getName().endsWith(
 				".jndi"))
 				executeJNDIFile(
@@ -268,14 +270,14 @@ public final class JNDIInstall
 				try
 				{
 					in = new BufferedReader(new FileReader(cur));
-					final String line = in.readLine();
+					String line = in.readLine();
 					if (line == null)
 						throw new IOException("Invalid link file " + cur);
-					final File src = new File(cur.getParent()
-							+ File.separatorChar + line.trim())
+					line = line.replace(
+						'/', File.separatorChar);
+					final File src = new File(cur.getParent() + File.separatorChar + line.trim())
 							.getCanonicalFile();
-					final String dst = destination_ + parent
-							+ File.separatorChar;
+					final String dst = destination_ + parent + File.separatorChar;
 					XSLTools.fileCopy(
 						src.getCanonicalPath(), dst);
 				}
@@ -302,10 +304,10 @@ public final class JNDIInstall
 	 */
 	private static void help(final PrintStream out)
 	{
-		out.println("Usage: jndi-install.sh [-h] -d <appsrvconfdir=dir>");
-		out.println("                       [-D<key>=<value>|xpath:<[ns,]xpath>]* \\");
-		out.println("                       [--xsl key=value>|xpath:<[ns,]xpath>]* \\");
-		out.println("                       [-P <url>]* -p <sourcepackage> -a <jboss|...>");
+		out.println("Usage: jndi-install [-h] -d <appsrvconfdir=dir>");
+		out.println("                    [-D<key>=<value>|xpath:<[ns,]xpath>]* \\");
+		out.println("                    [--xsl key=value>|xpath:<[ns,]xpath>]* \\");
+		out.println("                    [-P <url>]* -p <sourcepackage> -a <jboss|...>");
 		out.println("(-d|--dest) <key>=<value>          : Define destination directories");
 		out.println("-D<key>=<value>|xpath:<[ns,]xpath> : Define property");
 		out.println("--xsl <key>=<value>|xpath:...      : Define XSL variable");
@@ -316,17 +318,6 @@ public final class JNDIInstall
 		out.println("-l                                 : Log info.");
 		out.println("-ll                                : Log debug.");
 		out.println("(-h|--help)                        : This help");
-		// out.println();
-		// out.println("The properties files can be standard, or a collection of
-		// xpath ");
-		// out.println("if the extension is \".xpath\".");
-		// out.println("The syntaxe start with an optional xmlns to declare the
-		// default namespace, a comma");
-		// out.println("and the xpath who started with document(...).");
-		// out.println("Example:");
-		// out.println("schema=document('web.xml')//@xsi:schemaLocation");
-		// out.println("description=xmlns:j2ee=\"http://java.sun.com/xml/ns/j2ee\","
-		// + "document('web.xml')/j2ee:web-app/j2ee:servlet/j2ee:description");
 	}
 
 	/**
@@ -341,11 +332,11 @@ public final class JNDIInstall
 	 * @throws SAXException If error in XPath.
 	 * @throws IOException If error in XPath.
 	 * @throws ParserConfigurationException If error in XPath.
-	 * @throws XPathExpressionException 
+	 * @throws XPathExpressionException
 	 */
-	public static int parseArg(final ParamsInstall params, final String[] args,
-			final int pos) throws CommandLineException, SAXException,
-			IOException, ParserConfigurationException, XPathExpressionException
+	public static int parseArg(final ParamsInstall params, final String[] args, final int pos)
+			throws CommandLineException, SAXException, IOException, ParserConfigurationException,
+			XPathExpressionException
 	{
 		int position = pos;
 		final String arg = args[position];
@@ -361,8 +352,7 @@ public final class JNDIInstall
 			params.cmdlineprop_.put(
 				param, value);
 		}
-		else if (("--dest".equals(arg) || ("-d".equals(arg)))
-				&& (position < args.length - 1))
+		else if (("--dest".equals(arg) || ("-d".equals(arg))) && (position < args.length - 1))
 		{
 			final String v = args[++position];
 			final int idx = v.indexOf('=');
@@ -382,25 +372,21 @@ public final class JNDIInstall
 			params.cmdlinexslprop_.put(
 				param, ExtendedProperties.parseValue(value));
 		}
-		else if (("-P".equals(arg) || "--properties".equals(arg))
-				&& position < args.length - 1)
+		else if (("-P".equals(arg) || "--properties".equals(arg)) && position < args.length - 1)
 		{
 			params.propertieslist_.add(args[++position]);
 		}
-		else if (("-p".equals(arg) || "--package".equals(arg))
-				&& position < args.length - 1)
+		else if (("-p".equals(arg) || "--package".equals(arg)) && position < args.length - 1)
 		{
 			params.package_ = args[++position];
 			if (params.package_.charAt(params.package_.length() - 1) != File.separatorChar)
 				params.package_ += File.separatorChar;
 		}
-		else if (("-a".equals(arg) || "--appsrv".equals(arg))
-				&& position < args.length - 1)
+		else if (("-a".equals(arg) || "--appsrv".equals(arg)) && position < args.length - 1)
 		{
 			params.appsrv_ = args[++position];
 		}
-		else if (("-v".equals(arg) || "--version".equals(arg))
-				&& position < args.length - 1)
+		else if (("-v".equals(arg) || "--version".equals(arg)) && position < args.length - 1)
 		{
 			params.version_ = new DefaultArtifactVersion(args[++position]);
 		}
@@ -430,8 +416,7 @@ public final class JNDIInstall
 	 * @param params The parameters set.
 	 * @throws CommandLineException If error.
 	 */
-	public static void checkParams(final ParamsInstall params)
-			throws CommandLineException
+	public static void checkParams(final ParamsInstall params) throws CommandLineException
 	{
 		if (params.appsrv_ == null)
 		{
@@ -453,11 +438,10 @@ public final class JNDIInstall
 	 * @throws ParserConfigurationException If error.
 	 * @throws IOException If error.
 	 * @throws SAXException If error.
-	 * @throws XPathExpressionException 
+	 * @throws XPathExpressionException
 	 */
-	public static ParamsInstall parseArgs(final String[] args)
-			throws CommandLineException, SAXException, IOException,
-			ParserConfigurationException, XPathExpressionException
+	public static ParamsInstall parseArgs(final String[] args) throws CommandLineException, SAXException,
+			IOException, ParserConfigurationException, XPathExpressionException
 	{
 		final ParamsInstall params = new ParamsInstall();
 
@@ -490,9 +474,9 @@ public final class JNDIInstall
 	 * @throws InvalidVersionSpecificationException If version is invalid.
 	 * @throws DOMException If error.
 	 */
-	public JNDIInstall(final ParamsInstall params) throws CommandLineException,
-			IOException, SAXException, ParserConfigurationException,
-			XPathExpressionException, TransformerException, DOMException, InvalidVersionSpecificationException
+	public JNDIInstall(final ParamsInstall params) throws CommandLineException, IOException, SAXException,
+			ParserConfigurationException, XPathExpressionException, TransformerException, DOMException,
+			InvalidVersionSpecificationException
 	{
 		packageDir_ = params.package_;
 		srvapp_ = null;
@@ -503,9 +487,8 @@ public final class JNDIInstall
 			final File versionFile = new File(packageDir_, VERSIONS_XML);
 			if (versionFile.canRead())
 			{
-				final Document versionsDoc = XMLContext.DOC_BUILDER_FACTORY
-						.newDocumentBuilder().parse(
-							versionFile);
+				final Document versionsDoc = XMLContext.DOC_BUILDER_FACTORY.newDocumentBuilder().parse(
+					versionFile);
 
 				// Find all resources groups, and associate an id
 				final NodeList result = (NodeList) xpathVersion_.evaluate(
@@ -520,7 +503,7 @@ public final class JNDIInstall
 					{
 						Node versionsNode = home.getAttributes().getNamedItem(
 							"versions");
-						VersionRange range=VersionRange.createFromVersionSpec(versionsNode.getNodeValue());
+						VersionRange range = VersionRange.createFromVersionSpec(versionsNode.getNodeValue());
 						if (range.containsVersion(params.version_))
 						{
 							srvapp_ = home.getAttributes().getNamedItem(
@@ -531,15 +514,13 @@ public final class JNDIInstall
 				}
 				if (srvapp_ == null)
 				{
-					throw new CommandLineException(
-							"Application server can't be found in versions.xml.");
+					throw new CommandLineException("Application server can't be found in versions.xml.");
 				}
 
 			}
 			else if (params.version_ == null)
 			{
-				throw new CommandLineException(
-						"--version can't be set with this templates");
+				throw new CommandLineException("--version can't be set with this templates");
 			}
 		}
 		else
@@ -553,26 +534,20 @@ public final class JNDIInstall
 
 		final File f = new File(packageDir_, srvapp_);
 		if (!f.canRead())
-			throw new CommandLineException(
-					f
-							+ " not found. Update the --appsrv parameter or add a --version");
+			throw new CommandLineException(f + " not found. Update the --appsrv parameter or add a --version");
 		final String[] targets = f.list();
 		for (int i = 0; i < targets.length; ++i)
 		{
 			final String target = targets[i];
-			if (!new File(packageDir_, srvapp_ + File.separatorChar + target)
-					.isDirectory())
+			if (!new File(packageDir_, srvapp_ + File.separatorChar + target).isDirectory())
 				continue;
 			String targetDir = (String) params.targetList_.get(target);
 			if (targetDir == null)
 			{
-				throw new CommandLineException("--dest " + target
-						+ "=... must be set");
+				throw new CommandLineException("--dest " + target + "=... must be set");
 			}
-			targetDir = new File(targetDir).getCanonicalPath()
-					+ File.separatorChar;
-			File home = new File(packageDir_, srvapp_ + File.separatorChar
-					+ target).getCanonicalFile();
+			targetDir = new File(targetDir).getCanonicalFile().toURI().toURL().toExternalForm();
+			File home = new File(packageDir_, srvapp_ + File.separatorChar + target).getCanonicalFile();
 			if (home.canRead())
 			{
 				log_.info("Install to " + targetDir);
@@ -596,9 +571,8 @@ public final class JNDIInstall
 	 * @throws SAXException If error.
 	 * @throws ParserConfigurationException If error.
 	 */
-	private void initVariables(final Set propertieslist) throws IOException,
-			XPathExpressionException, SAXException,
-			ParserConfigurationException
+	private void initVariables(final Set propertieslist) throws IOException, XPathExpressionException,
+			SAXException, ParserConfigurationException
 	{
 		File f;
 		// Init properties
@@ -610,24 +584,25 @@ public final class JNDIInstall
 			"inux") != -1)
 		{
 			// Read /usr/share/jndi-resources/templates.properties
-			f = new File(File.separatorChar + "usr" + File.separatorChar
-					+ "share" + File.separatorChar + APPNAME,
-					PLATEFORM_PROPERTIES);
+			f = new File(File.separatorChar + "usr" + File.separatorChar + "share" + File.separatorChar
+					+ APPNAME, PLATEFORM_PROPERTIES);
 			if (f.canRead())
-				ExtendedProperties.load(f,prop_);
+				ExtendedProperties.load(
+					f, prop_);
 		}
 
 		// Read $PACKAGE/$APPSRV/templates.properties
-		f = new File(packageDir_ + File.separatorChar + srvapp_,
-				TEMPLATES_PROPERTIES);
+		f = new File(packageDir_ + File.separatorChar + srvapp_, TEMPLATES_PROPERTIES);
 		if (f.canRead())
-			ExtendedProperties.load(f,prop_);
+			ExtendedProperties.load(
+				f, prop_);
 
 		// Read ~/.jndi-resources/plateform.properties
-		f = new File(System.getProperty("user.home") + File.separatorChar
-				+ "." + APPNAME, PLATEFORM_PROPERTIES);
+		f = new File(System.getProperty("user.home") + File.separatorChar + "." + APPNAME,
+				PLATEFORM_PROPERTIES);
 		if (f.canRead())
-			ExtendedProperties.load(f,prop_);
+			ExtendedProperties.load(
+				f, prop_);
 
 		// Parse properties list
 		if (propertieslist != null)
@@ -645,7 +620,8 @@ public final class JNDIInstall
 					data = new File(filename).toURI().toURL();
 				}
 
-				ExtendedProperties.load(data, prop_);
+				ExtendedProperties.load(
+					data, prop_);
 			}
 		}
 	}
@@ -663,9 +639,8 @@ public final class JNDIInstall
 	 * @throws TransformerException If error.
 	 */
 
-	private void executeJNDIFile(final File cur, final String target)
-			throws IOException, ParserConfigurationException, SAXException,
-			XPathExpressionException, TransformerException
+	private void executeJNDIFile(final File cur, final String target) throws IOException,
+			ParserConfigurationException, SAXException, XPathExpressionException, TransformerException
 	{
 		final StreamResult output = new StreamResult(System.out);
 
@@ -690,20 +665,16 @@ public final class JNDIInstall
 			/**
 			 * {@inheritDoc}
 			 */
-			public void processingInstruction(final String target,
-					final String data) throws SAXException
+			public void processingInstruction(final String target, final String data) throws SAXException
 			{
-				if ("xml-stylesheet".equals(target)
-						|| "jndi-stylesheet".equals(target))
+				if ("xml-stylesheet".equals(target) || "jndi-stylesheet".equals(target))
 				{
 					Map params = parseParameters(data);
 					String type = (String) params.get("type");
 					String href = (String) params.get("href");
-					if ((!"text/xsl".equals(type) || (href == null))
-							&& "xml-stylesheet".equals(target))
+					if ((!"text/xsl".equals(type) || (href == null)) && "xml-stylesheet".equals(target))
 					{
-						throw new SAXException(
-								"Invalide xml-stylesheet instruction");
+						throw new SAXException("Invalide xml-stylesheet instruction");
 					}
 					params.remove("type");
 					params.remove("href");
@@ -716,13 +687,11 @@ public final class JNDIInstall
 		}
 		Reader is = new BufferedReader(new FileReader(cur));
 		InputSource input = new InputSource(is);
-		XMLReader reader = new ProcessingFilter(XMLContext.SAX_PARSER_FACTORY
-				.newSAXParser().getXMLReader());
+		XMLReader reader = new ProcessingFilter(XMLContext.SAX_PARSER_FACTORY.newSAXParser().getXMLReader());
 		SAXSource transformSource = new SAXSource(reader, input);
 
-		Transformer transformer = XMLContext.TRANSFORMER_FACTORY
-				.newTransformer();
-log_.debug("Transforme "+cur);		
+		Transformer transformer = XMLContext.TRANSFORMER_FACTORY.newTransformer();
+		log_.debug("Transforme " + cur);
 		transformer.transform(
 			transformSource, new StreamResult(new DevNullOutputStream()));
 		is.close();
@@ -736,8 +705,7 @@ log_.debug("Transforme "+cur);
 			final HashMap params = (HashMap) p[1];
 
 			final TransformerHandler handler = XMLContext.SAX_TRANSFORMER_FACTORY
-					.newTransformerHandler(new StreamSource(packageDir_
-							+ File.separatorChar + href));
+					.newTransformerHandler(new StreamSource(packageDir_ + File.separatorChar + href));
 			// Add XSL variables
 			transformer = handler.getTransformer();
 			transformer.setParameter(
@@ -769,8 +737,7 @@ log_.debug("Transforme "+cur);
 		// Second read to execute the pipe.
 		is = new VariableReader(new FileReader(cur), prop_);
 		input = new InputSource(is);
-		final SAXParser saxParser = XMLContext.SAX_PARSER_FACTORY
-				.newSAXParser();
+		final SAXParser saxParser = XMLContext.SAX_PARSER_FACTORY.newSAXParser();
 		reader = saxParser.getXMLReader();
 		reader.setContentHandler(firstPipe);
 		reader.parse(input);
@@ -803,8 +770,7 @@ log_.debug("Transforme "+cur);
 	{
 		final HashMap parms = new HashMap();
 
-		for (final StringTokenizer tokens = new StringTokenizer(params, " "); tokens
-				.hasMoreTokens();)
+		for (final StringTokenizer tokens = new StringTokenizer(params, " "); tokens.hasMoreTokens();)
 		{
 			final String token = tokens.nextToken();
 			final int idx = token.indexOf('=');
@@ -836,10 +802,11 @@ log_.debug("Transforme "+cur);
 		ParamsInstall params;
 		try
 		{
-			if (System.getProperty("jndi.resources.home")==null)
+			if (System.getProperty("jndi.resources.home") == null)
 			{
-		        String path = JNDIConfig.class.getProtectionDomain().getCodeSource().getLocation().getFile();
-		        System.setProperty("jndi.resources.home", new File(path).getParentFile().getParentFile().getAbsolutePath());
+				String path = JNDIConfig.class.getProtectionDomain().getCodeSource().getLocation().getFile();
+				System.setProperty(
+					"jndi.resources.home", new File(path).getParentFile().getParentFile().getAbsolutePath());
 			}
 
 			params = parseArgs(args);
@@ -854,11 +821,11 @@ log_.debug("Transforme "+cur);
 			log_.info(LINE);
 			log_.info("INSTALL SUCCESSFUL");
 			log_.info(LINE);
-			log_.info("Total time :" + (System.currentTimeMillis() - start)
-					/ MILISECOND + " second");
+			log_.info("Total time :" + (System.currentTimeMillis() - start) / MILISECOND + " second");
 			log_.info("Finished at : " + new Date());
 			log_.info(LINE);
-			System.out.println("Install "+params.getAppSrv()+" version "+params.getVersion()+" done.");
+			System.out
+					.println("Install " + params.getAppSrv() + " version " + params.getVersion() + " done.");
 		}
 		catch (VariableReader.VariableNotFound e)
 		{

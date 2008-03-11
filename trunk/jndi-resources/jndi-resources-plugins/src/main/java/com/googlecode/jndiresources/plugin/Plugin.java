@@ -18,6 +18,8 @@ package com.googlecode.jndiresources.plugin;
 
 /**
  * Tag to identify the jar with this class.
+ * 
+ * @author Philippe PRADOS
  */
 public class Plugin
 {

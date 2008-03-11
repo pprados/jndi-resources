@@ -57,6 +57,8 @@ import com.googlecode.jndiresources.tools.XSLTools;
 
 /**
  * Generate configurations files for all JEE server.
+ * 
+ * @author Philippe PRADOS
  */
 public final class JNDIConfig
 {
@@ -218,15 +220,15 @@ public final class JNDIConfig
 	 */
 	private static void help(final PrintStream out)
 	{
-		out.println("Usage: jndi-config.sh [-h] (-w <war|ear> | -j <jndi-resources.xml>) \\");
-		out.println("                      [-t <templates>] -p <destination>");
-		out.println("(-w|--war) <war|ear file>       : The jndi-resources descriptions in META-INF");
-		out.println("(-j|--jndi-file) <url[#id]>     : The jndi-resources descriptions fragment.");
-		out.println("(-t|--templates) <dir>          : The templates transformations to use.");
-		out.println("(-p|--packages) <destination>   : The destination directory.");
-		out.println("-l                              : Log info.");
-		out.println("-ll                             : Log debug.");
-		out.println("(-h|--help)                     : This help");
+		out.println("Usage: jndi-config [-h] (-w <war|ear> | -j <jndi-resources.xml>) \\");
+		out.println("                   [-t <templates>] -p <destination>");
+		out.println("(-w|--war) <war|ear file>     : The jndi-resources descriptions in META-INF");
+		out.println("(-j|--jndi-file) <url[#id]>   : The jndi-resources descriptions fragment.");
+		out.println("(-t|--templates) <dir>        : The templates transformations to use.");
+		out.println("(-p|--packages) <destination> : The destination directory.");
+		out.println("-l                            : Log info.");
+		out.println("-ll                           : Log debug.");
+		out.println("(-h|--help)                   : This help");
 	}
 
 	/**
@@ -237,30 +239,25 @@ public final class JNDIConfig
 	 * @param pos The current position.
 	 * @return New position, -1 of error or -2 if help is ask.
 	 */
-	public static int parseArg(final ParamsConfig params, final String[] args,
-			final int pos)
+	public static int parseArg(final ParamsConfig params, final String[] args, final int pos)
 	{
 		int position = pos;
 		final String arg = args[position];
-		if (("-w".equals(arg) || "--war".equals(arg))
-				&& position < args.length - 1)
+		if (("-w".equals(arg) || "--war".equals(arg)) && position < args.length - 1)
 		{
 			params.war_ = args[++position];
 		}
-		else if (("-j".equals(arg) || "--jndi-file".equals(arg))
-				&& position < args.length - 1)
+		else if (("-j".equals(arg) || "--jndi-file".equals(arg)) && position < args.length - 1)
 		{
 			params.setData(args[++position]);
 		}
-		else if (("-t".equals(arg) || "--templates".equals(arg))
-				&& position < args.length - 1)
+		else if (("-t".equals(arg) || "--templates".equals(arg)) && position < args.length - 1)
 		{
 			params.templates_ = args[++position];
 			if (params.templates_.charAt(params.templates_.length() - 1) != File.separatorChar)
 				params.templates_ += File.separatorChar;
 		}
-		else if (("-p".equals(arg) || "--packages".equals(arg))
-				&& position < args.length - 1)
+		else if (("-p".equals(arg) || "--packages".equals(arg)) && position < args.length - 1)
 		{
 			params.packages_ = args[++position];
 			if (params.packages_.charAt(params.packages_.length() - 1) != File.separatorChar)
@@ -293,8 +290,7 @@ public final class JNDIConfig
 	 * 
 	 * @throws CommandLineException If error.
 	 */
-	public static void checkParams(final ParamsConfig params)
-			throws CommandLineException
+	public static void checkParams(final ParamsConfig params) throws CommandLineException
 	{
 		if ((params.data_ == null) && (params.war_ == null))
 		{
@@ -318,8 +314,7 @@ public final class JNDIConfig
 	 * 
 	 * @exception CommandLineException If error.
 	 */
-	public static ParamsConfig parseArgs(final String[] args)
-			throws CommandLineException
+	public static ParamsConfig parseArgs(final String[] args) throws CommandLineException
 	{
 		final ParamsConfig params = new ParamsConfig();
 
@@ -351,9 +346,9 @@ public final class JNDIConfig
 	 * @throws ArtifactNotFoundException If artifact is not found.
 	 * @throws ResourceDoesNotExistException If artifact can not be load.
 	 */
-	public JNDIConfig(final ParamsConfig params)
-			throws ParserConfigurationException, SAXException, IOException,
-			XPathExpressionException, TransformerException, ArtifactNotFoundException, ResourceDoesNotExistException
+	public JNDIConfig(final ParamsConfig params) throws ParserConfigurationException, SAXException,
+			IOException, XPathExpressionException, TransformerException, ArtifactNotFoundException,
+			ResourceDoesNotExistException
 	{
 		final HashSet exclude = new HashSet();
 		exclude.add("tools");
@@ -369,8 +364,7 @@ public final class JNDIConfig
 		// Extract jndi-resources.xml from component
 		if (params.war_ != null)
 		{
-			data_ = "jar:file:" + new File(params.war_).getCanonicalPath()
-					+ "!/META-INF/jndi-resources.xml";
+			data_ = "jar:" + new File(params.war_).toURI().toURL() + "!/META-INF/jndi-resources.xml";
 		}
 		else
 			data_ = params.data_;
@@ -382,21 +376,21 @@ public final class JNDIConfig
 		}
 		catch (MalformedURLException x)
 		{
-			final int idx=data_.indexOf('#');
-			data = new File((idx!=-1) ? data_.substring(0,idx) : data_).toURI().toURL();
+			final int idx = data_.indexOf('#');
+			data = new File((idx != -1) ? data_.substring(
+				0, idx) : data_).toURI().toURL();
 		}
-		final InputStream in=data.openStream();
+		final InputStream in = data.openStream();
 		final Document jndiparams;
 		try
 		{
-			jndiparams = XMLContext.DOC_BUILDER_FACTORY
-				.newDocumentBuilder().parse(in);
+			jndiparams = XMLContext.DOC_BUILDER_FACTORY.newDocumentBuilder().parse(
+				in);
 		}
 		finally
 		{
 			in.close();
 		}
-
 
 		// Find all resources group, and associate an id
 		final NodeList result = (NodeList) xpathResources_.evaluate(
@@ -408,15 +402,13 @@ public final class JNDIConfig
 			final Node home = result.item(i);
 			final Node idnode = home.getAttributes().getNamedItem(
 				"id");
-			final String id = (idnode == null) ? "default" : idnode
-					.getNodeValue();
+			final String id = (idnode == null) ? "default" : idnode.getNodeValue();
 			if ((params.id_ == null) || id.equals(params.id_))
 			{
 				doit = true;
 				log_.info("Translate " + id + " resources...");
-				final NodeList familleNodes = (NodeList) xpathFamilly_
-						.evaluate(
-							home, XPathConstants.NODESET);
+				final NodeList familleNodes = (NodeList) xpathFamilly_.evaluate(
+					home, XPathConstants.NODESET);
 
 				// Extract all family to manage
 				final List familly = new ArrayList();
@@ -439,22 +431,20 @@ public final class JNDIConfig
 				}
 
 				// Execute the process.xslt in each family
-				final File t = new File(templates_ + File.separatorChar
-						+ "process.xslt");
+				final File t = new File(templates_ + File.separatorChar + "process.xslt");
 				if (t.canRead())
 				{
 					log_.info("Process " + t + "...");
 					XSLTools.setCwd(new File(t.getParent()));
 					xsl(
-						new DOMSource(jndiparams), new StreamSource(t), "", "",
-						packages_ + File.separatorChar, id);
+						new DOMSource(jndiparams), new StreamSource(t), "", "", packages_
+								+ File.separatorChar, id);
 				}
 
 				final File f = new File(templates_);
 				final String[] listAppSrv = f.list();
 				if (listAppSrv == null)
-					throw new TransformerException(
-							"Invalid templates parameter (" + templates_ + ")");
+					throw new TransformerException("Invalid templates parameter (" + templates_ + ")");
 				// Now I have all the families and all applications server to do
 				for (int l = 0; l < listAppSrv.length; ++l)
 				{
@@ -463,16 +453,15 @@ public final class JNDIConfig
 						continue;
 
 					// Execute the appsrc/process.xslt
-					final File tt = new File(templates_ + File.separatorChar
-							+ appsrv + File.separatorChar + "process.xslt");
+					final File tt = new File(templates_ + File.separatorChar + appsrv + File.separatorChar
+							+ "process.xslt");
 					if (tt.canRead())
 					{
 						XSLTools.setCwd(new File(tt.getParent()));
 						log_.info("Process " + tt + " conversion...");
 						xsl(
-							new DOMSource(jndiparams), new StreamSource(tt),
-							appsrv, "",
-							packages_ + appsrv + File.separatorChar, id);
+							new DOMSource(jndiparams), new StreamSource(tt), appsrv, "", packages_ + appsrv
+									+ File.separatorChar, id);
 					}
 
 					if (new File(templates_, appsrv).isDirectory())
@@ -482,8 +471,8 @@ public final class JNDIConfig
 						for (final Iterator k = familly.iterator(); k.hasNext();)
 						{
 							String process = (String) k.next();
-							final String dir = templates_ + File.separatorChar
-									+ appsrv + File.separatorChar + process;
+							final String dir = templates_ + File.separatorChar + appsrv + File.separatorChar
+									+ process;
 							final File dirFile = new File(dir);
 							XSLTools.setCwd(dirFile);
 							File xslt = new File(dir, "process.xslt");
@@ -491,17 +480,15 @@ public final class JNDIConfig
 								continue;
 							if (xslt.canRead())
 							{
-								log_.info("Process " + process
-										+ " conversion...");
+								log_.info("Process " + process + " conversion...");
 								xsl(
-									new DOMSource(jndiparams),
-									new StreamSource(xslt), appsrv, process,
+									new DOMSource(jndiparams), new StreamSource(xslt), appsrv, process,
 									packages_ + appsrv + File.separatorChar, id);
 							}
 							else
 							{
-								log_.warn("I can't generate resource with " + process
-										+ " for " + appsrv + '!');
+								log_.warn("I can't generate resource with " + process + " for " + appsrv
+										+ '!');
 							}
 						}
 					}
@@ -528,8 +515,7 @@ public final class JNDIConfig
 				RecursiveFiles.recursiveFiles(
 					new File(packages_), ".", new RecursiveFiles.Apply()
 					{
-						public void apply(final File home, final String parent,
-								final File cur)
+						public void apply(final File home, final String parent, final File cur)
 						{
 							cur.delete();
 						}
@@ -565,15 +551,13 @@ public final class JNDIConfig
 	 * @throws TransformerException If error.
 	 * @throws IOException If error.
 	 */
-	private void xsl(final Source doc, final Source xsl, final String appsrv,
-			final String familly, final String targetDir, final String id)
-			throws TransformerException, IOException,
-			ArtifactNotFoundException,ResourceDoesNotExistException
+	private void xsl(final Source doc, final Source xsl, final String appsrv, final String familly,
+			final String targetDir, final String id) throws TransformerException, IOException,
+			ArtifactNotFoundException, ResourceDoesNotExistException
 	{
 
 		// Get an XSL Transformer object
-		Transformer transformer = XMLContext.TRANSFORMER_FACTORY
-				.newTransformer(xsl);
+		Transformer transformer = XMLContext.TRANSFORMER_FACTORY.newTransformer(xsl);
 		transformer.setParameter(
 			"version", VERSION);
 		transformer.setParameter(
@@ -587,8 +571,11 @@ public final class JNDIConfig
 		if (war_ != null)
 		{
 			File war = new File(war_).getCanonicalFile();
+			String parent = war.getParent();
+			if (parent.charAt(0) != File.separatorChar)
+				parent = File.separatorChar + parent;
 			transformer.setParameter(
-				"parentwar", war.getParent() + File.separatorChar); // abc
+				"parentwar", parent + File.separatorChar); // abc
 			transformer.setParameter(
 				"war", war.getName()); // abc
 		}
@@ -617,10 +604,11 @@ public final class JNDIConfig
 		ParamsConfig params;
 		try
 		{
-			if (System.getProperty("jndi.resources.home")==null)
+			if (System.getProperty("jndi.resources.home") == null)
 			{
-		        String path = JNDIConfig.class.getProtectionDomain().getCodeSource().getLocation().getFile();
-		        System.setProperty("jndi.resources.home", new File(path).getParentFile().getParentFile().getAbsolutePath());
+				String path = JNDIConfig.class.getProtectionDomain().getCodeSource().getLocation().getFile();
+				System.setProperty(
+					"jndi.resources.home", new File(path).getParentFile().getParentFile().getAbsolutePath());
 			}
 
 			params = parseArgs(args);
@@ -629,16 +617,15 @@ public final class JNDIConfig
 
 			final long start = System.currentTimeMillis();
 			log_.info(LINE);
-			log_.info("Build install scripts to " + params.packages_
-					+ " with models presents in " + params.templates_);
+			log_.info("Build install scripts to " + params.packages_ + " with models presents in "
+					+ params.templates_);
 			log_.info(LINE);
 
 			new JNDIConfig(params);
 			log_.info(LINE);
 			log_.info("BUILD SUCCESSFUL");
 			log_.info(LINE);
-			log_.info("Total time :" + (System.currentTimeMillis() - start)
-					/ MILISECOND + " second");
+			log_.info("Total time :" + (System.currentTimeMillis() - start) / MILISECOND + " second");
 			log_.info("Finished at : " + new Date());
 			log_.info(LINE);
 			System.out.println("Generate install files done.");

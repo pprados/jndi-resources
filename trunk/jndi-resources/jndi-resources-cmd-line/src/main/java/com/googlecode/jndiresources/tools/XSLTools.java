@@ -22,6 +22,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
 import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
@@ -33,6 +34,8 @@ import com.googlecode.jndiresources.maven.MavenException;
 
 /**
  * Tools for XSL scripts.
+ * 
+ * @author Philippe PRADOS
  */
 public final class XSLTools
 {
@@ -44,7 +47,7 @@ public final class XSLTools
 	/**
 	 * Buffer size.
 	 */
-	private static final int BUFSIZE = 4096;
+	private static final int BUFSIZE = 8192;
 
 	/**
 	 * A thread local variable to remember the current working directory.
@@ -75,23 +78,24 @@ public final class XSLTools
 	 * @throws ResourceDoesNotExistException If resource can not be loaded.
 	 */
 	public static String getArtifact(final String artifact)
-//			throws MavenException, ArtifactNotFoundException, ResourceDoesNotExistException
+	// throws MavenException, ArtifactNotFoundException,
+			// ResourceDoesNotExistException
 			throws Exception
 	{
 		return new Action()
 		{
 
-			public String run()	throws Exception
+			public String run() throws Exception
 			{
 				return ManageArtifact.getArtifact(artifact);
 			}
-			
+
 		}.run();
 	}
+
 	private interface Action
 	{
-		public String run() 
-			throws Exception;
+		public String run() throws Exception;
 	};
 
 	/**
@@ -107,20 +111,19 @@ public final class XSLTools
 	 * @throws ArtifactNotFoundException If artifact is not found.
 	 * @throws ResourceDoesNotExistException If resource can not be loader.
 	 */
-	public static String mavenCopy(final String artifact, final String toStrFile)
-			throws Exception
+	public static String mavenCopy(final String artifact, final String toStrFile) throws Exception
 	{
 		return new Action()
 		{
 
-			public String run()	throws Exception
+			public String run() throws Exception
 			{
 				final String url = getArtifact(artifact);
 				fileCopyIfExist(
 					url, toStrFile, true);
-				return url.substring(url.lastIndexOf(File.separatorChar) + 1);
+				return url.substring(url.lastIndexOf('/') + 1);
 			}
-			
+
 		}.run();
 
 	}
@@ -133,8 +136,7 @@ public final class XSLTools
 	 * 
 	 * @throws IOException If error.
 	 */
-	public static void fileCopy(final String fromStrFile, final String toStrFile)
-			throws IOException
+	public static void fileCopy(final String fromStrFile, final String toStrFile) throws IOException
 	{
 		fileCopyIfExist(
 			fromStrFile, toStrFile, true);
@@ -148,8 +150,7 @@ public final class XSLTools
 	 * 
 	 * @throws IOException If error.
 	 */
-	public static void fileCopyIfExist(final String fromStrFile,
-			final String toStrFile) throws IOException
+	public static void fileCopyIfExist(final String fromStrFile, final String toStrFile) throws IOException
 	{
 		fileCopyIfExist(
 			fromStrFile, toStrFile, false);
@@ -164,11 +165,17 @@ public final class XSLTools
 	 * 
 	 * @throws IOException If error.
 	 */
-	public static void fileCopyIfExist(final String fromStrFile,
-			final String toStrFile, final boolean exist) throws IOException
+	public static void fileCopyIfExist(String fromStrFile, String toStrFile, final boolean exist)
+			throws IOException
 	{
-		log_.debug("fileCopy(" + fromStrFile + "," + toStrFile + "," + exist
+		log_.debug("fileCopyIfExist(" + fromStrFile + ", " + toStrFile + ", " + exist + ", " + exist
 				+ ") cwd=" + cwd_.get());
+		if (toStrFile.startsWith("file:"))
+			toStrFile = new URL(toStrFile).getFile();
+		fromStrFile = fromStrFile.replace(
+			'/', File.separatorChar);
+		toStrFile = toStrFile.replace(
+			'/', File.separatorChar);
 		final File fromFile;
 		if (fromStrFile.charAt(0) == File.separatorChar)
 			fromFile = new File(fromStrFile);
@@ -189,7 +196,7 @@ public final class XSLTools
 			if (!parent.exists())
 				parent.mkdirs();
 		}
-		if (toFile.exists() && toFile.lastModified()>=fromFile.lastModified()) 
+		if (toFile.exists() && toFile.lastModified() >= fromFile.lastModified())
 		{
 			return;
 		}
@@ -241,12 +248,14 @@ public final class XSLTools
 	 * 
 	 * @throws IOException If error.
 	 */
-	public static void mkLink(final String fromStrFile, final String toStrFile,
-			final String link) throws IOException
+	public static void mkLink(String fromStrFile, String toStrFile, final String link) throws IOException
 	{
-		log_
-				.debug("mkLink(" + fromStrFile + "," + toStrFile + "," + link
-						+ ")");
+		log_.debug("mkLink(" + fromStrFile + ", " + toStrFile + ", " + link + ")");
+		fromStrFile = fromStrFile.replace(
+			'/', File.separatorChar);
+		toStrFile = toStrFile.replace(
+			'/', File.separatorChar);
+
 		fileCopy(
 			fromStrFile, toStrFile);
 		mkLink(
@@ -261,19 +270,24 @@ public final class XSLTools
 	 * 
 	 * @throws IOException If error.
 	 */
-	public static void mkLink(final String toStrFile, final String link)
-			throws IOException
+	public static void mkLink(String toStrFile, final String link) throws IOException
 	{
 		log_.debug("mkLink(" + toStrFile + "," + link + ")");
+
 		BufferedWriter out = null;
 		try
 		{
-			final String linkname = link+".link";
+			String linkname = link + ".link";
+			toStrFile = new File(toStrFile).getCanonicalPath();
+			if (toStrFile.charAt(0) != File.separatorChar)
+				toStrFile = File.separatorChar + toStrFile;
+			linkname = new File(linkname).getCanonicalPath();
+			if (linkname.charAt(0) != File.separatorChar)
+				linkname = File.separatorChar + linkname;
 			new File(new File(linkname).getParent()).mkdirs();
 			out = new BufferedWriter(new FileWriter(linkname));
 			out.write(calcRelativeLink(
-				new File(toStrFile).getCanonicalPath(), new File(linkname)
-						.getCanonicalPath()));
+				toStrFile, linkname));
 			out.newLine();
 		}
 		finally
@@ -291,15 +305,12 @@ public final class XSLTools
 	 * 
 	 * @return The relative filename.
 	 */
-	private static String calcRelativeLink(final String fileOne,
-			final String fileTow)
+	private static String calcRelativeLink(final String fileOne, final String fileTow)
 	{
 		// 1. Find similar parts
 		final StringBuffer ln = new StringBuffer();
-		final StringTokenizer token1 = new StringTokenizer(fileOne,
-				File.separator);
-		final StringTokenizer token2 = new StringTokenizer(fileTow,
-				File.separator);
+		final StringTokenizer token1 = new StringTokenizer(fileOne, File.separator);
+		final StringTokenizer token2 = new StringTokenizer(fileTow, File.separator);
 		int baseLength = 0;
 		String tok1;
 		String tok2;
@@ -319,7 +330,8 @@ public final class XSLTools
 				File.separatorChar);
 		}
 		ln.append(fileOne.substring(baseLength + 1));
-		return ln.toString();
+		return ln.toString().replace(
+			File.separatorChar, '/');
 	}
 
 	/**

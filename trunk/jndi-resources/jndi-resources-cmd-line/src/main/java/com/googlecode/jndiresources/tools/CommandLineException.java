@@ -18,6 +18,8 @@ package com.googlecode.jndiresources.tools;
 
 /**
  * Exception if error in command line.
+ * 
+ * @author Philippe PRADOS
  */
 public class CommandLineException extends Exception
 {

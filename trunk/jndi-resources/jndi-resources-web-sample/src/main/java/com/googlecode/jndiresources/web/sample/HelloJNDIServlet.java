@@ -38,6 +38,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+/**
+ * Simple WAR Sample with some resources. 
+ * 
+ * @author Philippe PRADOS
+ */
 public class HelloJNDIServlet extends HttpServlet
 {
 	private Context ctx_;

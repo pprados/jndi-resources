@@ -25,6 +25,8 @@ import org.apache.log4j.Logger;
 
 /**
  * A reader with a on-the-fly conversion of variables.
+ * 
+ * @author Philippe PRADOS
  */
 public class VariableReader extends Reader
 {
@@ -41,12 +43,12 @@ public class VariableReader extends Reader
 	/**
 	 * Coef to extend buffer (30%).
 	 */
-	private static final int EXTENDBUFFER=130;
+	private static final int EXTENDBUFFER = 130;
 
 	/**
 	 * Percent.
 	 */
-	private static final int PERCENT=100;
+	private static final int PERCENT = 100;
 
 	/**
 	 * The buffer.
@@ -98,7 +100,7 @@ public class VariableReader extends Reader
 		 * The serial version.
 		 */
 		private static final long serialVersionUID = 1L;
-		
+
 		/**
 		 * The variable name in error.
 		 */
@@ -110,13 +112,15 @@ public class VariableReader extends Reader
 		 * @param msg The message of exception.
 		 * @param varname The variable name.
 		 */
-		public VariableNotFound(final String msg,final String varname)
+		public VariableNotFound(final String msg, final String varname)
 		{
 			super(msg);
-			varname_=varname;
+			varname_ = varname;
 		}
+
 		/**
-		 * Return the variable name in error. 
+		 * Return the variable name in error.
+		 * 
 		 * @return The variable name in error.
 		 */
 		public String getVariableName()
@@ -176,8 +180,8 @@ public class VariableReader extends Reader
 	 */
 	public int read(final char[] cbuf, final int off, final int len) throws IOException
 	{
-		int offset=off;
-		int length=len;
+		int offset = off;
+		int length = len;
 		if (size_ == -1)
 			return -1; // EOF
 		int readsize = 0;
@@ -202,21 +206,21 @@ public class VariableReader extends Reader
 				int start = pos_;
 				if (startvar_.size() > 0)
 				{
-					final int startvar=((Integer)startvar_.pop()).intValue();
+					final int startvar = ((Integer) startvar_.pop()).intValue();
 					System.arraycopy(
 						buf_, startvar, buf_, 0, lenvar_);
 					start = lenvar_;
 				}
 				size_ = next_.read(
 					buf_, start, bufsize_ - start) + start;
-				if (size_==-1) 
+				if (size_ == -1)
 					return readsize;
-				
+
 				// Cherche les variables
 				boolean dollard = false;
 				boolean variable = false;
 				int i = 0;
-				int startvar=0;
+				int startvar = 0;
 				for (; i < size_; ++i)
 				{
 					if (dollard)
@@ -224,7 +228,7 @@ public class VariableReader extends Reader
 						if (buf_[i] == '{') // Start variable
 						{
 							variable = true;
-							startvar_.push(Integer.valueOf(i-1));
+							startvar_.push(Integer.valueOf(i - 1));
 						}
 						else
 							dollard = false;
@@ -233,44 +237,41 @@ public class VariableReader extends Reader
 					{
 						if (buf_[i] == '}') // End variable
 						{
-							startvar=((Integer)startvar_.pop()).intValue();
+							startvar = ((Integer) startvar_.pop()).intValue();
 							variable = !startvar_.empty();
 							lenvar_ = i - startvar + 1;
-							final String varname = new String(buf_,
-									startvar + 2, i - startvar - 2);
+							final String varname = new String(buf_, startvar + 2, i - startvar - 2);
 							// final String
 							String value = prop_.getProperty(varname);
 							if (value == null)
 							{
-								onError("Variable "	+ varname + " not found!",varname);
-								value=new String(buf_, startvar,lenvar_);
+								onError(
+									"Variable " + varname + " not found!", varname);
+								value = new String(buf_, startvar, lenvar_);
 							}
 							if (log_.isDebugEnabled())
 								log_.debug(varname + "=" + value);
-							if (!value.equals(new String(buf_, startvar,
-									lenvar_)))
+							if (!value.equals(new String(buf_, startvar, lenvar_)))
 							{
 								// Insert value
 								final int l = value.length();
 
-								final int solde = size_ - startvar
-										- lenvar_;
+								final int solde = size_ - startvar - lenvar_;
 
 								// Extend buffer if it's a necessity
 								if (startvar + l + solde > buf_.length)
 								{
-									final char[] buf = new char[((buf_.length + solde) * EXTENDBUFFER) / PERCENT];
+									final char[] buf = new char[((buf_.length + solde) * EXTENDBUFFER)
+											/ PERCENT];
 									System.arraycopy(
 										buf_, 0, buf, 0, buf_.length);
 									buf_ = buf;
 								}
 
 								System.arraycopy(
-									buf_, startvar + lenvar_, buf_,
-									startvar + l, solde);
+									buf_, startvar + lenvar_, buf_, startvar + l, solde);
 								System.arraycopy(
-									value.toCharArray(), 0, buf_,
-									startvar, l);
+									value.toCharArray(), 0, buf_, startvar, l);
 								size_ -= lenvar_ - l;
 								i = startvar; // Recursive variable possible
 							}
@@ -283,46 +284,50 @@ public class VariableReader extends Reader
 				}
 				if (variable || dollard)
 				{
-					lenvar_ = i - ((Integer)startvar_.peek()).intValue();
+					lenvar_ = i - ((Integer) startvar_.peek()).intValue();
 					size_ -= lenvar_;
 				}
 			}
 		}
 		return readsize;
 	}
-	protected void onError(final String msg,final String varname) throws VariableNotFound
+
+	protected void onError(final String msg, final String varname) throws VariableNotFound
 	{
-		throw new VariableNotFound(msg,varname);
+		throw new VariableNotFound(msg, varname);
 	}
-//	public static void main(String[] args) throws IOException
-//	{
-//		Properties prop=new Properties();
-//		prop.put("def", "def");
-//		prop.put("abcdefghi","hello");
-//		char[] buf=new char[1024];
-//		
-//		class IgnoreErrorVariableReader extends VariableReader
-//		{
-//			IgnoreErrorVariableReader(Reader next,int size,Properties prop)
-//			{
-//				super(next,size,prop);
-//			}
-//			protected void onError(String msg,String var)
-//			{
-//				System.out.println("onError("+msg+","+var+")");
-//			}
-//		}
-//		System.out.println(new String(buf,0,
-//			new IgnoreErrorVariableReader(new InputStreamReader(new StringBufferInputStream("${novar}")),12,prop).read(buf)));
-//		System.out.println(new String(buf,0,
-//			new VariableReader(new InputStreamReader(new StringBufferInputStream("NOVAR")),12,prop).read(buf)));
-//		System.out.println(new String(buf,0,
-//			new VariableReader(new InputStreamReader(new StringBufferInputStream("${abcdefghi}")),12,prop).read(buf))); 
-//		System.out.println(new String(buf,0,
-//			new VariableReader(new InputStreamReader(
-//			new StringBufferInputStream("${abc${def}ghi}")),15,prop).read(buf))); 
-//		System.out.println(new String(buf,0,
-//			new VariableReader(new InputStreamReader(
-//			new StringBufferInputStream("AA${abc${def}ghi}A")),15,prop).read(buf))); 
-//	}
+	// public static void main(String[] args) throws IOException
+	// {
+	// Properties prop=new Properties();
+	// prop.put("def", "def");
+	// prop.put("abcdefghi","hello");
+	// char[] buf=new char[1024];
+	//		
+	// class IgnoreErrorVariableReader extends VariableReader
+	// {
+	// IgnoreErrorVariableReader(Reader next,int size,Properties prop)
+	// {
+	// super(next,size,prop);
+	// }
+	// protected void onError(String msg,String var)
+	// {
+	// System.out.println("onError("+msg+","+var+")");
+	// }
+	// }
+	// System.out.println(new String(buf,0,
+	// new IgnoreErrorVariableReader(new InputStreamReader(new
+	// StringBufferInputStream("${novar}")),12,prop).read(buf)));
+	// System.out.println(new String(buf,0,
+	// new VariableReader(new InputStreamReader(new
+	// StringBufferInputStream("NOVAR")),12,prop).read(buf)));
+	// System.out.println(new String(buf,0,
+	// new VariableReader(new InputStreamReader(new
+	// StringBufferInputStream("${abcdefghi}")),12,prop).read(buf)));
+	// System.out.println(new String(buf,0,
+	// new VariableReader(new InputStreamReader(
+	// new StringBufferInputStream("${abc${def}ghi}")),15,prop).read(buf)));
+	// System.out.println(new String(buf,0,
+	// new VariableReader(new InputStreamReader(
+	// new StringBufferInputStream("AA${abc${def}ghi}A")),15,prop).read(buf)));
+	// }
 }
