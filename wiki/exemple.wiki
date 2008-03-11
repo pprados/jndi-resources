@@ -96,9 +96,9 @@ Vous pouvez [http://code.google.com/p/jndi-resources/downloads/list télécharge
 >wget http://jndi-resources.googlecode.com/files/jndi-web-sample.war
 }}}
 
-Nous désirons générer tous les fichiers de configurations des serveurs d'applications. L'utilitaire `$JNDI_HOME/bin/jndi-config.sh` s'en charge.
+Nous désirons générer tous les fichiers de configurations des serveurs d'applications. L'utilitaire `$JNDI_HOME/bin/jndi-config` s'en charge.
 {{{
->$JNDI_HOME/bin/jndi-config.sh \
+>$JNDI_HOME/bin/jndi-config \
 	--war jndi-web-sample.war \
 	--packages ./packages
 }}}
@@ -109,7 +109,7 @@ Pour avoir plus de détail sur la génération, ajoutez le paramètre `-l` ou `-
 Nous pouvons maintenant installer le composant sur différents serveurs d'applications.
 Voici une installation sur un Jboss 5.0:
 {{{
->$JNDI_HOME/bin/jndi-install.sh \
+>$JNDI_HOME/bin/jndi-install \
 	--package ./packages \
 	--appsrv jboss --version 5.0 \
 	--dest jboss.server.conf=/opt/jboss-5.0/server/default \
@@ -119,7 +119,7 @@ Comme la source de donnée par défaut de Jboss utilise une base HSQLDB déjà i
 
 Voici une installation sur un Tomcat 4.1:
 {{{
->$JNDI_HOME/bin/jndi-install.sh \
+>$JNDI_HOME/bin/jndi-install \
 	--package ./packages \
 	--appsrv tomcat --version 4.1 \
 	--dest catalina.base=/opt/apache-tomcat-4.1 \
@@ -128,11 +128,11 @@ Voici une installation sur un Tomcat 4.1:
 }}}
 Sous Tomcat, la base de donnée par défaut nécessite trois paramètres : le nom et le mot de passe de l'utilisateur de connexion, ainsi qu'un nom de fichier pour la base gérée par HSQLDB. Ces paramètres peuvent également être indiqués dans un fichier de [variables propriétés].
 
-Ces deux étapes peuvent être combinées avec l'invocation de `$JNDI_HOME/bin/jndi-resources.sh`.
+Ces deux étapes peuvent être combinées avec l'invocation de `$JNDI_HOME/bin/jndi-resources`.
 
 Voici l'installation sur un serveur Tomcat 4.1 directement à partir du composant WAR.
 {{{
->$JNDI_HOME/bin/jndi-resources.sh \
+>$JNDI_HOME/bin/jndi-resources \
 	--war jndi-web-sample.war \
 	--appsrv tomcat --version 4.1 \
 	--dest catalina.base=/opt/apache-tomcat-4.1 \

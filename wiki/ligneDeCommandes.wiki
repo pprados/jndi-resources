@@ -2,12 +2,15 @@
 
 = Paramètres de la ligne de commandes =
 
-Il existe trois utilitaires : l'un se charge de générer les fichiers de configuration à partir de fichiers [jndiResourcesXML jndi-resources.xml], le deuxième se charge d'installer les fichiers pour un serveur d'applications et le troisième est un enchaînement des deux premiers.
+Il existe trois utilitaires : l'un se charge de générer les fichiers de 
+configuration à partir de fichiers [jndiResourcesXML jndi-resources.xml], 
+le deuxième se charge d'installer les fichiers pour un serveur d'applications 
+et le troisième est un enchaînement des deux premiers.
 
-`jndi-config.sh` accepte différents paramètres.
+`jndi-config` accepte différents paramètres.
 {{{
-Usage: jndi-config.sh [-h] (-w <war|ear> | -j <jndi-resources.xml>) \ 
-                      [-t <templates>] -p <destination> 
+Usage: jndi-config [-h] (-w <war|ear> | -j <jndi-resources.xml>) \ 
+                   [-t <templates>] -p <destination> 
 (-w|--war) <war|ear file>       : The jndi-resources descriptions in META-INF 
 (-j|--jndi-file) <url[#id]>     : The jndi-resources descriptions fragment 
 (-t|--templates) <dir>          : The templates transformations to use. 
@@ -16,22 +19,28 @@ Usage: jndi-config.sh [-h] (-w <war|ear> | -j <jndi-resources.xml>) \
 -ll                             : Log debug. 
 (-h|--help)                     : This help 
 }}}
-Vous pouvez indiquer un fichier [jndiResourcesXML jndi-resources.xml] à l'aide du paramètre `-j`, indiquer une archive `.war` possédant déjà un fichier `META-INF/jndi-resources.xml` ou une combinaison des deux paramètres.
-Si vous utilisez le paramètre `-w`, le composant sera également installé dans le serveur d'application. Sinon, seule les ressources seront publiées.
+Vous pouvez indiquer un fichier [jndiResourcesXML jndi-resources.xml] à l'aide du 
+paramètre `-j`, indiquer une archive `.war` possédant déjà un fichier 
+`META-INF/jndi-resources.xml` ou une combinaison des deux paramètres.
+Si vous utilisez le paramètre `-w`, le composant sera également installé dans 
+le serveur d'application. Sinon, seule les ressources seront publiées.
 
-Pour demander uniquement la publication des ressources nécessaires à un composant, utilisez une URL de type `jar:file:` pour le paramètre `-j`.
+Pour demander uniquement la publication des ressources nécessaires à un composant, 
+utilisez une URL de type `jar:file:` pour le paramètre `-j`.
 {{{
-jndi-config.sh -j jar:file:application.war!/META-INF/jndi-resources.xml ...
+jndi-config -j jar:file:application.war!/META-INF/jndi-resources.xml ...
 }}}
 
-Cet utilitaire exploite les _repositories_ [http://maven.apache.org Maven] pour y extraire les drivers nécessaires à l'application à installer. Un _repository_ local est créé dans `~/.m2/repository` s'il n'en existe pas.
+Cet utilitaire exploite les _repositories_ [http://maven.apache.org Maven] pour y 
+extraire les drivers nécessaires à l'application à installer. Un _repository_ local 
+est créé dans `~/.m2/repository` s'il n'en existe pas.
 
-`jndi-install.sh` accepte les paramètres suivant :
+`jndi-install` accepte les paramètres suivant :
 {{{
-Usage: jndi-install.sh [-h] -d <appsrvconfdir=dir> \
-                       [-D<key>=<value>|xpath:<[ns,]xpath>]* \ 
-                       [--xsl key=value>|<[ns,]xpath>]* \ 
-                       [-P <url>]* -p <sourcepackage> -a <jboss|...> 
+Usage: jndi-install [-h] -d <appsrvconfdir=dir> \
+                    [-D<key>=<value>|xpath:<[ns,]xpath>]* \ 
+                    [--xsl key=value>|<[ns,]xpath>]* \ 
+                    [-P <url>]* -p <sourcepackage> -a <jboss|...> 
 (-d|--dest) <key>=<value>          : Define destination directories 
 -D<key>=<value>|xpath:<[ns,]xpath> : Define property 
 --xsl <key>=<value>|xpath:...      : Define XSL variable 
@@ -44,13 +53,16 @@ Usage: jndi-install.sh [-h] -d <appsrvconfdir=dir> \
 (-h|--help)                        : This help 
 }}}
 
-`jndi-resources.sh` est une combinaison des deux premiers utilitaires. Il n'est alors plus nécessaire d'indiquer le paramètre `--package` car un répertoire temporaire est utilisé. Vous pouvez continuer à l'utiliser si vous souhaitez jeter un œil sur les fichiers générés.
+`jndi-resources` est une combinaison des deux premiers utilitaires. 
+Il n'est alors plus nécessaire d'indiquer le paramètre `--package` car 
+un répertoire temporaire est utilisé. Vous pouvez continuer à l'utiliser 
+si vous souhaitez jeter un œil sur les fichiers générés.
 {{{
-Usage: jndi-resources.sh [-h] (-w <war|ear> | -j <jndi-resources.xml>) \ 
-                         [-t <templates>] [-p <destination>] -d <appsrvconfdir=dir> \
-                         [-D<key>=<value>|xpath:<[ns,]xpath>]* \ 
-                         [--xsl key=<value>|xpath:<[ns,]xpath>]* \ 
-                         [-P <url>]* -p <sourcepackage> -a <jboss|...> 
+Usage: jndi-resources [-h] (-w <war|ear> | -j <jndi-resources.xml>) \ 
+                      [-t <templates>] [-p <destination>] -d <appsrvconfdir=dir> \
+                      [-D<key>=<value>|xpath:<[ns,]xpath>]* \ 
+                      [--xsl key=<value>|xpath:<[ns,]xpath>]* \ 
+                      [-P <url>]* -p <sourcepackage> -a <jboss|...> 
 (-w|--war) <war|ear file>          : The jndi-resources descriptions in META-INF 
 (-j|--jndi-file) <url[#id]>        : The jndi-resources descriptions fragment 
 (-t|--templates) <dir>             : The templates transformations to use. 
@@ -65,6 +77,9 @@ Usage: jndi-resources.sh [-h] (-w <war|ear> | -j <jndi-resources.xml>) \
 -ll                                : Log debug. 
 (-h|--help)                        : This help 
 }}}
+
+Il est possible d'utiliser *jndi-config* sous Windows et *jndi-install* sous unix 
+ou l'inverse. Le répertoire `packages` est cross système d'exploitation.
 
 Précédent : [exemple]
 Suite : [desinstallation Désinstallation]

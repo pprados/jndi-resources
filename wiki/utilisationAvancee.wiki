@@ -34,8 +34,8 @@ Par exemple, pour le fichier `all-components.xml` suivant,
 
 Les générations peut s'effectuer à l'aide de :
 {{{
->$JNDI_HOME/bin/jndi-config.sh --jndi-file all-components.xml#one --package ./packages_one
->$JNDI_HOME/bin/jndi-config.sh --jndi-file all-components.xml#two --package ./packages_two
+>$JNDI_HOME/bin/jndi-config --jndi-file all-components.xml#one --package ./packages_one
+>$JNDI_HOME/bin/jndi-config --jndi-file all-components.xml#two --package ./packages_two
 }}}
 En conformité avec les règles des fichiers XML, le [http://www.prados.fr/xsd/1.0/jndi-resources.xsd" schéma jndi-resources] accepte d'accueillir d'autres marqueurs qu'il se contente d'ignorer.
 

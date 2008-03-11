@@ -33,7 +33,7 @@ Ainsi, lors de l'installation, l'utilisateur n'a pas à connaître le modèle de
 
 Pour utiliser cela, il faut lancer la ligne de commande suivante :
 {{{
-jndi-install.sh --package $PACKAGES \
+jndi-install --package $PACKAGES \
   --appsrv jboss --version 3.2 \
   --dest jboss.server.conf=/opt/jboss-3.2/server/default \
   --dest jboss.server.home=/opt/jboss-3.2
