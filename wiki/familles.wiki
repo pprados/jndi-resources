@@ -1,0 +1,30 @@
+#summary Les familles de ressources
+
+= Familles de ressources =
+Le tableau suivant décrit les différentes familles de ressources gérés par l'outil.
+|| *Famille* || *Description* ||
+|| [host host/default] || Déclare un host dans l'arbre JNDI. ||
+|| [jdbc jdbc/default] || Utilise la base de donnée par défaut du serveur d'application. ||
+|| [jdbc jdbc/hsqldb] || Utilise une base de donnée de type [http://www.hsqldb.org HSQLDB].||
+|| [jdbc jdbc/mysql] || Utilise une base de donnée [http://www.mysql.com MySql]. ||
+|| [jdbc jdbc/oracle] || Utilise une base de donnée [http://www.oracle.com Oracle]. ||
+|| [jms jms/default] || Utilise les serveur JMS par défauts du serveur d'application.||
+|| [jms jms/jboss] || Utilise les drivers du serveur JMS du JBoss courant (JBoss MQ ou JBoss Messaging suivant les cas). ||
+|| [jms jms/jbossmq] || Utilise spécifiquement un serveur JMS JBoss MQ. ||
+|| [jms jms/jboss-messaging] || Utilise spécifiquement un serveur JMS JBoss Messaging. ||
+|| [jndi jndi/default] || Propose un lien vers un annuaire JNDI de la même famille que celle du serveur d'application. ||
+|| [jndi jndi/cos] || Propose un lien vers un référentiel d'objets CORBA. ||
+|| [jndi jndi/dns] || Permet un accès à un serveur DNS ||
+|| [jndi jndi/file] || Permet un accès à un répertoire.||
+|| [jndi jndi/jboss] || Offre la manipulation d'un annuaire JNDI JBoss distant.||
+|| [jndi jndi/ldap] || Manipule un serveur LDAP ||
+|| [jndi jndi/rmi] || Consulte une référentiel RMI. ||
+|| [mail mail/default] || Une session Javamail.||
+|| [mail mail/email] || Une adresse email.||
+|| [url url/default] || Déclare une URL dans l'annuaire JNDI.||
+|| [jaas jaas/default] || Authentifications par défaut de JBoss.||
+|| [jaas jaas/intranet] || Authentification Intranet pour JBoss.||
+|| [jaas jaas/internet] || Authentification Internet pour JBoss.||
+
+Précédent : [comment Comment faire ?]
+Suite : [conventions]
