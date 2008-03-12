@@ -1,4 +1,5 @@
 #summary famille host/*
+#labels Phase-configuration
 
 = Famille host =
 
