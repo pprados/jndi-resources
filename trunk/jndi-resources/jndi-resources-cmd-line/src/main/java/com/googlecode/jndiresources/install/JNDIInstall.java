@@ -56,7 +56,6 @@ import org.apache.maven.artifact.versioning.ArtifactVersion;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.apache.maven.artifact.versioning.InvalidVersionSpecificationException;
 import org.apache.maven.artifact.versioning.VersionRange;
-import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -80,12 +79,20 @@ import com.googlecode.jndiresources.var.VariableReader;
  */
 public final class JNDIInstall
 {
-	private static final int MILISECOND = 1000;
+	/**
+	 * A line.
+	 */
+	private static final String LINE = "----------------------------------------------------------------------------";
+
+	/**
+	 * Number of millisecond for one second.
+	 */
+	private static final int MILLISECOND = 1000;
 
 	/**
 	 * The logger.
 	 */
-	private static final Logger log_ = Logger.getLogger(JNDIInstall.class);
+	private static final Logger LOG = Logger.getLogger(JNDIInstall.class);
 
 	/**
 	 * Error in command line.
@@ -105,7 +112,7 @@ public final class JNDIInstall
 	/**
 	 * The current version.
 	 */
-	private static final String VERSION = "0.1";
+	private static final String VERSION = "0.2";
 
 	/**
 	 * The plateform.properties file name.
@@ -159,7 +166,7 @@ public final class JNDIInstall
 		}
 		catch (XPathExpressionException e)
 		{
-			log_.fatal(e);
+			LOG.fatal(e);
 			throw new RuntimeException(e); // NOPMD
 
 		}
@@ -258,7 +265,7 @@ public final class JNDIInstall
 		{
 			if (cur.isDirectory())
 				return;
-			log_.debug("apply " + cur);
+			LOG.debug("apply " + cur);
 			if (cur.getName().endsWith(
 				".jndi"))
 				executeJNDIFile(
@@ -332,7 +339,7 @@ public final class JNDIInstall
 	 * @throws SAXException If error in XPath.
 	 * @throws IOException If error in XPath.
 	 * @throws ParserConfigurationException If error in XPath.
-	 * @throws XPathExpressionException
+	 * @throws XPathExpressionException If error in XPath.
 	 */
 	public static int parseArg(final ParamsInstall params, final String[] args, final int pos)
 			throws CommandLineException, SAXException, IOException, ParserConfigurationException,
@@ -436,9 +443,9 @@ public final class JNDIInstall
 	 * 
 	 * @throws CommandLineException If error.
 	 * @throws ParserConfigurationException If error.
-	 * @throws IOException If error.
-	 * @throws SAXException If error.
-	 * @throws XPathExpressionException
+	 * @throws IOException If error when read file.
+	 * @throws SAXException If error with the SAX parser.
+	 * @throws XPathExpressionException If error in XPath.
 	 */
 	public static ParamsInstall parseArgs(final String[] args) throws CommandLineException, SAXException,
 			IOException, ParserConfigurationException, XPathExpressionException
@@ -472,10 +479,9 @@ public final class JNDIInstall
 	 * @throws XPathExpressionException If error.
 	 * @throws TransformerException If error.
 	 * @throws InvalidVersionSpecificationException If version is invalid.
-	 * @throws DOMException If error.
 	 */
 	public JNDIInstall(final ParamsInstall params) throws CommandLineException, IOException, SAXException,
-			ParserConfigurationException, XPathExpressionException, TransformerException, DOMException,
+			ParserConfigurationException, XPathExpressionException, TransformerException, 
 			InvalidVersionSpecificationException
 	{
 		packageDir_ = params.package_;
@@ -550,7 +556,7 @@ public final class JNDIInstall
 			File home = new File(packageDir_, srvapp_ + File.separatorChar + target).getCanonicalFile();
 			if (home.canRead())
 			{
-				log_.info("Install to " + targetDir);
+				LOG.info("Install to " + targetDir);
 				apply.destination_ = targetDir;
 				RecursiveFiles.recursiveFiles(
 					home, ".", apply);
@@ -691,7 +697,7 @@ public final class JNDIInstall
 		SAXSource transformSource = new SAXSource(reader, input);
 
 		Transformer transformer = XMLContext.TRANSFORMER_FACTORY.newTransformer();
-		log_.debug("Transforme " + cur);
+		LOG.debug("Transforme " + cur);
 		transformer.transform(
 			transformSource, new StreamResult(new DevNullOutputStream()));
 		is.close();
@@ -789,8 +795,6 @@ public final class JNDIInstall
 		return parms;
 	}
 
-	private static final String LINE = "----------------------------------------------------------------------------";
-
 	/**
 	 * Parse command line and execute process.
 	 * 
@@ -814,26 +818,26 @@ public final class JNDIInstall
 				System.exit(0);
 
 			final long start = System.currentTimeMillis();
-			log_.info(LINE);
-			log_.info("Install to " + params.appsrv_ + " v" + params.version_);
-			log_.info(LINE);
+			LOG.info(LINE);
+			LOG.info("Install to " + params.appsrv_ + " v" + params.version_);
+			LOG.info(LINE);
 			new JNDIInstall(params);
-			log_.info(LINE);
-			log_.info("INSTALL SUCCESSFUL");
-			log_.info(LINE);
-			log_.info("Total time :" + (System.currentTimeMillis() - start) / MILISECOND + " second");
-			log_.info("Finished at : " + new Date());
-			log_.info(LINE);
+			LOG.info(LINE);
+			LOG.info("INSTALL SUCCESSFUL");
+			LOG.info(LINE);
+			LOG.info("Total time :" + (System.currentTimeMillis() - start) / MILLISECOND + " second");
+			LOG.info("Finished at : " + new Date());
+			LOG.info(LINE);
 			System.out
 					.println("Install " + params.getAppSrv() + " version " + params.getVersion() + " done.");
 		}
 		catch (VariableReader.VariableNotFound e)
 		{
-			log_.error(e.getLocalizedMessage());
+			LOG.error(e.getLocalizedMessage());
 		}
 		catch (CommandLineException e)
 		{
-			log_.error(e.getLocalizedMessage());
+			LOG.error(e.getLocalizedMessage());
 			help(System.err);
 			System.exit(1);
 		}

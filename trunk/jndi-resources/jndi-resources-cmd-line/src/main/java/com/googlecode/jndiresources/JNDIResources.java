@@ -29,7 +29,6 @@ import org.apache.log4j.Logger;
 import org.apache.maven.artifact.resolver.ArtifactNotFoundException;
 import org.apache.maven.artifact.versioning.InvalidVersionSpecificationException;
 import org.apache.maven.wagon.ResourceDoesNotExistException;
-import org.w3c.dom.DOMException;
 import org.xml.sax.SAXException;
 
 import com.googlecode.jndiresources.config.JNDIConfig;
@@ -46,12 +45,20 @@ import com.googlecode.jndiresources.tools.CommandLineException;
  */
 public final class JNDIResources
 {
-	private static final int MILISECOND = 1000;
+	/**
+	 * A line.
+	 */
+	private static final String LINE = "----------------------------------------------------------------------------";
+
+	/**
+	 * Number of millisecond for one second.
+	 */
+	private static final int MILLISECOND = 1000;
 
 	/**
 	 * The logger.
 	 */
-	private static final Logger log_ = Logger.getLogger(JNDIResources.class);
+	private static final Logger LOG = Logger.getLogger(JNDIResources.class);
 
 	/**
 	 * Help in command line.
@@ -172,34 +179,35 @@ public final class JNDIResources
 	 * @throws IOException If error
 	 * @throws CommandLineException If error
 	 * @throws XPathExpressionException If error
+	 * @throws ArtifactNotFoundException If error
+	 * @throws InvalidVersionSpecificationException If error.
+	 * @throws ResourceDoesNotExistException If error.
 	 */
-	private static final String LINE = "----------------------------------------------------------------------------";
-
 	private JNDIResources(final Params params) throws XPathExpressionException, CommandLineException,
-			IOException, SAXException, ParserConfigurationException, TransformerException, DOMException,
+			IOException, SAXException, ParserConfigurationException, TransformerException, 
 			InvalidVersionSpecificationException, ArtifactNotFoundException, ResourceDoesNotExistException
 
 	{
 		final long start = System.currentTimeMillis();
-		log_.info(LINE);
-		log_.info("Build install scripts to " + params.config_.getPackages() + " with models presents in "
+		LOG.info(LINE);
+		LOG.info("Build install scripts to " + params.config_.getPackages() + " with models presents in "
 				+ params.config_.getTemplates());
-		log_.info(LINE);
+		LOG.info(LINE);
 
 		new JNDIConfig(params.config_);
 
-		log_.info(LINE);
-		log_.info("Install to " + params.install_.getAppSrv() + " v" + params.install_.getVersion());
-		log_.info(LINE);
+		LOG.info(LINE);
+		LOG.info("Install to " + params.install_.getAppSrv() + " v" + params.install_.getVersion());
+		LOG.info(LINE);
 
 		new JNDIInstall(params.install_);
 
-		log_.info(LINE);
-		log_.info("INSTALL SUCCESSFUL");
-		log_.info(LINE);
-		log_.info("Total time :" + (System.currentTimeMillis() - start) / MILISECOND + " second");
-		log_.info("Finished at : " + new Date());
-		log_.info(LINE);
+		LOG.info(LINE);
+		LOG.info("INSTALL SUCCESSFUL");
+		LOG.info(LINE);
+		LOG.info("Total time :" + (System.currentTimeMillis() - start) / MILLISECOND + " second");
+		LOG.info("Finished at : " + new Date());
+		LOG.info(LINE);
 	}
 
 	/**
@@ -227,7 +235,7 @@ public final class JNDIResources
 		}
 		catch (CommandLineException e)
 		{
-			log_.error(e.getLocalizedMessage());
+			LOG.error(e.getLocalizedMessage());
 			help(System.err);
 			System.exit(1);
 		}
@@ -243,7 +251,7 @@ public final class JNDIResources
 		}
 		catch (Exception e)
 		{
-			log_.error(e.getLocalizedMessage());
+			LOG.error(e.getLocalizedMessage());
 			e.printStackTrace();
 			System.exit(1);
 		}

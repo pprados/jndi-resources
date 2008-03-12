@@ -62,6 +62,14 @@ import com.googlecode.jndiresources.tools.XSLTools;
  */
 public final class JNDIConfig
 {
+	/**
+	 * A line.
+	 */
+	private static final String LINE = "----------------------------------------------------------------------------";
+
+	/**
+	 * Number of millisecond for one second.
+	 */
 	private static final int MILISECOND = 1000;
 
 	/**
@@ -77,12 +85,12 @@ public final class JNDIConfig
 	/**
 	 * The logger.
 	 */
-	private static final Logger log_ = Logger.getLogger(JNDIConfig.class);
+	private static final Logger LOG = Logger.getLogger(JNDIConfig.class);
 
 	/**
 	 * The current version.
 	 */
-	private static final String VERSION = "0.1";
+	private static final String VERSION = "0.2";
 
 	/**
 	 * The jndi-resources.properties.
@@ -130,7 +138,7 @@ public final class JNDIConfig
 		}
 		catch (XPathExpressionException e)
 		{
-			log_.fatal(e);
+			LOG.fatal(e);
 		}
 	};
 
@@ -346,7 +354,8 @@ public final class JNDIConfig
 	 * @throws ArtifactNotFoundException If artifact is not found.
 	 * @throws ResourceDoesNotExistException If artifact can not be load.
 	 */
-	public JNDIConfig(final ParamsConfig params) throws ParserConfigurationException, SAXException,
+	public JNDIConfig(final ParamsConfig params) 
+		throws ParserConfigurationException, SAXException,
 			IOException, XPathExpressionException, TransformerException, ArtifactNotFoundException,
 			ResourceDoesNotExistException
 	{
@@ -406,7 +415,7 @@ public final class JNDIConfig
 			if ((params.id_ == null) || id.equals(params.id_))
 			{
 				doit = true;
-				log_.info("Translate " + id + " resources...");
+				LOG.info("Translate " + id + " resources...");
 				final NodeList familleNodes = (NodeList) xpathFamilly_.evaluate(
 					home, XPathConstants.NODESET);
 
@@ -434,7 +443,7 @@ public final class JNDIConfig
 				final File t = new File(templates_ + File.separatorChar + "process.xslt");
 				if (t.canRead())
 				{
-					log_.info("Process " + t + "...");
+					LOG.info("Process " + t + "...");
 					XSLTools.setCwd(new File(t.getParent()));
 					xsl(
 						new DOMSource(jndiparams), new StreamSource(t), "", "", packages_
@@ -458,7 +467,7 @@ public final class JNDIConfig
 					if (tt.canRead())
 					{
 						XSLTools.setCwd(new File(tt.getParent()));
-						log_.info("Process " + tt + " conversion...");
+						LOG.info("Process " + tt + " conversion...");
 						xsl(
 							new DOMSource(jndiparams), new StreamSource(tt), appsrv, "", packages_ + appsrv
 									+ File.separatorChar, id);
@@ -466,8 +475,8 @@ public final class JNDIConfig
 
 					if (new File(templates_, appsrv).isDirectory())
 					{
-						log_.info("");
-						log_.info("*** Generate installs files for " + appsrv);
+						LOG.info("");
+						LOG.info("*** Generate installs files for " + appsrv);
 						for (final Iterator k = familly.iterator(); k.hasNext();)
 						{
 							String process = (String) k.next();
@@ -480,14 +489,14 @@ public final class JNDIConfig
 								continue;
 							if (xslt.canRead())
 							{
-								log_.info("Process " + process + " conversion...");
+								LOG.info("Process " + process + " conversion...");
 								xsl(
 									new DOMSource(jndiparams), new StreamSource(xslt), appsrv, process,
 									packages_ + appsrv + File.separatorChar, id);
 							}
 							else
 							{
-								log_.warn("I can't generate resource with " + process + " for " + appsrv
+								LOG.warn("I can't generate resource with " + process + " for " + appsrv
 										+ '!');
 							}
 						}
@@ -497,7 +506,7 @@ public final class JNDIConfig
 			}
 		}
 		if (!doit)
-			log_.error("Do nothing !");
+			LOG.error("Do nothing !");
 
 	}
 
@@ -526,13 +535,13 @@ public final class JNDIConfig
 		}
 		catch (IOException e)
 		{
-			log_.error(
+			LOG.error(
 				"Impossible to clean the target package directory", e);
 			throw (IOException) e.fillInStackTrace();
 		}
 		catch (Exception e)
 		{
-			log_.error(
+			LOG.error(
 				"Internal error", e);
 			throw new RuntimeException("Internal error", e); // NOPMD
 		}
@@ -550,6 +559,8 @@ public final class JNDIConfig
 	 * 
 	 * @throws TransformerException If error.
 	 * @throws IOException If error.
+	 * @throws ArtifactNotFoundException If artifact is not found.
+	 * @throws ResourceDoesNotExistException If resource does not exist.
 	 */
 	private void xsl(final Source doc, final Source xsl, final String appsrv, final String familly,
 			final String targetDir, final String id) throws TransformerException, IOException,
@@ -592,8 +603,6 @@ public final class JNDIConfig
 			doc, output);
 	}
 
-	private static final String LINE = "----------------------------------------------------------------------------";
-
 	/**
 	 * Parse command line and execute process.
 	 * 
@@ -616,18 +625,18 @@ public final class JNDIConfig
 				System.exit(0);
 
 			final long start = System.currentTimeMillis();
-			log_.info(LINE);
-			log_.info("Build install scripts to " + params.packages_ + " with models presents in "
+			LOG.info(LINE);
+			LOG.info("Build install scripts to " + params.packages_ + " with models presents in "
 					+ params.templates_);
-			log_.info(LINE);
+			LOG.info(LINE);
 
 			new JNDIConfig(params);
-			log_.info(LINE);
-			log_.info("BUILD SUCCESSFUL");
-			log_.info(LINE);
-			log_.info("Total time :" + (System.currentTimeMillis() - start) / MILISECOND + " second");
-			log_.info("Finished at : " + new Date());
-			log_.info(LINE);
+			LOG.info(LINE);
+			LOG.info("BUILD SUCCESSFUL");
+			LOG.info(LINE);
+			LOG.info("Total time :" + (System.currentTimeMillis() - start) / MILISECOND + " second");
+			LOG.info("Finished at : " + new Date());
+			LOG.info(LINE);
 			System.out.println("Generate install files done.");
 		}
 		catch (ArtifactNotFoundException e)

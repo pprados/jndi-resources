@@ -28,6 +28,12 @@ public class MavenException extends Exception
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param message The message.
+	 * @param exception The cause exception.
+	 */
 	public MavenException(final String message, final Throwable exception)
 	{
 		super(message, exception);

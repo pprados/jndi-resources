@@ -33,7 +33,7 @@ public class VariableReader extends Reader
 	/**
 	 * The logger.
 	 */
-	private static final Logger log_ = Logger.getLogger(VariableReader.class);
+	private static final Logger LOG = Logger.getLogger(VariableReader.class);
 
 	/**
 	 * Default buffer size.
@@ -249,8 +249,8 @@ public class VariableReader extends Reader
 									"Variable " + varname + " not found!", varname);
 								value = new String(buf_, startvar, lenvar_);
 							}
-							if (log_.isDebugEnabled())
-								log_.debug(varname + "=" + value);
+							if (LOG.isDebugEnabled())
+								LOG.debug(varname + "=" + value);
 							if (!value.equals(new String(buf_, startvar, lenvar_)))
 							{
 								// Insert value
@@ -292,6 +292,15 @@ public class VariableReader extends Reader
 		return readsize;
 	}
 
+	/**
+	 * If variable is not found, generate a exception.
+	 * You can extends this class and propose another implementation of this method,
+	 * for ask the user, continue to detect all errors, etc.
+	 * 
+	 * @param msg The error message.
+	 * @param varname The variable name.
+	 * @throws VariableNotFound If variable not found.
+	 */
 	protected void onError(final String msg, final String varname) throws VariableNotFound
 	{
 		throw new VariableNotFound(msg, varname);

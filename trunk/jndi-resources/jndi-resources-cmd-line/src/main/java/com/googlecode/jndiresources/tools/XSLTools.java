@@ -42,7 +42,7 @@ public final class XSLTools
 	/**
 	 * The logger.
 	 */
-	private static final Logger log_ = Logger.getLogger(XSLTools.class);
+	private static final Logger LOG = Logger.getLogger(XSLTools.class);
 
 	/**
 	 * Buffer size.
@@ -70,22 +70,21 @@ public final class XSLTools
 	/**
 	 * Return url for artifact.
 	 * 
-	 * @param artifact The syntax is <groupid>:<artifactid>:<version>
+	 * @param artifact The syntax is &lt;groupid&gt;:&lt;artifactid&gt;:&lt;version&gt;
 	 * @return The file path.
 	 * 
 	 * @throws MavenException If error.
 	 * @throws ArtifactNotFoundException If artifact is not found.
 	 * @throws ResourceDoesNotExistException If resource can not be loaded.
 	 */
-	public static String getArtifact(final String artifact)
-	// throws MavenException, ArtifactNotFoundException,
-			// ResourceDoesNotExistException
-			throws Exception
+	public static String getArtifact(final String artifact) throws MavenException, ArtifactNotFoundException,
+			ResourceDoesNotExistException
 	{
 		return new Action()
 		{
 
-			public String run() throws Exception
+			public String run() throws ArtifactNotFoundException, ResourceDoesNotExistException,
+					MavenException
 			{
 				return ManageArtifact.getArtifact(artifact);
 			}
@@ -93,15 +92,27 @@ public final class XSLTools
 		}.run();
 	}
 
+	/**
+	 * This interface is a bridge to accept a code without all jar files.
+	 */
 	private interface Action
 	{
-		public String run() throws Exception;
+		/**
+		 * Method to run.
+		 * @return Result
+		 * @throws ArtifactNotFoundException If error.
+		 * @throws ResourceDoesNotExistException If error.
+		 * @throws MavenException If error.
+		 * @throws IOException If error.
+		 */
+		String run() throws ArtifactNotFoundException, ResourceDoesNotExistException, MavenException,
+				IOException;
 	};
 
 	/**
 	 * Maven copy a file.
 	 * 
-	 * @param artifact The syntax is <groupid>:<artifactid>:<version>
+	 * @param artifact The syntax is &lt;groupid&gt;:&lt;artifactid&gt;:&lt;version&gt;
 	 * @param toStrFile Target file.
 	 * @return The file name of artifact in local repository.
 	 * 
@@ -111,12 +122,14 @@ public final class XSLTools
 	 * @throws ArtifactNotFoundException If artifact is not found.
 	 * @throws ResourceDoesNotExistException If resource can not be loader.
 	 */
-	public static String mavenCopy(final String artifact, final String toStrFile) throws Exception
+	public static String mavenCopy(final String artifact, final String toStrFile)
+			throws ArtifactNotFoundException, ResourceDoesNotExistException, MavenException, IOException
 	{
 		return new Action()
 		{
 
-			public String run() throws Exception
+			public String run() throws ArtifactNotFoundException, ResourceDoesNotExistException,
+					MavenException, IOException
 			{
 				final String url = getArtifact(artifact);
 				fileCopyIfExist(
@@ -168,7 +181,7 @@ public final class XSLTools
 	public static void fileCopyIfExist(String fromStrFile, String toStrFile, final boolean exist)
 			throws IOException
 	{
-		log_.debug("fileCopyIfExist(" + fromStrFile + ", " + toStrFile + ", " + exist + ", " + exist
+		LOG.debug("fileCopyIfExist(" + fromStrFile + ", " + toStrFile + ", " + exist + ", " + exist
 				+ ") cwd=" + cwd_.get());
 		if (toStrFile.startsWith("file:"))
 			toStrFile = new URL(toStrFile).getFile();
@@ -200,7 +213,7 @@ public final class XSLTools
 		{
 			return;
 		}
-		log_.info("Write " + toFile);
+		LOG.info("Write " + toFile);
 
 		FileInputStream from = null;
 		FileOutputStream to = null;
@@ -225,7 +238,7 @@ public final class XSLTools
 				}
 				catch (IOException e)
 				{
-					log_.warn(e);
+					LOG.warn(e);
 				}
 			if (to != null)
 				try
@@ -234,7 +247,7 @@ public final class XSLTools
 				}
 				catch (IOException e)
 				{
-					log_.warn(e);
+					LOG.warn(e);
 				}
 		}
 	}
@@ -250,7 +263,7 @@ public final class XSLTools
 	 */
 	public static void mkLink(String fromStrFile, String toStrFile, final String link) throws IOException
 	{
-		log_.debug("mkLink(" + fromStrFile + ", " + toStrFile + ", " + link + ")");
+		LOG.debug("mkLink(" + fromStrFile + ", " + toStrFile + ", " + link + ")");
 		fromStrFile = fromStrFile.replace(
 			'/', File.separatorChar);
 		toStrFile = toStrFile.replace(
@@ -272,7 +285,7 @@ public final class XSLTools
 	 */
 	public static void mkLink(String toStrFile, final String link) throws IOException
 	{
-		log_.debug("mkLink(" + toStrFile + "," + link + ")");
+		LOG.debug("mkLink(" + toStrFile + "," + link + ")");
 
 		BufferedWriter out = null;
 		try
@@ -341,7 +354,7 @@ public final class XSLTools
 	 */
 	public static void info(final String msg)
 	{
-		log_.info(msg);
+		LOG.info(msg);
 	}
 
 	/**
@@ -351,7 +364,7 @@ public final class XSLTools
 	 */
 	public static void debug(final String msg)
 	{
-		log_.debug(msg);
+		LOG.debug(msg);
 
 	}
 
@@ -362,7 +375,7 @@ public final class XSLTools
 	 */
 	public static void warn(final String msg)
 	{
-		log_.warn(msg);
+		LOG.warn(msg);
 	}
 
 	/**
@@ -372,7 +385,7 @@ public final class XSLTools
 	 */
 	public static void error(final String msg)
 	{
-		log_.error(msg);
+		LOG.error(msg);
 	}
 
 	/**

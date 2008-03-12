@@ -38,12 +38,17 @@ import com.googlecode.jndiresources.plugin.Plugin;
 public final class ManageArtifact
 {
 	/**
-	 * Standard maven repository
+	 * Standard maven repository.
 	 */
 	private static final String CENTRAL_REPO = "http://repo1.maven.org/maven2";
 
 	/**
-	 * Cache of mapping artifact/file
+	 * Maven embedder singleton.
+	 */
+	private static MavenEmbedder maven_;
+
+	/**
+	 * Cache of mapping artifact/file.
 	 */
 	private static HashMap caches_ = new HashMap();
 
@@ -59,13 +64,13 @@ public final class ManageArtifact
 	 * Load the artifact in local repository, and return the file path. Use a
 	 * cache.
 	 * 
-	 * @param artifact The syntax is <groupid>:<artifactid>:<version>
+	 * @param artifact The syntax is &lt;groupid&gt;:&lt;artifactid&gt;:&lt;version&gt;
 	 * @return The path in local repository.
 	 * 
 	 * @throws MavenException If the artifact is not found or can't be download
 	 *             in local repository.
 	 * @throws ArtifactNotFoundException If Artifact is not found.
-	 * @throws ResourceDoesNotExistException
+	 * @throws ResourceDoesNotExistException If resource does not exist.
 	 */
 	public static String getArtifact(final String artifact) throws MavenException, ArtifactNotFoundException,
 			ResourceDoesNotExistException
@@ -104,9 +109,8 @@ public final class ManageArtifact
 	 * @throws MavenException If error when dowload or identify the maven jar
 	 *             file.
 	 * @throws ArtifactNotFoundException If artifact is not found.
+	 * @throws ResourceDoesNotExistException If error.
 	 */
-	private static MavenEmbedder maven_;
-
 	public static String getArtifact(final String groupId, final String artifactId, final String version,
 			final List repositories) throws MavenException, ArtifactNotFoundException,
 			ResourceDoesNotExistException

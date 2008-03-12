@@ -110,43 +110,28 @@ public final class XMLContext
 	 */
 	static
 	{
-		// try
-		{
-			System.setProperty(
-				"javax.xml.transform.TransformerFactory", "net.sf.saxon.TransformerFactoryImpl");
-			System.setProperty(
-				"javax.xml.xpath.XPathFactory:http://java.sun.com/jaxp/xpath/dom",
-				"net.sf.saxon.xpath.XPathFactoryImpl");
-			DOC_BUILDER_FACTORY = DocumentBuilderFactory.newInstance();
-			// DOC_BUILDER_FACTORY.setValidating(true);
-			DOC_BUILDER_FACTORY.setAttribute(
-				"http://java.sun.com/xml/jaxp/properties/schemaLanguage", "http://www.w3.org/2001/XMLSchema");
-			DOC_BUILDER_FACTORY.setAttribute(
-				"http://java.sun.com/xml/jaxp/properties/schemaSource", new File(
-						"src/main/xsd/jndi-resources-versions.xsd"));
+		System.setProperty(
+			"javax.xml.transform.TransformerFactory", "net.sf.saxon.TransformerFactoryImpl");
+		System.setProperty(
+			"javax.xml.xpath.XPathFactory:http://java.sun.com/jaxp/xpath/dom",
+			"net.sf.saxon.xpath.XPathFactoryImpl");
+		DOC_BUILDER_FACTORY = DocumentBuilderFactory.newInstance();
+		// DOC_BUILDER_FACTORY.setValidating(true);
+		DOC_BUILDER_FACTORY.setAttribute(
+			"http://java.sun.com/xml/jaxp/properties/schemaLanguage", "http://www.w3.org/2001/XMLSchema");
+		DOC_BUILDER_FACTORY.setAttribute(
+			"http://java.sun.com/xml/jaxp/properties/schemaSource", new File(
+					"src/main/xsd/jndi-resources-versions.xsd"));
 
-			XPATH_FACTORY = XPathFactory.newInstance();
-			TRANSFORMER_FACTORY = TransformerFactory.newInstance();
-			SAX_PARSER_FACTORY = SAXParserFactory.newInstance();
-			SAX_PARSER_FACTORY.setNamespaceAware(true);
-			// SAX_PARSER_FACTORY.setValidating(true);
-			// SAX_PARSER_FACTORY.setFeature("http://xml.org/sax/features/validation",true);
-			// SAX_PARSER_FACTORY.setFeature("http://apache.org/xml/features/validation/schema",true);
-			// SAX_PARSER_FACTORY.setFeature("http://apache.org/xml/features/validation/schema-full-checking",true);
-			SAX_TRANSFORMER_FACTORY = (SAXTransformerFactory) TransformerFactory.newInstance();
-		}
-		// catch (SAXNotRecognizedException e)
-		// {
-		// throw new IllegalArgumentException(e);
-		// }
-		// catch (SAXNotSupportedException e)
-		// {
-		// throw new IllegalArgumentException(e);
-		// }
-		// catch (ParserConfigurationException e)
-		// {
-		// throw new IllegalArgumentException(e);
-		// }
+		XPATH_FACTORY = XPathFactory.newInstance();
+		TRANSFORMER_FACTORY = TransformerFactory.newInstance();
+		SAX_PARSER_FACTORY = SAXParserFactory.newInstance();
+		SAX_PARSER_FACTORY.setNamespaceAware(true);
+		// SAX_PARSER_FACTORY.setValidating(true);
+		// SAX_PARSER_FACTORY.setFeature("http://xml.org/sax/features/validation",true);
+		// SAX_PARSER_FACTORY.setFeature("http://apache.org/xml/features/validation/schema",true);
+		// SAX_PARSER_FACTORY.setFeature("http://apache.org/xml/features/validation/schema-full-checking",true);
+		SAX_TRANSFORMER_FACTORY = (SAXTransformerFactory) TransformerFactory.newInstance();
 	};
 
 	/**

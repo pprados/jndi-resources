@@ -48,16 +48,30 @@ public class MavenEmbedderLoggerManager extends AbstractLoggerManager implements
 	 */
 	private String threshold_ = "info";
 
+	/**
+	 * The current threashold.
+	 */
 	private int currentThreshold_;
 
+	/**
+	 * The current logger.
+	 */
 	private final Logger curlogger_; // NOPMD
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param logger The next logger.
+	 */
 	public MavenEmbedderLoggerManager(final Logger logger)
 	{
 		super();
 		curlogger_ = logger;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void initialize()
 	{
 		debug("Initializing ConsoleLoggerManager: " + this.hashCode() + ".");
@@ -71,44 +85,68 @@ public class MavenEmbedderLoggerManager extends AbstractLoggerManager implements
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setThreshold(final int currentThreshold)
 	{
 		this.currentThreshold_ = currentThreshold;
 	}
 
 	/**
-	 * @return Returns the threshold.
+	 * {@inheritDoc}
 	 */
 	public int getThreshold()
 	{
 		return currentThreshold_;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setThreshold(final String role, final String roleHint, final int threshold)
 	{
 		// Empty
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public int getThreshold(final String role, final String roleHint)
 	{
 		return currentThreshold_;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Logger getLoggerForComponent(final String role, final String roleHint)
 	{
 		return curlogger_;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void returnComponentLogger(final String role, final String roleHint)
 	{
 		// Empty
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public int getActiveLoggerCount()
 	{
 		return 1;
 	}
 
+	/**
+	 * Parse threshold.
+	 * 
+	 * @param text The text to parse.
+	 * @return The level.
+	 */
 	private int parseThreshold(final String text)
 	{
 		final String txt = text.trim().toLowerCase();

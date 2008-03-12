@@ -48,7 +48,7 @@ import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 
 /**
  * Class intended to be used by clients who wish to embed Maven into their
- * applications
+ * applications.
  * 
  * @author <a href="mailto:jason@maven.org">Jason van Zyl</a>
  * @author <a href="mailto:trygvis@inamo.no">Trygve Laugst&oslash;l</a>
@@ -59,28 +59,49 @@ final class MavenEmbedder
 	/**
 	 * The logger.
 	 */
-	private static final Logger log_ = Logger.getLogger(MavenEmbedder.class);
+	private static final Logger LOG = Logger.getLogger(MavenEmbedder.class);
 
+	/**
+	 * Current user home directory.
+	 */
 	private static final String USER_HOME = System.getProperty("user.home");
 
 	// ----------------------------------------------------------------------
 	// Embedder
 	// ----------------------------------------------------------------------
 
+	/**
+	 * The singleton.
+	 */
 	private Embedder embedder_;
 
 	// ----------------------------------------------------------------------
 	// Components
 	// ----------------------------------------------------------------------
 
+	/**
+	 * The repository factory.
+	 */
 	private ArtifactRepositoryFactory artifactRepositoryFactory_;
 
+	/**
+	 * The settings builder.
+	 */
 	private MavenSettingsBuilder settingsBuilder_;
 
+	/**
+	 * The artifact factory.
+	 */
 	private ArtifactFactory artifactFactory_;
 
+	/**
+	 * The artifact resolver.
+	 */
 	private ArtifactResolver artifactResolver_;
 
+	/**
+	 * The default artifact repository layout.
+	 */
 	private ArtifactRepositoryLayout defaultArtifactRepositoryLayout_;
 
 	// TODO private ArtifactMetadataSource defaultMetadataSource_;
@@ -89,12 +110,24 @@ final class MavenEmbedder
 	// Configuration
 	// ----------------------------------------------------------------------
 
+	/**
+	 * The settings.
+	 */
 	private Settings settings_;
 
+	/**
+	 * The local repository.
+	 */
 	private ArtifactRepository localRepository_;
 
+	/**
+	 * The local repository directory.
+	 */
 	private File localRepositoryDirectory_;
 
+	/**
+	 * The class loader.
+	 */
 	private ClassLoader classLoader_;
 
 	// ----------------------------------------------------------------------
@@ -103,10 +136,19 @@ final class MavenEmbedder
 
 	// release plugin uses this but in IDE there will probably always be some
 	// form of interaction.
+	/**
+	 * The interactive mode.
+	 */
 	private boolean interactiveMode_;
 
+	/**
+	 * The offline mode.
+	 */
 	private boolean offline_;
 
+	/**
+	 * The global checksum policy.
+	 */
 	private String globalChecksumPolicy_;
 
 	/**
@@ -119,48 +161,87 @@ final class MavenEmbedder
 	// Accessors
 	// ----------------------------------------------------------------------
 
+	/**
+	 * Set interactive mode.
+	 * 
+	 * @param interactiveMode The new interactive mode.
+	 */
 	public void setInteractiveMode(final boolean interactiveMode)
 	{
 		this.interactiveMode_ = interactiveMode;
 	}
 
+	/**
+	 * Get interactive mode.
+	 * 
+	 * @return interactive mode.
+	 */
 	public boolean isInteractiveMode()
 	{
 		return interactiveMode_;
 	}
 
+	/**
+	 * Set off line mode.
+	 * 
+	 * @param offline The off line mode.
+	 */
 	public void setOffline(final boolean offline)
 	{
 		this.offline_ = offline;
 	}
 
+	/**
+	 * Get off line mode.
+	 * 
+	 * @return Off line mode.
+	 */
 	public boolean isOffline()
 	{
 		return offline_;
 	}
 
+	/**
+	 * Set global checksum policy.
+	 * 
+	 * @param globalChecksumPolicy The new checksum policy.
+	 */
 	public void setGlobalChecksumPolicy(final String globalChecksumPolicy)
 	{
 		this.globalChecksumPolicy_ = globalChecksumPolicy;
 	}
 
+	/**
+	 * Get global checksum policy.
+	 * 
+	 * @return global checksum policy.
+	 */
 	public String getGlobalChecksumPolicy()
 	{
 		return globalChecksumPolicy_;
 	}
 
-	public boolean isAlignWithUserInstallation()
-	{
-		return alignWithUserInstallation_;
-	}
-
+	/**
+	 * Set align with user installation.
+	 * 
+	 * @param alignWithUserInstallation The new align with user installation status.
+	 */
 	public void setAlignWithUserInstallation(final boolean alignWithUserInstallation)
 	{
 		this.alignWithUserInstallation_ = alignWithUserInstallation;
 	}
 
 	/**
-	 * Set the classloader to use with the maven embedder.
+	 * Get align with user installation status.
+	 * @return align with user installation status.
+	 */
+	public boolean isAlignWithUserInstallation()
+	{
+		return alignWithUserInstallation_;
+	}
+
+	/**
+	 * Set the class loader to use with the maven embedder.
 	 * 
 	 * @param classLoader The class loader.
 	 */
@@ -169,11 +250,21 @@ final class MavenEmbedder
 		this.classLoader_ = classLoader;
 	}
 
+	/**
+	 * Get class loader.
+	 * 
+	 * @return The class loader.
+	 */
 	public ClassLoader getClassLoader()
 	{
 		return classLoader_;
 	}
 
+	/**
+	 * Get local repository.
+	 * 
+	 * @return Local repository.
+	 */
 	public ArtifactRepository getLocalRepository()
 	{
 		return localRepository_;
@@ -183,6 +274,17 @@ final class MavenEmbedder
 	// Artifacts
 	// ----------------------------------------------------------------------
 
+	/**
+	 * Create artifact.
+	 * 
+	 * @param groupId The group id.
+	 * @param artifactId The artifact id.
+	 * @param version The artifact version.
+	 * @param scope The artifact scope.
+	 * @param type The artifact type.
+	 * 
+	 * @return The artifact.
+	 */
 	public Artifact createArtifact(final String groupId, final String artifactId, final String version,
 			final String scope, final String type)
 	{
@@ -190,6 +292,16 @@ final class MavenEmbedder
 			groupId, artifactId, version, scope, type);
 	}
 
+	/**
+	 * Resolve artifact.
+	 * 
+	 * @param artifact The artifact to resolve.
+	 * @param remoteRepositories A list of remote repositories.
+	 * @param localRepository The local repository.
+	 * 
+	 * @throws ArtifactResolutionException If it's impossible to resolve artifact.
+	 * @throws ArtifactNotFoundException If the artifact is not found.
+	 */
 	public void resolve(final Artifact artifact, final List remoteRepositories,
 			final ArtifactRepository localRepository) throws ArtifactResolutionException,
 			ArtifactNotFoundException
@@ -198,6 +310,16 @@ final class MavenEmbedder
 			artifact, remoteRepositories, localRepository);
 	}
 
+	/**
+	 * Resolve all artifact.
+	 * 
+	 * @param artifact The artifact to resolve.
+	 * @param remoteRepositories A list of remote repositories.
+	 * @param localRepository The local repository.
+	 * 
+	 * @throws ArtifactResolutionException If it's impossible to resolve artifact.
+	 * @throws ArtifactNotFoundException If the artifact is not found.
+	 */
 	public void resolveAll(final Artifact artifact, final List remoteRepositories,
 			final ArtifactRepository localRepository) throws ArtifactResolutionException,
 			ArtifactNotFoundException
@@ -205,14 +327,8 @@ final class MavenEmbedder
 		final Set set = new HashSet();
 		set.add(artifact);
 		final ArtifactResolutionResult result = artifactResolver_.resolveTransitively(
-			set, artifact, remoteRepositories, localRepository, new MavenMetadataSource()); // TODO
-																							// :
-																							// J'ai
-																							// ajouter
-																							// maven-project
-																							// pour
-																							// cela
-																							// :-(
+			set, artifact, remoteRepositories, localRepository, new MavenMetadataSource()); 
+		// TODO : J'ai ajouté maven-project pour cela :-( Est-ce vraiement nécessaire ?
 		for (final Iterator i = result.getArtifacts().iterator(); i.hasNext();)
 		{
 			System.out.println(i.next());
@@ -223,16 +339,41 @@ final class MavenEmbedder
 	// Local Repository
 	// ----------------------------------------------------------------------
 
+	/**
+	 * Default local repository id.
+	 */
 	private static final String DEFAULT_LOCAL_REPO_ID = "local";
 
+	/**
+	 * Default layout id.
+	 */
 	private static final String DEFAULT_LAYOUT_ID = "default";
 
+	/**
+	 * Create a local repository.
+	 * 
+	 * @param settings The settings.
+	 * 
+	 * @return The local repository.
+	 * 
+	 * @throws ComponentLookupException If error.
+	 */
 	private ArtifactRepository createLocalRepository(final Settings settings) throws ComponentLookupException
 	{
 		return createLocalRepository(
 			settings.getLocalRepository(), DEFAULT_LOCAL_REPO_ID);
 	}
 
+	/**
+	 * Create local repository.
+	 * 
+	 * @param url The url to local the repository.
+	 * @param repositoryId The repository id.
+	 * 
+	 * @return The local repository.
+	 * 
+	 * @throws ComponentLookupException If error.
+	 */
 	private ArtifactRepository createLocalRepository(final String url, final String repositoryId)
 			throws ComponentLookupException
 	{
@@ -246,6 +387,15 @@ final class MavenEmbedder
 			url, repositoryId);
 	}
 
+	/**
+	 * Create a repository.
+	 * 
+	 * @param url The url of repository.
+	 * @param repositoryId The repository id.
+	 * 
+	 * @return The repository.
+	 * @throws ComponentLookupException If error.
+	 */
 	public ArtifactRepository createRepository(final String url, final String repositoryId)
 			throws ComponentLookupException
 	{
@@ -268,6 +418,14 @@ final class MavenEmbedder
 	// Lifecycle
 	// ----------------------------------------------------------------------
 
+	/**
+	 * Start the maven embedded.
+	 * @throws DuplicateRealmException If error.
+	 * @throws PlexusContainerException If error.
+	 * @throws ComponentLookupException If error.
+	 * @throws IOException If error.
+	 * @throws XmlPullParserException If error.
+	 */
 	public void start() throws DuplicateRealmException, PlexusContainerException, ComponentLookupException,
 			IOException, XmlPullParserException
 	{
@@ -315,114 +473,189 @@ final class MavenEmbedder
 		localRepository_ = createLocalRepository(settings_);
 	}
 
+	/**
+	 * Logger.
+	 */
 	private static class PlexusLogger implements org.codehaus.plexus.logging.Logger
 	{
 
+		/**
+		 * {@inheritDoc}
+		 */
 		public void debug(final String message)
 		{
-			log_.debug(message);
+			LOG.debug(message);
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
 		public void debug(final String message, final Throwable throwable)
 		{
-			log_.debug(
+			LOG.debug(
 				message, throwable);
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
 		public void error(final String message)
 		{
-			log_.error(message);
+			LOG.error(message);
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
 		public void error(final String message, final Throwable throwable)
 		{
-			log_.error(
+			LOG.error(
 				message, throwable);
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
 		public void fatalError(final String message)
 		{
-			log_.fatal(message);
+			LOG.fatal(message);
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
 		public void fatalError(final String message, final Throwable throwable)
 		{
-			log_.fatal(
+			LOG.fatal(
 				message, throwable);
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
 		public void info(final String message)
 		{
-			log_.info(message);
+			LOG.info(message);
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
 		public void info(final String message, final Throwable throwable)
 		{
-			log_.info(
+			LOG.info(
 				message, throwable);
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
 		public void warn(final String message)
 		{
-			log_.warn(message);
+			LOG.warn(message);
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
 		public void warn(final String message, final Throwable throwable)
 		{
-			log_.warn(
+			LOG.warn(
 				message, throwable);
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
 		public boolean isDebugEnabled()
 		{
-			return log_.isDebugEnabled();
+			return LOG.isDebugEnabled();
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
 		public boolean isErrorEnabled()
 		{
-			return log_.isEnabledFor(Level.ERROR);
+			return LOG.isEnabledFor(Level.ERROR);
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
 		public boolean isFatalErrorEnabled()
 		{
-			return log_.isEnabledFor(Level.FATAL);
+			return LOG.isEnabledFor(Level.FATAL);
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
 		public boolean isInfoEnabled()
 		{
-			return log_.isEnabledFor(Level.INFO);
+			return LOG.isEnabledFor(Level.INFO);
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
 		public boolean isWarnEnabled()
 		{
-			return log_.isEnabledFor(Level.WARN);
+			return LOG.isEnabledFor(Level.WARN);
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
 		public org.codehaus.plexus.logging.Logger getChildLogger(final String arg0)
 		{
 			return this;
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
 		public String getName()
 		{
 			return "Maven";
 		}
 
+		/**
+		 * Debig level.
+		 */
 		private static final int DEBUG_LEVEL = 0;
 
+		/**
+		 * Info level.
+		 */
 		private static final int INFO_LEVEL = 1;
 
+		/**
+		 * Warn level.
+		 */
 		private static final int WARN_LEVEL = 2;
 
+		/**
+		 * Error level.
+		 */
 		private static final int ERROR_LEVEL = 3;
 
+		/**
+		 * Fatal level.
+		 */
 		private static final int FATAL_LEVEL = 4;
 
+		/**
+		 * Other level.
+		 */
 		private static final int OTHER_LEVEL = 5;
 
+		/**
+		 * {@inheritDoc}
+		 */
 		public int getThreshold()
 		{
-			final Level level = log_.getLevel();
+			final Level level = LOG.getLevel();
 			if (level.equals(Level.DEBUG))
 				return DEBUG_LEVEL;
 			if (level.equals(Level.INFO))
@@ -441,6 +674,9 @@ final class MavenEmbedder
 	//
 	// ----------------------------------------------------------------------
 
+	/**
+	 * Detect user installation.
+	 */
 	private void detectUserInstallation()
 	{
 		if (new File(USER_HOME, ".m2").exists())
@@ -497,6 +733,11 @@ final class MavenEmbedder
 	// Lifecycle
 	// ----------------------------------------------------------------------
 
+	/**
+	 * Stop the maven embedded.
+	 * 
+	 * @throws ComponentLifecycleException If error.
+	 */
 	public void stop() throws ComponentLifecycleException
 	{
 		embedder_.release(artifactRepositoryFactory_);

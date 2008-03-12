@@ -50,7 +50,7 @@ public final class ExtendedProperties
 	/**
 	 * The logger.
 	 */
-	private static final Logger log_ = Logger.getLogger(ExtendedProperties.class);
+	private static final Logger LOG = Logger.getLogger(ExtendedProperties.class);
 
 	/**
 	 * The XPath factory.
@@ -136,7 +136,7 @@ public final class ExtendedProperties
 		String include = null;
 		do
 		{
-			log_.debug("Load " + filename);
+			LOG.debug("Load " + filename);
 			final Properties p = new Properties();
 			InputStream in = filename.openStream();
 			if (filename.getPath().endsWith(
@@ -185,7 +185,7 @@ public final class ExtendedProperties
 	 * @throws IOException If error.
 	 * @throws ParserConfigurationException If error.
 	 */
-	public static final String parseValue(final String value) throws XPathExpressionException, SAXException,
+	public static String parseValue(final String value) throws XPathExpressionException, SAXException,
 			IOException, ParserConfigurationException
 	{
 		if (value.startsWith("xpath:"))
@@ -295,10 +295,11 @@ public final class ExtendedProperties
 		});
 		try
 		{
+			in = url.openStream();
 			final String result = environnement.evaluate(
-				xpath, new InputSource(in = url.openStream()));
-			if (log_.isDebugEnabled())
-				log_.debug(tokens + '=' + result);
+				xpath, new InputSource(in));
+			if (LOG.isDebugEnabled())
+				LOG.debug(tokens + '=' + result);
 			return result;
 		}
 		finally
