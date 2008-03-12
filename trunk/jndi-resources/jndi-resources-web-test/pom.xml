@@ -8,7 +8,7 @@
 	<groupId>com.googlecode.jndi-resources</groupId>
 	<artifactId>jndi-web-test</artifactId>
 	<packaging>war</packaging>
-	<name>complex-war-sample</name>
+	<name>web-test</name>
 	<description>Sample with all kind of resources.</description>
 	<url>${url.home}/${project.name}</url>
 
@@ -25,6 +25,16 @@
 		</site>
 	</distributionManagement>
 
+	<scm>
+		<connection>
+			scm:svn:http://jndi-resources.googlecode.com/svn/trunk/jndi-resources/jndi-resources-${project.name}
+		</connection>
+		<developerConnection>
+			scm:svn:https://jndi-resources.googlecode.com/svn/trunk/jndi-resources/jndi-resources-${project.name}
+		</developerConnection>
+		<url>http://code.google.com/p/jndi-resources/source/browse</url>
+	</scm>
+	
 	<build>
 		<plugins>
 			<plugin>
