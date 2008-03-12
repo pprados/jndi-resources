@@ -21,7 +21,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.googlecode.jndi-resources</groupId>
 	<artifactId>jndi-resources-plugins</artifactId>
-	<name>mbean-and-factories</name>
+	<name>plugins</name>
 	<description>MBean and Resources factories</description>
 	<url>${url.home}/${project.name}</url>
 
@@ -38,6 +38,16 @@
 		</site>
 	</distributionManagement>
 
+	<scm>
+		<connection>
+			scm:svn:http://jndi-resources.googlecode.com/svn/trunk/jndi-resources/jndi-resources-${project.name}
+		</connection>
+		<developerConnection>
+			scm:svn:https://jndi-resources.googlecode.com/svn/trunk/jndi-resources/jndi-resources-${project.name}
+		</developerConnection>
+		<url>http://code.google.com/p/jndi-resources/source/browse</url>
+	</scm>
+	
 	<build>
 		<plugins>
 
