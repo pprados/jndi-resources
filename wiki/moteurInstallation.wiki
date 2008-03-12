@@ -1,4 +1,5 @@
 #summary Description du moteur d'installation.
+#labels Phase-Implementation
 
 = Moteur d'installation =
 
