@@ -182,7 +182,7 @@
 					-->
 					<toAddresses>
 						<toAddress implementation="java.lang.String">
-							jndi-resources@yahoogroupes.fr
+							jndi-resources@googlegroups.com
 						</toAddress>
 					</toAddresses>
 				</configuration>
@@ -270,8 +270,7 @@
 			</plugin>
 
 			<!-- CheckStyle -->
-			<!-- 
-				<plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
 				<configuration>
@@ -281,8 +280,7 @@
 				<sourceEncoding>utf-8</sourceEncoding>
 				<minimumTokens>100</minimumTokens>
 				</configuration>
-				</plugin>
-			-->
+			</plugin>
 
 			<!-- Changes -->
 			<plugin>
@@ -300,12 +298,10 @@
 			</plugin>
 
 			<!-- Change log -->
-			<!-- 
-				<plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-changelog-plugin</artifactId>
-				</plugin>
-			-->
+			</plugin>
 
 			<!-- Compatibilité descendante -->
 			<plugin>
@@ -315,12 +311,11 @@
 
 
 			<!-- JDepend -->
-			<!-- 
-				<plugin>
+			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>jdepend-maven-plugin</artifactId>
-				</plugin>
-			-->
+				<version>2.0-beta-1</version>
+			</plugin>
 
 			<!-- SureFire : Unit test -->
 			<!-- 
@@ -420,7 +415,7 @@
 		<maven.version>[2.0.1,)</maven.version>
 		<wagon.version>[1.0-beta-1,)</wagon.version>
 		<checkstyle.url>
-			http://www.philippe.prados.name/Langage/Java/Maven/checkstyle-pprados.xml
+			http://www.prados.fr/mvn/checkstyle-pprados.xml
 		</checkstyle.url>
 	</properties>
 
