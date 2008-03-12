@@ -1,4 +1,5 @@
 #summary Conventions de mapping des clefs JNDI.
+#labels Phase-Implementation
 
 = Conventions de mapping des clefs JNDI =
 
