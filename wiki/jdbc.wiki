@@ -1,5 +1,5 @@
 #summary Famille jdbc/*.
-#labels jdbc,Phase-Implementation
+#labels Phase-Implementation
 
 = Famille JDBC =
 
