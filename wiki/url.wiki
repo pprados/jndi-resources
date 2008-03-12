@@ -1,4 +1,5 @@
 #summary Famille url/*
+#labels Phase-configuration
 
 = Famille URL =
 
