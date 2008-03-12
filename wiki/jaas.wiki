@@ -1,4 +1,5 @@
 #summary Famille jaas/*, spécial JBoss
+#labels Phase-configuration
 
 = Famille JAAS, spécial JBoss =
 
