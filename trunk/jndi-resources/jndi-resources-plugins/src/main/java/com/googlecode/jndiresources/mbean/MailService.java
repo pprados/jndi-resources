@@ -28,6 +28,8 @@ import javax.naming.NamingException;
 import javax.naming.Reference;
 import javax.naming.StringRefAddr;
 
+import org.apache.log4j.Logger;
+
 import com.googlecode.jndiresources.factory.MailSessionFactory;
 
 /**
@@ -39,17 +41,41 @@ import com.googlecode.jndiresources.factory.MailSessionFactory;
 public class MailService extends AbstractService
 		implements MailServiceMBean
 {
+	/**
+	 * The logger.
+	 */
+	private static final Logger LOG = Logger.getLogger(MailService.class);
+
+	/**
+	 * The JNDI name.
+	 */
 	public static final String JNDI_NAME = "java:/Mail";
 
+	/**
+	 * The user name.
+	 */
 	private String user_;
 
+	/**
+	 * The password.
+	 */
 	private String password_;
 
-	Reference ref_;
+	/**
+	 * The reference.
+	 */
+	private Reference ref_;
 
-	/** save properties here */
+	/** 
+	 * The properties.
+	 */
 	private Properties props_ = null;
 
+	/**
+	 * The mail service. Accept to be used in a remote JNDI.
+	 * 
+	 * @throws NamingException If error.
+	 */
 	public MailService() throws NamingException
 	{
 		super();
@@ -57,7 +83,9 @@ public class MailService extends AbstractService
 	}
 	/**
 	 * User id used to connect to a mail server.
-	 * @throws NamingException 
+	 * 
+	 * @param user The user.
+	 * @throws NamingException If error.
 	 * 
 	 * @see #getUser
 	 * 
@@ -65,7 +93,7 @@ public class MailService extends AbstractService
 	 */
 	public void setUser(final String user) throws NamingException
 	{
-		if (started_)
+		if (isStarted())
 		{
 			unbind();
 			user_ = user;
@@ -76,6 +104,8 @@ public class MailService extends AbstractService
 	}
 
 	/**
+	 * Get the user name.
+	 * @return user name.
 	 * @jmx:managed-attribute
 	 */
 	public String getUser()
@@ -85,13 +115,16 @@ public class MailService extends AbstractService
 
 	/**
 	 * Password used to connect to a mail server.
-	 * @throws NamingException 
+	 * 
+	 * @param password The password.
+	 * 
+	 * @throws NamingException  If error.
 	 * 
 	 * @jmx:managed-attribute
 	 */
 	public void setPassword(final String password) throws NamingException
 	{
-		if (started_)
+		if (isStarted())
 		{
 			unbind();
 			password_ = password;
@@ -102,7 +135,9 @@ public class MailService extends AbstractService
 	}
 
 	/**
+	 * Get the password.
 	 * Password is write only.
+	 * @return the password.
 	 */
 	protected String getPassword()
 	{
@@ -110,6 +145,9 @@ public class MailService extends AbstractService
 	}
 
 	/**
+	 * Get the store protocol.
+	 * 
+	 * @return the store protocol.
 	 * @jmx:managed-attribute
 	 */
 	public String getStoreProtocol()
@@ -121,6 +159,9 @@ public class MailService extends AbstractService
 	}
 
 	/**
+	 * Get the transport protocol.
+	 * 
+	 * @return the transport protocol.
 	 * @jmx:managed-attribute
 	 */
 	public String getTransportProtocol()
@@ -132,6 +173,9 @@ public class MailService extends AbstractService
 	}
 
 	/**
+	 * Get the default sender.
+	 * 
+	 * @return the default sender.
 	 * @jmx:managed-attribute
 	 */
 	public String getDefaultSender()
@@ -143,6 +187,9 @@ public class MailService extends AbstractService
 	}
 
 	/**
+	 * Get the SMTP server host.
+	 * 
+	 * @return the SMTP server host.
 	 * @jmx:managed-attribute
 	 */
 	public String getSMTPServerHost()
@@ -154,6 +201,9 @@ public class MailService extends AbstractService
 	}
 
 	/**
+	 * Get the POP3 server host.
+	 * 
+	 * @return the POP3 server host.
 	 * @jmx:managed-attribute
 	 */
 	public String getPOP3ServerHost()
@@ -169,7 +219,7 @@ public class MailService extends AbstractService
 	 */
 	public void start() throws NamingException
 	{
-		if (started_)
+		if (isStarted())
 			return;
 		if (getJNDIName() == null)
 			throw new IllegalStateException("jndiName is null");
@@ -190,9 +240,12 @@ public class MailService extends AbstractService
 
 		// now make the properties available
 		props_ = props;
-		started_ = true;
+		setStarted(true);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	protected void rebind() throws NamingException
 	{
 		final String bindName = getJNDIName();
@@ -227,7 +280,7 @@ public class MailService extends AbstractService
 			ctx.close();
 		}
 	
-		log.info("Mail Service bound to " + bindName);
+		LOG.info("Mail Service bound to " + bindName);
 	}
 
 

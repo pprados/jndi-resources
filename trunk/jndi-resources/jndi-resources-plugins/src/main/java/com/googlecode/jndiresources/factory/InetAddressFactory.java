@@ -46,7 +46,7 @@ public class InetAddressFactory implements ObjectFactory
 			{
 				Reference ref = (Reference) obj;
 				if (!"java.net.InetAddress".equals(ref.getClassName()))
-						throw new NamingException("Invalide type "+ref.getClassName());
+						throw new NamingException("Invalide type " + ref.getClassName());
 				return InetAddress.getByName((String)ref.get("value").getContent());
 			}
 			return null;

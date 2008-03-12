@@ -35,8 +35,7 @@ public class InternetAddressFactory implements ObjectFactory
 	/**
 	 * {@inheritDoc}
 	 */
-	public Object getObjectInstance(Object obj, javax.naming.Name name,
-			Context nameCtx, Hashtable environment)
+	public Object getObjectInstance(Object obj, javax.naming.Name name, Context nameCtx, Hashtable environment)
 			throws NamingException
 	{
 		try
@@ -44,18 +43,19 @@ public class InternetAddressFactory implements ObjectFactory
 			if (obj instanceof Reference)
 			{
 				Reference ref = (Reference) obj;
-				if (!"javax.mail.internet.InternetAddress".equals(ref.getClassName()) &&
-					!"javax.mail.Address".equals(ref.getClassName()))
-						throw new NamingException("Invalide type "+ref.getClassName());
-				return new InternetAddress((String)ref.get("value").getContent());
+				if (!"javax.mail.internet.InternetAddress".equals(ref.getClassName())
+						&& !"javax.mail.Address".equals(ref.getClassName()))
+					throw new NamingException("Invalide type " + ref.getClassName());
+				return new InternetAddress((String) ref.get(
+					"value").getContent());
 			}
 			return null;
 		}
 		catch (AddressException e)
 		{
-            NamingException ne = new NamingException(e.getMessage());
-            ne.setRootCause(e);
-            throw ne;
+			NamingException ne = new NamingException(e.getMessage());
+			ne.setRootCause(e);
+			throw ne;
 		}
 	}
 

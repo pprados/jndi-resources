@@ -38,22 +38,24 @@ public class ContextFactory implements ObjectFactory
 	/**
 	 * {@inheritDoc}
 	 */
-	public Object getObjectInstance(final Object obj, final Name name,
-			final Context nameCtx, final Hashtable environment)
-			throws NamingException
+	public Object getObjectInstance(final Object obj, final Name name, final Context nameCtx,
+			final Hashtable environment) throws NamingException
 	{
 		if (obj instanceof Reference)
 		{
 			final Reference ref = (Reference) obj;
 			if (!"javax.naming.Context".equals(ref.getClassName()))
-					throw new NamingException("Invalide type "+ref.getClassName());
-			final Properties prop=new Properties();
+				throw new NamingException("Invalide type " + ref.getClassName());
+			final Properties prop = new Properties();
 			try
 			{
-//				prop.load(new StringReader((String)ref.get("value").getContent()));
-				prop.load(new StringBufferInputStream((String)ref.get("value").getContent()));
+				// prop.load(new
+				// StringReader((String)ref.get("value").getContent()));
+				prop.load(new StringBufferInputStream((String) ref.get(
+					"value").getContent()));
 				return new InitialContext(prop);
-			} catch (IOException e)
+			}
+			catch (IOException e)
 			{
 				throw new NamingException(e.getLocalizedMessage()); // NOPMD
 			}

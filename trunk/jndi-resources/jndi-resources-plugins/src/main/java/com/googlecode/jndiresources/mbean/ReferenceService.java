@@ -37,20 +37,30 @@ import org.apache.log4j.Logger;
 public class ReferenceService extends AbstractService
 	implements ReferenceServiceMBean
 {
+	/**
+	 * The logger.
+	 */
 	private static Logger log = Logger.getLogger(ReferenceService.class);
 
+	/**
+	 * The type.
+	 */
 	private String type_;
 
+	/**
+	 * The factory.
+	 */
 	private String factory_;
 
 	/**
 	 * @param type The type of the resource.
+	 * @throws NamingException If error.
 	 * 
 	 * @jmx:managed-attribute
 	 */
 	public void setType(final String type) throws NamingException
 	{
-		if (started_)
+		if (isStarted())
 		{
 			unbind();
 			type_ = type;
@@ -72,12 +82,13 @@ public class ReferenceService extends AbstractService
 
 	/**
 	 * @param factory The factory.
+	 * @throws NamingException If error.
 	 * 
 	 * @jmx:managed-attribute
 	 */
 	public void setFactory(final String factory) throws NamingException
 	{
-		if (started_)
+		if (isStarted())
 		{
 			unbind();
 			factory_ = factory;
@@ -109,7 +120,7 @@ public class ReferenceService extends AbstractService
 		if (factory_ == null)
 			throw new IllegalStateException("factory is null");
 		rebind();
-		started_ = true;
+		setStarted(true);
 	}
 
 	/**

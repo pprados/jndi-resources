@@ -35,8 +35,7 @@ public class URLFactory implements ObjectFactory
 	/**
 	 * {@inheritDoc}
 	 */
-	public Object getObjectInstance(Object obj, javax.naming.Name name,
-			Context nameCtx, Hashtable environment)
+	public Object getObjectInstance(Object obj, javax.naming.Name name, Context nameCtx, Hashtable environment)
 			throws NamingException
 	{
 		try
@@ -45,16 +44,17 @@ public class URLFactory implements ObjectFactory
 			{
 				Reference ref = (Reference) obj;
 				if (!"java.net.URL".equals(ref.getClassName()))
-						throw new NamingException("Invalide type "+ref.getClassName());
-				return new URL((String)ref.get("value").getContent());
+					throw new NamingException("Invalide type " + ref.getClassName());
+				return new URL((String) ref.get(
+					"value").getContent());
 			}
 			return null;
 		}
 		catch (MalformedURLException e)
 		{
-            NamingException ne = new NamingException(e.getMessage());
-            ne.setRootCause(e);
-            throw ne;
+			NamingException ne = new NamingException(e.getMessage());
+			ne.setRootCause(e);
+			throw ne;
 		}
 
 	}

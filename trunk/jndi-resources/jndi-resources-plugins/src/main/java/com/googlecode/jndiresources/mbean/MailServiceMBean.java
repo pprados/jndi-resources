@@ -36,32 +36,101 @@ import org.w3c.dom.Element;
  */
 public interface MailServiceMBean
 {
+	/**
+	 * Set the user name.
+	 * @param user The user name.
+	 * @throws NamingException If error.
+	 */
 	void setUser(final String user) throws NamingException;
 
+	/**
+	 * Get the user name.
+	 * @return The user name.
+	 */
 	String getUser();
 
+	/**
+	 * Set the password.
+	 * 
+	 * @param password The password.
+	 * @throws NamingException If error.
+	 */
 	void setPassword(final String password) throws NamingException;
 
-	Element getConfiguration();
-
+	/**
+	 * Set the configuration.
+	 * 
+	 * @param element The configuration.
+	 * @throws NamingException If error.
+	 */
 	void setConfiguration(final Element element) throws NamingException;
 
+	/**
+	 * Get configuration.
+	 * 
+	 * @return The configuration.
+	 */
+	Element getConfiguration();
+
+	/**
+	 * Set the JNDI name.
+	 * 
+	 * @param name The JNDI name.
+	 * @throws NamingException If error.
+	 */
 	void setJNDIName(final String name) throws NamingException;
 
+	/**
+	 * Get the JNDI name.
+	 * @return The JNDI name.
+	 */
 	String getJNDIName();
 
+	/**
+	 * Get the store protocol.
+	 * 
+	 * @return The store protocol.
+	 */
 	String getStoreProtocol();
 
+	/**
+	 * Get the transport protocol.
+	 * 
+	 * @return The transport protocol.
+	 */
 	String getTransportProtocol();
 
+	/**
+	 * Get the default sender.
+	 * 
+	 * @return The default sender.
+	 */
 	String getDefaultSender();
 
+	/**
+	 * Get the SMTP server host.
+	 * 
+	 * @return The SMTP server host.
+	 */
 	String getSMTPServerHost();
 
+	/**
+	 * Get the POP3 server host.
+	 * 
+	 * @return The POP3 server host.
+	 */
 	String getPOP3ServerHost();
 
+	/**
+	 * Start the service.
+	 * 
+	 * @throws NamingException If error.
+	 */
 	void start() throws NamingException;
 
+	/**
+	 * Stop the service.
+	 */
 	void stop();
 
 }

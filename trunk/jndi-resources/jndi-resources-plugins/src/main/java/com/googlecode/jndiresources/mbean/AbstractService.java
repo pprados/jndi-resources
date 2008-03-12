@@ -34,22 +34,58 @@ import org.w3c.dom.NodeList;
  */
 public abstract class AbstractService
 {
-	static Logger log = Logger.getLogger(MailService.class);
+	/**
+	 * The logger.
+	 */
+	private static final Logger LOG = Logger.getLogger(AbstractService.class);
 
+	/**
+	 * The configuration.
+	 */
 	private Element config_;
 
+	/**
+	 * The JNDI name.
+	 */
 	private String jndiName_;
 
-	protected boolean started_;
+	/**
+	 * The started status.
+	 */
+	private boolean started_;
 
-
+	/**
+	 * Constructor.
+	 */
 	protected AbstractService()
 	{
 		super();
 	}
 
 	/**
+	 * Get the started status.
+	 * 
+	 * @return the started status.
+	 */
+	protected boolean isStarted()
+	{
+		return started_;
+	}
+
+	/**
+	 * Set the started status.
+	 * 
+	 * @param started The started status.
+	 */
+	protected void setStarted(boolean started)
+	{
+		started_ = started;
+	}
+
+	/**
 	 * Configuration for the mail service.
+	 * 
+	 * @return The XML fragment.
 	 * 
 	 * @jmx:managed-attribute
 	 */
@@ -60,7 +96,10 @@ public abstract class AbstractService
 
 	/**
 	 * Configuration for the mail service.
-	 * @throws NamingException 
+	 * 
+	 * @param element The XML fragment.
+	 * 
+	 * @throws NamingException If error.
 	 * 
 	 * @jmx:managed-attribute
 	 */
@@ -78,7 +117,10 @@ public abstract class AbstractService
 
 	/**
 	 * The JNDI name under which javax.mail.Session objects are bound.
-	 * @throws NamingException 
+	 * 
+	 * @param name The JNDI name.
+	 * 
+	 * @throws NamingException If error.
 	 * 
 	 * @jmx:managed-attribute
 	 */
@@ -96,6 +138,9 @@ public abstract class AbstractService
 	}
 
 	/**
+	 * Get JNDI name.
+	 * 
+	 * @return The JNDI name.
 	 * @jmx:managed-attribute
 	 */
 	public final String getJNDIName()
@@ -103,31 +148,36 @@ public abstract class AbstractService
 		return jndiName_;
 	}
 
+	/**
+	 * Get properties.
+	 * 
+	 * @return The properties.
+	 */
 	protected Properties getProperties()
 	{
-		final boolean debug = log.isDebugEnabled();
-	
+		final boolean debug = LOG.isDebugEnabled();
+
 		final Properties props = new Properties();
 		if (config_ == null)
 		{
-			log.warn("No configuration specified; using empty properties map");
+			LOG.warn("No configuration specified; using empty properties map");
 			return props;
 		}
-	
+
 		final NodeList list = config_.getElementsByTagName("property");
 		final int len = list.getLength();
-	
+
 		for (int i = 0; i < len; i++)
 		{
 			final Node node = list.item(i);
-	
+
 			switch (node.getNodeType())
 			{
 			case Node.ELEMENT_NODE:
 				Element child = (Element) node;
 				String name,
 				value;
-	
+
 				// get the name
 				if (child.hasAttribute("name"))
 				{
@@ -135,11 +185,10 @@ public abstract class AbstractService
 				}
 				else
 				{
-					log.warn("Ignoring invalid element; missing 'name' attribute: "
-									+ child);
+					LOG.warn("Ignoring invalid element; missing 'name' attribute: " + child);
 					break;
 				}
-	
+
 				// get the value
 				if (child.hasAttribute("value"))
 				{
@@ -147,34 +196,33 @@ public abstract class AbstractService
 				}
 				else
 				{
-					log.warn("Ignoring invalid element; missing 'value' attribute: "
-									+ child);
+					LOG.warn("Ignoring invalid element; missing 'value' attribute: " + child);
 					break;
 				}
-	
+
 				if (debug)
 				{
-					log.debug("setting property " + name + "=" + value);
+					LOG.debug("setting property " + name + "=" + value);
 				}
 				props.setProperty(
 					name, value);
 				break;
-	
+
 			case Node.COMMENT_NODE:
 				// ignore
 				break;
-	
+
 			default:
-				log.debug("ignoring unsupported node type: " + node);
+				LOG.debug("ignoring unsupported node type: " + node);
 				break;
 			}
 		}
-	
+
 		if (debug)
 		{
-			log.debug("Using properties: " + props);
+			LOG.debug("Using properties: " + props);
 		}
-	
+
 		return props;
 	}
 
@@ -191,14 +239,19 @@ public abstract class AbstractService
 		}
 		catch (NamingException e)
 		{
-			log.error("Impossible to unbind the instance in "+ getJNDIName());
+			LOG.error("Impossible to unbind the instance in " + getJNDIName());
 		}
 	}
-	
+
+	/**
+	 * Unbind the service.
+	 * 
+	 * @throws NamingException If error.
+	 */
 	protected void unbind() throws NamingException
 	{
 		String bindName = getJNDIName();
-	
+
 		if (bindName != null)
 		{
 			Context ctx = new InitialContext();
@@ -210,9 +263,15 @@ public abstract class AbstractService
 			{
 				ctx.close();
 			}
-			log.info("Mail service '" + getJNDIName() + "' removed from JNDI");
+			LOG.info("Mail service '" + getJNDIName() + "' removed from JNDI");
 		}
 	}
+
+	/**
+	 * Rebind the service.
+	 * 
+	 * @throws NamingException If error.
+	 */
 	protected abstract void rebind() throws NamingException;
 
 }
