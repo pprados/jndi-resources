@@ -1,5 +1,5 @@
 #summary Comment faire pour utiliser jndi-resources ?
-#labels jndi
+#labels Phase-configuration
 = Comment faire ? =
 
 Les projets doivent enrichir la description des ressources dont ils ont besoin, permettant une génération des différents fichiers de configuration des serveurs d'applications. Ainsi, il sera possible d'installer les composants partout, sans exprimer autre-chose que des besoins en terme de ressources.
