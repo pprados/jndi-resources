@@ -1,4 +1,5 @@
 #summary Les ressources globales.
+#labels Phase-configuration,Phase-Implementation
 
 = Les ressources globales =
 
