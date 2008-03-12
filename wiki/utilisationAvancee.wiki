@@ -1,4 +1,5 @@
 #summary Utilisation avancée.
+#labels Phase-configuration,Phase-Implementation
 
 = Utilisation avancée =
 
