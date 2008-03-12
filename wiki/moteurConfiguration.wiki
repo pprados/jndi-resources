@@ -1,4 +1,5 @@
 #summary Description du moteur de configuration.
+#labels Phase-Implementation
 
 = Moteur de configuration =
 
