@@ -1,4 +1,5 @@
 #summary Valorisation des variables de déploiements.
+#labels Phase-configuration
 
 =  Valorisation des variables de déploiements =
 
