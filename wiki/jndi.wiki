@@ -1,4 +1,5 @@
 #summary Famille jndi/*
+#labels Phase-configuration
 
 = Famille JNDI =
 
