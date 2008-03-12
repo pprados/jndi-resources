@@ -1,4 +1,5 @@
 #summary Famille mail/*
+#labels Phase-configuration
 
 = Famille Mail =
 
