@@ -1,4 +1,5 @@
 #summary Les familles de ressources
+#labels Phase-configuration
 
 = Familles de ressources =
 Le tableau suivant décrit les différentes familles de ressources gérés par l'outil.
