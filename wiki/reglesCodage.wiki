@@ -1,4 +1,5 @@
 #summary Les règles de codage.
+#labels Phase-Implementation
 
 = Les règles de codage =
 
