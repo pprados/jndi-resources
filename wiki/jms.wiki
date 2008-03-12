@@ -1,4 +1,5 @@
 #summary Famille jms/*
+#labels Phase-configuration
 
 = Famille JMS =
 
