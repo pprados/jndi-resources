@@ -162,7 +162,7 @@ Il ne reste plus qu'a lancer le serveur d'application et à tester le composant.
 }}}
 L'URL à consulter est généralement la suivante `http://localhost:8080/jndi-web-sample/`. Il peut être différente suivant le port utilisé par votre version de JBoss.
 
-Vous constatez que la page de résultat récupère bien certaines instances, mais pas les queues JMS. En effet, le composant est client de queues JMS. Elles doivent être publiée dans le serveur. Utilisons *jndi-install* pour cela.
+Vous constatez que la page de résultat récupère bien les instances de l'annuaire JNDI, mais pas les queues JMS. En effet, le composant est client de queues JMS. Elles doivent être publiée dans un serveur. Utilisons *jndi-install* pour publier les queues dans le même serveur JBoss.
 {{{
 >$JNDI_HOME/bin/jndi-install \
 	--package ./packages \
