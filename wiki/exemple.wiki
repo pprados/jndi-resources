@@ -111,12 +111,10 @@ Nous désirons générer tous les fichiers de configurations des serveurs d'appl
 	--packages ./packages
 }}}
 Cela génère un répertoire `./packages`, avec des modèles de fichiers de configurations pour tous les serveurs d'applications. C'est ce répertoire ainsi que `jndi-resources-<version>-install.(tar.gz|zip)` qu'il faudra utiliser pour installer le composant sur n'importe quel serveur d'applications.
-
-Pour avoir plus de détail sur la génération, ajoutez le paramètre `-l` ou `-ll`.
+Pour avoir plus de détail sur les étapes de la génération, ajoutez le paramètre `-l` ou `-ll` pour augmenter le niveau de trace.
 
 Nous pouvons maintenant installer le composant sur différents serveurs d'applications.
-
-Nous devons auparavent, valoriser différentes variables en conformité avec le déploiement du composant.
+Mais il faut auparavant, valoriser différentes variables en conformité avec le déploiement du composant.
 
 || *Variable* || *Description* ||
 ||jdbc.username||Le nom de l'utilisateur de la base de données.||
@@ -136,6 +134,16 @@ mail.host=locahost
 url.default=http://localhost
 }}}
 
+Pour Tomcat, il faut également indiquer le nom du fichier de la base de donnée pour HSQLDB. Voici une installation sur un Tomcat 4.1:
+{{{
+>$JNDI_HOME/bin/jndi-install \
+	--package ./packages \
+	--appsrv tomcat --version 4.1 \
+	--dest catalina.base=/opt/apache-tomcat-4.1 \
+	--dest catalina.home=/opt/apache-tomcat-4.1 \
+	-P plateform.properties \
+        -Djdbc.hsqldb.file=MaDB
+}}}
 
 Voici une installation sur un Jboss 5.0:
 {{{
@@ -151,20 +159,24 @@ Il ne reste plus qu'a lancer le serveur d'application et à tester le composant.
 {{{
 >/opt/jboss-5.0/bin/run.sh
 }}}
-L'URL est `http://localhost:8080/TODO`.
+L'URL à consulter est généralement la suivante `http://localhost:8080/TODO`. Il peut être différente suivant le port utilisé par votre version de JBoss.
 
-Pour Tomcat, il faut également indiquer le nom du fichier de la base de donnée pour HSQLDB. Voici une installation sur un Tomcat 4.1:
+Vous constatez que la page de résultat récupère bien certaines instances, mais pas les queues JMS. En effet, le composant est client de queues JMS. Elles doivent être publiée dans le serveur. Utilisons *jndi-install* pour cela.
 {{{
 >$JNDI_HOME/bin/jndi-install \
 	--package ./packages \
-	--appsrv tomcat --version 4.1 \
-	--dest catalina.base=/opt/apache-tomcat-4.1 \
-	--dest catalina.home=/opt/apache-tomcat-4.1 \
-	-P plateform.properties \
-        -Djdbc.hsqldb.file=MaDB
+	--appsrv jboss-jms-srv --version 5.0 \
+	--dest jboss.server.conf=/opt/jboss-5.0/server/default \
+	--dest jboss.server.home=/opt/jboss-5.0
+        -P plateform.properties
 }}}
+Nous avons simplement modifié le nom du serveur d'application en `jboss-jms-srv`.
+C'est un serveur jboss jouant le rôle de serveur de queues JMS.
 
-Ces deux étapes peuvent être combinées avec l'invocation de `$JNDI_HOME/bin/jndi-resources`.
+En rafraichissant la page, tous est maintenant correct. Toutes les ressources nécessaires
+au composant sont bien présente dans l'instance JBoss.
+
+L'étape de configuration et l'étape d'installation peuvent être combinées avec l'invocation de `$JNDI_HOME/bin/jndi-resources`.
 
 Voici l'installation sur un serveur Tomcat 4.1 directement à partir du composant WAR.
 {{{
