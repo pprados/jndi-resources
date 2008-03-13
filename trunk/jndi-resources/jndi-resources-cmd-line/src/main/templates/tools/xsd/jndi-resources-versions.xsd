@@ -33,9 +33,9 @@
 
 	<element name="appsrv">
 		<complexType>
-			<attribute name="name" type="string"></attribute>
-			<attribute name="versions" type="string"></attribute>
-			<attribute name="target" type="string"></attribute>
+			<attribute name="name" type="string" use="required"></attribute>
+			<attribute name="versions" type="string" use="required"></attribute>
+			<attribute name="target" type="string" use="required"></attribute>
 		</complexType>
 	</element>
 

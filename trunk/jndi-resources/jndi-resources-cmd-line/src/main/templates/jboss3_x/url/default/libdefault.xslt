@@ -57,7 +57,7 @@
 
 <xsl:template match="jndi:resources[@id=$currentid]/jndi:resource[@familly=$familly]">
 
-		<mbean code="com.googlecode.jndiresourcesmbean.ReferenceService"
+		<mbean code="com.googlecode.jndiresources.mbean.ReferenceService"
 			name="{$currentid}:service=Host,jndiName={@name}"
 		>
  			
@@ -79,7 +79,7 @@
 				</xsl:otherwise>
 			</xsl:choose>
 			<attribute name="Type">java.net.URL</attribute>
-			<attribute name="Factory">com.googlecode.jndiresourcesfactory.URLFactory</attribute>
+			<attribute name="Factory">com.googlecode.jndiresources.factory.URLFactory</attribute>
 			<attribute name="Configuration">
 				<configuration>
 					<property name="value"

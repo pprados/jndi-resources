@@ -108,7 +108,7 @@ public final class JNDIResources
 		out.println("(-w|--war) <war|ear file>          : The jndi-resources descriptions in META-INF");
 		out.println("(-j|--jndi-file) <url[#id]>        : The jndi-resources descriptions fragment.");
 		out.println("(-t|--templates) <dir>             : The templates transformations to use.");
-		out.println("(-p|--packages) <destination>      : The temporary configuration directory.");
+		out.println("(-p|--package) <destination>       : The temporary configuration directory.");
 		out.println("(-d|--dest) <key>=<value>          : Define destination directories");
 		out.println("-D<key>=<value>|xpath:<[ns,]xpath> : Define property");
 		out.println("--xsl <key>=<value>|xpath:...      : Define XSL parameter");

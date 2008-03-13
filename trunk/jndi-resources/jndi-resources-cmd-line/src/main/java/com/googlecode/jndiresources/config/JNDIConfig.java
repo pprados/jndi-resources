@@ -230,13 +230,13 @@ public final class JNDIConfig
 	{
 		out.println("Usage: jndi-config [-h] (-w <war|ear> | -j <jndi-resources.xml>) \\");
 		out.println("                   [-t <templates>] -p <destination>");
-		out.println("(-w|--war) <war|ear file>     : The jndi-resources descriptions in META-INF");
-		out.println("(-j|--jndi-file) <url[#id]>   : The jndi-resources descriptions fragment.");
-		out.println("(-t|--templates) <dir>        : The templates transformations to use.");
-		out.println("(-p|--packages) <destination> : The destination directory.");
-		out.println("-l                            : Log info.");
-		out.println("-ll                           : Log debug.");
-		out.println("(-h|--help)                   : This help");
+		out.println("(-w|--war) <war|ear file>    : The jndi-resources descriptions in META-INF");
+		out.println("(-j|--jndi-file) <url[#id]>  : The jndi-resources descriptions fragment.");
+		out.println("(-t|--templates) <dir>       : The templates transformations to use.");
+		out.println("(-p|--package) <destination> : The destination directory.");
+		out.println("-l                           : Log info.");
+		out.println("-ll                          : Log debug.");
+		out.println("(-h|--help)                  : This help");
 	}
 
 	/**
@@ -265,7 +265,7 @@ public final class JNDIConfig
 			if (params.templates_.charAt(params.templates_.length() - 1) != File.separatorChar)
 				params.templates_ += File.separatorChar;
 		}
-		else if (("-p".equals(arg) || "--packages".equals(arg)) && position < args.length - 1)
+		else if (("-p".equals(arg) || "--package".equals(arg)) && position < args.length - 1)
 		{
 			params.packages_ = args[++position];
 			if (params.packages_.charAt(params.packages_.length() - 1) != File.separatorChar)
@@ -354,8 +354,7 @@ public final class JNDIConfig
 	 * @throws ArtifactNotFoundException If artifact is not found.
 	 * @throws ResourceDoesNotExistException If artifact can not be load.
 	 */
-	public JNDIConfig(final ParamsConfig params) 
-		throws ParserConfigurationException, SAXException,
+	public JNDIConfig(final ParamsConfig params) throws ParserConfigurationException, SAXException,
 			IOException, XPathExpressionException, TransformerException, ArtifactNotFoundException,
 			ResourceDoesNotExistException
 	{
@@ -496,8 +495,9 @@ public final class JNDIConfig
 							}
 							else
 							{
-								LOG.warn("I can't generate resource with " + process + " for " + appsrv
-										+ '!');
+								LOG
+										.warn("I can't generate resource with " + process + " for " + appsrv
+												+ '!');
 							}
 						}
 					}

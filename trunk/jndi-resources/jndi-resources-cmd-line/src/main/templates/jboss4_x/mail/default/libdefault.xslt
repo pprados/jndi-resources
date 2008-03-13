@@ -59,7 +59,7 @@
 
 <xsl:template match="jndi:resources[@id=$currentid]/jndi:resource[@familly=$familly]">
 
-  <mbean code="com.googlecode.jndiresourcesmbean.MailService"
+  <mbean code="com.googlecode.jndiresources.mbean.MailService"
          name="{$currentid}:service=Mail,jndiName={@name}">
     <attribute name="JNDIName">
     	<xsl:choose>

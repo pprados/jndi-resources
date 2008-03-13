@@ -101,7 +101,7 @@
 
 			<parameter>
 				<name>factory</name>
-				<value>com.googlecode.jndiresourcesfactory.InternetAddressFactory</value>
+				<value>com.googlecode.jndiresources.factory.InternetAddressFactory</value>
 			</parameter>
 
 			<parameter>

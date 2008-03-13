@@ -68,7 +68,7 @@
 	<Resource 
 		auth="Container" 
 		type="javax.naming.Context" 
-		factory="com.googlecode.jndiresourcesfactory.ContextFactory">
+		factory="com.googlecode.jndiresources.factory.ContextFactory">
 		<xsl:attribute name="name">
 			<xsl:value-of select="concat('${jndi-prefix}',@name)"/>
 		</xsl:attribute>

@@ -70,7 +70,7 @@
 	<xsl:template
 		match="jndi:resources[@id=$currentid]/jndi:resource[@familly=$familly]">
 
-		<mbean code="com.googlecode.jndiresourcesmbean.ReferenceService"
+		<mbean code="com.googlecode.jndiresources.mbean.ReferenceService"
 			name="{$currentid}:service=Host,jndiName={@name}"
 		>
 			<xsl:if test="not(jndi:property[@name='email'])">
@@ -91,7 +91,7 @@
 				</xsl:otherwise>
 			</xsl:choose>
 			<attribute name="Type">javax.mail.Address</attribute>
-			<attribute name="Factory">com.googlecode.jndiresourcesfactory.InternetAddressFactory</attribute>
+			<attribute name="Factory">com.googlecode.jndiresources.factory.InternetAddressFactory</attribute>
 			<attribute name="Configuration">
 				<configuration>
 					<property name="value"

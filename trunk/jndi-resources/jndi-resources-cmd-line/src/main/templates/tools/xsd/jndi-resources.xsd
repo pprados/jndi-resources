@@ -33,7 +33,7 @@
 				<element ref="tns:comment" />
 				<any processContents="strict" namespace="##other" />
 			</choice>
-			<attribute name="id" type="ID" />
+			<attribute name="id" type="ID" use="required"/>
 			<anyAttribute processContents="strict" />
 		</complexType>
 	</element>
@@ -56,8 +56,8 @@
 					<any processContents="skip" namespace="##other" />
 				</choice>
 			</sequence>
-			<attribute name="name" type="string"></attribute>
-			<attribute name="familly" type="string"></attribute>
+			<attribute name="name" type="string" use="required"></attribute>
+			<attribute name="familly" type="string" use="required"></attribute>
 		</complexType>
 	</element>
 
@@ -67,8 +67,8 @@
 				<documentation xml:lang="fr">Propriété d'une ressource JNDI.</documentation>
 		</annotation>
 		<complexType>
-			<attribute name="name" type="string"></attribute>
-			<attribute name="value" type="string"></attribute>
+			<attribute name="name" type="string" use="required"></attribute>
+			<attribute name="value" type="string" use="required"></attribute>
 		</complexType>
 	</element>
 
@@ -81,7 +81,7 @@
 			<sequence minOccurs="1" maxOccurs="unbounded">
 				<any processContents="skip" />
 			</sequence>
-			<attribute name="appsrv" type="string"></attribute>
+			<attribute name="appsrv" type="string" use="required"></attribute>
 		</complexType>
 	</element>
 
@@ -95,7 +95,7 @@
 		<complexType>
 			<simpleContent>
 				<extension base="string">
-					<attribute name="name" type="string"></attribute>
+					<attribute name="name" type="string" use="required"></attribute>
 				</extension>
 			</simpleContent>
 		</complexType>

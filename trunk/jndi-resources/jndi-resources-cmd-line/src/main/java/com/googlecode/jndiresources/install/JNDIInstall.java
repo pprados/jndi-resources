@@ -363,9 +363,13 @@ public final class JNDIInstall
 		{
 			final String v = args[++position];
 			final int idx = v.indexOf('=');
-			final String value = v.substring(idx + 1);
+			String value = v.substring(idx + 1);
 			final String param = v.substring(
 				0, idx);
+			if (value.charAt(0) == '~')
+			{
+				value = System.getProperty("user.home") + File.separatorChar + value.substring(1);
+			}
 			params.targetList_.put(
 				param, ExtendedProperties.parseValue(value));
 		}
@@ -481,7 +485,7 @@ public final class JNDIInstall
 	 * @throws InvalidVersionSpecificationException If version is invalid.
 	 */
 	public JNDIInstall(final ParamsInstall params) throws CommandLineException, IOException, SAXException,
-			ParserConfigurationException, XPathExpressionException, TransformerException, 
+			ParserConfigurationException, XPathExpressionException, TransformerException,
 			InvalidVersionSpecificationException
 	{
 		packageDir_ = params.package_;

@@ -75,7 +75,7 @@
 	<Resource 
 		auth="Container" 
 		type="javax.mail.Address" 
-		factory="com.googlecode.jndiresourcesfactory.InternetAddressFactory">
+		factory="com.googlecode.jndiresources.factory.InternetAddressFactory">
 		<xsl:attribute name="name">
 			<xsl:value-of select="concat('${jndi-prefix}',@name)"/>
 		</xsl:attribute>

@@ -99,7 +99,7 @@
 
 			<parameter>
 				<name>factory</name>
-				<value>com.googlecode.jndiresourcesfactory.URLFactory</value>
+				<value>com.googlecode.jndiresources.factory.URLFactory</value>
 			</parameter>
 
 	        <xsl:if test="not(jndi:property[@name='url'])">
