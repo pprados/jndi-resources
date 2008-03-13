@@ -110,7 +110,7 @@ Nous désirons générer tous les fichiers de configurations pour tous les serve
 {{{
 >$JNDI_HOME/bin/jndi-config \
 	--war jndi-web-sample.war \
-	--packages ./packages
+	--package ./package
 }}}
 Après quelques dizaines de secondes, cela génère un répertoire `./packages`, avec des modèles de fichiers de configurations pour tous les serveurs d'applications. C'est ce répertoire ainsi que `jndi-resources-<version>-install.(tar.gz|zip)` qu'il faudra utiliser pour installer le composant sur n'importe quel serveur d'applications.
 Pour avoir plus de détail sur les étapes de la génération, ajoutez le paramètre `-l` ou `-ll` pour augmenter le niveau de trace.
@@ -140,7 +140,7 @@ Installez le composant sur un serveur Jboss. Adaptez la commande suivant le num�
 {{{
 >$JNDI_HOME/bin/jndi-install \
 	--appsrv jboss --version 5.0 \
-	--package ./packages \
+	--package ./package \
 	--dest jboss.server.home=/opt/jboss-5.0
 	--dest jboss.server.conf=/opt/jboss-5.0/server/default \
         -P plateform.properties
@@ -158,7 +158,7 @@ Pour Tomcat, il faut également indiquer le nom du fichier de la base de donnée
 {{{
 >$JNDI_HOME/bin/jndi-install \
 	--appsrv tomcat --version 4.1 \
-	--package ./packages \
+	--package ./package \
 	--dest catalina.home=/opt/apache-tomcat-4.1 \
 	--dest catalina.base=/opt/apache-tomcat-4.1 \
 	-P plateform.properties \
