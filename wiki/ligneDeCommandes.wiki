@@ -11,13 +11,13 @@ et le troisième est un enchaînement des deux premiers.
 {{{
 Usage: jndi-config [-h] (-w <war|ear> | -j <jndi-resources.xml>) \ 
                    [-t <templates>] -p <destination> 
-(-w|--war) <war|ear file>       : The jndi-resources descriptions in META-INF 
-(-j|--jndi-file) <url[#id]>     : The jndi-resources descriptions fragment 
-(-t|--templates) <dir>          : The templates transformations to use. 
-(-p|--packages) <destination>   : The destination directory. 
--l                              : Log info. 
--ll                             : Log debug. 
-(-h|--help)                     : This help 
+(-w|--war) <war|ear file>      : The jndi-resources descriptions in META-INF 
+(-j|--jndi-file) <url[#id]>    : The jndi-resources descriptions fragment 
+(-t|--templates) <dir>         : The templates transformations to use. 
+(-p|--package) <destination>   : The destination directory. 
+-l                             : Log info. 
+-ll                            : Log debug. 
+(-h|--help)                    : This help 
 }}}
 Vous pouvez indiquer un fichier [jndiResourcesXML jndi-resources.xml] à l'aide du 
 paramètre `-j`, indiquer une archive `.war` possédant déjà un fichier 
@@ -66,7 +66,7 @@ Usage: jndi-resources [-h] (-w <war|ear> | -j <jndi-resources.xml>) \
 (-w|--war) <war|ear file>          : The jndi-resources descriptions in META-INF 
 (-j|--jndi-file) <url[#id]>        : The jndi-resources descriptions fragment 
 (-t|--templates) <dir>             : The templates transformations to use. 
-(-p|--packages) <destination>      : The temporary configuration directory. 
+(-p|--package) <destination>       : The temporary configuration directory. 
 (-d|--dest) <key>=<value>          : Define destination directories 
 -D<key>=<value>|xpath:<[ns,]xpath> : Define property 
 --xsl <key>=<value>|xpath:...      : Define XSL variable 
@@ -79,7 +79,7 @@ Usage: jndi-resources [-h] (-w <war|ear> | -j <jndi-resources.xml>) \
 }}}
 
 Il est possible d'utiliser *jndi-config* sous Windows et *jndi-install* sous unix 
-ou l'inverse. Le répertoire `packages` est cross système d'exploitation.
+ou l'inverse. Le répertoire `package` est cross système d'exploitation.
 
 Précédent : [exemple]
 Suite : [desinstallation Désinstallation]
