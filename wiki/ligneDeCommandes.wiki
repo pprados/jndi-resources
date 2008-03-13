@@ -7,17 +7,17 @@ configuration à partir de fichiers [jndiResourcesXML jndi-resources.xml],
 le deuxième se charge d'installer les fichiers pour un serveur d'applications 
 et le troisième est un enchaînement des deux premiers.
 
-`jndi-config` accepte différents paramètres.
+*jndi-config* accepte différents paramètres.
 {{{
-Usage: jndi-config [-h] (-w <war|ear> | -j <jndi-resources.xml>) \ 
-                   [-t <templates>] -p <destination> 
-(-w|--war) <war|ear file>      : The jndi-resources descriptions in META-INF 
-(-j|--jndi-file) <url[#id]>    : The jndi-resources descriptions fragment 
-(-t|--templates) <dir>         : The templates transformations to use. 
-(-p|--package) <destination>   : The destination directory. 
--l                             : Log info. 
--ll                            : Log debug. 
-(-h|--help)                    : This help 
+Usage: jndi-config [-h] (-w <war|ear> | -j <jndi-resources.xml>) \
+                   [-t <templates>] -p <destination>
+(-w|--war) <war|ear file>     : The jndi-resources descriptions in META-INF
+(-j|--jndi-file) <url[#id]>   : The jndi-resources descriptions fragment.
+(-t|--templates) <dir>        : The templates transformations to use.
+(-p|--packages) <destination> : The destination directory.
+-l                            : Log info.
+-ll                           : Log debug.
+(-h|--help)                   : This help
 }}}
 Vous pouvez indiquer un fichier [jndiResourcesXML jndi-resources.xml] à l'aide du 
 paramètre `-j`, indiquer une archive `.war` possédant déjà un fichier 
@@ -35,47 +35,48 @@ Cet utilitaire exploite les _repositories_ [http://maven.apache.org Maven] pour 
 extraire les drivers nécessaires à l'application à installer. Un _repository_ local 
 est créé dans `~/.m2/repository` s'il n'en existe pas.
 
-`jndi-install` accepte les paramètres suivant :
+*jndi-install* accepte les paramètres suivant :
 {{{
-Usage: jndi-install [-h] -d <appsrvconfdir=dir> \
-                    [-D<key>=<value>|xpath:<[ns,]xpath>]* \ 
-                    [--xsl key=value>|<[ns,]xpath>]* \ 
-                    [-P <url>]* -p <sourcepackage> -a <jboss|...> 
-(-d|--dest) <key>=<value>          : Define destination directories 
--D<key>=<value>|xpath:<[ns,]xpath> : Define property 
---xsl <key>=<value>|xpath:...      : Define XSL variable 
-(-P|--properties) <url>            : List of properties files 
-(-p|--package) <sourcepackage>     : Sources product with JNDIConfig 
-(-a|--appsrv) <jboss|tomcat...>    : Familly of application server 
-(-v|--version)                     : Application server version to use 
--l                                 : Log info. 
--ll                                : Log debug. 
-(-h|--help)                        : This help 
+Usage: jndi-install [-h] -d <appsrvconfdir=dir>
+                    [-D<key>=<value>|xpath:<[ns,]xpath>]* \
+                    [--xsl key=value>|xpath:<[ns,]xpath>]* \
+                    [-P <url>]* -p <sourcepackage> -a <jboss|...>
+(-d|--dest) <key>=<value>          : Define destination directories
+-D<key>=<value>|xpath:<[ns,]xpath> : Define property
+--xsl <key>=<value>|xpath:...      : Define XSL variable
+(-P|--properties) <url>            : List of properties or xpath files
+(-p|--package) <sourcepackage>     : Sources product with JNDIConfig
+(-a|--appsrv) <jboss|tomcat...>    : Familly of application server
+(-v|--version)                     : Application server version to use
+-l                                 : Log info.
+-ll                                : Log debug.
+(-h|--help)                        : This help
 }}}
 
-`jndi-resources` est une combinaison des deux premiers utilitaires. 
+*jndi-resources* est une combinaison des deux premiers utilitaires. 
 Il n'est alors plus nécessaire d'indiquer le paramètre `--package` car 
 un répertoire temporaire est utilisé. Vous pouvez continuer à l'utiliser 
 si vous souhaitez jeter un œil sur les fichiers générés.
 {{{
-Usage: jndi-resources [-h] (-w <war|ear> | -j <jndi-resources.xml>) \ 
+Usage: jndi-resources [-h] (-w <war|ear> | -j <jndi-resources.xml>) \
                       [-t <templates>] [-p <destination>] -d <appsrvconfdir=dir> \
-                      [-D<key>=<value>|xpath:<[ns,]xpath>]* \ 
-                      [--xsl key=<value>|xpath:<[ns,]xpath>]* \ 
-                      [-P <url>]* -p <sourcepackage> -a <jboss|...> 
-(-w|--war) <war|ear file>          : The jndi-resources descriptions in META-INF 
-(-j|--jndi-file) <url[#id]>        : The jndi-resources descriptions fragment 
-(-t|--templates) <dir>             : The templates transformations to use. 
-(-p|--package) <destination>       : The temporary configuration directory. 
-(-d|--dest) <key>=<value>          : Define destination directories 
--D<key>=<value>|xpath:<[ns,]xpath> : Define property 
---xsl <key>=<value>|xpath:...      : Define XSL variable 
-(-P|--properties) <url>            : List of properties files 
-(-a|--appsrv) <jboss|tomcat...>    : Familly of application server 
-(-v|--version)                     : Application server version to use 
--l                                 : Log info. 
--ll                                : Log debug. 
-(-h|--help)                        : This help 
+                      [-D<key>=<value>|xpath:<[ns,]xpath>]* \
+                      [--xsl key=value>|xpath:<[ns,]xpath>]* \
+                      [-P <url>]* -p <sourcepackage> \
+                      [-a <jboss|...> -v <version>
+(-w|--war) <war|ear file>          : The jndi-resources descriptions in META-INF
+(-j|--jndi-file) <url[#id]>        : The jndi-resources descriptions fragment.
+(-t|--templates) <dir>             : The templates transformations to use.
+(-p|--packages) <destination>      : The temporary configuration directory.
+(-d|--dest) <key>=<value>          : Define destination directories
+-D<key>=<value>|xpath:<[ns,]xpath> : Define property
+--xsl <key>=<value>|xpath:...      : Define XSL parameter
+(-P|--properties) <url>            : List of properties files
+(-a|--appsrv) <jboss|tomcat...>    : Familly of application server
+(-v|--version)                     : Application server version to use
+-l                                 : Log info.
+-ll                                : Log debug.
+(-h|--help)                        : This help
 }}}
 
 Il est possible d'utiliser *jndi-config* sous Windows et *jndi-install* sous unix 
