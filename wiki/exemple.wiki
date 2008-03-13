@@ -31,8 +31,8 @@ Prenons l'exemple d'une archive WAR possédant le fichier `WEB-INF/web.xml` suiv
 	</welcome-file-list>
 
 	<resource-ref>
-	   <description>La base par defaut</description>
-	   <res-ref-name>jdbc/Default</res-ref-name>
+	   <description>La base de données</description>
+	   <res-ref-name>jdbc/DB</res-ref-name>
 	   <res-type>javax.sql.DataSource</res-type>
 	   <res-auth>Application</res-auth>
 	   <res-sharing-scope>Shareable</res-sharing-scope>
@@ -42,7 +42,7 @@ Prenons l'exemple d'une archive WAR possédant le fichier `WEB-INF/web.xml` suiv
 
 Notez la valeur du paramètre id du marqueur `<web-app/>`. Il correspond généralement au path de déploiement de l'archive.
 
-Conformément aux [comment spécifications], ce fichier déclare, dans `<resource-ref/>`,  le besoin d'une ressource de type `javax.sql.DataSource` pour la clef JNDI `java:comp/env/jdbc/Default`.
+Conformément aux [comment spécifications], ce fichier déclare, dans `<resource-ref/>`,  le besoin d'une ressource de type `javax.sql.DataSource` pour la clef JNDI `java:comp/env/jdbc/DB`.
 
 Suivant les serveurs d'applications, il faut ajouter [transformerWebXML différents] fichiers permettant d'associer la ressource `java:comp/env/jdbc/Default` avec une autre clef JNDI.
 Pour JBoss, il faut ajouter le fichier `WEB-INF/jboss-web.xml` suivant :
@@ -50,9 +50,9 @@ Pour JBoss, il faut ajouter le fichier `WEB-INF/jboss-web.xml` suivant :
 <?xml version="1.0" encoding="UTF-8"?>
 <jboss-web>
    <resource-ref>
-      <res-ref-name>jdbc/Default</res-ref-name>
+      <res-ref-name>jdbc/DB</res-ref-name>
       <res-type>javax.sql.DataSource</res-type>
-      <jndi-name>java:jndi-web-sample/jdbc/Default</jndi-name>
+      <jndi-name>java:jndi-web-sample/jdbc/DB</jndi-name>
    </resource-ref>
 </jboss-web>
 }}}
@@ -67,12 +67,12 @@ Pour Tomcat, le fichier `META-INF/context.xml` suivant :
 	antiJARLocking="true"
 	privileged="false"
 >
-   <ResourceLink name="jdbc/Default"
-                 global="/jndi-web-sample/jdbc/Default"
+   <ResourceLink name="jdbc/DB"
+                 global="/jndi-web-sample/jdbc/DB"
                  type="javax.sql.DataSource"/>
 </Context>
 }}}
-Ces deux fichiers permettent d'associer la clef locale `java:comp/env/jdbc/Default` avec la clef JVM `java:/jndi-web-sample/jdbc/Default`.
+Ces deux fichiers permettent d'associer la clef locale `java:comp/env/jdbc/DB` avec la clef JVM `java:/jndi-web-sample/jdbc/DB`.
 
 Par [conventions], les clefs locales de la branche `java:comp/env` doivent être associées aux clefs JVM de la branche `java:`, en préfixant par l'`id` présent dans le fichier `web.xml`. Cela permet de lever les ambiguïtés lorsque plusieurs composants sont installés sur le même serveur d'applications.
 
@@ -88,10 +88,10 @@ Il faut ensuite ajouter le fichier `META-INF/jndi-resources.xml`. C'est un [jndi
 	xsi:schemaLocation="http://jndi-resources.googlecode.com/1.0/ http://www.prados.fr/xsd/1.0/jndi-resources.xsd"
 	id="jndi-web-sample"
 >
-	<resource name="jndi-web-sample/jdbc/Default" familly="jdbc/default" />
+	<resource name="jndi-web-sample/jdbc/DB" familly="jdbc/default" />
 </resources>
 }}}
-Ce fichier décrit simplement que nous souhaitons une ressouce pour la clef `jndi-web-sample/jdbc/Default`, et y publier la base de données par défaut, associée au serveur d'applications. Pour JBoss et Tomcat, il s'agit d'une base HSQLDB.
+Ce fichier décrit simplement que nous souhaitons une ressouce pour la clef `jndi-web-sample/jdbc/DB`, et y publier la base de données par défaut, associée au serveur d'applications. Pour JBoss et Tomcat, il s'agit d'une base HSQLDB.
 
 Vous pouvez [http://code.google.com/p/jndi-resources/downloads/list télécharger] l'archive d'exemple pour tester l'utilisation des différents outils.
 {{{
