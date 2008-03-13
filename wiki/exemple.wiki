@@ -95,6 +95,14 @@ Vous pouvez [http://code.google.com/p/jndi-resources/downloads/list télécharge
 {{{
 >wget http://jndi-resources.googlecode.com/files/jndi-web-sample.war
 }}}
+Ce dernier exploite plus de ressources :
+ * Une source de donnée [jdbc] ;
+ * Deux factories [jms] normale et XA, ainsi qu'une queue et un topic ;
+ * Une connexion [mail javamail] et un [mail email] complémentaire ;
+ * Une [url] ;
+ * et un [host] ;
+
+Le fichier `META-INF/jndi-resources.xml` est présent [http://code.google.com/p/jndi-resources/source/browse/trunk/jndi-resources/jndi-resources-web-sample/src/main/webapp/META-INF/jndi-resources.xml ici].
 
 Nous désirons générer tous les fichiers de configurations des serveurs d'applications. L'utilitaire `$JNDI_HOME/bin/jndi-config` s'en charge.
 {{{
@@ -107,6 +115,28 @@ Cela génère un répertoire `./packages`, avec des modèles de fichiers de conf
 Pour avoir plus de détail sur la génération, ajoutez le paramètre `-l` ou `-ll`.
 
 Nous pouvons maintenant installer le composant sur différents serveurs d'applications.
+
+Nous devons auparavent, valoriser différentes variables en conformité avec le déploiement du composant.
+
+|| *Variable* || *Description* ||
+||jdbc.username||Le nom de l'utilisateur de la base de données.||
+||jdbc.password||Le mot de passe de l'utilisateur de la base de données.||
+||mail.from||Le e-mail utilisé lors de l'envoie de messages.||
+||mon.e-mail||Un e-mail.||
+||mail.host||Un nom de host.|| 
+||url.default||Une URL.||
+
+Ces [variables] peuvent être décrite dans un fichier de propriétés `plateform.properties`.
+{{{
+jdbc.username=sa 
+jdbc.password=
+mail.from=no-reply@ici.org 
+mon.e-mail=moi@ici.org
+mail.host=locahost
+url.default=http://localhost
+}}}
+
+
 Voici une installation sur un Jboss 5.0:
 {{{
 >$JNDI_HOME/bin/jndi-install \
@@ -114,19 +144,25 @@ Voici une installation sur un Jboss 5.0:
 	--appsrv jboss --version 5.0 \
 	--dest jboss.server.conf=/opt/jboss-5.0/server/default \
 	--dest jboss.server.home=/opt/jboss-5.0
+        -P plateform.properties
 }}}
-Comme la source de donnée par défaut de Jboss utilise une base HSQLDB déjà installé sur le serveur, il n'est pas nécessaire d'ajouter de paramètres complémentaires.
 
-Voici une installation sur un Tomcat 4.1:
+Il ne reste plus qu'a lancer le serveur d'application et à tester le composant.
+{{{
+>/opt/jboss-5.0/bin/run.sh
+}}}
+L'URL est `http://localhost:8080/TODO`.
+
+Pour Tomcat, il faut également indiquer le nom du fichier de la base de donnée pour HSQLDB. Voici une installation sur un Tomcat 4.1:
 {{{
 >$JNDI_HOME/bin/jndi-install \
 	--package ./packages \
 	--appsrv tomcat --version 4.1 \
 	--dest catalina.base=/opt/apache-tomcat-4.1 \
 	--dest catalina.home=/opt/apache-tomcat-4.1 \
-	-Djdbc.username=sa -Djdbc.password= -Djdbc.hsqldb.file=A
+	-P plateform.properties \
+        -Djdbc.hsqldb.file=MaDB
 }}}
-Sous Tomcat, la base de donnée par défaut nécessite trois paramètres : le nom et le mot de passe de l'utilisateur de connexion, ainsi qu'un nom de fichier pour la base gérée par HSQLDB. Ces paramètres peuvent également être indiqués dans un fichier de [variables propriétés].
 
 Ces deux étapes peuvent être combinées avec l'invocation de `$JNDI_HOME/bin/jndi-resources`.
 
@@ -137,8 +173,15 @@ Voici l'installation sur un serveur Tomcat 4.1 directement à partir du composan
 	--appsrv tomcat --version 4.1 \
 	--dest catalina.base=/opt/apache-tomcat-4.1 \
 	--dest catalina.home=/opt/apache-tomcat-4.1 \
-	-Djdbc.username=sa -Djdbc.password= -Djdbc.hsqldb.file=A
+	-P plateform.properties \
+        -Djdbc.hsqldb.file=MaDB
 }}}
+
+Il ne reste plus qu'a lancer le serveur d'application et à tester le composant.
+{{{
+>/opt/apache-tomcat-4.1/bin/catalina.sh run
+}}}
+L'URL est `http://localhost:8080/TODO`.
 
 Précédent : [installation]
 Suite: [ligneDeCommandes Lignes de commandes]
