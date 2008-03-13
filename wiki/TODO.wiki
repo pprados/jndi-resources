@@ -2,7 +2,6 @@
 
 = TODO =
 
- * http://code.google.com/p/support/issues/detail?id=838#makechanges
  * Vérifier l'utilisation avec un EAR
  * Autre TODO dans le [http://www.prados.fr/mvn/jndi-resources/command-line/taglist.html source]
  * Pages WIKI à faire
