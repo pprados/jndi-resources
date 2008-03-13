@@ -6,7 +6,7 @@ Les projets doivent enrichir la description des ressources dont ils ont besoin, 
 
 Par exemple, si un composant désire une source de données de type Oracle, il l'indique dans un [jndiResourcesXML fichier XML] spécifique, et c'est tout. Les utilitaires se chargent d'installer tous les fichiers, les drivers, etc. pour permettre au composant d'être accueilli dans tous les serveurs d'applications.
 
-Pour cela, l'application doit respecter rigoureusement les [http://java.sun.com/j2ee/j2ee-1_4-fr-spec.pdf spécifications] JEE pour la gestion des paramètres de déploiement. Il faut utiliser systématiquement les ressources JNDI pour tous les paramètres de déploiement.
+Pour cela, l'application doit respecter rigoureusement les [http://java.sun.com/j2ee/j2ee-1_4-fr-spec.pdf spécifications] JEE pour la gestion des paramètres de déploiement. Il faut utiliser systématiquement les ressources JNDI pour tous les paramètres de déploiement. Consultez le petit [rappelJNDI rappel sur JNDI].
 
 Pour mémoire, le tableau suivant reprend les conventions JEE.
 
