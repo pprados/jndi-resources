@@ -176,8 +176,8 @@ Voici l'installation sur un serveur Tomcat 4.1 directement à partir du composan
 >$JNDI_HOME/bin/jndi-resources \
 	--war jndi-web-sample.war \
 	--appsrv tomcat --version 4.1 \
-	--dest catalina.base=/opt/apache-tomcat-4.1 \
 	--dest catalina.home=/opt/apache-tomcat-4.1 \
+	--dest catalina.base=/opt/apache-tomcat-4.1 \
 	-P plateform.properties \
         -Djdbc.hsqldb.file=MaDB
 }}}
