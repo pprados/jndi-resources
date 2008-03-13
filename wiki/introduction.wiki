@@ -9,6 +9,8 @@ Les composants doivent indiquer les ressources dont ils ont besoins ; une [jdbc 
 
 Mais, comme le paramétrage de ces ressources n'est pas normalisé, chaque serveur utilise une approche qui lui est propre. Il faut alors écrire des scripts d'installations spécifique à chaque serveur, voir à chaque version de chaque serveur. Sinon, le composant JEE ne fonctionne pas, en l'absence des ressources nécessaires.
 
+Il y a différentes [http://www.prados.fr/Langage/Java/Parametres/Les%20parametres%20en%20java.pdf familles] de paramètres avec Java. Pour respecter les spécifications J2EE, garantir un déploiement souple, seule les paramètres de déploiements doivent être présent dans l'annuaire JNDI, mais tous les paramètres de déploiements doivent y être.
+
 Les fichiers `web.xml` et `application.xml` permettent d'indiquer les ressources nécessaires aux composants. Il est possible d'indiquer une clef JNDI locale au composant et une classe Java. Le serveur doit alimenter les clefs avec des objets répondants aux classes.
 {{{
 ...
@@ -39,5 +41,9 @@ Les bénéfices attendus de la démarche sont les suivants :
  * Migration immédiate d'un serveur à un autre ou d'une version à la suivante ;
  * Normalisation de l'utilisation des ressources de l'entreprise ;
  * Qualifications des paramètres de déploiements ;
+
+Références : 
+ * [http://www.prados.fr/Langage/Java/Parametres/Les%20parametres%20en%20java.pdf Les paramètres en Java] publié en 2003 par Philippe Prados.
+ * [http://www.prados.fr/Langage/Java/JNDI/JNDI.pdf Pourquoi utiliser JNDI ?] publié en 2006 par Philippe Prados.
 
 Suite : [aQuoiCelaSert  A quoi cela sert ?]
