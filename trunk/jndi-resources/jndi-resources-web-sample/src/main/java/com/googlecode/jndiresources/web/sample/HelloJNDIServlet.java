@@ -26,11 +26,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.jms.JMSException;
 import javax.mail.NoSuchProviderException;
 import javax.naming.Context;
 import javax.naming.InitialContext;
-import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -122,53 +120,6 @@ public class HelloJNDIServlet extends HttpServlet
 			catch (SQLException e)
 			{
 			}
-		}
-	}
-
-	/**
-	 * Test the JMS resources.
-	 *  
-	 * @param out The writer.
-	 */
-	private void testJMS(PrintWriter out)
-	{
-		final String jndiKeyCF = "java:comp/env/jms/ConnectionFactory";
-		final String jndiKeyXACF = "java:comp/env/jms/XAConnectionFactory";
-
-		final String jndiKeyQueue = "java:comp/env/jms/Queue";
-
-		final String jndiKeyTopic = "java:comp/env/jms/Topic";
-
-		try
-		{
-			out.println("<h2>JMS</h2>");
-			javax.jms.ConnectionFactory jms = (javax.jms.ConnectionFactory) ctx_.lookup(jndiKeyCF);
-			jms.createConnection().close();
-			out.println("<p>" + jndiKeyCF + " is " + jms.getClass() + "</p>");
-
-			javax.jms.XAConnectionFactory jmsXA = (javax.jms.XAConnectionFactory) ctx_.lookup(jndiKeyXACF);
-			jmsXA.createXAConnection().close();
-			out.println("<p>" + jndiKeyXACF + " is " + jms.getClass() + "</p>");
-
-			javax.jms.Queue jmsQueue = (javax.jms.Queue) ctx_.lookup(jndiKeyQueue);
-			out.println("<p>" + jndiKeyQueue + " is " + jmsQueue.getClass() + "</p>");
-
-			javax.jms.Topic jmsTopic = (javax.jms.Topic) ctx_.lookup(jndiKeyTopic);
-			// jms.createConnection().createDurableConnectionConsumer(jmsTopic,null,null,null,3);
-			out.println("<p>" + jndiKeyTopic + " is " + jmsTopic.getClass() + "</p>");
-		}
-		catch (NamingException e)
-		{
-			out.println("<p><b>Error when using default JMS: NamingException " + e.getLocalizedMessage()
-					+ "</b></p>");
-		}
-		catch (JMSException e)
-		{
-			out.println("<p><b>Error when using default JMS: SQLException " + e.getLocalizedMessage()
-					+ "</b></p>");
-		}
-		finally
-		{
 		}
 	}
 
@@ -268,50 +219,6 @@ public class HelloJNDIServlet extends HttpServlet
 	}
 
 	/**
-	 * Test the JNDI resources.
-	 *  
-	 * @param out The writer.
-	 */
-	private void testJNDI(PrintWriter out)
-	{
-		final String jndiKey = "java:comp/env/jndi/file";
-		Context ctx = null;
-		try
-		{
-			out.println("<h2>JNDI " + jndiKey + "</h2>");
-			ctx = (Context) ctx_.lookup(jndiKey);
-			out.println("<p>" + jndiKey + " is " + ctx);
-			for (NamingEnumeration e = ctx.list("."); e.hasMore();)
-			{
-				out.println(e.next() + "<br/>");
-			}
-		}
-		catch (NamingException e)
-		{
-			out
-					.println("<p><b>Error when using ctx: NamingException " + e.getLocalizedMessage()
-							+ "</b></p>");
-			e.printStackTrace(out);
-		}
-	}
-
-//	protected void showJNDILink(PrintWriter out, String name) throws NamingException
-//	{
-//		out.println("<li>");
-//		Object obj;
-//		do
-//		{
-//			obj = ctx_.lookupLink(name);
-//			out.println("<ul>" + name + "=" + obj);
-//			if (obj instanceof LinkRef)
-//			{
-//				name = ((LinkRef) obj).getLinkName();
-//			}
-//		} while (obj instanceof LinkRef);
-//		out.println("</li>");
-//	}
-
-	/**
 	 * {@inheritDoc}
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException
@@ -323,14 +230,6 @@ public class HelloJNDIServlet extends HttpServlet
 		try
 		{
 			testJDBC(out);
-		}
-		catch (Throwable x)
-		{
-			x.printStackTrace(out);
-		}
-		try
-		{
-			testJMS(out);
 		}
 		catch (Throwable x)
 		{
@@ -355,14 +254,6 @@ public class HelloJNDIServlet extends HttpServlet
 		try
 		{
 			testHost(out);
-		}
-		catch (Throwable x)
-		{
-			x.printStackTrace(out);
-		}
-		try
-		{
-			testJNDI(out);
 		}
 		catch (Throwable x)
 		{

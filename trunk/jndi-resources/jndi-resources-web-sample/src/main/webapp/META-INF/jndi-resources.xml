@@ -25,19 +25,14 @@
 >
 	<resource name="jndi-web-sample/jdbc/Default" familly="jdbc/default" />
 	
-	<resource name="jndi-web-sample/jms/ConnectionFactory" familly="jms/default/cf"/>
-
-	<resource name="jndi-web-sample/jms/XAConnectionFactory" familly="jms/default/cf">
-		<property name="xa" value="true"/>
-	</resource>
-
-	<resource name="jndi-web-sample/jms/Queue" familly="jms/default/queue"/>
-	<resource name="jndi-web-sample/jms/Topic" familly="jms/default/topic"/>
-
 	<resource name="jndi-web-sample/mail/Default" familly="mail/default" >
 		<property name="store.protocol" value="imap"/>
 		<property name="transport.protocol" value="smtp"/>
 		<property name="transport.user" value="smtp@user.org"/>
+	</resource>
+
+	<resource name="jndi-web-sample/mail/email" familly="mail/email">
+ 		<property name="email" value="${mon.e-mail}"/>
 	</resource>
 
 	<resource name="jndi-web-sample/url/Default" familly="url/default">
@@ -47,11 +42,5 @@
 	<resource name="jndi-web-sample/host/Default" familly="host/default">
  		<property name="host" value="${host.default}"/>
 	</resource>
-
-	<resource name="jndi-web-sample/mail/email" familly="mail/email">
- 		<property name="email" value="${mon.e-mail}"/>
-	</resource>
-
-	<resource name="jndi-web-sample/jndi/file" familly="jndi/file"/>
 
 </resources>

@@ -82,44 +82,4 @@
 	   <res-sharing-scope>Shareable</res-sharing-scope>
 	</resource-ref>
 
-<!-- JMS resources -->
-	<resource-ref id="jms-ConnectionFactory">
-	   <description>Serveurs de queues</description>
-	   <res-ref-name>jms/ConnectionFactory</res-ref-name>
-	   <res-type>javax.jms.ConnectionFactory</res-type>
-	   <res-auth>Application</res-auth>
-	   <res-sharing-scope>Shareable</res-sharing-scope>
-	</resource-ref>
-
-	<resource-ref id="jms-XAConnectionFactory">
-	   <description>Serveurs de queues</description>
-	   <res-ref-name>jms/XAConnectionFactory</res-ref-name>
-	   <res-type>javax.jms.XAConnectionFactory</res-type>
-	   <res-auth>Application</res-auth>
-	   <res-sharing-scope>Shareable</res-sharing-scope>
-	</resource-ref>
-
-	<resource-ref id="jms-Queue">
-	   <description>Une queues</description>
-	   <res-ref-name>jms/Queue</res-ref-name>
-	   <res-type>javax.jms.Queue</res-type>
-	   <res-auth>Application</res-auth>
-	   <res-sharing-scope>Shareable</res-sharing-scope>
-	</resource-ref>
-	
-	<resource-ref id="jms-Topic">
-	   <description>Un Topic</description>
-	   <res-ref-name>jms/Topic</res-ref-name>
-	   <res-type>javax.jms.Topic</res-type>
-	   <res-auth>Application</res-auth>
-	   <res-sharing-scope>Shareable</res-sharing-scope>
-	</resource-ref>
-	
-	<resource-ref id="jndi-file">
-	   <description>Un Context file</description>
-	   <res-ref-name>jndi/file</res-ref-name>
-	   <res-type>javax.naming.Context</res-type>
-	   <res-auth>Application</res-auth>
-	   <res-sharing-scope>Shareable</res-sharing-scope>
-	</resource-ref>
 </web-app>
