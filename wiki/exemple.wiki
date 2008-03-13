@@ -167,7 +167,7 @@ Pour Tomcat, il faut également indiquer le nom du fichier de la base de donnée
         -Djdbc.hsqldb.file=MaDB
 }}}
 
-Vous pouvez précéder le même, avec tous les versions des serveurs d'applications [VersionsSupportes supportées] par *jndi-resources*.
+Vous pouvez procéder le même, avec tous les versions des serveurs d'applications [VersionsSupportes supportées] par *jndi-resources*.
 
 L'étape de configuration et l'étape d'installation peuvent être combinées avec l'invocation de *jndi-resources*.
 
