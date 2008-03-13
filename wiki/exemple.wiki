@@ -106,7 +106,7 @@ Ce dernier exploite plus de ressources :
 Vous pouvez consulter le fichier [http://code.google.com/p/jndi-resources/source/browse/trunk/jndi-resources/jndi-resources-web-sample/src/main/webapp/META-INF/jndi-resources.xml META-INF/jndi-resources.xml] et le fichier 
 [http://code.google.com/p/jndi-resources/source/browse/trunk/jndi-resources/jndi-resources-web-sample/src/main/webapp/WEB-INF/web.xml WEB-INF/web.xml].
 
-Les exemples utilisent une syntaxe Unix. Sous Windows, vous devez adapter les slashs ou utiliser [http://www.cygwin.com Cygwin].
+Les exemples utilisent une syntaxe Unix. Sous Windows, vous devez adapter les slashs.
 
 Nous désirons générer tous les fichiers de configurations pour tous les serveurs d'applications. L'utilitaire *jndi-config* s'en charge.
 {{{
