@@ -12,8 +12,7 @@ L'archive `jndi-resources-<version>-install.(tar.gz|zip)` ne possède que le
 nécessaire pour installer les ressources d'un composant JEE dans un serveur 
 d'applications. C'est une version plus économe en place disque.
 
- * Le répertoire `$JNDI_HOME/bin` possède trois scripts : `jndi-config`, `jndi-install` 
-et `jndi-resources`.
+ * Le répertoire `$JNDI_HOME/bin` possède trois scripts : `jndi-config`, `jndi-install` et `jndi-resources`.
  * Le répertoire `$JNDI_HOME/lib` possède les librairies Java nécessaires aux utilitaires.
  * Le répertoire `$JNDI_HOME/templates` possède les règles de productions des fichiers 
  de paramétrage pour les différents serveurs d'applications.
