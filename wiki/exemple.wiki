@@ -135,7 +135,7 @@ mail.host=locahost
 url.default=http://localhost
 }}}
 
-Pour Tomcat, il faut également indiquer le nom du fichier de la base de donnée pour HSQLDB. Voici une installation sur un Tomcat 4.1:
+Pour Tomcat, il faut également indiquer le nom du fichier de la base de donnée pour HSQLDB. Indiquons le dans la ligne de commande, avec le paramètre `-D`. Voici une installation sur un Tomcat 4.1:
 {{{
 >$JNDI_HOME/bin/jndi-install \
 	--package ./packages \
