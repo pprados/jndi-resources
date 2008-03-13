@@ -2,7 +2,7 @@
 
 = Exemple rapide =
 
-Avant de commencer l'exemple, il faut [installation installer] *jndi-resources*.
+Avant de commencer l'exemple, il faut [installation installer] *jndi-resources* et avoir une instance de [http://www.jboss.org Jboss] ou de [http://tomcat.apache.org Tomcat] disponible.
 
 Prenons l'exemple d'une archive WAR possédant le fichier `WEB-INF/web.xml` suivant :
 {{{
@@ -44,7 +44,7 @@ Notez la valeur du paramètre `id` du marqueur `<web-app/>`. Il correspond gén�
 
 Conformément aux [comment spécifications], ce fichier déclare, dans `<resource-ref/>`,  le besoin d'une ressource de type `javax.sql.DataSource` pour la clef JNDI `java:comp/env/jdbc/DB`.
 
-Suivant les serveurs d'applications, il faut ajouter [transformerWebXML différents] fichiers permettant d'associer la ressource `java:comp/env/jdbc/Default` avec une autre clef JNDI.
+Suivant les serveurs d'applications, il faut ajouter [transformerWebXML différents] fichiers permettant d'associer la ressource `java:comp/env/jdbc/DB` avec une autre clef JNDI.
 Pour JBoss, il faut ajouter le fichier `WEB-INF/jboss-web.xml` suivant :
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
@@ -99,15 +99,15 @@ Vous pouvez [http://code.google.com/p/jndi-resources/downloads/list télécharge
 }}}
 Ce dernier exploite plus de ressources :
  * Une source de donnée [jdbc] ;
- * Deux factories [jms] normale et XA, ainsi qu'une queue et un topic ;
- * Une connexion [mail javamail] et un [mail email] complémentaire ;
- * Une [url] ;
- * et un [host] ;
+ * une connexion [mail javamail] et un [mail email] complémentaire ;
+ * une [url] ;
+ * un nom de [host] ;
+ * et des factories, une queue et un topic [jms] ;
 
-Le fichier `META-INF/jndi-resources.xml` est présent [http://code.google.com/p/jndi-resources/source/browse/trunk/jndi-resources/jndi-resources-web-sample/src/main/webapp/META-INF/jndi-resources.xml ici] et le fichier `WEB-INF/web.xml` est 
-[http://code.google.com/p/jndi-resources/source/browse/trunk/jndi-resources/jndi-resources-web-sample/src/main/webapp/WEB-INF/web.xml là].
+Vous pouvez consulter le fichier [http://code.google.com/p/jndi-resources/source/browse/trunk/jndi-resources/jndi-resources-web-sample/src/main/webapp/META-INF/jndi-resources.xml META-INF/jndi-resources.xml] et le fichier 
+[http://code.google.com/p/jndi-resources/source/browse/trunk/jndi-resources/jndi-resources-web-sample/src/main/webapp/WEB-INF/web.xml WEB-INF/web.xml].
 
-Nous désirons générer tous les fichiers de configurations des serveurs d'applications. L'utilitaire `$JNDI_HOME/bin/jndi-config` s'en charge.
+Nous désirons générer tous les fichiers de configurations pour tous les serveurs d'applications. L'utilitaire *jndi-config* s'en charge.
 {{{
 >$JNDI_HOME/bin/jndi-config \
 	--war jndi-web-sample.war \
@@ -148,7 +148,7 @@ Pour Tomcat, il faut également indiquer le nom du fichier de la base de donnée
         -Djdbc.hsqldb.file=MaDB
 }}}
 
-Voici une installation sur un Jboss 5.0:
+Installez le composant sur un serveur Jboss. Adaptez la commande suivant le numéro de version que vous utilisez.
 {{{
 >$JNDI_HOME/bin/jndi-install \
 	--appsrv jboss --version 5.0 \
@@ -162,9 +162,9 @@ Il ne reste plus qu'a lancer le serveur d'application et à tester le composant.
 {{{
 >/opt/jboss-5.0/bin/run.sh
 }}}
-L'URL à consulter est généralement la suivante `http://localhost:8080/jndi-web-sample/`. Il peut être différente suivant le port utilisé par votre version de JBoss.
+L'URL à consulter est généralement la suivante `http://localhost:8080/jndi-web-sample/`. Elle peut être différente suivant le port utilisé par votre version de JBoss.
 
-Vous constatez que la page de résultat récupère bien les instances de l'annuaire JNDI, mais pas les queues JMS. En effet, le composant est client de queues JMS. Elles doivent être publiée dans un serveur. Utilisons *jndi-install* pour publier les queues dans le même serveur JBoss.
+Vous constatez que la page de résultat récupère bien les instances de l'annuaire JNDI, mais pas les queues JMS. En effet, le composant est client de queues JMS. Elles doivent être publiées dans un serveur. Utilisons *jndi-install* pour publier les queues dans le même serveur JBoss.
 {{{
 >$JNDI_HOME/bin/jndi-install \
 	--appsrv jboss-jms-srv --version 5.0 \
@@ -173,15 +173,14 @@ Vous constatez que la page de résultat récupère bien les instances de l'annua
 	--dest jboss.server.home=/opt/jboss-5.0
         -P plateform.properties
 }}}
-Nous avons simplement modifié le nom du serveur d'application en `jboss-jms-srv`.
+Nous avons simplement modifié le nom du serveur d'application en `jboss-jms-srv` (paramètre `--appsrv`).
 C'est un serveur jboss jouant le rôle de serveur de queues JMS.
-
-Vous pouvez précéder le même, avec tous les versions des serveurs d'applications [VersionsSupportes supportées] par *jndi-resources*.
-
 En rafraichissant la page, tous est maintenant correct. Toutes les ressources nécessaires
 au composant sont bien présente dans l'instance JBoss.
 
-L'étape de configuration et l'étape d'installation peuvent être combinées avec l'invocation de `$JNDI_HOME/bin/jndi-resources`.
+Vous pouvez précéder le même, avec tous les versions des serveurs d'applications [VersionsSupportes supportées] par *jndi-resources*.
+
+L'étape de configuration et l'étape d'installation peuvent être combinées avec l'invocation de *jndi-resources*.
 
 Voici l'installation sur un serveur Tomcat 4.1 directement à partir du composant WAR.
 {{{
@@ -194,11 +193,11 @@ Voici l'installation sur un serveur Tomcat 4.1 directement à partir du composan
         -Djdbc.hsqldb.file=MaDB
 }}}
 
-Il ne reste plus qu'a lancer le serveur d'application et à tester le composant.
+Il ne reste plus qu'a lancer le serveur d'application Tomcat et à tester le composant.
 {{{
 >/opt/apache-tomcat-4.1/bin/catalina.sh run
 }}}
-L'URL à consulter est généralement la suivante `http://localhost:8080/jndi-web-sample/`. Il peut être différente suivant le port utilisé par votre version de JBoss.
+L'URL à consulter est généralement la suivante `http://localhost:8080/jndi-web-sample/`. Elle peut être différente suivant le port utilisé par votre version de Tomcat.
 
 Précédent : [installation]
 Suite: [ligneDeCommandes Lignes de commandes]
