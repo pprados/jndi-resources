@@ -36,8 +36,4 @@ recopiés dans le repository local. Puis du repository local vers les scripts
 d'installations.
 
 Précédent : [conventions Conventions de mapping des clefs JNDI]
-Suite: [exemple
-
-
-
- Exemple Rapide]
+Suite: [exemple Exemple Rapide]
