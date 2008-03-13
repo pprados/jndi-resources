@@ -188,5 +188,7 @@ Il ne reste plus qu'a lancer le serveur d'application Tomcat et à tester le com
 }}}
 L'URL à consulter est généralement la suivante `http://localhost:8080/jndi-web-sample/`. Elle peut être différente suivant le port utilisé par votre version de Tomcat.
 
+Pour comprendre comment tous cela fonctionne, il est fortement conseillé de regarder le répertoire `package` généré par *jndi-config*.
+
 Précédent : [installation]
 Suite: [ligneDeCommandes Lignes de commandes]
