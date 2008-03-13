@@ -113,7 +113,7 @@ Nous désirons générer tous les fichiers de configurations pour tous les serve
 	--war jndi-web-sample.war \
 	--packages ./packages
 }}}
-Cela génère un répertoire `./packages`, avec des modèles de fichiers de configurations pour tous les serveurs d'applications. C'est ce répertoire ainsi que `jndi-resources-<version>-install.(tar.gz|zip)` qu'il faudra utiliser pour installer le composant sur n'importe quel serveur d'applications.
+Après quelques dizaines de secondes, cela génère un répertoire `./packages`, avec des modèles de fichiers de configurations pour tous les serveurs d'applications. C'est ce répertoire ainsi que `jndi-resources-<version>-install.(tar.gz|zip)` qu'il faudra utiliser pour installer le composant sur n'importe quel serveur d'applications.
 Pour avoir plus de détail sur les étapes de la génération, ajoutez le paramètre `-l` ou `-ll` pour augmenter le niveau de trace.
 
 Nous pouvons maintenant installer le composant sur différents serveurs d'applications.
