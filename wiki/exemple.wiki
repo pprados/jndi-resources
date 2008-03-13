@@ -123,8 +123,9 @@ Mais il faut auparavant, valoriser différentes variables en conformité avec le
 ||jdbc.password||Le mot de passe de l'utilisateur de la base de données.||
 ||mail.from||Le e-mail utilisé lors de l'envoie de messages.||
 ||mon.e-mail||Un e-mail.||
-||mail.host||Un nom de host.|| 
+||mail.host||Le host du serveur de mail.||
 ||url.default||Une URL.||
+||host.default||Un nom de host.|| 
 
 Ces [variables] peuvent être décrite dans un fichier de propriétés `plateform.properties` à créer.
 {{{
@@ -134,6 +135,7 @@ mail.from=no-reply@ici.org
 mon.e-mail=moi@ici.org
 mail.host=locahost
 url.default=http://localhost
+host.default=localhost
 }}}
 
 Installez le composant sur un serveur Jboss. Adaptez la commande suivant le numéro de version que vous utilisez.
