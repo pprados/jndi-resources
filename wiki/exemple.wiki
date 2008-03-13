@@ -102,7 +102,8 @@ Ce dernier exploite plus de ressources :
  * Une [url] ;
  * et un [host] ;
 
-Le fichier `META-INF/jndi-resources.xml` est présent [http://code.google.com/p/jndi-resources/source/browse/trunk/jndi-resources/jndi-resources-web-sample/src/main/webapp/META-INF/jndi-resources.xml ici].
+Le fichier `META-INF/jndi-resources.xml` est présent [http://code.google.com/p/jndi-resources/source/browse/trunk/jndi-resources/jndi-resources-web-sample/src/main/webapp/META-INF/jndi-resources.xml ici] et le fichier `WEB-INF/web.xml` est 
+[http://code.google.com/p/jndi-resources/source/browse/trunk/jndi-resources/jndi-resources-web-sample/src/main/webapp/WEB-INF/web.xml là].
 
 Nous désirons générer tous les fichiers de configurations des serveurs d'applications. L'utilitaire `$JNDI_HOME/bin/jndi-config` s'en charge.
 {{{
