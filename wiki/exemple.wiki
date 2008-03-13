@@ -159,7 +159,7 @@ Il ne reste plus qu'a lancer le serveur d'application et à tester le composant.
 {{{
 >/opt/jboss-5.0/bin/run.sh
 }}}
-L'URL à consulter est généralement la suivante `http://localhost:8080/TODO`. Il peut être différente suivant le port utilisé par votre version de JBoss.
+L'URL à consulter est généralement la suivante `http://localhost:8080/jndi-web-sample/`. Il peut être différente suivant le port utilisé par votre version de JBoss.
 
 Vous constatez que la page de résultat récupère bien certaines instances, mais pas les queues JMS. En effet, le composant est client de queues JMS. Elles doivent être publiée dans le serveur. Utilisons *jndi-install* pour cela.
 {{{
@@ -193,7 +193,7 @@ Il ne reste plus qu'a lancer le serveur d'application et à tester le composant.
 {{{
 >/opt/apache-tomcat-4.1/bin/catalina.sh run
 }}}
-L'URL est `http://localhost:8080/TODO`.
+L'URL à consulter est généralement la suivante `http://localhost:8080/jndi-web-sample/`. Il peut être différente suivant le port utilisé par votre version de JBoss.
 
 Précédent : [installation]
 Suite: [ligneDeCommandes Lignes de commandes]
