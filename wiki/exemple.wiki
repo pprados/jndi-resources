@@ -15,12 +15,12 @@ Prenons l'exemple d'une archive WAR possédant le fichier `WEB-INF/web.xml` suiv
 >
 	<display-name>jndi-resources-web-sample</display-name>
 
-      <servlet>
-        <servlet-name>HelloServlet</servlet-name>
-        <display-name>Hello Servlet</display-name>
-        <servlet-class>org.sample.HelloJNDIServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-      </servlet>
+        <servlet>
+        	<servlet-name>HelloServlet</servlet-name>
+        	<display-name>Hello Servlet</display-name>
+        	<servlet-class>org.sample.HelloJNDIServlet</servlet-class>
+        	<load-on-startup>1</load-on-startup>
+        </servlet>
 	<servlet-mapping>
 		<servlet-name>HelloServlet</servlet-name>
 		<url-pattern>/</url-pattern>
@@ -31,11 +31,11 @@ Prenons l'exemple d'une archive WAR possédant le fichier `WEB-INF/web.xml` suiv
 	</welcome-file-list>
 
 	<resource-ref>
-	   <description>La base de données</description>
-	   <res-ref-name>jdbc/DB</res-ref-name>
-	   <res-type>javax.sql.DataSource</res-type>
-	   <res-auth>Application</res-auth>
-	   <res-sharing-scope>Shareable</res-sharing-scope>
+		<description>La base de données</description>
+		<res-ref-name>jdbc/DB</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Application</res-auth>
+		<res-sharing-scope>Shareable</res-sharing-scope>
 	</resource-ref>
 </web-app>
 }}}
