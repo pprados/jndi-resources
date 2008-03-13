@@ -126,7 +126,7 @@ Mais il faut auparavant, valoriser différentes variables en conformité avec le
 ||mail.host||Un nom de host.|| 
 ||url.default||Une URL.||
 
-Ces [variables] peuvent être décrite dans un fichier de propriétés `plateform.properties`.
+Ces [variables] peuvent être décrite dans un fichier de propriétés `plateform.properties` à créer.
 {{{
 jdbc.username=sa 
 jdbc.password=
