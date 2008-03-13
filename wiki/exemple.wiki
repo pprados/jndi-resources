@@ -2,6 +2,8 @@
 
 = Exemple rapide =
 
+Avant de commencer l'exemple, il faut [installation installer] *jndi-resources*.
+
 Prenons l'exemple d'une archive WAR possédant le fichier `WEB-INF/web.xml` suivant :
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
