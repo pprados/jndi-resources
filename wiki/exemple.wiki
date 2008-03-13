@@ -140,8 +140,8 @@ Pour Tomcat, il faut également indiquer le nom du fichier de la base de donnée
 >$JNDI_HOME/bin/jndi-install \
 	--package ./packages \
 	--appsrv tomcat --version 4.1 \
-	--dest catalina.base=/opt/apache-tomcat-4.1 \
 	--dest catalina.home=/opt/apache-tomcat-4.1 \
+	--dest catalina.base=/opt/apache-tomcat-4.1 \
 	-P plateform.properties \
         -Djdbc.hsqldb.file=MaDB
 }}}
@@ -151,8 +151,8 @@ Voici une installation sur un Jboss 5.0:
 >$JNDI_HOME/bin/jndi-install \
 	--package ./packages \
 	--appsrv jboss --version 5.0 \
-	--dest jboss.server.conf=/opt/jboss-5.0/server/default \
 	--dest jboss.server.home=/opt/jboss-5.0
+	--dest jboss.server.conf=/opt/jboss-5.0/server/default \
         -P plateform.properties
 }}}
 
