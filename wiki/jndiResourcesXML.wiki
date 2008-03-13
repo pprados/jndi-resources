@@ -1,4 +1,4 @@
-#summary Descriptions des ressources, syntaxe du fichier  `jndi-resources.xml`
+#summary `jndi-resources.xml` syntaxe et descriptions des ressources
 #labels Phase-configuration
 
 = Description des ressources =
