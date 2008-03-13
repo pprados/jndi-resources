@@ -33,7 +33,7 @@ jndi-config -j jar:file:application.war!/META-INF/jndi-resources.xml ...
 
 Cet utilitaire exploite les _repositories_ [http://maven.apache.org Maven] pour y 
 extraire les drivers nécessaires à l'application à installer. Un _repository_ local 
-est créé dans `~/.m2/repository` s'il n'en existe pas.
+est créé dans `~/.m2/repository` s'il n'en existe pas. Si vous n'utilisez que des ressources présentes dans le repository centrale, il n'est pas nécessaire d'installer Maven.
 
 *jndi-install* accepte les paramètres suivant :
 {{{
