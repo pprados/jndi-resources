@@ -2,7 +2,7 @@
 
 = Exemple rapide =
 
-Avant de commencer l'exemple, il faut [installation installer] *jndi-resources* et avoir une instance de [http://www.jboss.org Jboss] ou de [http://tomcat.apache.org Tomcat] disponible. Un rapide [comment rappel] sur JNDI peut également être nécessaire.
+Avant de commencer l'exemple, il faut [installation installer] *jndi-resources* et avoir une instance de [http://www.jboss.org Jboss] ou de [http://tomcat.apache.org Tomcat] disponible. Un rapide [rappelJNDI   rappel] sur JNDI peut également être nécessaire.
 
 Prenons l'exemple d'une archive WAR possédant le fichier `WEB-INF/web.xml` suivant :
 {{{
