@@ -49,11 +49,11 @@ Pour JBoss, il faut ajouter le fichier `WEB-INF/jboss-web.xml` suivant :
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <jboss-web>
-   <resource-ref>
-      <res-ref-name>jdbc/DB</res-ref-name>
-      <res-type>javax.sql.DataSource</res-type>
-      <jndi-name>java:jndi-web-sample/jdbc/DB</jndi-name>
-   </resource-ref>
+	<resource-ref>
+		<res-ref-name>jdbc/DB</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<jndi-name>java:jndi-web-sample/jdbc/DB</jndi-name>
+	</resource-ref>
 </jboss-web>
 }}}
 
@@ -67,9 +67,9 @@ Pour Tomcat, le fichier `META-INF/context.xml` suivant :
 	antiJARLocking="true"
 	privileged="false"
 >
-   <ResourceLink name="jdbc/DB"
-                 global="/jndi-web-sample/jdbc/DB"
-                 type="javax.sql.DataSource"/>
+	<ResourceLink name="jdbc/DB"
+                      global="/jndi-web-sample/jdbc/DB"
+                      type="javax.sql.DataSource"/>
 </Context>
 }}}
 Ces deux fichiers permettent d'associer la clef locale `java:comp/env/jdbc/DB` avec la clef JVM `java:/jndi-web-sample/jdbc/DB`.
