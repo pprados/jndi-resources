@@ -101,8 +101,7 @@ Ce dernier exploite plus de ressources :
  * Une source de donnée [jdbc] ;
  * une connexion [mail javamail] et un [mail email] complémentaire ;
  * une [url] ;
- * un nom de [host] ;
- * et des factories, une queue et un topic [jms] ;
+ * et un nom de [host].
 
 Vous pouvez consulter le fichier [http://code.google.com/p/jndi-resources/source/browse/trunk/jndi-resources/jndi-resources-web-sample/src/main/webapp/META-INF/jndi-resources.xml META-INF/jndi-resources.xml] et le fichier 
 [http://code.google.com/p/jndi-resources/source/browse/trunk/jndi-resources/jndi-resources-web-sample/src/main/webapp/WEB-INF/web.xml WEB-INF/web.xml].
@@ -137,17 +136,6 @@ mail.host=locahost
 url.default=http://localhost
 }}}
 
-Pour Tomcat, il faut également indiquer le nom du fichier de la base de donnée pour HSQLDB. Indiquons le dans la ligne de commande, avec le paramètre `-D`. Voici une installation sur un Tomcat 4.1:
-{{{
->$JNDI_HOME/bin/jndi-install \
-	--appsrv tomcat --version 4.1 \
-	--package ./packages \
-	--dest catalina.home=/opt/apache-tomcat-4.1 \
-	--dest catalina.base=/opt/apache-tomcat-4.1 \
-	-P plateform.properties \
-        -Djdbc.hsqldb.file=MaDB
-}}}
-
 Installez le composant sur un serveur Jboss. Adaptez la commande suivant le numéro de version que vous utilisez.
 {{{
 >$JNDI_HOME/bin/jndi-install \
@@ -163,20 +151,19 @@ Il ne reste plus qu'a lancer le serveur d'application et à tester le composant.
 >/opt/jboss-5.0/bin/run.sh
 }}}
 L'URL à consulter est généralement la suivante `http://localhost:8080/jndi-web-sample/`. Elle peut être différente suivant le port utilisé par votre version de JBoss.
+Vous constatez que la page de résultat récupère bien les instances de l'annuaire JNDI.
 
-Vous constatez que la page de résultat récupère bien les instances de l'annuaire JNDI, mais pas les queues JMS. En effet, le composant est client de queues JMS. Elles doivent être publiées dans un serveur. Utilisons *jndi-install* pour publier les queues dans le même serveur JBoss.
+Pour Tomcat, il faut également indiquer le nom du fichier de la base de donnée pour HSQLDB. Indiquons le dans la ligne de commande, avec le paramètre `-D`. Voici une installation sur un Tomcat 4.1:
+
 {{{
 >$JNDI_HOME/bin/jndi-install \
-	--appsrv jboss-jms-srv --version 5.0 \
+	--appsrv tomcat --version 4.1 \
 	--package ./packages \
-	--dest jboss.server.conf=/opt/jboss-5.0/server/default \
-	--dest jboss.server.home=/opt/jboss-5.0
-        -P plateform.properties
+	--dest catalina.home=/opt/apache-tomcat-4.1 \
+	--dest catalina.base=/opt/apache-tomcat-4.1 \
+	-P plateform.properties \
+        -Djdbc.hsqldb.file=MaDB
 }}}
-Nous avons simplement modifié le nom du serveur d'application en `jboss-jms-srv` (paramètre `--appsrv`).
-C'est un serveur jboss jouant le rôle de serveur de queues JMS.
-En rafraichissant la page, tous est maintenant correct. Toutes les ressources nécessaires
-au composant sont bien présente dans l'instance JBoss.
 
 Vous pouvez précéder le même, avec tous les versions des serveurs d'applications [VersionsSupportes supportées] par *jndi-resources*.
 
