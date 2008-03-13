@@ -3,6 +3,9 @@
 = TODO =
 
  * Vérifier l'utilisation avec un EAR
+ * En faire un plugin Maven
+ * Faire la désintallation
+ * Étendre vers d'autres serveurs d'applications
  * Autre TODO dans le [http://www.prados.fr/mvn/jndi-resources/command-line/taglist.html source]
  * Pages WIKI à faire
    * [extensionTomcat]
