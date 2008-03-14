@@ -42,6 +42,8 @@ Prenons l'exemple d'une archive WAR possédant le fichier `WEB-INF/web.xml` suiv
 
 Notez la valeur du paramètre `id` du marqueur `<web-app/>`. Il correspond généralement au path de déploiement de l'archive.
 
+Nous souhaitons bénéficier de la normalisation du packaging du composant, à savoir, la possibilité de l'utiliser sur tous les serveurs d'applications, indépendamment de sa marque ou de sa version. C'est bien l'objectif de la normalisation WAR.
+
 Conformément aux [comment spécifications], ce fichier déclare, dans `<resource-ref/>`,  le besoin d'une ressource de type `javax.sql.DataSource` pour la clef JNDI `java:comp/env/jdbc/DB`.
 
 Suivant les serveurs d'applications, il faut ajouter [transformerWebXML différents] fichiers permettant d'associer la ressource `java:comp/env/jdbc/DB` avec une autre clef JNDI.
@@ -72,11 +74,13 @@ Pour Tomcat, le fichier `META-INF/context.xml` suivant :
                       type="javax.sql.DataSource"/>
 </Context>
 }}}
-Ces deux fichiers permettent d'associer la clef locale `java:comp/env/jdbc/DB` avec la clef JVM `java:/jndi-web-sample/jdbc/DB`.
+Ces deux fichiers permettent d'associer la clef [rappelJNDI locale] `java:comp/env/jdbc/DB` avec la clef [rappelJNDI JVM] `java:/jndi-web-sample/jdbc/DB`.
 
 Par [conventions], les clefs locales de la branche `java:comp/env` doivent être associées aux clefs JVM de la branche `java:`, en préfixant par l'`id` présent dans le fichier `web.xml`. Cela permet de lever les ambiguïtés lorsque plusieurs composants sont installés sur le même serveur d'applications.
 
-Ces règles de transformations étant systématiques, il est facile de générer ces fichiers à partir du fichier `web.xml`. Des [transformerWebXML scripts XSLT] sont proposés dans le répertoire `$JNDI_HOME/xslt`.
+Ces règles de transformations étant systématiques, il est facile de générer ces fichiers à partir du fichier `web.xml`. Des [transformerWebXML scripts XSLT] sont proposées dans le répertoire `$JNDI_HOME/xslt`.
+
+En ajoutant ces deux fichiers, notre composant peut être installé sous Tomcat ou JBoss.
 
 Il faut ensuite ajouter le fichier `META-INF/jndi-resources.xml`. C'est un [jndiResourcesXML nouveau fichier] permettant de décrire sémantiquement (et non techniquement) les exigences des ressources du composant applicatif.
 {{{
@@ -99,12 +103,13 @@ Vous pouvez [http://code.google.com/p/jndi-resources/downloads/list télécharge
 }}}
 Ce dernier exploite plus de ressources :
  * Une source de donnée [jdbc] ;
- * une connexion [mail javamail] et un [mail email] complémentaire ;
+ * une connexion [mail javamail] ;
+ * un [mail email] complémentaire ;
  * une [url] ;
  * et un nom de [host].
 
 Vous pouvez consulter le fichier [http://code.google.com/p/jndi-resources/source/browse/trunk/jndi-resources/jndi-resources-web-sample/src/main/webapp/META-INF/jndi-resources.xml META-INF/jndi-resources.xml] et le fichier 
-[http://code.google.com/p/jndi-resources/source/browse/trunk/jndi-resources/jndi-resources-web-sample/src/main/webapp/WEB-INF/web.xml WEB-INF/web.xml].
+[http://code.google.com/p/jndi-resources/source/browse/trunk/jndi-resources/jndi-resources-web-sample/src/main/webapp/WEB-INF/web.xml WEB-INF/web.xml] du composant.
 
 Les exemples utilisent une syntaxe Unix. Sous Windows, vous devez adapter les slashs or utiliser [http://www.cygwin.com Cygwin].
 
@@ -115,12 +120,11 @@ Nous désirons générer tous les fichiers de configurations pour tous les serve
 	--package ./package
 }}}
 Après quelques dizaines de secondes, cela génère un répertoire `./packages`, avec des modèles de fichiers de configurations pour tous les serveurs d'applications.C'est ce répertoire ainsi que `jndi-resources-<version>-install.(tar.gz|zip)` qu'il faudra utiliser pour installer le composant sur n'importe quel serveur d'applications.
-
 Le premier lancement est toujours plus long, car il faut télécharger les différentes archives pour les ressources utilisés par le composants. 
 Pour avoir plus de détail sur les étapes de la génération, ajoutez le paramètre `-l` ou `-ll` pour augmenter le niveau de trace.
 
 Nous pouvons maintenant installer le composant sur différents serveurs d'applications.
-Mais il faut auparavant, valoriser différentes variables en conformité avec le déploiement du composant.
+Mais il faut auparavant, valoriser différentes variables en conformité avec le déploiement du composant. C'est le rôle de l'installateur du composant de valoriser ces variables. Ce n'est surtout pas le rôle du développeur ou du projet. En effet, ces derniers ne doivent en aucun cas avoir une connaissance de la plate-forme d'exécution.
 
 || *Variable* || *Description* ||
 ||jdbc.username||Le nom de l'utilisateur de la base de données.||
@@ -142,7 +146,7 @@ url.default=http://localhost
 host.default=localhost
 }}}
 
-Installez le composant sur un serveur Jboss. Adaptez la commande suivant le numéro de version que vous utilisez.
+Installez le composant sur un serveur Jboss en suivant la commande ci-dessous. Adaptez la  suivant le numéro de version que vous utilisez.
 {{{
 >$JNDI_HOME/bin/jndi-install \
 	--appsrv jboss --version 5.0 \
@@ -157,7 +161,7 @@ Il ne reste plus qu'a lancer le serveur d'application et à tester le composant.
 >/opt/jboss-5.0/bin/run.sh
 }}}
 L'URL à consulter est généralement la suivante `http://localhost:8080/jndi-web-sample/`. Elle peut être différente suivant le port utilisé par votre version de JBoss.
-Vous constatez que la page de résultat récupère bien les instances de l'annuaire JNDI.
+Vous constatez que la page de résultat récupère bien les instances de l'annuaire JNDI. Un consultation de la console JMX de JBoss, et particulièrement du JNDIView, permet de confirmer que l'installation c'est bien effectuée.
 
 Pour Tomcat, il faut également indiquer le nom du fichier de la base de donnée pour HSQLDB. Indiquons le dans la ligne de commande, avec le paramètre `-D`. Voici une installation sur un Tomcat 4.1:
 
@@ -171,7 +175,7 @@ Pour Tomcat, il faut également indiquer le nom du fichier de la base de donnée
         -Djdbc.hsqldb.file=MaDB
 }}}
 
-Vous pouvez procéder le même, avec tous les versions des serveurs d'applications [VersionsSupportes supportées] par *jndi-resources*.
+Vous pouvez procéder le même, avec toutes les versions des serveurs d'applications [VersionsSupportes supportées] par *jndi-resources*.
 
 L'étape de configuration et l'étape d'installation peuvent être combinées avec l'invocation de *jndi-resources*.
 
