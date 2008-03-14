@@ -31,3 +31,4 @@ Pour mémoire, le tableau suivant reprend les conventions JEE.
 || `java:comp/env/eis/*` || `javax.resource.cci.ConnectionFactory`, `javax.resource.Referenceable` || Pour les ressources JCA||
 || `java:comp/UserTransaction` || `javax.transaction.UserTransaction` || Clef spéciale permettant d'avoir un accès au contexte transactionnel.||
 
+Plusieurs [architecture architectures] sont possible, d'un annuaire localisé dans chaque serveur d'applications à une grappe d'annuaires centralisés, utilisés par tous les serveurs d'applications.
