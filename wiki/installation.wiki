@@ -35,5 +35,5 @@ Les différents drivers sont récupérés du repository Maven et
 recopiés dans le repository local. Puis du repository local vers les scripts 
 d'installations.
 
-Précédent : [conventions Conventions de mapping des clefs JNDI]
+Précédent : [comment Comment faire ?]
 Suite: [exemple Exemple Rapide]
