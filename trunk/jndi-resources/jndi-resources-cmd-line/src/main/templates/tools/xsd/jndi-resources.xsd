@@ -20,7 +20,9 @@
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
 	targetNamespace="http://jndi-resources.googlecode.com/1.0/"
 	xmlns:tns="http://jndi-resources.googlecode.com/1.0/"
-	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	elementFormDefault="qualified" attributeFormDefault="unqualified"
+	version="1.0"
+>
 
 	<element name="resources">
 		<annotation>

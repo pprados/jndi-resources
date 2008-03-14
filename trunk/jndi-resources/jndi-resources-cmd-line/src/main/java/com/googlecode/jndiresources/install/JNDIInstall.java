@@ -318,7 +318,7 @@ public final class JNDIInstall
 		out.println("(-d|--dest) <key>=<value>          : Define destination directories");
 		out.println("-D<key>=<value>|xpath:<[ns,]xpath> : Define property");
 		out.println("--xsl <key>=<value>|xpath:...      : Define XSL variable");
-		out.println("(-P|--properties) <url>            : List of properties or xpath files");
+		out.println("(-P|--properties) <url>            : List of properties");
 		out.println("(-p|--package) <sourcepackage>     : Sources product with JNDIConfig");
 		out.println("(-a|--appsrv) <jboss|tomcat...>    : Familly of application server");
 		out.println("(-v|--version)                     : Application server version to use");
