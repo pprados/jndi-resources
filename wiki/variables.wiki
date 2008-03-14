@@ -7,7 +7,7 @@ Il est nécessaire de valoriser quelques variables lors de l'installation comme,
 
 Les variables sont de la forme `${...}` dans les fichiers de paramètres générés par *jndi-config*.
 
-*jndi-install* s'occupe d'installer les fichiers de paramètres après valorisation des variables. Ainsi, les fichiers sont spécialisés à une plate-forme lors de l'installation et non lors de la génération.
+*jndi-install* s'occupe d'installer les fichiers de configurations après valorisation des variables. Ainsi, les fichiers sont spécialisés à une plate-forme lors de l'installation et non lors de la génération.
 
 Les variables sont initialisées à l'aide de fichiers de propriétées de la forme `clef=valeur`.
 {{{
@@ -54,7 +54,7 @@ user=document('jar:file:/tableur.ods!/content.xml')  \
 
 La ligne de commande de `jndi-install` permet d'indiquer une URL de propriétés à utiliser à l'aide du paramètre `‑‑properties`. Un nom relatif correspond à une URL de type `file:`. Vous pouvez également récupérer les propriétés via le net avec une URL de type `http:` ou sur un serveur de fichier via une URL de type `ftp:`. Ce paramètre peut être présent plusieurs fois sur la ligne de commande si nécessaire.
 
-Il est également possible d'ajouter des paramètres ponctuels dans la ligne de commande de type propriété (`-D`). La syntaxe XPath est également possible.
+Il est également possible d'ajouter des paramètres ponctuels dans la ligne de commande de type propriété (`-D`). La syntaxe XPath est également acceptée.
 
 Les propriétés sont assemblées dans un ordre précis, avant d'effectuer les transformations lors de l'installation. Le tableau suivant indique l'ordre de chargement. L'étape suivante peut modifier une propriété en la revalorisant.
 
