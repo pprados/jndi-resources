@@ -7,7 +7,7 @@ configuration à partir de fichiers [jndiResourcesXML jndi-resources.xml],
 le deuxième se charge d'installer les fichiers pour un serveur d'applications 
 et le troisième est un enchaînement des deux premiers.
 
-*jndi-config* accepte différents paramètres.
+*jndi-config* accepte différents paramètres :
 {{{
 Usage: jndi-config [-h] (-w <war|ear> | -j <jndi-resources.xml>) \
                    [-t <templates>] -p <destination>
@@ -32,8 +32,8 @@ jndi-config -j jar:file:application.war!/META-INF/jndi-resources.xml ...
 }}}
 
 Cet utilitaire exploite les _repositories_ [http://maven.apache.org Maven] pour y 
-extraire les drivers nécessaires à l'application à installer. Un _repository_ local 
-est créé dans `~/.m2/repository` s'il n'en existe pas. Si vous n'utilisez que des ressources présentes dans le repository centrale, il n'est pas nécessaire d'installer Maven.
+extraire les _drivers_ nécessaires à l'application à installer. Un _repository_ local 
+est créé dans `~/.m2/repository` s'il n'en existe pas. Si vous n'utilisez que des ressources présentes dans le _repository_ centrale, il n'est pas nécessaire d'installer Maven. Sinon, vous devez l'installer pour pouvoir ajouter les archives manquantes (, généralement à cause des licences) dans votre _repository_ local.
 
 *jndi-install* accepte les paramètres suivant :
 {{{
@@ -44,7 +44,7 @@ Usage: jndi-install [-h] -d <appsrvconfdir=dir>
 (-d|--dest) <key>=<value>          : Define destination directories
 -D<key>=<value>|xpath:<[ns,]xpath> : Define property
 --xsl <key>=<value>|xpath:...      : Define XSL variable
-(-P|--properties) <url>            : List of properties or xpath files
+(-P|--properties) <url>            : List of properties
 (-p|--package) <sourcepackage>     : Sources product with JNDIConfig
 (-a|--appsrv) <jboss|tomcat...>    : Familly of application server
 (-v|--version)                     : Application server version to use
