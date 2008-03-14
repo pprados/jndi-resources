@@ -1,4 +1,5 @@
 #summary Les paramètres de la ligne de commandes.
+#labels Featured
 
 = Paramètres de la ligne de commandes =
 
