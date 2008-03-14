@@ -2,7 +2,8 @@
 #labels Phase-configuration
 
 = Familles de ressources =
-Le tableau suivant décrit les différentes familles de ressources gérés par l'outil.
+Le tableau suivant décrit les différentes familles de ressources gérés par l'outil. Il s'agit des types de ressources que peut générer l'outil. Bien entendu, d'autres ressources peuvent être nécessaire. Elles apparaîtront au fur et à mesure des évolutions de l'outil. Vous pouvez également l'[etendre étendre] pour générer vos propres ressources.
+
 || *Famille* || *Description* ||
 || [host host/default] || Déclare un host dans l'arbre JNDI. ||
 || [jdbc jdbc/default] || Utilise la base de donnée par défaut du serveur d'application. ||
