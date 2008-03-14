@@ -2,7 +2,7 @@
 
 = Les modèles de transformations =
 
-Les [http://www.prados.fr/mvn/jndi-resources/command-line/templates/ modèles] de transformations proposent de gérer les serveurs suivants :
+Les [http://www.prados.fr/mvn/jndi-resources/cmd-line/templates/ modèles] de transformations proposent de gérer les serveurs suivants :
  * `jboss` de la version 3.0 à la dernière à ce jour ( la version 5.x ou suivante si la compatibilité ascendante est conservée).
  * `jboss-jms-srv`, un serveur JBoss jouant le rôle de serveur JMS pour les versions de 3.0 à 5.x.
  * `jboss-jndi-srv`, un serveur [JBoss] jouant uniquement le rôle de serveur d'annuaire JNDI pour les versions de 3.2 à 5.x.
