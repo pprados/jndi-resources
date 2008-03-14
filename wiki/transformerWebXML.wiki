@@ -2,7 +2,17 @@
 
 = Transformations de web.xml =
 
-Différents filtres XSLT sont proposés pour transformer le fichier `web.xml` en fichiers nécessaires aux différents serveurs d'applications.
+Différents filtres XSLT 2.0 sont proposés pour transformer le fichier `web.xml` en fichiers nécessaires aux différents serveurs d'applications ou d'autres transformations.
+
+|| *Filtre* || *Conversion* ||
+|| web-to-jboss-web.xslt || web.xml vers jboss-web.xml (Pour JBoss) ||
+|| web-to-tomcat-context.xslt || web.xml vers context.xml (Pour Tomcat)||
+|| web-to-ibm-web-bnd.xslt || web.xml vers ibm-web-bnd.xml (Pour WAS) ||
+|| web-to-ibm-web-ext.xslt || web.xml vers ibm-web-ext.xml (Pour WAS) ||
+|| jndi-resources-to-web2.4.xslt || [jndiResourcesXML jndi-resources.xml] vers web.xml||
+|| web-to-jndi-resources.xslt || web.xml vers jndi-resources.xml ||
+|| xslt-to-xhtml.xslt || xslt vers xhtml (avec navigation des instructions <xsl:include/>||
+
 
 Avec [http://maven.apache.org Maven], il suffit d'indiquer dans le fichier POM, le plugin suivant :
 {{{
