@@ -10,7 +10,7 @@ Avant tous, il existe une variable globale, indépendante des ressources utilis�
 || *Variables* || *Description* ||
 || `${jndi.prefix}` || Valeur par défaut : `""`. Cette variable permet d'ajouter un préfixe aux clefs JNDI utilisés pour déclarer les ressources. Cela permet d'organiser comme vous le voulez, l'arbre JNDI. ||
 
-Les autres familles possibles :
+Les familles possibles :
  * [host]
  * [jaas]
  * [jdbc]
