@@ -77,7 +77,7 @@ Commençons par ajouter au tout début, les déclarations pour indiquer que le f
 ...
 }}}
 
-L'espace de nom `jndi` correspond à l'espace de nom de la syntaxe de l'utilitaire. L'espace de nom `tools` est un lien vers la classe [http://jndi-resources.googlecode.com/svn/trunk/jndi-resources/jndi-resources-cmd-line/src/main/java/org/jndiresources/tools/XSLTools.java XSLTools] de l'utilitaire permettant des copies de fichiers, des traces, la récupération des librairies à travers le repository [http://maven.apache.org Maven], etc.
+L'espace de nom `jndi` correspond à l'espace de nom de la syntaxe de l'utilitaire. L'espace de nom `tools` est un lien vers la classe [http://jndi-resources.googlecode.com/svn/trunk/jndi-resources/jndi-resources-cmd-line/src/main/java/com/googlecode/jndiresources/tools/XSLTools.java XSLTools] de l'utilitaire permettant des copies de fichiers, des traces, la récupération des librairies à travers le repository [http://maven.apache.org Maven], etc.
 
 Déclarons ensuite deux variables pour le nom du fichier à produire.
 {{{
