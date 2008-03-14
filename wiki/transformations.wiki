@@ -12,13 +12,13 @@ Les [http://www.prados.fr/mvn/jndi-resources/command-line/templates/ modèles] d
 Certains serveurs peuvent jouer plusieurs rôles simultanément. Il faut dans ce cas lancer plusieurs installations, avec des paramètres différents, sur les mêmes répertoires. Par exemple, si un serveur JBoss joue le rôle de serveur d'application web et simultanément de serveur JMS, il faut lancer les installations suivantes :
 {{{
 >$JNDI_HOME/bin/jndi-install \
-	--package ./packages \
 	--appsrv jboss --version 5.0 \
+	--package ./packages \
 	--dest jboss.server.conf=/opt/jboss-5.0/server/default \
 	--dest jboss.server.home=/opt/jboss-5.0
 >$JNDI_HOME/bin/jndi-install \
-	--package ./packages \
 	--appsrv jboss-jms-srv --version 5.0 \
+	--package ./packages \
 	--dest jboss.server.conf=/opt/jboss-5.0/server/default \
 	--dest jboss.server.home=/opt/jboss-5.0
 }}}
@@ -26,18 +26,18 @@ Certains serveurs peuvent jouer plusieurs rôles simultanément. Il faut dans ce
 Par défaut, les ressources ne sont pas publiques car portée par des clefs JNDI de la branche `java:`. Si les ressources d'un applicatif doivent être disponibles aux clients JNDI, et qu'en plus, l'instance doit également servir de serveur JMS, vous pouvez installer les cibles `jboss-jndi-cli` , `jboss-jndi-srv` et `jboss-jms-srv` dans la même instance JBoss.
 {{{
 >$JNDI_HOME/bin/jndi-install \
-	--package ./packages \
 	--appsrv jboss-jndi-cli --version 5.0 \
+	--package ./packages \
 	--dest jboss.server.conf=/opt/jboss-5.0/server/default \
 	--dest jboss.server.home=/opt/jboss-5.0
 >$JNDI_HOME/bin/jndi-install \
-	--package ./packages \
 	--appsrv jboss-jndi-srv --version 5.0 \
+	--package ./packages \
 	--dest jboss.server.conf=/opt/jboss-5.0/server/default \
 	--dest jboss.server.home=/opt/jboss-5.0
 >$JNDI_HOME/bin/jndi-install \
-	--package ./packages \
 	--appsrv jboss-jms-srv --version 5.0 \
+	--package ./packages \
 	--dest jboss.server.conf=/opt/jboss-5.0/server/default \
 	--dest jboss.server.home=/opt/jboss-5.0
 }}}
