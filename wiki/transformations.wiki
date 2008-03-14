@@ -23,7 +23,7 @@ Certains serveurs peuvent jouer plusieurs rôles simultanément. Il faut dans ce
 	--dest jboss.server.home=/opt/jboss-5.0
 }}}
 
-Par défaut, les ressources ne sont pas publiques car portée par des clefs JNDI de la branche `java:`. Si les ressources d'un applicatif doivent être disponibles aux clients JNDI, et qu'en plus, l'instance doit également servir de serveur JMS, vous pouvez installer les cibles `jboss-jndi-cli` , `jboss-jndi-srv` et `jboss-jms-srv` dans la même instance JBoss.
+Par défaut, les ressources ne sont pas [rappelJNDI publiques] car portée par des clefs JNDI de la branche `java:`. Si les ressources d'un applicatif doivent être disponibles aux clients JNDI, et qu'en plus, l'instance doit également servir de serveur JMS, vous pouvez installer les cibles `jboss-jndi-cli` , `jboss-jndi-srv` et `jboss-jms-srv` dans la même instance JBoss.
 {{{
 >$JNDI_HOME/bin/jndi-install \
 	--appsrv jboss-jndi-cli --version 5.0 \
