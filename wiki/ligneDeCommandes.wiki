@@ -83,4 +83,4 @@ Il est possible d'utiliser *jndi-config* sous Windows et *jndi-install* sous uni
 ou l'inverse. Le répertoire `package` est cross système d'exploitation.
 
 Précédent : [conventions Les conventions]
-Suite : [desinstallation Désinstallation d'un composant]
+Suite : [desinstallation Désinstallation des ressources]
