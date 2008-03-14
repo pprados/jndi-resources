@@ -24,10 +24,10 @@ lors de l'installation des composants.
 Si des drivers sont nécessaires à la publication de ressources, il faut utiliser 
 un repository [http://maven.apache.org Maven] et déclarer un repository local 
 (généralement dans `~/.m2/repository`). S'il n'existe pas, le repository est 
-construit automatiquement lors de la première exécution. 
+construit automatiquement lors de la première exécution.
 
 Maven n'a pas besoin d'être installé pour utiliser *jndi-resource*. Une petite partie
-est inclus dans l'outils, pour gérer le téléchargement depuis de repository central.
+est inclus dans l'outil, pour gérer le téléchargement depuis de repository central. Par contre, si une archive n'est pas disponible dans le repository global de Maven, généralement pour des raisons de licences, il faut l'installer à la main via [http://maven.apache.org Maven]. Une exception spécifique indique la commande à utiliser.
 
 Le _repository_ local est nécessaire lors de la phase de paramétrage, 
 mais pas lors de la phase d'installation du composant.  
