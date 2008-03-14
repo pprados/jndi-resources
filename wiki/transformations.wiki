@@ -44,7 +44,7 @@ Par défaut, les ressources ne sont pas [rappelJNDI publiques] car portées par 
 
 Les sources des transformations sont [http://www.prados.fr/mvn/jndi-resources/command-line/templates/ ici]
 
-D'autres serveurs viendrons s'ajouter à la liste. Vous pouvez participer à l'[etendre évolution de l'outil] en proposant des scripts pour d'autres serveurs. Consulter le site du projet pour avoir des précisions.
+D'autres serveurs viendrons s'ajouter à la liste. Vous pouvez participer à l'[etendre évolution de l'outil] en proposant des scripts pour d'autres serveurs.
 
 Précédent : [architecture]
 Suite : [jndiResourcesXML Description des ressources]
