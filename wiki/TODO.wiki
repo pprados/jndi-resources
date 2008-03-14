@@ -6,8 +6,10 @@
  * En faire un plugin Maven
  * Faire la désintallation
  * Étendre vers d'autres serveurs d'applications
+ * Expliquer comment migrer une application vers l'approche JNDI
  * Autre TODO dans le [http://www.prados.fr/mvn/jndi-resources/command-line/taglist.html source]
  * Pages WIKI à faire
    * [extensionTomcat]
    * [JBoss Comment paramétrer JBoss comme annuaire JNDI uniquement]
    * Image dans [moteurConfiguration] et [moteurInstallation]
+   * [guideMigration]
