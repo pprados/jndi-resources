@@ -42,7 +42,7 @@ Par défaut, les ressources ne sont pas [rappelJNDI publiques] car portées par 
 	--dest jboss.server.home=/opt/jboss-5.0
 }}}
 
-Les sources des transformations sont [http://www.prados.fr/mvn/jndi-resources/command-line/templates/ ici]
+Les sources des transformations sont [http://www.prados.fr/mvn/jndi-resources/cmd-line/templates/ ici]
 
 D'autres serveurs viendrons s'ajouter à la liste. Vous pouvez participer à l'[etendre évolution de l'outil] en proposant des scripts pour d'autres serveurs.
 
