@@ -1,0 +1,9 @@
+#summary Comment étendre l'outil.
+
+= Comment étendre l'outil =
+
+Pour enrichir l'outil, vous devez maitriser le [moteurInstallation Moteur d'installation] et le [moteurConfiguration Moteur de configuration].
+
+Pour ajouter des ressources à Tomcat, suivez ce [extensionTomcat guide]. Pour JBoss, [extensionJBoss celui-ci]. Pour d'autre serveurs d'applications, inspirez-vous des approches utilisées par Tomcat et JBoss.
+
+Consultez également [reglesCodage les règles de codage].
