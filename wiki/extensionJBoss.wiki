@@ -55,7 +55,7 @@ Nous utilisons des [variables] pour les différents champs afin de permettre une
 
 Renommons ce fichier en `process.xslt`. Ensuite, nous devons ajouter quelques lignes.
 
-Commençons par ajouter au tous début, les déclarations pour indiquer que le fichier est un filtre XSLT et ajoutons les différents espaces de noms. Nous déclarons également les différentes variables XSL accessibles dans le filtre.
+Commençons par ajouter au tout début, les déclarations pour indiquer que le fichier est un filtre XSLT et ajoutons les différents espaces de noms. Nous déclarons également les différentes variables XSL accessibles dans le filtre.
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet
@@ -89,20 +89,22 @@ Nous pouvons ensuite déclarer un premier `template` XSLT pour gérer toutes les
 {{{
 ...
 <xsl:template match="jndi:resources[@id=$currentid]">
-<xsl:value-of select="tools:info(concat('Generate ',$filename))"/>
-<xsl:result-document  href="{$filename}">
-<xsl:processing-instruction name="jndi-stylesheet">href="xslt/save.xslt" target="<xsl:value-of select="concat($basefilename,'.xml')"/>"</xsl:processing-instruction>
-<datasources>
+  <xsl:value-of select="tools:info(concat('Generate ',$filename))"/>
+  <xsl:result-document  href="{$filename}">
+  <xsl:processing-instruction name="jndi-stylesheet">href="xslt/save.xslt" target="<xsl:value-of select="concat($basefilename,'.xml')"/>"</xsl:processing-instruction>
+
+  <datasources>
 	<xsl:apply-templates />
-</datasources>
-</xsl:result-document>
+  </datasources>
+
+  </xsl:result-document>
 </xsl:template>
 ...
 }}}
 
-Nous retrouvons le marqueur racine du fichier à produire, à savoir `<datasources/>`. Nous pouvons supprimer ce marqueur du modèle à produire.
+Nous retrouvons le marqueur racine du fichier à produire, à savoir `<datasources/>`.
 
-Notez la présence d'une `processing-instruction`. C'est cette instruction qui permettra la transformation des variables lors de l'installation effective du fichier dans le serveur d'application.
+Notez la présence d'une `processing-instruction`. C'est cette instruction qui permettra la transformation des variables lors de l'[moteurInstallation installation] effective du fichier dans le serveur d'application.
 
 Comme l'instruction invoque le [moteurInstallation filtre] `save.xslt`, nous devons le copier dans le répertoire d'installation pour qu'il soit disponible.
 
