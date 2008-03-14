@@ -1,4 +1,5 @@
 #summary Les versions de serveurs d'applications supportés
+#labels Featured
 
 = Versions supportés =
 
