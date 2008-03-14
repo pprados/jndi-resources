@@ -38,4 +38,4 @@ Un [ligneDeCommandes deuxième utilitaire] se charge d'exploiter ces modèles de
 Si nécessaire, ces deux étapes peuvent être regroupées [ligneDeCommandes en une seule], afin de partir du [jndiResourcesXML fichier] des exigences de ressources à une installation directe sur les serveurs d'applications.
 
 Précédant : [aQuoiCelaSert À quoi cela sert ?]
-Suite : [familles Familles de ressources]
+Suite : [installation Installation]
