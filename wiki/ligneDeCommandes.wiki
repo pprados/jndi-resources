@@ -82,5 +82,5 @@ Usage: jndi-resources [-h] (-w <war|ear> | -j <jndi-resources.xml>) \
 Il est possible d'utiliser *jndi-config* sous Windows et *jndi-install* sous unix 
 ou l'inverse. Le répertoire `package` est cross système d'exploitation.
 
-Précédent : [exemple]
+Précédent : [conventions Les conventions]
 Suite : [desinstallation Désinstallation]
