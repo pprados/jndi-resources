@@ -31,7 +31,7 @@ est inclus dans l'outil, pour gérer le téléchargement depuis le repository ce
 
 Le _repository_ local est nécessaire lors de la phase de paramétrage, 
 mais pas lors de la phase d'installation du composant.  
-Les différents drivers sont récupérés du repository Maven et 
+Les différents _drivers_ sont récupérés du repository Maven et 
 recopiés dans le repository local. Puis du repository local vers les scripts 
 d'installations.
 
