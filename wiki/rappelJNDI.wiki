@@ -15,7 +15,7 @@ Le tableau suivant, résume ces différents branches.
 || *Branche* || *Visibilité* ||
 || / || Visible par tous. ||
 || java: || Visible par la JVM. ||
-|| java:comp || Visible par chaque composant (EAR, WAR). ||
+|| java:comp || Visible par chaque composant (EAR, WAR, etc.). ||
 || java:comp/env || Visible par chaque thread (par chaque sous-composant) ||
 
 
