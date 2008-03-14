@@ -42,7 +42,7 @@ Chaque serveur utilisant des paramètres différents, les données indiquées da
 
 Une liste limitée de paramètres peut être indiquée. Cela correspond aux paramètres principaux, présents sur tous les serveurs. Pour les autres paramètres, plus spécifiques à un serveur particulier, il est possible d'indiquer des compléments. Cela est fortement déconseillé, car cela crée une adhérence avec une version particulière d'un serveur. Un équivalent n'est pas toujours disponible sur d'autres serveurs.
 
-Pour indiquer d'autres paramètres, il faut utiliser le marqueur `<extends/>` en indiquant le modèle de transformation à enrichir.
+Pour indiquer d'autres paramètres, il faut utiliser le marqueur `<extends/>` en indiquant le [moteurConfiguration modèle] de transformation à enrichir.
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 
