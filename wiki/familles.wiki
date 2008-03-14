@@ -29,4 +29,4 @@ Le tableau suivant décrit les différentes familles de ressources gérés par l
 || [jaas jaas/internet] || Authentification Internet pour JBoss.||
 
 Précédent : [exemple Exemple rapide]
-Suite : [conventions]
+Suite : [conventions Les conventions]
