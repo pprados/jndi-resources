@@ -1,5 +1,5 @@
 #summary `jndi-resources.xml` syntaxe et descriptions des ressources
-#labels Phase-configuration
+#labels Phase-configuration,Featured
 
 = Description des ressources =
 
