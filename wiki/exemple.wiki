@@ -195,4 +195,4 @@ L'URL à consulter est généralement la suivante `http://localhost:8080/jndi-we
 Pour comprendre comment tous cela fonctionne, il est fortement conseillé de regarder le répertoire `package` généré par *jndi-config*.
 
 Précédent : [installation]
-Suite : [famille Les familles de ressources]
+Suite : [familles Les familles de ressources]
