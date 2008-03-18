@@ -3,7 +3,7 @@
 
 = Description des ressources =
 
-Un fichier `jndi-resources.xml` permet d'enrichir de méta-informations la description des ressources des fichiers `web.xml` et `application.xml`. Le format est très simple. Un [http://www.prados.fr/xsd/1.0/jndi-resources.xsd schéma] et un espace de noms sont associés à la description.
+Un fichier `jndi-resources.xml` permet d'enrichir de méta-informations la description des ressources des fichiers `web.xml` et `ejb-jar.xml`. Le format est très simple. Un [http://www.prados.fr/xsd/1.0/jndi-resources.xsd schéma] et un espace de noms sont associés à la description.
 
 Voici un premier exemple :
 {{{

@@ -6,7 +6,7 @@
 La famille `url` permet d'utiliser une URL vers un répertoire (protocole `file:`), un service Web (protocole `http:`) ou une ressources de la JVM (protocole `jar:`).
 
 == Déclaration JEE ==
-La ressource doit être déclarée dans le fichier `web.xml` ou `application.xml`.
+La ressource doit être déclarée dans le fichier `web.xml` ou `ejb-jar.xml`.
 {{{
 ...
 <resource-ref>

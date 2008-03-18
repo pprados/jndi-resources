@@ -11,7 +11,7 @@ Mais, comme le paramétrage de ces ressources n'est pas normalisé, chaque serve
 
 Il y a différentes [http://www.prados.fr/Langage/Java/Parametres/Les%20parametres%20en%20java.pdf familles] de paramètres avec Java. Pour respecter les spécifications J2EE, garantir un déploiement souple, seule les paramètres de déploiements doivent être présent dans l'annuaire JNDI, mais *tous* les paramètres de déploiements doivent y être.
 
-Les fichiers `web.xml` et `application.xml` permettent d'indiquer les ressources nécessaires aux composants. Il est possible d'indiquer une clef JNDI [rappelJNDI locale] au composant et une classe Java. Le serveur doit alimenter les clefs avec des objets répondants aux classes.
+Les fichiers `web.xml` et `ejb-jar.xml` permettent d'indiquer les ressources nécessaires aux composants. Il est possible d'indiquer une clef JNDI [rappelJNDI locale] au composant et une classe Java. Le serveur doit alimenter les clefs avec des objets répondants aux classes.
 {{{
 ...
 <resource-ref>

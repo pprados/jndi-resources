@@ -6,7 +6,7 @@
 La famille `host` permet d'identifier une machine par son nom ou son adresse IP v4 ou v6. Elle permet d'identifier l'environnement d'exécution, lorsqu'il n'existe pas d'alternative à l'aide d'[url URL], de [mail Javamail], etc.
 
 == Déclaration JEE ==
-La ressource doit être déclarée dans le fichier `web.xml` ou `application.xml`.
+La ressource doit être déclarée dans le fichier `web.xml` ou `ejb-jar.xml`.
 {{{
 ...
 <resource-ref>

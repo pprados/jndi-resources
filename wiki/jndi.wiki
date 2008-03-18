@@ -6,7 +6,7 @@
 La famille `jndi` permet de lier plusieurs annuaires.
 
 == Déclaration JEE ==
-La ressource doit être déclarée dans le fichier `web.xml` ou `application.xml`.
+La ressource doit être déclarée dans le fichier `web.xml` ou `ejb-jar.xml`.
 {{{
 ...
 <resource-env-ref>

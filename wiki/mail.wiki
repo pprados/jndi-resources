@@ -6,7 +6,7 @@
 La famille `mail` permet de demander l'installation de sessions Javamail pour envoyer ou recevoir des mails avec les protocoles SMTP, POP3 et IMAP.
 
 == Déclaration JEE ==
-La ressource doit être déclarée dans le fichier `web.xml` ou `application.xml`.
+La ressource doit être déclarée dans le fichier `web.xml` ou `ejb-jar.xml`.
 {{{
 ...
 <resource-ref>

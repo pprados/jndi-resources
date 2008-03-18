@@ -6,7 +6,7 @@
 Contrairement aux autres ressources, la famille `jaas` ne fonctionne qu'avec JBoss. Elle permet de demander l'installation de driver JAAS dans le serveur.
 
 == Déclaration JEE ==
-La ressource doit être déclarée dans le fichier `web.xml` ou `application.xml`.
+La ressource doit être déclarée dans le fichier `web.xml` ou `ejb-jar.xml`.
 {{{
 ...
 <resource-ref>
