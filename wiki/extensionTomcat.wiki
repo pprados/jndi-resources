@@ -1,5 +1,5 @@
 #summary Création d'une nouvelle ressource pour Tomcat
-#local fr
+#locale fr
 
 = Création d'une nouvelle ressource pour Tomcat =
 
