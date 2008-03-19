@@ -3,7 +3,7 @@
 
 = Conventions de mapping des clefs JNDI =
 
-*jndi-resources* utilise certaines conventions pour les clefs JNDI utilisées.
+*jndi-resources* propose d'utiliser certaines conventions pour les clefs JNDI utilisées.
 Ces liens successifs permettent le maximum de souplesse lors du déploiement. Il est possible de choisir tardivement si une ressource doit être [architecture locale ou globale], si elle doit être partagée avec une autre application, etc.
 
 Pour vous rafraîchir la mémoire, consultez le [rappelJNDI rappel sur JNDI] pour comprendre la différence entre `java:comp/env`, 'java:` ou `/`.
@@ -48,5 +48,7 @@ Pour la clef `java:comp/env/jdbc/MaDatabase` d'une application d'identité `MonA
 || *Clef* || *Valeur* || *Description* ||
 || `/`_<idapp>_`/jms/`_<Ma clef>_ || La ressource JMS. || La ressource visible par tous.||
 
+
+*jndi-resource* ne publie des ressources que sous le scope `java:` ou `/`. Vous pouvez alors suivre les conventions que vous souhaitez pour mapper les clefs `java:comp/env`.
 Précédent : [familles Les familles de ressources]
 Suite: [ligneDeCommandes Lignes de commandes]
