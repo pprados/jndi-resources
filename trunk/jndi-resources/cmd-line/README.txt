@@ -1,0 +1,1 @@
+See http://jndi-resources.googlecode.com
