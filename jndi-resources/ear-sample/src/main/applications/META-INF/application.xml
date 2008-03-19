@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE application PUBLIC "-//Sun Microsystems, Inc.//DTD J2EE Application 1.2//EN" "http://java.sun.com/j2ee/dtds/application_1_2.dtd">
+<application id="Application_ID">
+	<display-name>jndi-resources-ear-sample</display-name>
+	<module id="WebModule_1205853069333">
+		<web>
+			<web-uri>jndi-resources-web-sample.war</web-uri>
+			<context-root>jndi-web-sample</context-root>
+		</web>
+	</module>
+</application>
