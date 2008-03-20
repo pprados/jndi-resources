@@ -50,5 +50,6 @@ Pour la clef `java:comp/env/jdbc/MaDatabase` d'une application d'identité `MonA
 
 
 *jndi-resource* ne publie des ressources que sous le scope `java:` ou `/`. Vous pouvez alors suivre les conventions que vous souhaitez pour mapper les clefs `java:comp/env`.
+
 Précédent : [familles Les familles de ressources]
 Suite: [ligneDeCommandes Lignes de commandes]
