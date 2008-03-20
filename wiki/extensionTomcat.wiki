@@ -32,7 +32,6 @@ Ce fichier indique que la production pour le serveur Tomcat, version 6.0+ est po
 
 Commençons par rédiger une version « à la main » du fichier à produire. Nous souhaitons injecter un fragment XML dans le fichier `conf/server.xml`. Par exemple, le fichier `mydatasource.xml` ne reprend que le fragment et sa localisation (le marqueur racine indique où injecter le fragment).
 {{{
-<?xml version="1.0" encoding="utf-8"?>
 <GlobalNamingResources>
   <Resource name="${jndi-prefix}JNDI-test/jdbc/MyDS"
             auth="Container"
