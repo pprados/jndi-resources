@@ -25,7 +25,7 @@ $JBOSS_HOME/bin/run.sh -c jndi-srv
 }}}
 
 == Client de l'annuaire ==
-Sur un node client de l'annuaire JNDI, copiez le répertoire `$JBOSS_HOME/server/default` dans le répertoire `$JBOSS_HOME/server/jndi-cli`. ; modifiez le fichier `$JBOSS_HOME/conf/jndi.properties` pour ajouter la ligne suivante, avec le nom du host où est localisé l'annuaire JNDI.
+Sur un nœud client de l'annuaire JNDI, copiez le répertoire `$JBOSS_HOME/server/default` dans le répertoire `$JBOSS_HOME/server/jndi-cli`. ; modifiez le fichier `$JBOSS_HOME/conf/jndi.properties` pour ajouter la ligne suivante, avec le nom du host où est localisé l'annuaire JNDI.
 {{{
 java.naming.provider.url=jnp://localhost:11099
 }}}
@@ -33,7 +33,7 @@ Vous pouvez ensuite lancer l'instance Jboss.
 {{{
 $JBOSS_HOME/bin/run.sh -c jndi-cli
 }}}
-Vous pouvez reproduire ceci avec différents serveurs. Ils partageront tous l'annuaire JNDI global. Vous pouvez ensuite, raffiner le paramétrage pour adapter la publication des ressources à ce qui est strictement nécessaire localement.
+Vous pouvez reproduire ceci avec différents nœuds. Ils partageront tous l'annuaire JNDI global. Vous pouvez ensuite, raffiner le paramétrage pour adapter la publication des ressources à ce qui est strictement nécessaire localement.
 
 
 Dans le JMXConsole, le Mbean JNDIView consulte alors l'annuaire distant pour la branche racine, et l'annuaire local pour la branche [rappelJNDI java:].
