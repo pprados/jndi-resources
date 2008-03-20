@@ -1,8 +1,6 @@
 #summary Les choses à faire.
 
 = TODO =
-
- * Vérifier l'utilisation avec un EAR et voir s'il ne faut pas réorganiser les [conventions] en conséquences
  * Ajouter une famille pour faire un mapping de clef JNDI
  * En faire un plugin Maven
  * Faire la désintallation
