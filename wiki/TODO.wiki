@@ -7,7 +7,3 @@
  * Étendre vers d'autres serveurs d'applications
  * Expliquer comment migrer une application vers l'approche JNDI
  * Autre TODO dans le [http://www.prados.fr/mvn/jndi-resources/command-line/taglist.html source]
- * Pages WIKI à faire
-   * [extensionTomcat]
-   * Image dans [moteurConfiguration] et [moteurInstallation]
-  (http://code.google.com/p/support/issues/detail?id=838#makechanges)
