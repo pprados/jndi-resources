@@ -101,6 +101,11 @@ Vous pouvez [http://code.google.com/p/jndi-resources/downloads/list télécharge
 {{{
 >wget http://jndi-resources.googlecode.com/files/jndi-web-sample.war
 }}}
+ou bien tester l'EAR possédant le composant WAR.
+{{{
+>wget http://jndi-resources.googlecode.com/files/jndi-web-sample.ear
+}}}
+
 Ce dernier exploite plus de ressources :
  * Une source de donnée [jdbc] ;
  * une connexion [mail javamail] ;
