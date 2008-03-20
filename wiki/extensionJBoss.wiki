@@ -32,7 +32,6 @@ Ce fichier indique que la production pour le serveur Jboss, version 4.0+ est por
 
 Commençons par rédiger une version « à la main » du fichier à produire. Par exemple, le fichier `mydatasource.xml`.
 {{{
-<?xml version="1.0" encoding="utf-8"?>
 <datasources>
    <local-tx-datasource>
       <jndi-name>${jndi-prefix}JNDI-test/jdbc/MyDS</jndi-name>
