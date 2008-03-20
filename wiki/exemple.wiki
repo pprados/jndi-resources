@@ -108,8 +108,8 @@ Ce dernier exploite plus de ressources :
  * une [url] ;
  * et un nom de [host].
 
-Vous pouvez consulter le fichier [http://code.google.com/p/jndi-resources/source/browse/trunk/jndi-resources/jndi-resources-web-sample/src/main/webapp/META-INF/jndi-resources.xml META-INF/jndi-resources.xml] et le fichier 
-[http://code.google.com/p/jndi-resources/source/browse/trunk/jndi-resources/jndi-resources-web-sample/src/main/webapp/WEB-INF/web.xml WEB-INF/web.xml] du composant.
+Vous pouvez consulter le fichier [http://code.google.com/p/jndi-resources/source/browse/trunk/jndi-resources/web-sample/src/main/webapp/META-INF/jndi-resources.xml META-INF/jndi-resources.xml] et le fichier 
+[http://code.google.com/p/jndi-resources/source/browse/trunk/jndi-resources/web-sample/src/main/webapp/WEB-INF/web.xml WEB-INF/web.xml] du composant.
 
 Les exemples utilisent une syntaxe Unix. Sous Windows, vous devez adapter les slashs or utiliser [http://www.cygwin.com Cygwin].
 

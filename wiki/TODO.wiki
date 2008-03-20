@@ -14,3 +14,4 @@
    * [JBoss Comment paramétrer JBoss comme annuaire JNDI uniquement]
    * Image dans [moteurConfiguration] et [moteurInstallation]
    * [guideMigration]
+  (http://code.google.com/p/support/issues/detail?id=838#makechanges)
