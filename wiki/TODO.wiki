@@ -11,6 +11,5 @@
  * Autre TODO dans le [http://www.prados.fr/mvn/jndi-resources/command-line/taglist.html source]
  * Pages WIKI à faire
    * [extensionTomcat]
-   * [JBoss Comment paramétrer JBoss comme annuaire JNDI uniquement]
    * Image dans [moteurConfiguration] et [moteurInstallation]
   (http://code.google.com/p/support/issues/detail?id=838#makechanges)
