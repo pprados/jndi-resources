@@ -105,7 +105,7 @@ Nous pouvons ensuite déclarer un premier template XSLT pour gérer toutes les r
 ...
 }}}
 
-Nous retrouvons le marqueur du noeud d'injection, à savoir `<GlobalNamingResources/>`.
+Nous retrouvons les marqueurs du noeud d'injection, à savoir `<Server/>` et `<GlobalNamingResources/>`.
 
 Notez la présence de deux `processing-instruction`. Elles permettront la transformation des variables lors de l'[moteurInstallation installation] effective du fichier dans le serveur d'application ; l'injection du noeud dans le fichier `server.xml` et la sauvegarde du résultat dans `conf/server.xml`.
 
