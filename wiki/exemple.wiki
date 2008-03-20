@@ -161,7 +161,7 @@ Il ne reste plus qu'a lancer le serveur d'application et à tester le composant.
 >/opt/jboss-5.0/bin/run.sh
 }}}
 L'URL à consulter est généralement la suivante `http://localhost:8080/jndi-web-sample/`. Elle peut être différente suivant le port utilisé par votre version de JBoss.
-Vous constatez que la page de résultat récupère bien les instances de l'annuaire JNDI. Un consultation de la console JMX de JBoss, et particulièrement du JNDIView, permet de confirmer que l'installation c'est bien effectuée.
+Vous constatez que la page de résultat récupère bien les instances de l'annuaire JNDI. Une consultation de la console JMX de JBoss, et particulièrement du JNDIView, permet de confirmer que l'installation c'est bien effectuée.
 
 Pour Tomcat, il faut également indiquer le nom du fichier de la base de donnée pour HSQLDB. Indiquons le dans la ligne de commande, avec le paramètre `-D`. Voici une installation sur un Tomcat 4.1:
 
