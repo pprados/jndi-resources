@@ -27,7 +27,7 @@ D'autres clefs sont parfois utiles, même s'il n'existe pas de conventions pour 
 || [host java:comp/env/host/*] || `java.net.InetAddress` || Le nom DNS d'une machine ou d'une grappe (plusieurs IP pour le même nom), ou bien directement l'adresse IP mais ce n'est pas conseillé.||
 || `java:comp/env/etc/*` || `java.lang.Object` || Autres ressources non prévues pour le moment dans ces spécifications.||
 
-Après avoir déclaré les ressources dans le fichier `web.xml` ou `ejb-jar.xml`, il faut ensuite décrire les exigences sur les ressources dans un fichier [jndiResourcesXML `jndi-resources.xml`] et le placer dans le répertoire `META-INF` du composant ou bien en dehors de l'archive.
+Après avoir déclaré les ressources dans le fichier `web.xml` ou `ejb-jar.xml`, il faut ensuite décrire les exigences sur les ressources dans un fichier [jndiResourcesXML jndi-resources.xml] et le placer dans le répertoire `META-INF` du composant ou bien en dehors de l'archive.
 
 Un [ligneDeCommandes premier utilitaire] permet alors, à partir de [transformations modèles de conversions], de générer tous les fichiers de paramètres pour [transformations différents serveurs d'applications], permettant la publication de ressources répondant aux exigences de l'application. Ces fichiers sont [variables partiellement] valorisés, car à cette étape, il n'est pas encore nécessaire d'indiquer les noms des machines et autres paramètres de déploiement. Seuls les modèles de fichiers sont nécessaires.
 
