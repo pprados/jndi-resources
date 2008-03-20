@@ -19,7 +19,7 @@ Voici un premier exemple :
 </resources>
 }}}
 
-Ce fichier décrit que pour la ressource `jndi-web-sample/jdbc/Default`, il faut utiliser la [familles famille] `jdbc/default`. Cela correspond à une source de données par défaut, suivant le serveur d'applications utilisé. La clef `java:/jndi-web-sample/jdbc/Default' sera valorisée par le serveur d'application, ainsi éventuellement que la clef `/jndi-web-sample/jdbc/Default`.
+Ce fichier décrit que pour la ressource `jndi-web-sample/jdbc/Default`, il faut utiliser la [familles famille] `jdbc/default`. Cela correspond à une source de données par défaut, suivant le serveur d'applications utilisé. La clef `java:/jndi-web-sample/jdbc/Default` sera valorisée par le serveur d'application, ainsi éventuellement que la clef `/jndi-web-sample/jdbc/Default`.
 
 En modifiant la [familles famille] par `jdbc/oracle`, la source de donnée sera une base de donnée de type Oracle. Le driver Java sera automatiquement installée dans le serveur d'applications si nécessaire.
 
