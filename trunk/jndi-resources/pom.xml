@@ -45,7 +45,7 @@
 		<module>cmd-line</module>
 		<module>ear-sample</module>
 		<module>web-sample</module>
-		<module>ejb-sample</module>
+		<!-- <module>ejb-sample</module>-->
 		<module>web-test</module>
 	</modules>
 	<!-- BUG maven http://jira.codehaus.org/browse/MNG-2855
