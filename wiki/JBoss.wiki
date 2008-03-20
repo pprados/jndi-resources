@@ -25,9 +25,7 @@ $JBOSS_HOME/bin/run.sh -c jndi-srv
 }}}
 
 == Client de l'annuaire ==
-Sur un serveur, client de l'annuaire JNDI, 
- * copiez le répertoire `$JBOSS_HOME/server/default` dans le répertoire `$JBOSS_HOME/server/jndi-cli`.
-Modifiez le fichier `$JBOSS_HOME/conf/jndi.properties` pour ajouter la ligne suivante, avec le nom du host où est localisé l'annuaire JNDI.
+Sur un node client de l'annuaire JNDI, copiez le répertoire `$JBOSS_HOME/server/default` dans le répertoire `$JBOSS_HOME/server/jndi-cli`. ; modifiez le fichier `$JBOSS_HOME/conf/jndi.properties` pour ajouter la ligne suivante, avec le nom du host où est localisé l'annuaire JNDI.
 {{{
 java.naming.provider.url=jnp://localhost:11099
 }}}
@@ -35,15 +33,14 @@ Vous pouvez ensuite lancer l'instance Jboss.
 {{{
 $JBOSS_HOME/bin/run.sh -c jndi-cli
 }}}
-Vous pouvez reproduire ceci avec différents serveurs. Ils partageront tous l'annuaire JNDI global.
+Vous pouvez reproduire ceci avec différents serveurs. Ils partageront tous l'annuaire JNDI global. Vous pouvez ensuite, raffiner le paramétrage pour adapter la publication des ressources à ce qui est strictement nécessaire localement.
 
-Dans le JMXConsole, le Mbean JNDIView consulte alors l'annuaire distant pour la branche racine, et l'annuaire local pour la branche `java:`.
 
-Vous pouvez ensuite, raffiner le paramétrage pour adapter la publication de ressources à ce qui est strictement nécessaire.
+Dans le JMXConsole, le Mbean JNDIView consulte alors l'annuaire distant pour la branche racine, et l'annuaire local pour la branche [rappelJNDI java:].
 
-Vous pouvez maintenant, publier des ressources JNDI dans l'annuaire global, elles seront visibles chez tous les clients JNDI. Utilisez pour cela, les [transformations cibles] adéquates.
+Vous pouvez maintenant, publier des ressources JNDI dans l'annuaire global. Elles seront visibles chez tous les clients JNDI. Utilisez pour cela, les [transformations cibles] adéquates.
 
-Sur l'annuaire JNDI :
+Installation du composant sur l'annuaire JNDI :
 {{{
 >$JNDI_HOME/bin/jndi-install \
         --appsrv jboss-jndi-srv --version 5.0 \
@@ -53,7 +50,7 @@ Sur l'annuaire JNDI :
 }}}
 
 
-Sur un client JNDI :
+Installation du composant sur un client de l'annuaire JNDI :
 {{{
 >$JNDI_HOME/bin/jndi-install \
         --appsrv jboss-jndi-cli --version 5.0 \
