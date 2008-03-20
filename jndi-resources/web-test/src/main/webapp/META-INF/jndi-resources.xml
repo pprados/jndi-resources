@@ -41,6 +41,8 @@
 <!-- ******************************************************** --> 
 <comment>JDBC</comment>
 	<comment>Default</comment>
+	<resource name="jndi-web-test/jdbc/MYDS" familly="jdbc/mydatasource" />
+
 	<resource name="jndi-web-test/jdbc/Default" familly="jdbc/default" />
 
 	<comment>HSQLDB</comment>
