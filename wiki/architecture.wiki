@@ -15,5 +15,5 @@ Cette approche garantie une uniformisation des paramètres de déploiement, dans
 
 Voir aussi : [JBoss Le paramétrage JBoss]
 
-Précédent : [Variables variables]
+Précédent : [variables Variables]
 Suite : [transformations Modèles de transformations]
