@@ -276,6 +276,8 @@ Maintenant, vous pouvez générer la ressource en déclarant la famille dans le 
 <resource name="jndi-web-sample/jdbc/MaDataSource" familly="jdbc/mydatasource"/>
 }}}
 
+Lors de la configuration à partir d'un fichier [jndiResourcesXML jndi-resources.xml] indiquant cette famille, le fichier `jboss.server.conf/mon-application_myds-ds.jndi` est généré dans le répertoire `package`.
+
 Voilà pour la description rapide de la production d'une ressource spécifique. La meilleur documentation est le source lui-même. N'hésitez pas à y jeter un oeil pour vous inspirer des différentes approches utilisées lors de la production des différentes ressources.
 
 Pour tenir compte des différents paramètres présent dans le fichier [jndiResourcesXML jndi-resources.xml], il faut adapter la production du fichier `.jndi`.
