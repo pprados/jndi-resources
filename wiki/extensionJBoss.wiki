@@ -63,7 +63,7 @@ Commençons par ajouter au tout début, les déclarations pour indiquer que le f
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:sch="http://www.w3.org/2001/XMLSchema"
 	xmlns:jndi="http://jndi-resources.googlecode.com/1.0"
-	xmlns:tools="http://www.jndi-resources.org/1.0/java/com.googlecode.jndiresources.tools.XSLTools"
+	xmlns:tools="http://jndi-resources.googlecode.com/1.0/java/com.googlecode.jndiresources.tools.XSLTools"
 	exclude-result-prefixes="#all"
 >
 
