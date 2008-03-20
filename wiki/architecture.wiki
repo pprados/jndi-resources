@@ -2,7 +2,7 @@
 
 = Architectures et serveurs d'applications =
 
-Différentes architectures permettent de gérer les ressources des composants JEE. Il est possible d'utiliser un annuaire JNDI local à chaque serveur d'applications (ils en fournissent généralement un par défaut) ou d'utiliser un annuaire JNDI centralisé. Cette dernière approche éviter les situations courantes en production où un nœud fonctionne mais pas l'autre dans un cluster.
+Différentes architectures permettent de gérer les ressources des composants JEE. Il est possible d'utiliser un annuaire JNDI local à chaque serveur d'applications (ils en fournissent généralement un par défaut) ou d'utiliser un annuaire JNDI [JBoss centralisé]. Cette dernière approche éviter les situations courantes en production où un nœud fonctionne mais pas l'autre dans un cluster.
 
 L'architecture peut être plus complexe et hiérarchique, avec un annuaire par serveur, un annuaire par applications, un annuaire par département et un annuaire par entreprise.
 Les annuaires sont reliés les uns les autres pour cacher cette organisation aux composants applicatifs.
@@ -13,5 +13,6 @@ Certains publient des sources de données, d'autres la liste des utilisateurs so
 Ainsi, en modifiant un paramètre sur l'annuaire JNDI centralisé, tous les clients en bénéficient.
 Cette approche garantie une uniformisation des paramètres de déploiement, dans une architecture à base de grappe ou de ferme. Il est plus facile d'ajouter un nouveau nœud et de partager des informations entres plusieurs nœuds (file JMS, tailles de pools, etc.) Cela réduit le risque qu'un nœuds fonctionne et pas un autre, alors qu'ils sont censé être identiques.
 
+Voir aussi : [JBoss Le paramétrage JBoss]
 Précédent : [variables]
 Suite : [transformations Modèles de transformations]
