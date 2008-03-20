@@ -6,7 +6,7 @@
 *jndi-resources* propose d'utiliser certaines conventions pour les clefs JNDI utilisées.
 Ces liens successifs permettent le maximum de souplesse lors du déploiement. Il est possible de choisir tardivement si une ressource doit être [architecture locale ou globale], si elle doit être partagée avec une autre application, etc.
 
-Pour vous rafraîchir la mémoire, consultez le [rappelJNDI rappel sur JNDI] pour comprendre la différence entre les branches java:comp/env, java: ou /.
+Pour vous rafraîchir la mémoire, consultez le [rappelJNDI rappel sur JNDI] pour comprendre la différence entre les branches java:comp/env, java: et /.
 
 == Utilisation d'un annuaire JNDI local au serveur d'applications ==
 
