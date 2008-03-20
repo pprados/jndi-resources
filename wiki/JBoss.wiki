@@ -3,7 +3,7 @@
 = Publication mutualisée de l'annuaire JNDI de JBoss =
 JBoss, comme tous serveurs d'applications, utilise un annuaire JNDI local. Il est également capable d'utiliser un annuaire distant pour manipuler les objets de la racine de l'arbre JNDI, la branche [rappelJNDI java:] restant visible uniquement par l'instance Jboss courante.
 
-Pour faire cela, il faut d'une part, instancier un serveur Jboss qui ne fait que publier son annuaire. Les autres instances de JBoss doivent s'en référer pour retrouver les ressources dont elles ont besoins.
+Pour faire cela, il faut instancier un serveur Jboss qui ne fait que publier son annuaire. Les autres instances de JBoss doivent s'en référer pour retrouver les ressources dont elles ont besoins.
 
 == Publication de l'annuaire ==
 Commençons par paramétrer une instance de Jboss pour qu'elle ne soit qu'un annuaire JNDI.
