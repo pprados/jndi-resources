@@ -14,5 +14,6 @@ Ainsi, en modifiant un paramètre sur l'annuaire JNDI centralisé, tous les clie
 Cette approche garantie une uniformisation des paramètres de déploiement, dans une architecture à base de grappe ou de ferme. Il est plus facile d'ajouter un nouveau nœud et de partager des informations entres plusieurs nœuds (file JMS, tailles de pools, etc.) Cela réduit le risque qu'un nœuds fonctionne et pas un autre, alors qu'ils sont censé être identiques.
 
 Voir aussi : [JBoss Le paramétrage JBoss]
+
 Précédent : [Variables variables]
 Suite : [transformations Modèles de transformations]
