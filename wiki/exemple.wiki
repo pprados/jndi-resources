@@ -76,7 +76,7 @@ Pour Tomcat, le fichier `META-INF/context.xml` suivant :
 }}}
 Ces deux fichiers permettent d'associer la clef [rappelJNDI locale] `java:comp/env/jdbc/DB` avec la clef [rappelJNDI JVM] `java:/jndi-web-sample/jdbc/DB`.
 
-Par [conventions], les clefs locales de la branche `java:comp/env` doivent être associées aux clefs JVM de la branche `java:`, en préfixant par l'`id` présent dans le fichier `web.xml`. Cela permet de lever les ambiguïtés lorsque plusieurs composants sont installés sur le même serveur d'applications.
+Par [conventions], les clefs locales de la branche `java:comp/env` doivent être associées aux clefs JVM de la branche `java:`, en préfixant par l'`id` présent dans le fichier `web.xml`. Cela permet de lever les ambiguïtés lorsque plusieurs composants sont installés sur le même serveur d'applications. Mais, vous pouvez utiliser d'autres conventions.
 
 Ces règles de transformations étant systématiques, il est facile de générer ces fichiers à partir du fichier `web.xml`. Des [transformerWebXML scripts XSLT] sont proposées dans le répertoire `$JNDI_HOME/xslt`.
 
