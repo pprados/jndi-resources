@@ -13,7 +13,7 @@ Par exemple, vous pouvez décider que par défaut, les [jdbc sources de données
 
 Le répertoire `$JNDI_HOME/templates/` est organisé comme ci-dessous.
 
-[TODO]
+http://jndi-resources.googlecode.com/svn/trunk/jndi-resources/src/doc/templates.png
 
 Il est possible d'utiliser un répertoire différent, grâce à un paramètre de la ligne de commande (`--templates`). Dans la suite de ce document, ce répertoire est identifié par `$TEMPLATES`.
 
