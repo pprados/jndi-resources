@@ -109,7 +109,7 @@ Nous retrouvons les marqueurs du noeud d'injection, à savoir `<Server/>` et `<G
 
 Notez la présence de deux `processing-instruction`. Elles permettront la transformation des variables lors de l'[moteurInstallation installation] effective du fichier dans le serveur d'application ; l'injection du noeud dans le fichier `server.xml` et la sauvegarde du résultat dans `conf/server.xml`.
 
-Comme les instructions invoquent les [moteurInstallation filtre] `update-tomcat-server.xslt` et `save.xslt`, nous devons le copier dans le répertoire d'installation pour qu'ils soient disponible.
+Comme les instructions invoquent les [moteurInstallation filtre] `update-tomcat-server.xslt` et `save.xslt`, nous devons les copier dans le répertoire d'installation pour qu'ils soient disponible.
 
 {{{
 <xsl:template match="jndi:resources[@id=$currentid]">
@@ -144,7 +144,60 @@ Notre script est maintenant capable de produire le fichier de ressource pour le 
 
 Le fichier complet est alors comme ceci :
 {{{
-TODO
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet
+        version="2.0"
+        xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+        xmlns:sch="http://www.w3.org/2001/XMLSchema"
+        xmlns:jndi="http://jndi-resources.googlecode.com/1.0/"
+        xmlns:tools="http://jndi-resources.googlecode.com/1.0/java/com.googlecode.jndiresources.tools.XSLTools"
+        exclude-result-prefixes="#all"
+>
+<xsl:strip-space elements="*"/>
+<xsl:output method="xml" indent="yes" encoding="utf-8" omit-xml-declaration="no"/>
+<xsl:param name="version"/>
+<xsl:param name="appsrv"/>
+<xsl:param name="familly"/>
+<xsl:param name="currentid"/>
+<xsl:param name="targetdir"/>
+
+<xsl:variable  name="basefilename">catalina.base/conf/<xsl:value-of select="$currentid"/>_myds-ds</xsl:variable>
+<xsl:variable  name="filename"><xsl:value-of select="concat($targetdir,$basefilename,'.jndi')"/></xsl:variable>
+
+<xsl:template match="text()|comment()" />
+
+<xsl:template match="jndi:resources[@id=$currentid]">
+  <xsl:value-of select="tools:info(concat('Generate ',$filename))"/>
+  <xsl:value-of select="tools:fileCopy('../../../tools/xslt/save.xslt',concat($targetdir,'../xslt/'))"/>
+  <xsl:value-of select="tools:fileCopy('../../update-tomcat-server.xslt',concat($targetdir,'../xslt/'))"/>
+  <xsl:result-document  href="{$filename}">
+  <xsl:processing-instruction name="jndi-stylesheet">href="xslt/update-tomcat-server.xslt"</xsl:processing-instruction>
+  <xsl:processing-instruction name="jndi-stylesheet">href="xslt/save.xslt" target="conf/server.xml"</xsl:processing-instruction>
+
+  <GlobalNamingResources>
+        <xsl:apply-templates />
+  </GlobalNamingResources>
+
+  </xsl:result-document>
+</xsl:template>
+
+
+<xsl:template match="jndi:resources[@id=$currentid]/jndi:resource[@familly=$familly]">
+  <Resource name="${{jndi-prefix}}{@name}"
+            auth="Container"
+            type="javax.sql.DataSource"
+            driverClassName="${{jdbc.myds.driver}}"
+            url="${{jdbc.myds.url.default}}"
+            username="${{jdbc.myds.username}}"
+            password="${{jdbc.myds.password}}"
+            maxIdle="${{jdbc.min-pool-size}}"
+            maxActive="${{jdbc.max-pool-size}}"
+            maxOpenPreparedStatements="${{jdbc.prepared-statement-cache-size}}"
+            validation-query="${{jdbc.myds.validation-query}}"
+            maxwait="${{jdbc.max-wait}}"/>
+</xsl:template>
+
+</xsl:stylesheet>
 }}}
 
 S'il est également nécessaire d'ajouter une librairie dans le serveur d'application, il faut utiliser des utilitaires à cet effet. Ajoutons les deux lignes suivantes :
@@ -162,9 +215,11 @@ Nous devons invoquer le template `install-drivers` dans le template principal.
   <xsl:processing-instruction name="jndi-stylesheet">href="xslt/update-tomcat-server.xslt"</xsl:processing-instruction>
   <xsl:processing-instruction name="jndi-stylesheet">href="xslt/save.xslt" target="conf/server.xml"</xsl:processing-instruction>
 
-  <GlobalNamingResources>
+  <Server>
+     <GlobalNamingResources>
 	<xsl:apply-templates />
-  </GlobalNamingResources>
+     </GlobalNamingResources>
+  </Server>
 
   </xsl:result-document>
   <xsl:call-template name="install-drivers"/>
