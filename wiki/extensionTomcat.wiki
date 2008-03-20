@@ -118,7 +118,7 @@ Ensuite, nous devons déclarer un template XSLT pour générer toutes les ressou
 
 {{{
 <xsl:template match="jndi:resources[@id=$currentid]/jndi:resource[@familly=$familly]">
-  <Resource name="${jndi-prefix}<xsl:value-of select="@name"/>"
+  <Resource name="${jndi-prefix}{@name}"
             auth="Container"
             type="javax.sql.DataSource"
             driverClassName="${jdbc.myds.driver}"
