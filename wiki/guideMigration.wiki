@@ -61,7 +61,7 @@ La dernière étape consiste à [transformerWebXML paramétrer] le serveur d'app
 ...
 }}}
 
-Lors de l'installation, il faudra valoriser la variable `${host.MonHostAContacter}` dans la ligne de commande ou dans un fichier de propriétés.
+Lors de l'installation, il faudra valoriser la variable `${host.MonHostAContacter}` dans la [ligneDeCommandes ligne de commande] ou dans un fichier de propriétés.
 {{{
 >$JNDI_HOME/bin/jndi-install ...\
         -Dhost.MonHostAContacter=localhost
