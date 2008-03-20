@@ -9,7 +9,7 @@ Un script d'installation est décrit à partir d'un répertoire racine que nous 
 
 Pour chaque serveur d'applications, il doit y avoir autant de répertoires que de répertoires majeurs du serveur d'applications. Par exemple, pour Tomcat, il existe deux répertoires majeurs : `catalina.home` et `catalina.base`. Pour JBoss, il existe d'autres répertoires. Les noms sont libres.
 
-http://code.google.com/p/jndi-resources/source/browse/trunk/jndi-resources/src/doc/packages.png
+http://jndi-resources.googlecode.com/svn/trunk/jndi-resources/src/doc/packages.png
 
 Les fichiers présents dans ces répertoires seront recopiés tels quels dans les répertoires correspondant du serveur d'applications. Des paramètres de la [ligneDeCommandes ligne de commande] permettent d'associer un répertoire majeur à un répertoire du serveur d'applications (paramètre `--dest`).
 
