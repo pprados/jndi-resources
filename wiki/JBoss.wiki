@@ -35,8 +35,7 @@ $JBOSS_HOME/bin/run.sh -c jndi-cli
 }}}
 Vous pouvez reproduire ceci avec différents nœuds. Ils partageront tous l'annuaire JNDI global. Vous pouvez ensuite, raffiner le paramétrage pour adapter la publication des ressources à ce qui est strictement nécessaire localement.
 
-
-Dans le JMXConsole, le Mbean JNDIView consulte alors l'annuaire distant pour la branche racine, et l'annuaire local pour la branche [rappelJNDI java:].
+Dans la JMXConsole, le Mbean JNDIView consulte alors l'annuaire distant pour la branche racine, et l'annuaire local pour la branche [rappelJNDI java:].
 
 Vous pouvez maintenant, publier des ressources JNDI dans l'annuaire global. Elles seront visibles chez tous les clients JNDI. Utilisez pour cela, les [transformations cibles] adéquates.
 
