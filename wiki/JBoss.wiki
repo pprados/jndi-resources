@@ -39,7 +39,7 @@ Dans la JMXConsole, le Mbean JNDIView consulte alors l'annuaire distant pour la 
 
 Vous pouvez maintenant, publier des ressources JNDI dans l'annuaire global. Elles seront visibles chez tous les clients JNDI. Utilisez pour cela, les [transformations cibles] adéquates.
 
-Installation du composant sur l'annuaire JNDI :
+Installation des ressources du composant sur l'annuaire JNDI :
 {{{
 >$JNDI_HOME/bin/jndi-install \
         --appsrv jboss-jndi-srv --version 5.0 \
