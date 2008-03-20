@@ -20,16 +20,15 @@ Par exemple, pour le fichier `all-components.xml` suivant,
 <?xml version="1.0" encoding="UTF-8"?>
 
 <AllComponents>
-<resources xmlns="http://jndi-resources.googlecode.com/1.0/"
+   <resources xmlns="http://jndi-resources.googlecode.com/1.0/"
 	id="one">
 	<resource name="comp_one/jdbc/Default" familly="jdbc/default" />
-</resources>
+   </resources>
 
-<resources xmlns="http://jndi-resources.googlecode.com/1.0/"
+   <resources xmlns="http://jndi-resources.googlecode.com/1.0/"
 	id="two">
 	<resource name="comp_two/jdbc/Default" familly="jdbc/default" />
-</resources>
-
+   </resources>
 </AllComponents>
 }}}
 
