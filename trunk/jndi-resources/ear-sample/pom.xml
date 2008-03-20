@@ -57,6 +57,9 @@
 			<plugin>
 				<artifactId>maven-ear-plugin</artifactId>
 				<configuration>
+					<earName>${artifactId}</earName>
+ 					<earSourceDirectory>src/main/applications</earSourceDirectory>
+					<earSourceIncludes>**/jndi-resources.xml</earSourceIncludes>
 					<modules>
 						<webModule>
 							<groupId>com.googlecode.jndi-resources</groupId>
