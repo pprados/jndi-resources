@@ -1,0 +1,65 @@
+#summary Publication mutualisée de l'annuaire JNDI de JBoss.
+
+= Publication mutualisée de l'annuaire JNDI de JBoss =
+Jboss, comme tous serveurs d'applications, utilise un annuaire JNDI local. Il est également capable d'utiliser un annuaire distant pour manipuler les objets de la racine de l'arbre JNDI, la branche `java:` restant visible uniquement par l'instance Jboss courante.
+
+Pour faire cela, il faut d'une part, instancier un serveur Jboss qui ne fait que publier son annuaire. Les autres instances de JBoss doivent s'en référer pour retrouver les ressources dont elles ont besoins.
+
+== Publication de l'annuaire ==
+Commençons par paramétrer une instance de Jboss pour qu'elle ne soit qu'un annuaire JNDI.
+Copiez le répertoire `$JBOSS_HOME/server/minimal` dans le réperoire `$JBOSS_HOME/server/jndi-srv`.
+Pour être certains d'utiliser l'annuaire distant, nous allons lui modifier son port par défaut. Pour cela, éditez le fichier $JBOSS_HOME/server/jndi-srv/conf/jboss-services.xml. Dans le paramétrage du `Mbean jboss:service=Naming`, modifiez l'attribut `Port` en `11099` et l'attribut `RmiPort` en `11098`. De plus, cela permet de tester la configuration sur la même machine, avec deux instances de JBoss simultanément.
+{{{
+<mbean code="org.jboss.naming.NamingService"
+   name="jboss:service=Naming"
+   xmbean-dd="resource:xmdesc/NamingService-xmbean.xml">
+   <attribute name="Port">11099</attribute>
+   <attribute name="RmiPort">1098</attribute>
+   ...
+</mbean>
+}}}
+
+Vous pouvez ensuite lancer une instance publiant un annuaire JNDI global.
+{{{
+$JBOSS_HOME/bin/run.sh -c jndi-srv
+}}}
+
+== Client de l'annuaire ==
+Sur un serveur, client de l'annuaire JNDI, 
+ * copiez le répertoire `$JBOSS_HOME/server/default` dans le répertoire `$JBOSS_HOME/server/jndi-cli`.
+Modifiez le fichier `$JBOSS_HOME/conf/jndi.properties` pour ajouter la ligne suivante, avec le nom du host où est localisé l'annuaire JNDI.
+{{{
+java.naming.provider.url=jnp://localhost:11099
+}}}
+Vous pouvez ensuite lancer l'instance Jboss.
+{{{
+$JBOSS_HOME/bin/run.sh -c jndi-cli
+}}}
+Vous pouvez reproduire ceci avec différents serveurs. Ils partageront tous l'annuaire JNDI global.
+
+Dans le JMXConsole, le Mbean JNDIView consulte alors l'annuaire distant pour la branche racine, et l'annuaire local pour la branche `java:`.
+
+Vous pouvez ensuite, raffiner le paramétrage pour adapter la publication de ressources à ce qui est strictement nécessaire.
+
+Vous pouvez maintenant, publier des ressources JNDI dans l'annuaire global, elles seront visibles chez tous les clients JNDI. Utilisez pour cela, les [transformations cibles] adéquates.
+
+Sur l'annuaire JNDI :
+{{{
+>$JNDI_HOME/bin/jndi-install \
+        --appsrv jboss-jndi-srv --version 5.0 \
+        --package ./packages \
+        --dest jboss.server.conf=/opt/jboss-5.0/server/jndi-srv \
+        --dest jboss.server.home=/opt/jboss-5.0
+}}}
+
+
+Sur un client JNDI :
+{{{
+>$JNDI_HOME/bin/jndi-install \
+        --appsrv jboss-jndi-cli --version 5.0 \
+        --package ./packages \
+        --dest jboss.server.conf=/opt/jboss-5.0/server/jndi-cli \
+        --dest jboss.server.home=/opt/jboss-5.0
+}}}
+
+Voir aussi : [transformations Les modèles de transformations]
