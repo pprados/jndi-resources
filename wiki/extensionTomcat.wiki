@@ -224,6 +224,11 @@ De même, vous pouvez proposer des valeurs par défaut pour les nouvelles [varia
 
 Il faut procéder de même pour les différentes versions du serveur Tomcat.
 
+Maintenant, vous pouvez générer la ressource en déclarant la famille dans le fichier [jndiResourcesXML jndi-resources.xml].
+{{{
+<resource name="jndi-web-sample/jdbc/MaDataSource" familly="jdbc/mydatasource"/>
+}}}
+
 Voilà pour la description rapide de la production d'une ressource spécifique. La meilleur documentation est le source lui-même. N'hésitez pas à y jeter un oeil pour vous inspirer des différentes approches utilisées lors de la production des différentes ressources.
 
 Pour tenir compte des différents paramètres présent dans le fichier [jndiResourcesXML jndi-resources.xml], il faut adapter la production du fichier `.jndi`.
