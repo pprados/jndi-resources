@@ -20,7 +20,7 @@
 <document>
 
 	<properties>
-		<title>JNDI Resources Web Sample</title>
+		<title>JNDI Resources EAR Sample</title>
 		<author
 			email="jndi-resources@philippe.prados.name">
 			Philippe Prados
@@ -31,7 +31,7 @@
 	<body>
 		<section name="Introduction">
 			<p>
-				Exemple de fichier WAR pouvant s'installer sur 
+				Exemple de fichier EAR pouvant s'installer sur 
 				toutes les versions des serveurs d'applications.
 			</p>
 			<p>
