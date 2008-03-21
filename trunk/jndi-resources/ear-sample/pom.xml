@@ -19,35 +19,36 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+>
+	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.googlecode.jndi-resources</groupId>
 	<artifactId>ear-sample</artifactId>
 	<packaging>ear</packaging>
-	<version>0.2-SNAPSHOT</version>
 	<name>ear-sample</name>
 	<description>Sample with kind of resources.</description>
-	<url>${url.home}</url>
+	<url>${url.home}/${project.name}</url>
 
 	<parent>
 		<groupId>com.googlecode.jndi-resources</groupId>
 		<artifactId>main</artifactId>
-		<version>0.2-SNAPSHOT</version>
+		<version>0.3</version>
 	</parent>
 
 	<distributionManagement>
 		<site>
 			<id>www.prados.fr</id>
-			<url>${scp.home}/${project.name}</url>
+			<url>${scp.home}/jndi-resources/${project.name}</url>
 		</site>
 	</distributionManagement>
 
 	<scm>
 		<connection>
-			scm:svn:http://jndi-resources.googlecode.com/svn/trunk/
+			scm:svn:http://jndi-resources.googlecode.com/svn/trunk/jndi-resources/${project.name}
 		</connection>
 		<developerConnection>
-			scm:svn:https://jndi-resources.googlecode.com/svn/trunk/
+			scm:svn:https://jndi-resources.googlecode.com/svn/trunk/jndi-resources/${project.name}
 		</developerConnection>
 		<url>http://code.google.com/p/jndi-resources/source/browse</url>
 	</scm>
@@ -58,25 +59,31 @@
 				<artifactId>maven-ear-plugin</artifactId>
 				<configuration>
 					<earName>${artifactId}</earName>
- 					<earSourceDirectory>src/main/applications</earSourceDirectory>
-					<earSourceIncludes>**/jndi-resources.xml</earSourceIncludes>
+					<earSourceDirectory>
+						src/main/applications
+					</earSourceDirectory>
+					<earSourceIncludes>
+						**/jndi-resources.xml
+					</earSourceIncludes>
 					<modules>
 						<webModule>
-							<groupId>com.googlecode.jndi-resources</groupId>
+							<groupId>
+								com.googlecode.jndi-resources
+							</groupId>
 							<artifactId>web-sample</artifactId>
 							<bundleFileName>
 								jndi-web-sample.war
 							</bundleFileName>
 						</webModule>
 						<!-- 
-						<ejbModule>
+							<ejbModule>
 							<groupId>com.googlecode.jndi-resources</groupId>
 							<artifactId>ejb-sample</artifactId>
 							<bundleFileName>
-								jndi-ejb-sample.war
+							jndi-ejb-sample.war
 							</bundleFileName>
-						</ejbModule>
-						 -->
+							</ejbModule>
+						-->
 					</modules>
 				</configuration>
 			</plugin>
@@ -88,16 +95,16 @@
 		<dependency>
 			<groupId>com.googlecode.jndi-resources</groupId>
 			<artifactId>web-sample</artifactId>
-			<version>0.2-SNAPSHOT</version>
+			<version>0.3</version>
 			<type>war</type>
 		</dependency>
-<!-- 
-		<dependency>
+		<!-- 
+			<dependency>
 			<groupId>com.googlecode.jndi-resources</groupId>
 			<artifactId>ejb-sample</artifactId>
-			<version>0.2-SNAPSHOT</version>
+			<version>0.3</version>
 			<type>ejb</type>
-		</dependency>
- -->
+			</dependency>
+		-->
 	</dependencies>
 </project>

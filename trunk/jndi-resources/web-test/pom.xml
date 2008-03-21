@@ -15,7 +15,7 @@
 	<parent>
 		<groupId>com.googlecode.jndi-resources</groupId>
 		<artifactId>main</artifactId>
-		<version>0.2-SNAPSHOT</version>
+		<version>0.3</version>
 	</parent>
 
 	<distributionManagement>
@@ -27,10 +27,10 @@
 
 	<scm>
 		<connection>
-			scm:svn:http://jndi-resources.googlecode.com/svn/trunk/jndi-resources/jndi-resources-${project.name}
+			scm:svn:http://jndi-resources.googlecode.com/svn/trunk/jndi-resources/${project.name}
 		</connection>
 		<developerConnection>
-			scm:svn:https://jndi-resources.googlecode.com/svn/trunk/jndi-resources/jndi-resources-${project.name}
+			scm:svn:https://jndi-resources.googlecode.com/svn/trunk/jndi-resources/${project.name}
 		</developerConnection>
 		<url>http://code.google.com/p/jndi-resources/source/browse</url>
 	</scm>
