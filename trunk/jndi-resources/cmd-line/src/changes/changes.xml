@@ -23,7 +23,7 @@
     <author email="jndi-resources@philippe.prados.name">Philippe PRADOS</author>
   </properties>
   <body>
-    <release version="0.2-SNAPSHOT" date="2008-03-01" description="première version publique">
+    <release version="0.3" date="2008-03-20" description="première version publique">
       <action dev="Philippe PRADOS" type="update">
         Première version publique.
       </action>
