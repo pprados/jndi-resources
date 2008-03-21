@@ -19,9 +19,8 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
->
-	
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.googlecode.jndi-resources</groupId>
 	<artifactId>jndi-resources</artifactId>
@@ -32,7 +31,7 @@
 	<parent>
 		<groupId>com.googlecode.jndi-resources</groupId>
 		<artifactId>main</artifactId>
-		<version>0.2-SNAPSHOT</version>
+		<version>0.3</version>
 	</parent>
 
 	<distributionManagement>
@@ -41,17 +40,17 @@
 			<url>${scp.home}/jndi-resources/${project.name}</url>
 		</site>
 	</distributionManagement>
- 
+
 	<scm>
 		<connection>
-			scm:svn:http://jndi-resources.googlecode.com/svn/trunk/jndi-resources/jndi-resources-${project.name}
+			scm:svn:http://jndi-resources.googlecode.com/svn/trunk/jndi-resources/${project.name}
 		</connection>
 		<developerConnection>
-			scm:svn:https://jndi-resources.googlecode.com/svn/trunk/jndi-resources/jndi-resources-${project.name}
+			scm:svn:https://jndi-resources.googlecode.com/svn/trunk/jndi-resources/${project.name}
 		</developerConnection>
 		<url>http://code.google.com/p/jndi-resources/source/browse</url>
 	</scm>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -61,6 +60,44 @@
 					<target>1.1</target>
 				</configuration>
 			</plugin>
+
+<!-- 
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<shadedArtifactId>
+								jndi-resources
+							</shadedArtifactId>
+							<shadedArtifactAttached>
+								false
+							</shadedArtifactAttached>
+							<artifactSet>
+								<excludes>
+									<exclude>
+										classworlds:classworlds
+									</exclude>
+									<exclude>junit:junit</exclude>
+									<exclude>jmock:jmock</exclude>
+									<exclude>xml-apis:xml-apis</exclude>
+								</excludes>
+							</artifactSet>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ComponentsXmlResourceTransformer" />
+							</transformers>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+-->
+			
 			<plugin>
 				<artifactId>maven-jar-plugin</artifactId>
 				<configuration>
@@ -198,7 +235,7 @@
 			<version>${current.version}</version>
 		</dependency>
 	</dependencies>
-	
+
 	<reporting>
 		<plugins>
 			<plugin>
@@ -226,7 +263,7 @@
 			</plugin>
 		</plugins>
 	</reporting>
-	
+
 	<properties>
 		<project.build.templates>
 			${project.build.sourceDirectory}/../templates
