@@ -39,10 +39,17 @@
 <xsl:param name="war"/>
 
 <xsl:template match="/">
-	<xsl:if test="$war != ''">
-		<xsl:value-of select="tools:mkLink(concat($parentwar,$war),concat($targetdir,'../',$war),concat($targetdir,'catalina.base/webapps/',$war))"/>
-	</xsl:if>
-	<xsl:value-of select="tools:fileCopyIfExist('templates.properties',concat($targetdir,'templates.properties'))"/>
+	<xsl:choose>
+		<xsl:when test="ends-with($war,'.ear')">
+			<xsl:value-of select="tools:warn('EAR module can not be published by Tomcat.')"/>
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:if test="$war != ''">
+				<xsl:value-of select="tools:mkLink(concat($parentwar,$war),concat($targetdir,'../',$war),concat($targetdir,'catalina.base/webapps/',$war))"/>
+			</xsl:if>
+			<xsl:value-of select="tools:fileCopyIfExist('templates.properties',concat($targetdir,'templates.properties'))"/>
+		</xsl:otherwise>
+	</xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>
