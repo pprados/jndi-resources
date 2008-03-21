@@ -30,6 +30,7 @@
 	xmlns:jndi="http://jndi-resources.googlecode.com/1.0/"
 	xmlns:tools="http://jndi-resources.googlecode.com/1.0/java/com.googlecode.jndiresources.tools.XSLTools"
 	exclude-result-prefixes="#all">
+	<xsl:param name="war"/>
 	<xsl:strip-space elements="*" />
 	<xsl:output method="xml" indent="yes" encoding="utf-8"
 		omit-xml-declaration="no" />
@@ -46,6 +47,7 @@
 	<xsl:template match="text()|comment()" />
 
 	<xsl:template match="jndi:resources[@id=$currentid]">
+	<xsl:if test="not(ends-with($war,'.ear'))">
 		<xsl:value-of
 			select="tools:fileCopy('../../../tools/xslt/save.xslt',concat($targetdir,'../xslt/'))" />
 		<xsl:value-of select="tools:fileCopy('../../update-tomcat-server.xslt',concat($targetdir,'../xslt/'))"/>
@@ -69,6 +71,7 @@
 		<xsl:call-template name="install-drivers">
 			<xsl:with-param name="familly" select="'javamail'"/>
 		</xsl:call-template>
+	</xsl:if>
 	</xsl:template>
 
 	<xsl:template

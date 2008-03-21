@@ -43,11 +43,18 @@
 <xsl:variable name="wartargetfile"><xsl:value-of select="concat($targetdir,'catalina.base/webapps/',$warbasename,'.xml')"/></xsl:variable>
 
 <xsl:template match="/">
-	<xsl:if test="$war != ''">
-		<xsl:value-of select="tools:mkLink(concat($parentwar,$war),concat($targetdir,'../',$war),concat($targetdir,'catalina.base/webapps/',$war))"/>
-		<xsl:apply-templates select="document(concat('jar:file:',$parentwar,$war,'!/WEB-INF/web.xml'))" mode="web.xml"/>
-	</xsl:if>
-	<xsl:value-of select="tools:fileCopyIfExist('templates.properties',concat($targetdir,'templates.properties'))"/>
+	<xsl:choose>
+		<xsl:when test="ends-with($war,'.ear')">
+			<xsl:value-of select="tools:warn('EAR module can not be published by Tomcat.')"/>
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:if test="$war != ''">
+				<xsl:value-of select="tools:mkLink(concat($parentwar,$war),concat($targetdir,'../',$war),concat($targetdir,'catalina.base/webapps/',$war))"/>
+				<xsl:apply-templates select="document(concat('jar:file:',$parentwar,$war,'!/WEB-INF/web.xml'))" mode="web.xml"/>
+			</xsl:if>
+			<xsl:value-of select="tools:fileCopyIfExist('templates.properties',concat($targetdir,'templates.properties'))"/>
+		</xsl:otherwise>
+	</xsl:choose>
 </xsl:template>
 
 <xsl:template match="/" mode="web.xml">
