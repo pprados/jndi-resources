@@ -42,7 +42,7 @@ Prenons l'exemple d'une archive WAR possédant le fichier `WEB-INF/web.xml` suiv
 
 Notez la valeur du paramètre `id` du marqueur `<web-app/>`. Il correspond généralement au path de déploiement de l'archive.
 
-Nous souhaitons bénéficier de la normalisation du packaging du composant, à savoir, la possibilité de l'utiliser sur tous les serveurs d'applications, indépendamment de sa marque ou de sa version. C'est bien l'objectif de la normalisation WAR.
+Nous souhaitons bénéficier de la normalisation du packaging du composant, à savoir, la possibilité de l'utiliser sur tous les serveurs d'applications, indépendamment de sa marque, de sa version ou de son architecture. C'est bien l'objectif de la normalisation WAR.
 
 Conformément aux [comment spécifications], ce fichier déclare, dans `<resource-ref/>`,  le besoin d'une ressource de type `javax.sql.DataSource` pour la clef JNDI `java:comp/env/jdbc/DB`.
 
