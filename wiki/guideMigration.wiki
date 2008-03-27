@@ -20,7 +20,7 @@ Déclarez la clef dans le fichier `web.xml` ou `ejb-jar.xml`.
   ...
   <resource-ref >
       <description>Mon host à contacter</description>
-      <res-ref-name>MonHostAContacter</res-ref-name>
+      <res-ref-name>host/MonHostAContacter</res-ref-name>
       <res-type>java.net.InetAddress</res-type>
       <res-auth>Application</res-auth>
   </resource-ref>
