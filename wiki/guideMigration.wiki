@@ -29,7 +29,7 @@ Déclarez la clef dans le fichier `web.xml` ou `ejb-jar.xml`.
 }}}
 Ajoutez également le [transformerWebXML nécessaire] dans les fichiers spécifiques aux serveurs d'applications (`context.xml`, `jboss-web.xml`, etc.)
 
-Modifiez le code exploitant cette information. Par exemple, dans le cas de la lecture d'une propritété pour obtenir le nom d'un host, la ligne suivante :
+Modifiez le code exploitant cette information. Par exemple, dans le cas de la lecture d'une propriété pour obtenir le nom d'un host, la ligne suivante :
 {{{
 InetAddress host=InetAddress.getByName(prop.getProperty("host"));
 }}}
