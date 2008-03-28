@@ -6,11 +6,11 @@ Le tableau suivant décrit les différentes familles de ressources gérés par l
 
 || *Famille* || *Description* ||
 || [host host/default] || Déclare un host dans l'arbre JNDI. ||
-|| [jdbc jdbc/default] || Utilise la base de donnée par défaut du serveur d'application. ||
-|| [jdbc jdbc/hsqldb] || Utilise une base de donnée de type [http://www.hsqldb.org HSQLDB].||
-|| [jdbc jdbc/mysql] || Utilise une base de donnée [http://www.mysql.com MySql]. ||
-|| [jdbc jdbc/oracle] || Utilise une base de donnée [http://www.oracle.com Oracle]. ||
-|| [jms jms/default] || Utilise les serveur JMS par défauts du serveur d'application.||
+|| [jdbc jdbc/default] || Utilise la base de données par défaut du serveur d'applications. ||
+|| [jdbc jdbc/hsqldb] || Utilise une base de données de type [http://www.hsqldb.org HSQLDB].||
+|| [jdbc jdbc/mysql] || Utilise une base de données [http://www.mysql.com MySql]. ||
+|| [jdbc jdbc/oracle] || Utilise une base de données [http://www.oracle.com Oracle]. ||
+|| [jms jms/default] || Utilise les serveur JMS par défauts du serveur d'applications.||
 || [jms jms/jboss] || Utilise les drivers du serveur JMS du JBoss courant (JBoss MQ ou JBoss Messaging suivant les cas). ||
 || [jms jms/jbossmq] || Utilise spécifiquement un serveur JMS JBoss MQ. ||
 || [jms jms/jboss-messaging] || Utilise spécifiquement un serveur JMS JBoss Messaging. ||
