@@ -5,10 +5,10 @@
 
 Voici, pour chaque type de ressources, les différentes propriétés prises en compte, les différentes déclinaisons disponibles et les variables utilisées.
 
-Avant tous, il existe une variable globale, indépendante des ressources utilisées.
+Avant tout, il existe une variable globale, indépendante des ressources utilisées.
 
 || *Variables* || *Description* ||
-|| `${jndi.prefix}` || Valeur par défaut : `""`. Cette variable permet d'ajouter un préfixe aux clefs JNDI utilisés pour déclarer les ressources. Cela permet d'organiser comme vous le voulez, l'arbre JNDI. ||
+|| `${jndi.prefix}` || Valeur par défaut : `""`. Cette variable permet d'ajouter un préfixe aux clefs JNDI utilisées pour déclarer les ressources. Cela permet d'organiser comme vous le voulez, l'arbre JNDI. ||
 
 Les familles possibles :
  * [host]
