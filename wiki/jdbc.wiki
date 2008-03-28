@@ -20,7 +20,7 @@ La ressource doit être déclarée dans le fichier `web.xml` ou `ejb-jar.xml`.
 }}}
 
 == Déclaration jndi-resource ==
-Les métas-données pour décrire les exigences de la ressource doivent être décrite dans le fichier [jndiResourcesXML jndi-resources.xml]. Par exemple :
+Les métas-données pour décrire les exigences de la ressource doivent être décrites dans le fichier [jndiResourcesXML jndi-resources.xml]. Par exemple :
 {{{
 ...
 <resource
@@ -48,10 +48,10 @@ Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier [jnd
 || `max-pool-size` || Indique la taille maximum du pool de connexion. La valeur par défaut est `${jdbc.max-pool-size}`. ||
 || `prepared-statement-cache-size` || Indique la taille du cache de prepared-statements. La valeur par défaut est `${jdbc.prepared-statement-cache-size}` ||
 || `max-wait` || Indique le temps maximum avant de considérer la requête comme échouée. La valeur par défaut est `${jdbc.max-wait}` ||
-|| `validation-query` || Indique la requête SQL à invoquer pour vérifier la connexion à la base de donnée. La valeur par défaut dépend du type de la base de donnée. ||
+|| `validation-query` || Indique la requête SQL à invoquer pour vérifier la connexion à la base de données. La valeur par défaut dépend du type de la base de donnée. ||
 
 == Extensions et limitations ==
-Pour ajouter des paramètres spécifiques à un serveur d'application, il faut ajouter à la déclaration de ressources, des informations complémentaires dont voici un exemple.
+Pour ajouter des paramètres spécifiques à un serveur d'applications, il faut ajouter à la déclaration de ressources, des informations complémentaires dont voici un exemple.
 {{{
 ...
 <resource
@@ -75,7 +75,7 @@ Pour ajouter des paramètres spécifiques à un serveur d'application, il faut a
 == Déclinaisons ==
 Les déclinaisons possibles pour le paramètre [familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
 || *Famille* || *Description* ||
-|| `jdbc/default` || Utilise la base de données par défaut du serveur d'application. Pour JBoss, il s'agit de la base décrite sous `java:DefaultDS`. C'est une base HSQLDB, entièrement codée en Java et s'exécutant dans le même processus. Pour l'architecture JBoss avec un annuaire JNDI déporté, une base HSQLDB est lancée en mode serveur à coté de l'annuaire JNDI de référence. Cette base est utilisée par les clients de l'annuaire JNDI. Pour Tomcat, il s'agit également d'une base HSQLDB dont il faut préciser l'utilisateur, le mot de passe et le fichier. ||
+|| `jdbc/default` || Utilise la base de données par défaut du serveur d'applications. Pour JBoss, il s'agit de la base décrite sous `java:DefaultDS`. C'est une base HSQLDB, entièrement codée en Java et s'exécutant dans le même processus. Pour l'architecture JBoss avec un annuaire JNDI déporté, une base HSQLDB est lancée en mode serveur à coté de l'annuaire JNDI de référence. Cette base est utilisée par les clients de l'annuaire JNDI. Pour Tomcat, il s'agit également d'une base HSQLDB dont il faut préciser l'utilisateur, le mot de passe et le fichier. ||
 || `jdbc/hsqldb` || Utilise une base de données de type [http://www.hsqldb.org HSQLDB] in process. Pour l'architecture JBoss avec un annuaire JNDI déporté, une base HSQLDB est lancée en mode serveur à coté de l'annuaire JNDI de référence. Cette base est utilisée par les clients de l'annuaire JNDI. ||
 || `jdbc/mysqsl` || Utilise une base de données [http://www-fr.mysql.com/ MySql].||
 || `jdbc/oracle` || Utilise une base de données [http://www.oracle.com/global/fr/index.html Oracle] ||
@@ -99,7 +99,7 @@ Les variables à valoriser lors de l'installation pour gérer ces ressources son
 || `${jdbc.xa._<db>_.url.default}` || L'URL de connexion par défaut en cas de connexion XA. ||
 || `${jdbc._<db>_.validation-query}` || La requête SQL de validation de la connexion. ||
 
-Chaque base de données définie ses variables.
+Chaque base de données définit ses variables.
 |||| *HSQLDB* ||
 || *Variable* || *Description* ||
 || *`${jdbc.hsqldb.file}`* || Le fichier utilisé par la base HSQLDB. Il n'y a pas de valeur par défaut. Cette variable doit être valorisée lors de l'installation si nécessaire. ||
