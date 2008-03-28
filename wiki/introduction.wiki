@@ -37,7 +37,7 @@ Nous proposons de traiter ce problème, afin d'améliorer et d'uniformiser les i
 Les bénéfices attendus de la démarche sont les suivants :
  * Indépendance des composants vis-à-vis des serveurs d'applications ;
  * Migration immédiate d'un serveur à un autre ou d'une version à la suivante ;
- * Normalisation de l'installation des composants, quelques soit le serveur d'applications ;
+ * Normalisation de l'installation des composants, quel que soit le serveur d'applications ;
  * Qualifications des paramètres de déploiements ;
  * Normalisation de l'utilisation des ressources de l'entreprise ;
  * Possibilité de mutualiser les ressources au niveau serveurs d'applications, instances de serveurs d'applications ou machines virtuelles ;
