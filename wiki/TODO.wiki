@@ -8,3 +8,4 @@
  * Expliquer comment migrer une application vers l'approche JNDI
  * Autre TODO dans le [http://www.prados.fr/mvn/jndi-resources/command-line/taglist.html source]
  * Rendre plus percutante la description du projet sur la homepage
+ * Faire une page pour expliquer un packaging RPM et DEB
