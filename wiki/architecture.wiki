@@ -4,8 +4,12 @@
 
 Différentes architectures permettent de gérer les ressources des composants JEE. Il est possible d'utiliser un annuaire JNDI local à chaque serveur d'applications (ils en fournissent généralement un par défaut) ou d'utiliser un annuaire JNDI [JBoss centralisé]. Cette dernière approche permet d'éviter les situations courantes en production où un nœud fonctionne mais pas l'autre dans un cluster.
 
+[http://jndi-resources.googlecode.com/svn/trunk/jndi-resources/src/doc/architecture-jndi.png]
+
 L'architecture peut être plus complexe et hiérarchique, avec un annuaire par serveur, un annuaire par application, un annuaire par département et un annuaire par entreprise.
 Les annuaires sont reliés les uns aux autres pour cacher cette organisation aux composants applicatifs.
+
+[http://jndi-resources.googlecode.com/svn/trunk/jndi-resources/src/doc/arbre-annuaire-jndi.png]
 
 Certains publient des sources de données, d'autres la liste des utilisateurs sous LDAP. Notez qu'il est possible de mémoriser tous les objets java dans un serveur LDAP. 
 
