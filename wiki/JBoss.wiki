@@ -1,13 +1,13 @@
 #summary Publication mutualisée de l'annuaire JNDI de JBoss.
 
 = Publication mutualisée de l'annuaire JNDI de JBoss =
-JBoss, comme tous serveurs d'applications, utilise un annuaire JNDI local. Il est également capable d'utiliser un annuaire distant pour manipuler les objets de la racine de l'arbre JNDI, la branche [rappelJNDI java:] restant visible uniquement par l'instance Jboss courante.
+JBoss, comme tout serveur d'applications, utilise un annuaire JNDI local. Il est également capable d'utiliser un annuaire distant pour manipuler les objets de la racine de l'arbre JNDI, la branche [rappelJNDI java:] restant visible uniquement par l'instance JBoss courante.
 
-Pour faire cela, il faut instancier un serveur Jboss qui ne fait que publier son annuaire. Les autres instances de JBoss doivent s'en référer pour retrouver les ressources dont elles ont besoins.
+Pour faire cela, il faut instancier un serveur JBoss qui ne fait que publier son annuaire. Les autres instances de JBoss doivent s'y référer pour retrouver les ressources dont elles ont besoin.
 
 == Publication de l'annuaire ==
-Commençons par paramétrer une instance de Jboss pour qu'elle ne soit qu'un annuaire JNDI.
-Copiez le répertoire `$JBOSS_HOME/server/minimal` dans le réperoire `$JBOSS_HOME/server/jndi-srv`.
+Commençons par paramétrer une instance de JBoss pour qu'elle ne soit qu'un annuaire JNDI.
+Copiez le répertoire `$JBOSS_HOME/server/minimal` dans le répertoire `$JBOSS_HOME/server/jndi-srv`.
 Pour être certains d'utiliser l'annuaire distant, nous allons lui modifier son port par défaut. Pour cela, éditez le fichier $JBOSS_HOME/server/jndi-srv/conf/jboss-services.xml. Dans le paramétrage du `Mbean jboss:service=Naming`, modifiez l'attribut `Port` en `11099` et l'attribut `RmiPort` en `11098`. De plus, cela permet de tester la configuration sur la même machine, avec deux instances de JBoss simultanément.
 {{{
 <mbean code="org.jboss.naming.NamingService"
