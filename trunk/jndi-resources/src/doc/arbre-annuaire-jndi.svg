@@ -9,13 +9,13 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="376.60974"
-   height="281.7554"
+   width="758.54633"
+   height="701.66223"
    id="svg3428"
    sodipodi:version="0.32"
    inkscape:version="0.45.1"
-   sodipodi:docbase="/home/pprados/Desktop"
-   sodipodi:docname="Arbre annuaire JNDI.svg"
+   sodipodi:docbase="/home/pprados/workspace/jndi-resources/src/doc"
+   sodipodi:docname="arbre-annuaire-jndi.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
    version="1.0">
   <defs
@@ -27,14 +27,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
+     inkscape:zoom="1"
      inkscape:cx="350"
-     inkscape:cy="520"
+     inkscape:cy="400"
      inkscape:document-units="px"
-     inkscape:window-width="872"
-     inkscape:window-height="627"
-     inkscape:window-x="500"
-     inkscape:window-y="394"
+     inkscape:window-width="1400"
+     inkscape:window-height="970"
+     inkscape:window-x="0"
+     inkscape:window-y="54"
      inkscape:current-layer="svg3428"
      width="744.09px"
      height="1052.3622px" />
@@ -50,7 +50,7 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="matrix(3.543307e-2,0,0,3.543307e-2,-46.390255,-37.700786)"
+     transform="matrix(7.1373279e-2,0,0,8.825154e-2,-93.507869,-93.899639)"
      visibility="visible"
      id="page1"
      style="visibility:visible">
