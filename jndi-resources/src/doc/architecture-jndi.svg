@@ -15,10 +15,10 @@
    id="svg2"
    sodipodi:version="0.32"
    inkscape:version="0.45.1"
-   width="145.51237"
-   height="160.26158"
+   width="600.02319"
+   height="531.57495"
    sodipodi:docname="architecture-jndi.svg"
-   sodipodi:docbase="/home/pprados/Desktop"
+   sodipodi:docbase="/home/pprados/workspace/jndi-resources/src/doc"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <metadata
      id="metadata438">
@@ -43,7 +43,7 @@
      bordercolor="#666666"
      pagecolor="#ffffff"
      id="base"
-     inkscape:zoom="1.7900761"
+     inkscape:zoom="1"
      inkscape:cx="190.10777"
      inkscape:cy="209.4883"
      inkscape:window-x="0"
@@ -262,7 +262,10 @@
      visibility="visible"
      id="Standard"
      style="visibility:visible"
-     transform="translate(-4341.7421,-1754.5489)">
+     transform="matrix(3.1028923,0,0,2.5067578,-27506.929,-19710.959)"
+     inkscape:export-filename="/home/pprados/workspace/jndi-resources/src/doc/architecture-jndi.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90">
     <desc
        id="desc108">Master slide</desc>
   </g>
@@ -270,7 +273,10 @@
      visibility="visible"
      id="page1"
      style="visibility:visible"
-     transform="matrix(2.4131848,0,0,2.4131848,-6277.8052,-4234.0506)">
+     transform="matrix(4.303272,0,0,3.4592587,-12070.952,-6069.4383)"
+     inkscape:export-filename="/home/pprados/workspace/jndi-resources/src/doc/architecture-jndi.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90">
     <desc
        id="desc111">Slide</desc>
     <g
