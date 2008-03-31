@@ -27,10 +27,10 @@ Pour la clef `java:comp/env/jms/MaQueue` le chemin est le suivant :
 == Utilisation d'un annuaire JNDI pour publier les ressources ==
 
 || *Clef* || *Valeur* || *Description* ||
-|| `java:comp/env/`_<Ma clef>_ || Sans objet || Les composants ne sont pas publié sur ce serveur ||
+|| `java:comp/env/`_<Ma clef>_ || Sans objet || Les composants ne sont pas publiés sur ce serveur. ||
 || `/`_<idapp>_`/`_<Ma clef>_ || La ressource. || Toute les ressources sont publiques et visibles par tous.||
 
-Pour la clef `java:comp/env/jdbc/MaDatabase` d'une application d'identité `MonApp`, cliente de l'annuaire, le chemin suivit est le suivant :
+Pour la clef `java:comp/env/jdbc/MaDatabase` d'une application d'identité `MonApp`, cliente de l'annuaire, le chemin suivi est le suivant :
 
 `java:comp/env/jdbc/MaDatabase` => `java:MonApp/jdbc/MaDatabase` => `/MonApp/jdbc/MaDataBase` [_sur l'annuaire_] => La ressource [_sur l'annuaire_]
 
