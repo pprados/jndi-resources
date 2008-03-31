@@ -33,7 +33,7 @@ Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier [jnd
 || `archetype` || Indique l'archétype [http://maven.apache.org Maven] du _driver_ à utiliser. La valeur doit suivre le format suivant : `<groupe>:<archetype>:<version>`. La valeur par défaut dépend de la famille utilisée. ||
 
 == Extensions et limitations ==
-Pour ajouter des paramètres spécifiques à un serveur d'application, il faut ajouter à la déclaration de ressources, des informations complémentaires dont voici des exemples.
+Pour ajouter des paramètres spécifiques à un serveur d'applications, il faut ajouter à la déclaration de ressources, des informations complémentaires dont voici des exemples.
 {{{
 ...
 <resource name="jndi-web-sample/jndi/cos" familly="jndi/cos">
