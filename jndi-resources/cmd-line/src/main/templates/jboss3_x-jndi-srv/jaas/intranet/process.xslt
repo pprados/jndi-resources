@@ -34,6 +34,6 @@
 <xsl:param name="familly"/>
 <xsl:param name="currentid"/>
 <xsl:param name="targetdir"/>
-<xsl:include href="../../../jboss4_x/jaas/intranet/intranet.xslt"/>
+<xsl:include href="../../../jboss5_x/jaas/intranet/intranet.xslt"/>
 </xsl:stylesheet>
 

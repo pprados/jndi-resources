@@ -31,6 +31,6 @@
 <xsl:strip-space elements="*"/>
 <xsl:output method="xml" indent="yes" encoding="utf-8" omit-xml-declaration="no"/>
 
-<xsl:include href="../../jboss/queue/default.xslt"/>
+<xsl:include href="../../../../jboss5_x/jms/jboss/queue/default.xslt"/>
 
 </xsl:stylesheet>

@@ -33,5 +33,5 @@
 
 <xsl:variable name="prefix">${jndi-prefix}</xsl:variable>
 <xsl:variable name="use-java-context">false</xsl:variable>
-<xsl:include href="../../../jboss4_x/mail/email/libdefault.xslt"/>
+<xsl:include href="../../../jboss5_x/mail/email/libdefault.xslt"/>
 </xsl:stylesheet>

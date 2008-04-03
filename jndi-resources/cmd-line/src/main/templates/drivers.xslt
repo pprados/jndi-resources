@@ -28,24 +28,22 @@
 >
 <xsl:variable name="drivers">
 
+	<familly name="host/default" artifact="com.googlecode.jndi-resources:jndi-resources-plugins:*"/>
+
+	<familly name="mail/email" artifact="com.googlecode.jndi-resources:jndi-resources-plugins:*"/>
 	<familly name="javamail">
 		<artifact>javax.activation:activation:1.1</artifact>
 		<artifact>javax.mail:mail:1.4</artifact>
 	</familly>
-	
+
 	<familly name="jms" artifact="javax.jms:jms:1.1"/>
-	
+	<familly name="jms/jbossmq" artifact="jboss:jbossmq-client:4.0.2"/>
 
 	<familly name="jdbc/hsqldb" artifact="hsqldb:hsqldb:1.8.0.7"/>
 	<familly name="jdbc/oracle" artifact="ojdbc:ojdbc:14"/>
 	<familly name="jdbc/mysql"  artifact="mysql:mysql-connector-java:5.1.5"/>
 
-	<familly name="jms/jbossmq" artifact="jboss:jbossmq-client:4.0.2"/>
-
-	<familly name="jndi/default">  
-		<artifact>com.googlecode.jndi-resources:jndi-resources-plugins:*</artifact>
-	</familly>
-
+	<familly name="jndi/default" artifact="com.googlecode.jndi-resources:jndi-resources-plugins:*"/>
 	<familly name="jndi/file">
 		<artifact>com.sun.jndi:fscontext:1.2-beta-3</artifact>
 		<artifact>com.sun.jndi:providerutil:1.2</artifact>
@@ -53,13 +51,6 @@
 	<familly name="jndi/jboss">
 	  	<artifact>jboss:jboss-common:4.0.2</artifact>
 	  	<artifact>jboss:jnp-client:4.0.2</artifact>
-	</familly>
-
-	<familly name="host/default">
-	  	<artifact>com.googlecode.jndi-resources:jndi-resources-plugins:*</artifact>
-	 </familly>
-	<familly name="mail/email">
-	  	<artifact>com.googlecode.jndi-resources:jndi-resources-plugins:*</artifact>
 	</familly>
 
 </xsl:variable>

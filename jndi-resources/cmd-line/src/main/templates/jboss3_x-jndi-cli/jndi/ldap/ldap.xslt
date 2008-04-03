@@ -41,6 +41,7 @@ java.naming.provider.url=${jndi.ldap.url}
 java.naming.security.authentication=${jndi.ldap.security.authentication}
 java.naming.security.principal=${jndi.ldap.security.principal}
 java.naming.security.credentials=${jndi.ldap.security.credentials}
+java.naming.batchsize=${jndi.ldap.batchsize}
 </xsl:variable>
 <xsl:include href="../lib/jndi.xslt"/>
 

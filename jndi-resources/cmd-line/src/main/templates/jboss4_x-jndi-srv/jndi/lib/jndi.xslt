@@ -29,6 +29,6 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 >
 <xsl:variable name="use-java-context">false</xsl:variable>
-<xsl:include href="../../../jboss4_x/jndi/lib/libjndi.xslt"/>
+<xsl:include href="../../../jboss5_x/jndi/lib/libjndi.xslt"/>
 
 </xsl:stylesheet>
