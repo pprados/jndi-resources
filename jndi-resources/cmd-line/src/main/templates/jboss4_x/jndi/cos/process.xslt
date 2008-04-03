@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- Copyright 2008 Philippe Prados
+<!-- 
  * Copyright 2008 Philippe Prados.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -36,6 +36,6 @@
 <xsl:param name="currentid"/>
 <xsl:param name="targetdir"/>
 
-<xsl:include href="./cos.xslt"/>
+<xsl:include href="../../../jboss5_x/jndi/cos/cos.xslt"/>
 
 </xsl:stylesheet>

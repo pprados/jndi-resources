@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- 
- * Copyright 2008 Philippe Prados.Copyright 2008 Philippe Prados
+ * Copyright 2008 Philippe Prados.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,6 +36,6 @@
 <xsl:param name="currentid"/>
 <xsl:param name="targetdir"/>
 
-<xsl:include href="./jboss.xslt"/>
+<xsl:include href="../../../jboss5_x/jndi/jboss/jboss.xslt"/>
 
 </xsl:stylesheet>

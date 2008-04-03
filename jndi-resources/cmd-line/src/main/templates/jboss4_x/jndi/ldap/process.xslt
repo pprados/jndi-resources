@@ -36,6 +36,6 @@
 <xsl:param name="currentid"/>
 <xsl:param name="targetdir"/>
 
-<xsl:include href="./ldap.xslt"/>
+<xsl:include href="../../../jboss5_x/jndi/ldap/ldap.xslt"/>
 
 </xsl:stylesheet>

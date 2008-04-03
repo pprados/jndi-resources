@@ -37,7 +37,8 @@
 <xsl:param name="currentid"/>
 <xsl:param name="targetdir"/>
 
-<xsl:include href="hsqldb.xslt"/>
-<xsl:include href="../lib/jdbc.xslt"/>
+<xsl:include href="../../../jboss5_x/jdbc/hsqldb/hsqldb.xslt"/>
+<xsl:include href="../../../jboss5_x/jdbc/lib/jdbc.xslt"/>
+
 
 </xsl:stylesheet>
