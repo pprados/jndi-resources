@@ -36,6 +36,6 @@
 <xsl:param name="currentid"/>
 <xsl:param name="targetdir"/>
 
-<xsl:include href="../jboss/jboss.xslt"/>
+<xsl:include href="../../../jboss5_x/jndi/jboss/jboss.xslt"/>
 
 </xsl:stylesheet>

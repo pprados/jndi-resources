@@ -37,6 +37,6 @@
 <xsl:param name="targetdir"/>
 
 <xsl:include href="oracle.xslt"/>
-<xsl:include href="../lib/jdbc.xslt"/>
+<xsl:include href="../../../jboss5_x/jdbc/lib/jdbc.xslt"/>
 
 </xsl:stylesheet>
