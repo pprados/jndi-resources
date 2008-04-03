@@ -31,14 +31,11 @@
 	xmlns:tools="http://jndi-resources.googlecode.com/1.0/java/com.googlecode.jndiresources.tools.XSLTools"
 	exclude-result-prefixes="#all"
 >
-<xsl:strip-space elements="*"/>
-<xsl:output method="xml" indent="yes" encoding="utf-8" omit-xml-declaration="no"/>
+
 <xsl:param name="version"/>
 <xsl:param name="familly"/>
 <xsl:param name="currentid"/>
 <xsl:param name="targetdir"/>
-
-<xsl:include href="default.xslt"/>
-
+<xsl:include href="../../../jboss5_x/jaas/default/default.xslt"/>
 </xsl:stylesheet>
 
