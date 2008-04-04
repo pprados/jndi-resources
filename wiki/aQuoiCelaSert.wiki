@@ -12,7 +12,7 @@ Avec *jndi-resources*, le déploiement est facilité, par la génération des fi
 
 http://jndi-resources.googlecode.com/svn/trunk/jndi-resources/src/doc/schema-avec.png
 
-Les technologies JEE cherchent à attendre le concept "Ecrit une fois, utilisé partout". Cela n'est pas tous à fait complet. Il manque le maillon : "Ecrit une fois, installé partout". C'est ce que propose *jndi-resources*.
+Les technologies JEE cherchent à attendre le concept "_Écrit une fois, utilisé partout_". Cela n'est pas tous à fait complet. Il manque le maillon : "_Écrit une fois, installé partout_". C'est ce que propose *jndi-resources*.
 
 Précédant : [introduction]
 Suite : [comment  Comment faire ?]
