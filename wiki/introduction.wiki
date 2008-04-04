@@ -35,6 +35,7 @@ Alors que les salles informatiques cherchent à rationaliser les ressources (pou
 Nous proposons de traiter ce problème, afin d'améliorer et d'uniformiser les installations des composants, par un paramétrage simplifié des différents serveurs d'applications.
 
 Les bénéfices attendus de la démarche sont les suivants :
+ * Respect du principe : « _Écrit une fois, exécuté partout_ »
  * Indépendance des composants vis-à-vis des serveurs d'applications ;
  * Migration immédiate d'un serveur à un autre ou d'une version à la suivante ;
  * Normalisation de l'installation des composants, quel que soit le serveur d'applications ;
