@@ -4,5 +4,13 @@
 
 *jndi-resources* est un utilitaire permettant d'installer facilement et uniformément des composants JEE sur différents serveurs d'applications. Il permet de combler le maillon manquant des [http://java.sun.com/j2ee/j2ee-1_4-fr-spec.pdf spécifications JEE], entraînant que malgré les efforts de normalisation, les paquetages standards WAR, EAR, etc. ne sont pas utilisables tels quels par les serveurs d'applications.
 
+Sans *jndi-resources*, le déploiement s'effectue à la main.
+
+http://jndi-resources.googlecode.com/svn/trunk/jndi-resources/src/doc/schema-sans.png
+
+Avec *jndi-resources*, le déploiement est facilité, par la génération des fichiers de paramétrages pour déclarer les ressources dans l'annuaire JNDI.
+
+http://jndi-resources.googlecode.com/svn/trunk/jndi-resources/src/doc/schema-avec.png
+
 Précédant : [introduction]
 Suite : [comment  Comment faire ?]
