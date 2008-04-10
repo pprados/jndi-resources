@@ -21,7 +21,8 @@
 	version="2.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation=
-		"http://www.w3.org/1999/XSL/Transform http://www.w3.org/2007/schema-for-xslt20.xsd"
+		"http://www.w3.org/1999/XSL/Transform http://www.w3.org/2007/schema-for-xslt20.xsd
+		 http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:xmi="http://www.omg.org/XMI"
 	xmlns:webappbnd="webappbnd.xmi"

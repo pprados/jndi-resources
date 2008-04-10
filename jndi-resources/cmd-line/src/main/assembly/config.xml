@@ -43,8 +43,7 @@
 			<directoryMode>640</directoryMode>
 			<fileMode>640</fileMode>
 			<includes>
-				<!-- <include>*.jar</include>-->
-				<include>jndi-resources-0.3.jar</include>
+				<include>*.jar</include>
 			</includes>
 		</fileSet>
 
