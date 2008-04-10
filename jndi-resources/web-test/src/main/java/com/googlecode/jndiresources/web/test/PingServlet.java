@@ -96,6 +96,11 @@ public class PingServlet extends HttpServlet
 	private List<Context> jndi_ = new ArrayList<Context>();
 
 	/**
+	 * The list of jndi context to check.
+	 */
+	private List<Object> link_ = new ArrayList<Object>();
+
+	/**
 	 * The list of subject security manager to check.
 	 */
 	private List<SubjectSecurityManager> jaas_ = new ArrayList<SubjectSecurityManager>();
@@ -305,6 +310,28 @@ public class PingServlet extends HttpServlet
 	}
 
 	/**
+	 * Test the JNDI Links.
+	 * 
+	 * @param out The writer.
+	 * @throws NamingException If error.
+	 */
+	private void testLink(PrintWriter out) throws NamingException
+	{
+		System.out.println("Test Link");
+		out.println("<h1>Test Links</h1>");
+		String s = getInitParameter("link");
+		for (StringTokenizer token = new StringTokenizer(s, "; \n\t"); token.hasMoreTokens();)
+		{
+			final String jndiName = token.nextToken();
+			out.println("Link lookup " + jndiName + "=");
+			//			final Object link = (Object) new InitialContext().lookupLink(jndiName);
+			final Object link = new InitialContext().lookup(jndiName);
+			//link_.add(link);
+			out.println(link + "<br/>");
+		}
+	}
+
+	/**
 	 * Test the JNDI resources.
 	 * 
 	 * @param out The writer.
@@ -454,6 +481,39 @@ public class PingServlet extends HttpServlet
 	}
 
 	/**
+	 * Lookup JNDI.
+	 * 
+	 * @param request
+	 * @param out
+	 */
+	private void jndiLookup(HttpServletRequest request, PrintWriter out)
+	{
+		String jndi=request.getParameter("jndi");
+		if (jndi!=null)
+		{
+			out.println("<p>lookup "+jndi+"=");
+			try
+			{
+//				Object x=new InitialContext().lookupLink(jndi);
+				Object x=new InitialContext().lookup(jndi);
+				out.println(x+" ("+x.getClass()+")");
+			}
+			catch (Throwable x)
+			{
+				out.println("<pre>");
+				x.printStackTrace(out);
+				out.println("</pre>");
+			}
+			out.println("</p>");
+		}
+		else
+			jndi="";
+		out.println("<form >");
+		out.println("JNDI name:<input name=\"jndi\" value=\""+jndi+"\"/>  <INPUT type=\"submit\" name=\"lookup\" value=\"lookup\">");
+		out.println("</body></html>");
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException
@@ -510,12 +570,21 @@ public class PingServlet extends HttpServlet
 		}
 		try
 		{
+			testLink(out);
+		}
+		catch (Throwable e)
+		{
+			out.print("<b>" + e + "</b>");
+		}
+		try
+		{
 			testJAAS(out);
 		}
 		catch (Throwable e)
 		{
 			out.print("<b>" + e + "</b>");
 		}
-		out.println("</body></html>");
+		jndiLookup(request, out);
 	}
+
 }

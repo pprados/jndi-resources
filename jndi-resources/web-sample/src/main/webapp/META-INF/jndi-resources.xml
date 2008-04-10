@@ -43,4 +43,8 @@
  		<property name="host" value="${host.default}"/>
 	</resource>
 
+	<resource name="jndi-web-sample/ejb/LookupJndi" familly="link/default">
+ 		<property name="link" value="jndi-ejb-sample/ejb/LookupJndi"/>
+	</resource>
+
 </resources>

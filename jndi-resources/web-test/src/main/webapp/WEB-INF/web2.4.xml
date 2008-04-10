@@ -112,6 +112,12 @@
 			</param-value>
 		</init-param>
 		<init-param>
+			<param-name>link</param-name>
+			<param-value>
+			java:comp/env/link/home
+			</param-value>
+		</init-param>
+		<init-param>
 			<param-name>jaas</param-name>
 			<param-value>
 			java:comp/env/jaas/default
@@ -415,32 +421,46 @@
 	   <res-sharing-scope>Shareable</res-sharing-scope>
 	</resource-ref>
 
+<!-- Link -->   
+   <resource-ref id="link-home">
+	  <description>Un lien JNDI</description>
+      <res-ref-name>link/home</res-ref-name>
+      <res-type>java.lang.Object</res-type>
+      <res-auth>Application</res-auth>
+      <res-sharing-scope>Shareable</res-sharing-scope>
+   </resource-ref>
+
 <!-- JAAS -->   
    <resource-ref id="jaas-default">
+	  <description>Une authentification</description>
       <res-ref-name>jaas/default</res-ref-name>
       <res-type>org.jboss.security.plugins.SecurityDomainContext</res-type>
       <res-auth>Application</res-auth>
       <res-sharing-scope>Shareable</res-sharing-scope>
    </resource-ref>
    <resource-ref id="jaas-internet1">
+	  <description>Une authentification</description>
       <res-ref-name>jaas/internet1</res-ref-name>
       <res-type>org.jboss.security.plugins.SecurityDomainContext</res-type>
       <res-auth>Application</res-auth>
       <res-sharing-scope>Shareable</res-sharing-scope>
    </resource-ref>
    <resource-ref id="jaas-internet2">
+	  <description>Une authentification</description>
       <res-ref-name>jaas/internet2</res-ref-name>
       <res-type>org.jboss.security.plugins.SecurityDomainContext</res-type>
       <res-auth>Application</res-auth>
       <res-sharing-scope>Shareable</res-sharing-scope>
    </resource-ref>
    <resource-ref id="jaas-intranet1">
+	  <description>Une authentification</description>
       <res-ref-name>jaas/intranet1</res-ref-name>
       <res-type>org.jboss.security.plugins.SecurityDomainContext</res-type>
       <res-auth>Application</res-auth>
       <res-sharing-scope>Shareable</res-sharing-scope>
    </resource-ref>
    <resource-ref id="jaas-intranet2">
+	  <description>Une authentification</description>
       <res-ref-name>jaas/intranet2</res-ref-name>
       <res-type>org.jboss.security.plugins.SecurityDomainContext</res-type>
       <res-auth>Application</res-auth>

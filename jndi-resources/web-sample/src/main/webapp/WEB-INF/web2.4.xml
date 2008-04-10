@@ -85,4 +85,14 @@
 	   <res-sharing-scope>Shareable</res-sharing-scope>
 	</resource-ref>
 
+	<!-- EJB reference -->
+	<ejb-ref>
+		<description>Un EJB session d'exemple</description>
+		<ejb-ref-name>ejb/HelloJndi</ejb-ref-name>
+		<ejb-ref-type>Session</ejb-ref-type>
+		<home>com.googlecode.jndiresources.ejb.sample.HelloJndiHome</home>
+		<remote>com.googlecode.jndiresources.ejb.sample.HelloJndi</remote>
+		<ejb-link>ejb/HelloJndi</ejb-link>
+	</ejb-ref>
+
 </web-app>

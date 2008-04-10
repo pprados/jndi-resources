@@ -20,20 +20,27 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.ejb.CreateException;
+import javax.ejb.EJBException;
 import javax.mail.NoSuchProviderException;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.rmi.PortableRemoteObject;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+
+import com.googlecode.jndiresources.ejb.sample.LookupJndi;
+import com.googlecode.jndiresources.ejb.sample.LookupJndiHome;
 
 /**
  * Simple WAR Sample with some resources.
@@ -219,6 +226,89 @@ public class HelloJNDIServlet extends HttpServlet
 	}
 
 	/**
+	 * Test the EJB resources.
+	 * 
+	 * @param out The writer.
+	 * @throws NamingException 
+	 * @throws RemoteException 
+	 * @throws CreateException 
+	 */
+	private void testEJB(PrintWriter out) throws NamingException, RemoteException, CreateException
+	{
+		final String jndiKey = "java:comp/env/ejb/LookupJndi";
+		final String[] ejbJndiKey = 
+			new String[]{"java:comp/env/host/Default",
+						 "java:comp/env/jdbc/Default",
+						 "java:comp/env/url/Default",
+						 jndiKey
+						};
+		
+		out.println("<h1>Test EJB</h1>");
+		try
+		{
+			LookupJndiHome home = (LookupJndiHome)PortableRemoteObject.narrow(
+	            new InitialContext().lookup(jndiKey), 
+	            LookupJndiHome.class);
+			LookupJndi ejb=(LookupJndi)PortableRemoteObject.narrow(home.create(),LookupJndi.class);
+			for (int i=0;i<ejbJndiKey.length;++i)
+			{
+				try
+				{
+					Object obj=ejb.lookup(ejbJndiKey[i]);
+					out.println("Lookup "+ejbJndiKey[i]+" in EJB return "+obj+"<br/>");
+				}
+				catch (NamingException x)
+				{
+					out.println("EJB "+ejbJndiKey[i]+" not found in EJB ! ("+x.getLocalizedMessage()+")<br/>");
+				}
+			}
+		}
+		catch (NamingException x)
+		{
+			out.println("EJB "+jndiKey+" not found ! ("+x.getLocalizedMessage()+")");
+		}
+		catch (EJBException x)
+		{
+			out.println("EJB "+jndiKey+" exception ("+x.getLocalizedMessage()+")");
+		}
+	}
+
+	
+	/**
+	 * Lookup JNDI.
+	 * 
+	 * @param request
+	 * @param out
+	 */
+	private void jndiLookup(HttpServletRequest request, PrintWriter out)
+	{
+		out.println("<h1>Manual lookup</h1>");
+		String jndi=request.getParameter("jndi");
+		if (jndi!=null)
+		{
+			out.println("<p>lookup "+jndi+"=");
+			try
+			{
+//				Object x=new InitialContext().lookupLink(jndi);
+				Object x=new InitialContext().lookup(jndi);
+				out.println(x+" ("+x.getClass()+")");
+			}
+			catch (Throwable x)
+			{
+				out.println("<pre>");
+				x.printStackTrace(out);
+				out.println("</pre>");
+			}
+			out.println("</p>");
+		}
+		else
+			jndi="";
+		out.println("<form >");
+		out.println("JNDI name:<input name=\"jndi\" value=\""+jndi+"\"/>  <INPUT type=\"submit\" name=\"lookup\" value=\"lookup\">");
+		out.println("</body></html>");
+	}
+	
+	/**
 	 * {@inheritDoc}
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException
@@ -233,32 +323,56 @@ public class HelloJNDIServlet extends HttpServlet
 		}
 		catch (Throwable x)
 		{
+			out.print("<pre>");
 			x.printStackTrace(out);
+			out.print("</pre>");
 		}
+		
 		try
 		{
 			testMail(out);
 		}
 		catch (Throwable x)
 		{
+			out.print("<pre>");
 			x.printStackTrace(out);
+			out.print("</pre>");
 		}
+		
 		try
 		{
 			testUrl(out);
 		}
 		catch (Throwable x)
 		{
+			out.print("<pre>");
 			x.printStackTrace(out);
+			out.print("</pre>");
 		}
+		
 		try
 		{
 			testHost(out);
 		}
 		catch (Throwable x)
 		{
+			out.print("<pre>");
 			x.printStackTrace(out);
+			out.print("</pre>");
 		}
+
+		try
+		{
+			testEJB(out);
+		}
+		catch (Throwable x)
+		{
+			out.print("<pre>");
+			x.printStackTrace(out);
+			out.print("</pre>");
+		}
+
+		jndiLookup(request, out);
 		out.println("</body></html>");
 		out.close();
 	}
