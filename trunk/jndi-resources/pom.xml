@@ -24,7 +24,7 @@
 	<groupId>com.googlecode.jndi-resources</groupId>
 	<artifactId>main</artifactId>
 	<packaging>pom</packaging>
-	<version>0.3</version>
+	<version>0.4-SNAPSHOT</version>
 	<name>jndi-resources</name>
 	<description>
 		jndi-resource est un utilitaire pour générer les fichiers de configuration 
@@ -41,12 +41,14 @@
 	</distributionManagement>
 
 	<modules>
+	<!-- 
 		<module>plugins</module>
 		<module>cmd-line</module>
 		<module>web-test</module>
+	 -->
 		<module>web-sample</module>
+		<module>ejb-sample</module>
 		<module>ear-sample</module>
-		<!-- <module>ejb-sample</module>-->
 	</modules>
 	<!-- BUG maven http://jira.codehaus.org/browse/MNG-2855
 		<mailingLists>
@@ -406,7 +408,7 @@
 	</dependencyManagement>
 
 	<properties>
-		<current.version>0.3</current.version>
+		<current.version>0.4-SNAPSHOT</current.version>
 		<url.home>http://www.prados.fr/mvn/jndi-resources</url.home>
 		<scp.home>scp://www.prados.fr/home/philippe/www/mvn</scp.home>
 		<saxon.version>8.7</saxon.version>

@@ -41,8 +41,6 @@
 <!-- ******************************************************** --> 
 <comment>JDBC</comment>
 	<comment>Default</comment>
-	<resource name="jndi-web-test/jdbc/MYDS" familly="jdbc/mydatasource" />
-
 	<resource name="jndi-web-test/jdbc/Default" familly="jdbc/default" />
 
 	<comment>HSQLDB</comment>
@@ -231,4 +229,10 @@
  	<resource name="jndi-web-test/jaas/intranet2" familly="jaas/intranet" />
 
  	
+<!-- ******************************************************** --> 
+<comment>JNDI Link</comment>
+	<resource name="jndi-web-test/link" familly="link/default" >
+		<property name="link" value="/"/>
+	</resource>
+
 </resources>

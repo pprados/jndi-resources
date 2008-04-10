@@ -15,7 +15,7 @@
 	<parent>
 		<groupId>com.googlecode.jndi-resources</groupId>
 		<artifactId>main</artifactId>
-		<version>0.3</version>
+		<version>0.4-SNAPSHOT</version>
 	</parent>
 
 	<distributionManagement>
@@ -194,6 +194,12 @@
 		<dependency>
 			<groupId>javax.jms</groupId>
 			<artifactId>jms</artifactId>
+			<version>[1.0,)</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.ejb</groupId>
+			<artifactId>ejb</artifactId>
 			<version>[1.0,)</version>
 			<scope>provided</scope>
 		</dependency>

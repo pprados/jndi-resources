@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<!-- 
+ * Copyright 2008 Philippe Prados.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+-->
+
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://web.resource.org/cc/"
@@ -9,14 +26,15 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="210mm"
-   height="297mm"
+   width="591.0564"
+   height="414.21432"
    id="svg2"
    sodipodi:version="0.32"
    inkscape:version="0.45.1"
-   sodipodi:docbase="/home/raph/Documents/Perso/jndi-resources"
-   sodipodi:docname="jndi-resources-v0.2.svg"
-   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+   sodipodi:docbase="/home/pprados/Desktop"
+   sodipodi:docname="jndi-resources.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   version="1.0">
   <defs
      id="defs4">
     <linearGradient
@@ -113,7 +131,7 @@
        xlink:href="#linearGradient3134"
        id="linearGradient3140"
        x1="125.33519"
-       y1="91.261918"
+       y1="91.261917"
        x2="235.14511"
        y2="118.71712"
        gradientUnits="userSpaceOnUse" />
@@ -216,13 +234,13 @@
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
      inkscape:cx="628.39675"
-     inkscape:cy="633.19003"
+     inkscape:cy="350.34732"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
-     inkscape:window-width="1392"
-     inkscape:window-height="968"
+     inkscape:window-width="1400"
+     inkscape:window-height="970"
      inkscape:window-x="0"
-     inkscape:window-y="0" />
+     inkscape:window-y="54" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -237,7 +255,8 @@
   <g
      inkscape:label="Calque 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(-66.428572,-231.98009)">
     <g
        id="g4220"
        inkscape:export-filename="/home/raph/Documents/Perso/jndi-resources/jndi-resources.png"
@@ -336,14 +355,14 @@
          id="text9110"
          y="467.37338"
          x="340.70593"
-         style="font-size:40px;font-style:normal;font-weight:bold;text-align:center;text-anchor:middle;fill:none;fill-opacity:1.0;stroke:#ffffff;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans;stroke-miterlimit:4;stroke-dasharray:none;filter:url(#filter4216)"
+         style="font-size:40px;font-style:normal;font-weight:bold;text-align:center;text-anchor:middle;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter4216);font-family:Bitstream Vera Sans"
          xml:space="preserve"><tspan
-           style="stroke:#ffffff;fill-opacity:1.0;fill:none;stroke-width:8;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:8;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
            y="467.37338"
            x="340.70593"
            id="tspan9112"
            sodipodi:role="line">JNDI</tspan><tspan
-           style="stroke:#ffffff;fill-opacity:1.0;fill:none;stroke-width:8;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:8;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
            id="tspan9114"
            y="517.37338"
            x="340.70593"
