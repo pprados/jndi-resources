@@ -1,0 +1,4 @@
+Pour les EJB et les liens entres EJB :
+http://www.huihoo.org/jboss/online_manual/3.0/ch07s13.html
+https://glassfish.dev.java.net/javaee5/ejb/EJB_FAQ.html#StandaloneRemoteEJB
+http://manuals.sybase.com/onlinebooks/group-as/asg1250e/ejbserv/@Generic__BookTextView/9934;pt=8391

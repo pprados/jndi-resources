@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jboss
+  PUBLIC "-//JBoss//DTD JBOSS 3.0//EN" "http://www.jboss.org/j2ee/dtd/jboss_3_0.dtd">
+<jboss>
+   <enterprise-beans>
+      <session>
+         <ejb-name>LookupJndi</ejb-name>
+         <jndi-name>jndi-ejb-sample/ejb/LookupJndi</jndi-name>
+         <!--Un EJB session d'exemple-->
+         <ejb-ref>
+            <ejb-ref-name>ejb/LookupJndi</ejb-ref-name>
+            <jndi-name>java:/jndi-ejb-sample/</jndi-name>
+         </ejb-ref>
+         <!--Un Host-->
+         <resource-ref>
+            <res-ref-name>host/Default</res-ref-name>
+            <jndi-name>java:/jndi-ejb-sample/host/Default</jndi-name>
+         </resource-ref>
+         <!--La base par defaut-->
+         <resource-ref>
+            <res-ref-name>jdbc/Default</res-ref-name>
+            <jndi-name>java:/jndi-ejb-sample/jdbc/Default</jndi-name>
+         </resource-ref>
+         <!--Une URL-->
+         <resource-ref>
+            <res-ref-name>url/Default</res-ref-name>
+            <jndi-name>java:/jndi-ejb-sample/url/Default</jndi-name>
+         </resource-ref>
+      </session>
+   </enterprise-beans>
+</jboss>
