@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!-- 
 	* Copyright 2008 Philippe Prados.
 	*
@@ -33,7 +32,7 @@
 	<parent>
 		<groupId>com.googlecode.jndi-resources</groupId>
 		<artifactId>main</artifactId>
-		<version>0.3</version>
+		<version>0.4-SNAPSHOT</version>
 	</parent>
 
 	<distributionManagement>
@@ -67,23 +66,19 @@
 					</earSourceIncludes>
 					<modules>
 						<webModule>
-							<groupId>
-								com.googlecode.jndi-resources
-							</groupId>
+							<groupId>com.googlecode.jndi-resources</groupId>
 							<artifactId>web-sample</artifactId>
 							<bundleFileName>
 								jndi-web-sample.war
 							</bundleFileName>
 						</webModule>
-						<!-- 
-							<ejbModule>
+						<ejbModule>
 							<groupId>com.googlecode.jndi-resources</groupId>
 							<artifactId>ejb-sample</artifactId>
 							<bundleFileName>
-							jndi-ejb-sample.war
+								jndi-ejb-sample.jar
 							</bundleFileName>
-							</ejbModule>
-						-->
+						</ejbModule>
 					</modules>
 				</configuration>
 			</plugin>
@@ -95,16 +90,20 @@
 		<dependency>
 			<groupId>com.googlecode.jndi-resources</groupId>
 			<artifactId>web-sample</artifactId>
-			<version>0.3</version>
+			<version>${current.version}</version>
 			<type>war</type>
 		</dependency>
-		<!-- 
-			<dependency>
+		<dependency>
 			<groupId>com.googlecode.jndi-resources</groupId>
 			<artifactId>ejb-sample</artifactId>
-			<version>0.3</version>
+			<version>${current.version}</version>
 			<type>ejb</type>
-			</dependency>
-		-->
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.jndi-resources</groupId>
+			<artifactId>ejb-sample</artifactId>
+			<version>${current.version}</version>
+			<type>ejb-client</type>
+		</dependency>
 	</dependencies>
 </project>
