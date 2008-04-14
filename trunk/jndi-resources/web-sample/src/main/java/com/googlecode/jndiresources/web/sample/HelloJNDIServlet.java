@@ -233,46 +233,64 @@ public class HelloJNDIServlet extends HttpServlet
 	 * @throws RemoteException 
 	 * @throws CreateException 
 	 */
-	private void testEJB(PrintWriter out) throws NamingException, RemoteException, CreateException
+	private void testEJB(PrintWriter out) throws NamingException, RemoteException
 	{
-		final String jndiKey = "java:comp/env/ejb/LookupJndi";
-		final String[] ejbJndiKey = 
-			new String[]{"java:comp/env/host/Default",
-						 "java:comp/env/jdbc/Default",
-						 "java:comp/env/url/Default",
-						 jndiKey
-						};
-		
-		out.println("<h1>Test EJB</h1>");
+		// Use a wrapper for accept to load this class without ejb.jar
 		try
 		{
-			LookupJndiHome home = (LookupJndiHome)PortableRemoteObject.narrow(
-	            new InitialContext().lookup(jndiKey), 
-	            LookupJndiHome.class);
-			LookupJndi ejb=(LookupJndi)PortableRemoteObject.narrow(home.create(),LookupJndi.class);
-			for (int i=0;i<ejbJndiKey.length;++i)
-			{
-				try
-				{
-					Object obj=ejb.lookup(ejbJndiKey[i]);
-					out.println("Lookup "+ejbJndiKey[i]+" in EJB return "+obj+"<br/>");
-				}
-				catch (NamingException x)
-				{
-					out.println("EJB "+ejbJndiKey[i]+" not found in EJB ! ("+x.getLocalizedMessage()+")<br/>");
-				}
-			}
+			new Wrapper().testEJB(out);
 		}
-		catch (NamingException x)
+		catch (NoClassDefFoundError x)
 		{
-			out.println("EJB "+jndiKey+" not found ! ("+x.getLocalizedMessage()+")");
-		}
-		catch (EJBException x)
-		{
-			out.println("EJB "+jndiKey+" exception ("+x.getLocalizedMessage()+")");
+			// Ignore
+			out.println("EJB classes not found ! ("+x.getMessage()+")");
 		}
 	}
-
+	static class Wrapper
+	{
+		private void testEJB(PrintWriter out) throws NamingException, RemoteException
+		{
+			final String jndiKey = "java:comp/env/ejb/LookupJndi";
+			final String[] ejbJndiKey = 
+				new String[]{"java:comp/env/host/Default",
+							 "java:comp/env/url/Default",
+							 jndiKey
+							};
+			
+			out.println("<h1>Test EJB</h1>");
+			try
+			{
+				LookupJndiHome home = (LookupJndiHome)PortableRemoteObject.narrow(
+		            new InitialContext().lookup(jndiKey), 
+		            LookupJndiHome.class);
+				LookupJndi ejb=(LookupJndi)PortableRemoteObject.narrow(home.create(),LookupJndi.class);
+				for (int i=0;i<ejbJndiKey.length;++i)
+				{
+					try
+					{
+						Object obj=ejb.lookup(ejbJndiKey[i]);
+						out.println("Lookup "+ejbJndiKey[i]+" in EJB return "+obj+"<br/>");
+					}
+					catch (NamingException x)
+					{
+						out.println("EJB "+ejbJndiKey[i]+" not found in EJB ! ("+x.getLocalizedMessage()+")<br/>");
+					}
+				}
+			}
+			catch (NamingException x)
+			{
+				out.println("EJB "+jndiKey+" not found ! ("+x.getLocalizedMessage()+")");
+			}
+			catch (EJBException x)
+			{
+				out.println("EJB "+jndiKey+" exception ("+x.getLocalizedMessage()+")");
+			}
+			catch (CreateException x)
+			{
+				out.println("EJB "+jndiKey+" exception ("+x.getLocalizedMessage()+")");
+			}
+		}
+	};
 	
 	/**
 	 * Lookup JNDI.

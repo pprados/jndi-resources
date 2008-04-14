@@ -215,6 +215,27 @@
 	<resource name="jndi-web-test/jndi/cos" familly="jndi/cos"/>
 	<resource name="jndi-web-test/jndi/ldap" familly="jndi/ldap"/>
 <!-- <resource name="jndi-web-test/jndi/dns" familly="jndi/dns"/>-->
+	<resource name="jndi-web-test/jndi/jboss" familly="jndi/jboss">
+extension=pour tous
+	    <extends appsrv="jboss3_x">
+ext=pour jboss 3.x
+	    </extends>
+	    <extends appsrv="jboss4_x">
+ext=pour jboss 4.x
+	    </extends>
+	    <extends appsrv="jboss5_x">
+ext=pour jboss 5.x
+	    </extends>
+	    <extends appsrv="tomcat4_0">
+ext=pour tomcat 4.0
+	    </extends>
+	    <extends appsrv="tomcat5_5">
+ext=pour tomcat 5.5
+	    </extends>
+	    <extends appsrv="tomcat6_0">
+ext=pour tomcat 6.0
+	    </extends>
+	</resource>
 
 <!-- ******************************************************** --> 
 <comment>JAAS</comment>

@@ -31,7 +31,7 @@
 <!-- <xsl:preserve-space elements="*"/>-->
 <xsl:preserve-space elements="xsl:text"/>
 
-<xsl:template match="web-app|j2ee:web-app">
+<xsl:template match="*:web-app">
 	<Context 
 		reloadable="true" 
 		antiResourceLocking="true" 
@@ -42,16 +42,16 @@
 	</Context>
 </xsl:template>
 
-<xsl:template match="resource-ref|j2ee:resource-ref">
-	<xsl:if test="description|j2ee:description">
+<xsl:template match="*:resource-ref">
+	<xsl:if test="*:description">
 		<xsl:text>&#xA;   </xsl:text>
-		<xsl:comment><xsl:value-of select="description|j2ee:description"/></xsl:comment>
+		<xsl:comment><xsl:value-of select="*:description"/></xsl:comment>
 		<xsl:text>&#xA;   </xsl:text>
 	</xsl:if>
 	<ResourceLink>
-		<xsl:attribute name="name"><xsl:value-of select="res-ref-name|j2ee:res-ref-name"/></xsl:attribute>
-		<xsl:attribute name="global"><xsl:value-of select="concat('/',../@id,'/',res-ref-name|j2ee:res-ref-name)"/></xsl:attribute>
-		<xsl:attribute name="type"><xsl:value-of select="res-type|j2ee:res-type"/></xsl:attribute>
+		<xsl:attribute name="name"><xsl:value-of select="*:res-ref-name"/></xsl:attribute>
+		<xsl:attribute name="global"><xsl:value-of select="concat('/',ancestor::*:web-app/@id,'/',*:res-ref-name)"/></xsl:attribute>
+		<xsl:attribute name="type"><xsl:value-of select="*:res-type"/></xsl:attribute>
 	</ResourceLink>
 </xsl:template>
 
@@ -62,9 +62,9 @@
 		<xsl:text>&#xA;   </xsl:text>
 	</xsl:if>
 	<ResourceLink>
-		<xsl:attribute name="name"><xsl:value-of select="resource-env-ref-name|j2ee:resource-env-ref-name"/></xsl:attribute>
-		<xsl:attribute name="global"><xsl:value-of select="concat('java:/',../@id,'/',resource-env-ref-name|j2ee:resource-env-ref-name)"/></xsl:attribute>
-		<xsl:attribute name="type"><xsl:value-of select="resource-env-ref-type|j2ee:resource-env-ref-type"/></xsl:attribute>
+		<xsl:attribute name="name"><xsl:value-of select="*:resource-env-ref-name"/></xsl:attribute>
+		<xsl:attribute name="global"><xsl:value-of select="concat('java:/',ancestor::*:web-app/@id,'/',*:resource-env-ref-name)"/></xsl:attribute>
+		<xsl:attribute name="type"><xsl:value-of select="*:resource-env-ref-type"/></xsl:attribute>
 	</ResourceLink>
 </xsl:template>
 

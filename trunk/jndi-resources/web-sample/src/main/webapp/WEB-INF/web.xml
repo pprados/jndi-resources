@@ -18,16 +18,14 @@
 -->
 
 <!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN" "http://java.sun.com/j2ee/dtds/web-app_2_2.dtd">
-<web-app id="jndi-web-sample">
+<web-app id="web-sample">
 	<display-name>jndi-resources-web-sample</display-name>
 
 	<servlet>
 		<servlet-name>HelloJNDIServlet</servlet-name>
 		<display-name>Hello Servlet</display-name>
 		<description>A unit test of jndi-resources</description>
-		<servlet-class>
-			com.googlecode.jndiresources.web.sample.HelloJNDIServlet
-		</servlet-class>
+		<servlet-class>com.googlecode.jndiresources.web.sample.HelloJNDIServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -84,7 +82,5 @@
 		<ejb-ref-type>Session</ejb-ref-type>
 		<home>com.googlecode.jndiresources.ejb.sample.LookupJndiHome</home>
 		<remote>com.googlecode.jndiresources.ejb.sample.LookupJndi</remote>
-		<!-- Use extern EJB -->
-		<!-- ejb-link>ejb/LookupJndi</ejb-link-->
 	</ejb-ref>
 </web-app>

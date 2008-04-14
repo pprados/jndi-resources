@@ -109,9 +109,10 @@
 			<parameter>
 				<name>value</name>
 				<value>
-					<xsl:value-of select="$Properties"/>
-					<xsl:for-each select="jndi:extends[@appsrv=$appsrv]/*">
-					<xsl:value-of select="@name"/>=<xsl:value-of select="."/>
+					<xsl:value-of select="text()"/>
+					<xsl:for-each select="jndi:extends[@appsrv=$appsrv]">
+					<xsl:value-of select="text()"/>
+					<xsl:text>&#xA;</xsl:text>
 					</xsl:for-each>
 				</value>
 			</parameter>

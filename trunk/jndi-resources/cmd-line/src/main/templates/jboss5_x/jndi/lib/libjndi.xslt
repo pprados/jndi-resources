@@ -57,7 +57,7 @@
 </xsl:result-document>
 </xsl:template>
 
-<xsl:template match="jndi:resources[@id=$currentid]/jndi:resource[@familly=$familly]">
+<xsl:template match="jndi:resources[@id=$currentid]/jndi:resource[@familly=$familly]" >
 	<xsl:value-of select="tools:fileCopy('../../../tools/xslt/save.xslt',concat($targetdir,'../xslt/'))" />
 
 	<xsl:text>&#xA;   </xsl:text>
@@ -72,8 +72,9 @@
 	    <attribute name="RemoteAccess">true</attribute>
 	    <attribute name="Properties">
 <xsl:value-of select="$Properties"/>
-<xsl:for-each select="jndi:extends[@appsrv=$appsrv]/*">
-<xsl:value-of select="@name"/>=<xsl:value-of select="."/>
+<xsl:value-of select="text()"/>
+<xsl:for-each select="jndi:extends[@appsrv=$appsrv]">
+<xsl:value-of select="text()"/>
 <xsl:text>&#xA;</xsl:text>
 </xsl:for-each>
 	    </attribute>

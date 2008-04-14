@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- 
- * Copyright 2008 Philippe Prados.Copyright 2008 Philippe Prados
+ * Copyright 2008 Philippe Prados.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,23 +26,7 @@
 		 http://jndi-resources.googlecode.com/1.0/ http://www.prados.fr/xsd/1.0/jndi-resources.xsd
 		"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:jndi="http://jndi-resources.googlecode.com/1.0/"
-	>
-<xsl:strip-space elements="*"/>
-<xsl:output method="xml" indent="yes" encoding="utf-8" omit-xml-declaration="no"/>
-
-<xsl:variable  name="basefilename"><xsl:value-of select="concat('deploy/',$currentid,'/',$currentid,'_jndi_jboss-service')"/></xsl:variable>
-<xsl:variable  name="filename"><xsl:value-of select="concat($targetdir,'jboss.server.conf/',$basefilename,'.jndi')"/></xsl:variable>
-
-<xsl:variable name="InitialContext">javax.naming.InitialContext</xsl:variable>
-<xsl:variable name="Properties">
-java.naming.factory.initial=org.jnp.interfaces.NamingContextFactory
-java.naming.factory.url.pkgs=org.jboss.naming:org.jnp.interfaces
-java.naming.provider.url=${jndi.jboss.url}
-jnp.partitionName=${jndi.jboss.partitionName}
-</xsl:variable>
-<xsl:include href="../lib/jndi.xslt"/>
-
-<xsl:template name="footer"/>
+>
+<xsl:include href="../../../tomcat6_0/link/default/default.xslt"/>
 
 </xsl:stylesheet>
