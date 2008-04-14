@@ -2,8 +2,7 @@
 
 = Utilisation avec des EJB =
 Les EJB ont deux facettes : le client et le serveur. 
-Les deux composants peuvent être installé dans le même serveur d'applications, ou dans des serveurs
-différents. Les annuaires des deux serveurs peuvent [architecture séparées ou unifiés].
+Les deux composants peuvent être installés dans le même serveur d'applications ou dans des serveurs différents. Les annuaires des deux serveurs peuvent être [architecture séparées ou unifiés].
 
 == Serveur EJB ==
 Un composant EAR qui publie des EJBs doit les déclarer dans le fichier `ejb-jar.xml`.
@@ -54,8 +53,8 @@ Pour JBoss, il faut ajouter le fichier `META-INF/jboss.xml` suivant :
 L'archive ainsi produite est alors packagé dans un EAR.
 
 == Client d'EJB ==
-L'annuaire JNDI de la compta est généralement distant de l'annuaire de l'Intranet mais peut
-également être [architecture le même] que l'annuaire du client. 
+L'annuaire JNDI de la Compta est généralement distant de l'annuaire de l'Intranet mais peut
+également être [architecture le même]. Cela dépend de l'architecture choisie lors du déploiement, et des choix de mutualisations des ressources. 
 
 Coté client, on retrouve dans le fichier `web.xml`, le besoin d'avoir une référence sur l'EJB.
 {{{
@@ -71,7 +70,7 @@ Coté client, on retrouve dans le fichier `web.xml`, le besoin d'avoir une réf�
 </web-app>
 }}}
 
-Les fichiers spécifiques aux différents serveurs d'applications peuvent être généré à l'aide de [transformerWebXML filtre XSLT]. 
+Les fichiers spécifiques aux différents serveurs d'applications peuvent être générés à l'aide de [transformerWebXML filtre XSLT]. 
 L'idée est de généré un mapping systématique entre un nom de la branche `java:comp/env/...` 
 vers un nom de la forme `java:<id>....` Par exemple, le fichier `jboss-web.xml` peut être le suivant :
 {{{
@@ -86,7 +85,7 @@ vers un nom de la forme `java:<id>....` Par exemple, le fichier `jboss-web.xml` 
 
 Il faut maintenant déclarer les besoins en ressources dans le fichier `jndi-resources.xml`. 
 Nous souhaitons un lien vers l'annuaire distant de la Compta, puis un lien entre la clef 
-locale `java:/intranet/ejb/Paye` et l'EJB de paye.
+locale `java:/intranet/ejb/Paye` et l'EJB de Paye.
 {{{
 <!-- Lien vers l'annuaire JNDI de la compta -->
 <resource name="/compta" familly="jndi/default"/>
@@ -103,12 +102,12 @@ effectué. Par exemple, lors de l'installation du client de l'EJB, il faut valor
 `jndi.url`.
 {{{
 >$JNDI_HOME/bin/jndi-install \
-        --appsrv jboss --version 5.0 \
-        --package ./package \
-        --dest jboss.server.home=/opt/jboss-5.0
-        --dest jboss.server.conf=/opt/jboss-5.0/server/default \
-        -P platform.properties
-        -D jndi.url=jnp://comptahost:1099
+        --appsrv jboss --version 5.0 \
+        --package ./package \
+        --dest jboss.server.home=/opt/jboss-5.0
+        --dest jboss.server.conf=/opt/jboss-5.0/server/default \
+        -P platform.properties
+        -D jndi.url=jnp://comptahost:1099
 }}}
 
 Précédent : [exemple Exemple]
