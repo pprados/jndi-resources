@@ -63,15 +63,16 @@ Les déclinaisons possibles pour le paramètre [familles familly] du fichier [jn
 == Variables ==
 Les variables à valoriser lors de l'installation pour gérer ces ressources sont les suivantes :
 || *Variable* || *Description* ||
+|| *`${jndi.jboss.url}`* || L'URL de connexion à un annuaire JBoss. Il n'y a pas de valeur par défaut. ||
 || `${jndi.jboss.partitionName}` || Indique le nom de la partition. La valeur par défaut est : `DefaultPartition` ||
 || `${jndi.dns.authoritative}` || Permet de vérifier que chaque réponse DNS émane de l'autorité compétente, et non d'un cache. La valeur par défaut est : `false` ||
 || `${jndi.dns.lookup.attr}` || « _Before JNDI invokes an object factory on a DNS context, it by default reads and passes to the factory any internet TXT attributes of the context. This property, if set, names an alternate attribute identifier to use._ » La valeur par défaut est : `true`||
 || `${jndi.dns.recursion}` || Effectue une requête DNS récursive. La valeur par défaut est : `true`||
 || `${jnbi.cos.batchsize}` || Indique le nombre d'objet maximum retourné lors d'une requête à un référentiel CORBA. La valeur par défaut est : 100 ||
 || *`${jndi.file.url}`* || L'URL référençant la racine du répertoire à consulter. Il n'y a pas de valeur par défaut. ||
-|| *`${jndi.ldap.url}`* || L'URL de connexion à un serveur LDAP. Il n'y a pas de valeur par défaut. ||
-|| `${jndi.ldap.security.authentication}` || Le type d'authentification au serveur LDAP. La valeur par défaut est : `simple`||
-|| *`${jndi.ldap.security.principal}`* || L'identité de connexion au serveur LDAP. Il n'y a pas de valeur par défaut.||
+|| *`${jndi.ldap.url}`* || L'URL de connexion à un annuaire LDAP. Il n'y a pas de valeur par défaut. ||
+|| `${jndi.ldap.security.authentication}` || Le type d'authentification a l'annuaire LDAP. La valeur par défaut est : `simple`||
+|| *`${jndi.ldap.security.principal}`* || L'identité de connexion a l'annuaire LDAP. Il n'y a pas de valeur par défaut.||
 || *`${jndi.ldap.security.credentials}`* || Le mot de passe pour la connexion LDAP. Il n'y a pas de valeur par défaut.||
 
 [ressources Les autres ressources]
