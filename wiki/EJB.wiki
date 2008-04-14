@@ -111,5 +111,7 @@ effectué. Par exemple, lors de l'installation du client de l'EJB, il faut valor
         -D jndi-compta=jnp://comptahost:1099
 }}}
 
+Voir aussi : [EJBAvance EJB avancé]
+
 Précédent : [exemple Exemple]
 Suite : [familles Les familles de ressources]
