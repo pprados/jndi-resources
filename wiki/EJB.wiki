@@ -58,7 +58,7 @@ L'annuaire JNDI de la Compta est généralement distant de l'annuaire de l'Intra
 
 Coté client, on retrouve dans le fichier `web.xml`, le besoin d'avoir une référence sur l'EJB.
 {{{
-<web-app>
+<web-app id="intranet">
 ...
   <ejb-ref>
     <description>L'EJB de paye</description>
