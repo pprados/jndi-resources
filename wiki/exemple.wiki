@@ -201,11 +201,11 @@ Il ne reste plus qu'a lancer le serveur d'application Tomcat et à tester le com
 }}}
 L'URL à consulter est généralement la suivante `http://localhost:8080/jndi-web-sample/`. Elle peut être différente suivant le port utilisé par votre version de Tomcat.
 
-L'outil gère différentes [transformations cibles] et différentes architectures pour les serveurs d'applications.
+L'outil gère différentes [transformations cibles] et différentes [architecture architectures] pour les serveurs d'applications. Les [EJB] sont également pris en compte, sans que les composants aient d'adhérence avec la plate-forme d'exécution.
 
 Pour comprendre comment tous cela fonctionne, il est fortement conseillé de regarder le répertoire `package` généré par *jndi-config*.
 
 Suivez également le [guideMigration guide de migration] pour faire évoluer votre application en conformité avec les [http://java.sun.com/j2ee/j2ee-1_4-fr-spec.pdf spécifications] JEE.
 
 Précédent : [installation]
-Suite : [familles Les familles de ressources]
+Suite : [EJB]
