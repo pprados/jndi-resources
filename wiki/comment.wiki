@@ -12,7 +12,7 @@ Si votre application ne respecte pas complètement les spécifications JEE pour 
 Pour mémoire, le tableau suivant reprend les conventions JEE.
 
 || *Clef JNDI* || *Type* || *Exemple* ||
-|| `java:comp/env/ejb/*` || `javax.ejb.EJBObject` || Les EJBs s'il y en a. ||
+|| [EJB java:comp/env/ejb/*] || `javax.ejb.EJBObject` || Les EJBs s'il y en a. ||
 || [jdbc java:comp/env/jdbc/*] || `javax.sql.DataSource` || Une source de données SQL avec nom d'utilisateur et mot de passe. ||
 || [jms java:comp/env/jms/*] || `javax.jms.ConnectionFactory`, `javax.jms.XAConnectionFactory`, `javax.jms.Queue`, `javax.jms.Topic` || Une source de file JMS avec nom d'utilisateur et mot de passe. ||
 || [mail java:comp/env/mail/*] || `javax.mail.Session`, `javax.mail.Address`, `javax.mail.internet.InternetAddress` || Un serveur SMTP, IMAP4 ou POP3 ; Une adresse courriel.||
