@@ -88,7 +88,9 @@ Nous souhaitons un lien vers l'annuaire distant de la Compta, puis un lien entre
 locale `java:/intranet/ejb/Paye` et l'EJB de Paye.
 {{{
 <!-- Lien vers l'annuaire JNDI de la compta -->
-<resource name="/compta" familly="jndi/default"/>
+<resource name="/compta" familly="jndi/default">
+java.naming.provider.url=${jndi-compta}
+</resource>
 
 <!-- Lien d'une clef locale vers la clef de l'annuaire de la compta -->
 <resource name="intranet/ejb/Paye" familly="link/default">
@@ -98,8 +100,7 @@ locale `java:/intranet/ejb/Paye` et l'EJB de Paye.
 
 Rien n'indique la location du serveur de la compta, s'il y a utilisation du [architecture même annuaire ou de 
 deux annuaires]. Lors de l'installation les choix de l'architecture de déploiement seront 
-effectué. Par exemple, lors de l'installation du client de l'EJB, il faut valoriser la variable 
-`jndi.url`.
+effectué. Par exemple, lors de l'installation du client de l'EJB, il faut valoriser la variable `jndi-compta`.
 {{{
 >$JNDI_HOME/bin/jndi-install \
         --appsrv jboss --version 5.0 \
@@ -107,7 +108,7 @@ effectué. Par exemple, lors de l'installation du client de l'EJB, il faut valor
         --dest jboss.server.home=/opt/jboss-5.0
         --dest jboss.server.conf=/opt/jboss-5.0/server/default \
         -P platform.properties
-        -D jndi.url=jnp://comptahost:1099
+        -D jndi-compta=jnp://comptahost:1099
 }}}
 
 Précédent : [exemple Exemple]
