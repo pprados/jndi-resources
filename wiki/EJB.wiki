@@ -90,7 +90,7 @@ locale `java:/intranet/ejb/Paye` et l'EJB de Paye.
 <!-- Lien vers l'annuaire JNDI de la compta -->
 <resource name="/compta" familly="jndi/default"/>
 
-<!-- Lien d'une clef locale vers la clef de l'annaire de la compta -->
+<!-- Lien d'une clef locale vers la clef de l'annuaire de la compta -->
 <resource name="intranet/ejb/Paye" familly="link/default">
  <property name="link" value="/compta/compta/ejb/LookupJndi"/>
 </resource>
