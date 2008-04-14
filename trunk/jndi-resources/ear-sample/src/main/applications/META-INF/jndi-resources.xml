@@ -15,7 +15,6 @@
  * limitations under the License.
  *
 -->
-
 <resources 
 	xmlns="http://jndi-resources.googlecode.com/1.0/"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -23,7 +22,6 @@
 	id="web-sample"
 >
 	<!-- *** WAR resources *** -->
-
 	<resource name="web-sample/jdbc/Default" familly="jdbc/default" />
 	
 	<resource name="web-sample/mail/Default" familly="mail/default" >
@@ -47,7 +45,6 @@
 	<resource name="web-sample/ejb/LookupJndi" familly="link/default">
  		<property name="link" value="ejb-sample/ejb/LookupJndi"/>
 	</resource>
-
 
 	<!-- *** EJB resources (link to WAR resources) *** -->
 	<resource name="ejb-sample/jdbc/Default" familly="link/default">
