@@ -1,18 +1,16 @@
 #summary Transformation de web.xml en fichiers spécifiques pour serveurs d'applications
 
-= Transformations de web.xml =
-
-Différents filtres XSLT 2.0 sont proposés pour transformer le fichier `web.xml` en fichiers nécessaires aux différents serveurs d'applications ou d'autres transformations.
+Différents filtres XSLT 2.0 sont proposés pour transformer le fichier `web.xml` ou `ejb-jar.xml` en fichiers nécessaires aux différents serveurs d'applications ou d'autres transformations.
 
 || *Filtre* || *Conversion* ||
+|| ejb-jar-to-jboss.xslt || ejb-jar.xml vers jboss.xml (Pour JBoss) ||
 || web-to-jboss-web.xslt || web.xml vers jboss-web.xml (Pour JBoss) ||
 || web-to-tomcat-context.xslt || web.xml vers context.xml (Pour Tomcat)||
-|| web-to-ibm-web-bnd.xslt || web.xml vers ibm-web-bnd.xml (Pour WAS) ||
-|| web-to-ibm-web-ext.xslt || web.xml vers ibm-web-ext.xml (Pour WAS) ||
 || jndi-resources-to-web2.4.xslt || [jndiResourcesXML jndi-resources.xml] vers web.xml||
 || web-to-jndi-resources.xslt || web.xml vers jndi-resources.xml ||
 || xslt-to-xhtml.xslt || xslt vers xhtml (avec navigation des instructions <xsl:include/>||
 
+= Transformations de web.xml =
 
 Avec [http://maven.apache.org Maven], il suffit d'indiquer dans le fichier POM, le plugin suivant :
 {{{
@@ -84,51 +82,6 @@ Avec [http://maven.apache.org Maven], il suffit d'indiquer dans le fichier POM, 
 				</fileMappers>
 			</transformationSet>
 
-			<!-- IBM transformation -->
-			<transformationSet>
-				<dir>
-					${project.build.warSourceDirectory}/WEB-INF
-				</dir>
-				<includes>
-					<include>web.xml</include>
-				</includes>
-				<stylesheet>
-					xslt/web-to-ibm-web-bnd.xslt
-				</stylesheet>
-				<outputDir>
-					target/${artifactId}-${version}/WEB-INF
-				</outputDir>
-				<fileMappers>
-					<fileMapper
-						implementation="org.codehaus.plexus.components.io.filemappers.MergeFileMapper">
-						<targetName>
-							ibm-web-bnd.xmi
-						</targetName>
-					</fileMapper>
-				</fileMappers>
-			</transformationSet>
-			<transformationSet>
-				<dir>
-					${project.build.warSourceDirectory}/WEB-INF
-				</dir>
-				<includes>
-					<include>web.xml</include>
-				</includes>
-				<stylesheet>
-					xslt/web-to-ibm-web-ext.xslt
-				</stylesheet>
-				<outputDir>
-					target/${artifactId}-${version}/WEB-INF
-				</outputDir>
-				<fileMappers>
-					<fileMapper
-						implementation="org.codehaus.plexus.components.io.filemappers.MergeFileMapper">
-						<targetName>
-							ibm-web-ext.xmi
-						</targetName>
-					</fileMapper>
-				</fileMappers>
-			</transformationSet>
 		</transformationSets>
 	</configuration>
 </plugin>
@@ -139,6 +92,51 @@ Avec [http://maven.apache.org Maven], il suffit d'indiquer dans le fichier POM, 
 
 Les transforamtions WAS ne fonctionnent qu'a condition d'avoir un attribut `id` pour chaque ressource.
 
-Voir aussi : [transformerEJBJarXML Transformer ejb-jar.xml]
+= Transformations de ejb-jar.xml =
+
+Avec [http://maven.apache.org Maven], il suffit d'indiquer dans le fichier POM, le plugin suivant :
+{{{
+<build>
+<plugins>
+...
+  <plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>xml-maven-plugin</artifactId>
+    <executions>
+      <execution>
+        <goals>
+          <goal>transform</goal>
+        </goals>
+      </execution>
+    </executions>
+    <dependencies>
+      <dependency>
+        <groupId>net.sf.saxon</groupId>
+        <artifactId>saxon</artifactId>
+        <version>8.7</version>
+      </dependency>
+    </dependencies>
+    <configuration>
+      <transformationSets>
+        <transformationSet>
+          <dir>${project.build.sourceDirectory}/../resources/META-INF</dir>
+          <includes>
+            <include>ejb-jar.xml</include>
+          </includes>
+          <stylesheet>ejb-jar-to-jboss.xslt</stylesheet>
+          <outputDir>target/classes/META-INF</outputDir>
+          <fileMappers>
+            <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.MergeFileMapper">
+              <targetName>jboss.xml</targetName>
+            </fileMapper>
+          </fileMappers>
+       </transformationSet>
+    </transformationSets>
+  </configuration>
+</plugin>
+...
+</plugins>
+</build>
+}}}
 
 Suite : [exemple Exemple rapide]
