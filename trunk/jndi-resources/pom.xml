@@ -41,11 +41,9 @@
 	</distributionManagement>
 
 	<modules>
-	<!-- 
 		<module>plugins</module>
 		<module>cmd-line</module>
 		<module>web-test</module>
-	 -->
 		<module>web-sample</module>
 		<module>ejb-sample</module>
 		<module>ear-sample</module>
