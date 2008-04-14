@@ -49,7 +49,7 @@ Par exemple, un EAR possède un EJB-JAR avec `id="MonApp-ejb"` et un WAR avec `i
 
 Deux DataSources sont proposées, sur des clefs JNDI différentes.
 
-Si l'intégrateur de composant souhaite partager les deux datasources afin de réduire le nombre de connexion à la base de donnée et la consommation mémoire des caches, il peut rédiger le fichier [jndiResourcesXML jndi-resources.xml] différament :
+Si l'intégrateur de composant souhaite partager les deux datasources afin de réduire le nombre de connexion à la base de donnée et la consommation mémoire des caches, il peut rédiger le fichier [jndiResourcesXML jndi-resources.xml] différemment :
 {{{
 <resources 
 	xmlns="http://jndi-resources.googlecode.com/1.0/"
