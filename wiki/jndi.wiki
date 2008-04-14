@@ -24,7 +24,6 @@ Les métas-données pour décrire les exigences de la ressource doivent être ex
 <resource name="jndi-web-sample/jndi/default" familly="jndi/default" />
 <resource name="jndi-web-sample/jndi/default" familly="jndi/jboss">
 java.naming.provider.url=
-java.naming.factory.url.pkgs=org.jnp.interfaces
 jnp.partitionName=${jndi.jboss.partitionName}
 </resource>
 ...
