@@ -6,7 +6,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.googlecode.jndi-resources</groupId>
-  <artifactId>jndi-resources</artifactId>
+  <artifactId>cmd-line</artifactId>
   <name>cmd-line</name>
   <description>Les utilitaires en ligne de commande.</description>
   <url>${url.home}/${project.name}</url>
