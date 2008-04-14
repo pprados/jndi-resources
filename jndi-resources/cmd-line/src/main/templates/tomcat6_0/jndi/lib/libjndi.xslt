@@ -76,9 +76,10 @@
 			<xsl:value-of select="concat('${jndi-prefix}',@name)"/>
 		</xsl:attribute>
 		<xsl:attribute name="value">
-			<xsl:value-of select="$Properties"/>
-			<xsl:for-each select="jndi:extends[@appsrv=$appsrv]/*">
-			<xsl:value-of select="@name"/>=<xsl:value-of select="."/>
+			<xsl:value-of select="text()"/>
+			<xsl:for-each select="jndi:extends[@appsrv=$appsrv]">
+			<xsl:value-of select="text()"/>
+			<xsl:text>&#xA;</xsl:text>
 			</xsl:for-each>
 		</xsl:attribute>
 	</Resource>

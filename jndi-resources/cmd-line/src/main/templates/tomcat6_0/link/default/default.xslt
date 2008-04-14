@@ -36,17 +36,15 @@
 <xsl:strip-space elements="*"/>
 <xsl:output method="xml" indent="yes" encoding="utf-8" omit-xml-declaration="no"/>
 
-<xsl:include href="../../../templates.xslt"/>
-<xsl:include href="../../../tomcat6_0/install-drivers.xslt"/>
-	<xsl:variable name="lib">
-		<xsl:value-of select="concat($targetdir,'catalina.home/common/lib/')" />
-	</xsl:variable>
+<xsl:variable name="basefilename"><xsl:value-of select="concat($currentid,'_links-service')"/></xsl:variable>
+<xsl:variable name="filename"><xsl:value-of select="concat($targetdir,'catalina.base/conf/',$basefilename,'.jndi')"/></xsl:variable>
 
 <xsl:template match="text()|comment()" />
 
 <xsl:template match="jndi:resources[@id=$currentid]">
 <xsl:if test="not(ends-with($war,'.ear'))">
-<xsl:value-of select="tools:fileCopy('../../../tools/xslt/save.xslt',concat($targetdir,'../xslt/'))"/>
+
+<xsl:value-of select="tools:fileCopy('../../../../tools/xslt/save.xslt',concat($targetdir,'../xslt/'))"/>
 <xsl:value-of select="tools:fileCopy('../../update-tomcat-server.xslt',concat($targetdir,'../xslt/'))"/>
 <xsl:value-of select="tools:info(concat('Generate ',$filename))"/>
 <xsl:result-document  href="{$filename}">
@@ -63,31 +61,29 @@
 		</GlobalNamingResources>
 	</Server>
 </xsl:result-document>
-</xsl:if>
+
+</xsl:if>		
 </xsl:template>
 
 <xsl:template match="jndi:resources[@id=$currentid]/jndi:resource[@familly=$familly]">
 
-	<Resource 
-		auth="Container" 
-		type="javax.naming.Context" 
-		factory="com.googlecode.jndiresources.factory.ContextFactory">
+	<xsl:text>&#xA;   </xsl:text>
+	<xsl:comment>Register a JNDI link for key <xsl:value-of select="@name"/></xsl:comment>
+	<xsl:text>&#xA;   </xsl:text>
+	<ResourceLink>
 		<xsl:attribute name="name">
-			<xsl:value-of select="concat('${jndi-prefix}',@name)"/>
+			<xsl:value-of select="concat('java:',@name)"/>
 		</xsl:attribute>
-		<xsl:attribute name="value">
-			<xsl:value-of select="text()"/>
-			<xsl:for-each select="jndi:extends[@appsrv=$appsrv]">
-			<xsl:value-of select="text()"/>
-			<xsl:text>&#xA;</xsl:text>
-			</xsl:for-each>
+		<xsl:attribute name="global">
+			<xsl:value-of select="jndi:property[@name='link']/@value"/>
 		</xsl:attribute>
-	</Resource>
-      
- 	<xsl:call-template name="install-drivers">
-		<xsl:with-param name="familly" select="'jndi/default'"/>
-	</xsl:call-template>
-	<xsl:call-template name="footer"/>
+		<!-- 
+		<xsl:attribute name="type">
+			<xsl:value-of select="$type"/>
+		</xsl:attribute>
+		-->
+	</ResourceLink>
+       
  </xsl:template>
 
 </xsl:stylesheet>
