@@ -3,7 +3,7 @@
 
 = Famille JNDI =
 
-La famille `jndi` permet de lier plusieurs annuaires.
+La famille `jndi` permet de lier plusieurs annuaires. Elle est généralement utilisé à l'insu du composant, et exploité via des liens entres clefs JNDI. Par exemple, pour référencer un EJB déclaré dans un autre annuaire JNDI.
 
 == Déclaration JEE ==
 La ressource doit être déclarée dans le fichier `web.xml` ou `ejb-jar.xml`.
