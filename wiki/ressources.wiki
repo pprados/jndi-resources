@@ -18,6 +18,7 @@ Les familles possibles :
  * [jndi]
  * [mail]
  * [url]
+ * [link]
 
 Les différents drivers sont récupéré d'un repository [http://maven.apache.org Maven]. S'il s ne sont pas disponible, il faut les ajouter à la main.
 Par exemple, les librairies d'accès aux files JMS ne peuvent être publié dans le repository Maven, car Sun l'interdit. Si la librairie est nécessaire à l'installation de la ressource, les outils vont produire une exception indiquant à la démarche à suivre.
