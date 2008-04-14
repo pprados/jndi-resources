@@ -58,7 +58,7 @@ Il est également possible d'ajouter des paramètres ponctuels dans la ligne de 
 
 Les propriétés sont assemblées dans un ordre précis, avant d'effectuer les transformations lors de l'installation. Le tableau suivant indique l'ordre de chargement. L'étape suivante peut modifier une propriété en la revalorisant.
 
-|| *Order de chargement des propriétés* ||
+|| *Ordre de chargement des propriétés* ||
 || Les propriétés systèmes (Voir la classe [http://java.sun.com/j2se/1.3/docs/api/java/lang/System.html java.lang.System]) ||
 || `/var/share/jndi-resources/plateform.properties` ||
 || `$PACKAGES/$APPSRV/templates.properties` ||
