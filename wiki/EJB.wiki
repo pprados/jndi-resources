@@ -54,7 +54,7 @@ L'archive ainsi produite est alors packagée dans un [EAR].
 
 == Client d'EJB ==
 L'annuaire JNDI de la Compta est généralement distant de l'annuaire de l'Intranet mais peut
-également être [architecture le même]. Cela dépend de l'architecture choisie lors du déploiement, et des choix de mutualisations des ressources. 
+également être sur [architecture le même] annuaire que pour le client. Cela dépend de l'architecture choisie lors du déploiement, et des choix de mutualisations des ressources. 
 
 Coté client, on retrouve dans le fichier `web.xml`, le besoin d'avoir une référence sur l'EJB.
 {{{
