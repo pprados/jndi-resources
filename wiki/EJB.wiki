@@ -30,7 +30,7 @@ Notez la valeur du paramètre `id` du marqueur `<ejb-jar/>`. Il correspond à l'
 Nous souhaitons bénéficier de la normalisation du packaging du composant, 
 à savoir, la possibilité de l'utiliser sur tous les serveurs d'applications, 
 indépendamment de sa marque, de sa version ou de son architecture. 
-C'est bien l'objectif de la normalisation EAR.
+C'est bien l'objectif de la normalisation [EAR].
 
 Suivant les serveurs d'applications, il faut ajouter [transformerWebXML différents] 
 fichiers permettant d'associer la ressource `java:comp/env/ejb/Paye` avec une autre clef JNDI.
