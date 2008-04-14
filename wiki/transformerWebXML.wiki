@@ -139,4 +139,6 @@ Avec [http://maven.apache.org Maven], il suffit d'indiquer dans le fichier POM, 
 
 Les transforamtions WAS ne fonctionnent qu'a condition d'avoir un attribut `id` pour chaque ressource.
 
+Voir aussi : [transformerEJBJarXML Transformer ejb-jar.xml]
+
 Suite : [exemple Exemple rapide]
