@@ -111,6 +111,8 @@ effectué. Par exemple, lors de l'installation du client de l'EJB, il faut valor
         -D jndi-compta=jnp://comptahost:1099
 }}}
 
+Avec les sources, vous trouverez un exemple d'utilisation d'EJB en combinaison avec *jndi-resources*.
+
 Voir aussi : [EAR]
 
 Précédent : [exemple Exemple]
