@@ -98,8 +98,8 @@ java.naming.provider.url=${jndi-compta}
 </resource>
 }}}
 
-Rien n'indique la location du serveur de la compta, s'il y a utilisation du [architecture même annuaire ou de 
-deux annuaires]. Lors de l'installation les choix de l'architecture de déploiement seront 
+Rien n'indique la location du serveur de la compta, s'il y a utilisation du 
+[architecture même annuaire ou de deux annuaires]. Lors de l'installation les choix de l'architecture de déploiement seront 
 effectué. Par exemple, lors de l'installation du client de l'EJB, il faut valoriser la variable `jndi-compta`.
 {{{
 >$JNDI_HOME/bin/jndi-install \
