@@ -50,7 +50,7 @@ Pour JBoss, il faut ajouter le fichier `META-INF/jboss.xml` suivant :
 </jboss>
 }}}
 
-L'archive ainsi produite est alors packagé dans un EAR.
+L'archive ainsi produite est alors packagée dans un EAR.
 
 == Client d'EJB ==
 L'annuaire JNDI de la Compta est généralement distant de l'annuaire de l'Intranet mais peut
