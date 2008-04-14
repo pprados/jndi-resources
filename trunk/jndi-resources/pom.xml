@@ -24,7 +24,7 @@
 	<groupId>com.googlecode.jndi-resources</groupId>
 	<artifactId>main</artifactId>
 	<packaging>pom</packaging>
-	<version>0.4-SNAPSHOT</version>
+	<version>0.4</version>
 	<name>jndi-resources</name>
 	<description>
 		jndi-resource est un utilitaire pour générer les fichiers de configuration 
@@ -408,7 +408,7 @@
 	</dependencyManagement>
 
 	<properties>
-		<current.version>0.4-SNAPSHOT</current.version>
+		<current.version>0.4</current.version>
 		<url.home>http://www.prados.fr/mvn/jndi-resources</url.home>
 		<scp.home>scp://www.prados.fr/home/philippe/www/mvn</scp.home>
 		<saxon.version>8.7</saxon.version>
