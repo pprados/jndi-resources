@@ -76,7 +76,7 @@
 		<xsl:text>&#xA;   </xsl:text>
 		<mbean
 			code="org.jboss.naming.NamingAlias"
-			name="$currentid:j2eeType=JNDIResource,jndiName={@name}">
+			name="{$currentid}:j2eeType=JNDIResource,jndiName={@name}">
 			<attribute name="ToName">java:jaas/<xsl:value-of select="$jaasmodule" /></attribute>
 			<attribute name="FromName">java:<xsl:value-of select="@name" /></attribute>
 			<depends>jboss:service=Naming</depends>

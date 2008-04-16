@@ -314,17 +314,17 @@ public final class JNDIInstall
 		out.println("Usage: jndi-install [-h] -d <appsrvconfdir=dir>");
 		out.println("                    [-D<key>=<value>|xpath:<[ns,]xpath>]* \\");
 		out.println("                    [--xsl key=value>|xpath:<[ns,]xpath>]* \\");
-		out.println("                    [-P <url>]* -p <sourcepackage> -a <jboss|...>");
-		out.println("(-d|--dest) <key>=<value>          : Define destination directories");
-		out.println("-D<key>=<value>|xpath:<[ns,]xpath> : Define property");
-		out.println("--xsl <key>=<value>|xpath:...      : Define XSL variable");
-		out.println("(-P|--properties) <url>            : List of properties");
-		out.println("(-p|--package) <sourcepackage>     : Sources product with JNDIConfig");
-		out.println("(-a|--appsrv) <jboss|tomcat...>    : Familly of application server");
-		out.println("(-v|--version)                     : Application server version to use");
-		out.println("-l                                 : Log info.");
-		out.println("-ll                                : Log debug.");
-		out.println("(-h|--help)                        : This help");
+		out.println("                    [-P <url>]* -p <sourcepackage> -a <jboss|...>[,...]*");
+		out.println("(-d|--dest) <key>=<value>              : Define destination directories");
+		out.println("-D<key>=<value>|xpath:<[ns,]xpath>     : Define property");
+		out.println("--xsl <key>=<value>|xpath:...          : Define XSL variable");
+		out.println("(-P|--properties) <url>                : List of properties");
+		out.println("(-p|--package) <sourcepackage>         : Sources product with JNDIConfig");
+		out.println("(-a|--appsrv) <jboss|tomcat...>[,...]* : Familly of application server");
+		out.println("(-v|--version)                         : Application server version to use");
+		out.println("-l                                     : Log info.");
+		out.println("-ll                                    : Log debug.");
+		out.println("(-h|--help)                            : This help");
 	}
 
 	/**
@@ -488,83 +488,90 @@ public final class JNDIInstall
 			ParserConfigurationException, XPathExpressionException, TransformerException,
 			InvalidVersionSpecificationException
 	{
-		packageDir_ = params.package_;
-		srvapp_ = null;
-
-		packageDir_ = new File(packageDir_).getCanonicalPath();
-		if (params.version_ != null)
+		for (StringTokenizer tokens=new StringTokenizer(params.appsrv_,",");tokens.hasMoreTokens();)
 		{
-			final File versionFile = new File(packageDir_, VERSIONS_XML);
-			if (versionFile.canRead())
+			final String curappsrv=tokens.nextToken().trim();
+			LOG.info("Profile "+curappsrv);			
+			packageDir_ = params.package_;
+			srvapp_ = null;
+	
+			packageDir_ = new File(packageDir_).getCanonicalPath();
+			if (params.version_ != null)
 			{
-				final Document versionsDoc = XMLContext.DOC_BUILDER_FACTORY.newDocumentBuilder().parse(
-					versionFile);
-
-				// Find all resources groups, and associate an id
-				final NodeList result = (NodeList) xpathVersion_.evaluate(
-					versionsDoc, XPathConstants.NODESET);
-
-				for (int i = 0; i < result.getLength(); ++i)
+				final File versionFile = new File(packageDir_, VERSIONS_XML);
+				if (versionFile.canRead())
 				{
-					final Node home = result.item(i);
-					final Node nameNode = home.getAttributes().getNamedItem(
-						"name");
-					if (params.appsrv_.equals(nameNode.getNodeValue()))
+					final Document versionsDoc = XMLContext.DOC_BUILDER_FACTORY.newDocumentBuilder().parse(
+						versionFile);
+	
+					// Find all resources groups, and associate an id
+					final NodeList result = (NodeList) xpathVersion_.evaluate(
+						versionsDoc, XPathConstants.NODESET);
+	
+					for (int i = 0; i < result.getLength(); ++i)
 					{
-						Node versionsNode = home.getAttributes().getNamedItem(
-							"versions");
-						VersionRange range = VersionRange.createFromVersionSpec(versionsNode.getNodeValue());
-						if (range.containsVersion(params.version_))
+						final Node home = result.item(i);
+						final Node nameNode = home.getAttributes().getNamedItem(
+							"name");
+						if (curappsrv.equals(nameNode.getNodeValue()))
 						{
-							srvapp_ = home.getAttributes().getNamedItem(
-								"target").getNodeValue();
-							break;
+							Node versionsNode = home.getAttributes().getNamedItem(
+								"versions");
+							VersionRange range = VersionRange.createFromVersionSpec(versionsNode.getNodeValue());
+							if (range.containsVersion(params.version_))
+							{
+								srvapp_ = home.getAttributes().getNamedItem(
+									"target").getNodeValue();
+								break;
+							}
 						}
 					}
+					if (srvapp_ == null)
+					{
+						throw new CommandLineException("Application server can't be found in versions.xml.");
+					}
+	
 				}
-				if (srvapp_ == null)
+				else if (params.version_ == null)
 				{
-					throw new CommandLineException("Application server can't be found in versions.xml.");
+					throw new CommandLineException("--version can't be set with this templates");
 				}
-
 			}
-			else if (params.version_ == null)
+			else
+				srvapp_ = curappsrv;
+	
+			initVariables(params.propertieslist_);
+			prop_.putAll(params.cmdlineprop_);
+			xslprop_ = params.cmdlinexslprop_;
+	
+			final ApplyInstall apply = new ApplyInstall();
+	
+			final File f = new File(packageDir_, srvapp_);
+			if (!f.canRead())
+				throw new CommandLineException(f + " not found. Update the --appsrv parameter or add a --version");
+			final String[] targets = f.list();
+			for (int i = 0; i < targets.length; ++i)
 			{
-				throw new CommandLineException("--version can't be set with this templates");
+				final String target = targets[i];
+				if (!new File(packageDir_, srvapp_ + File.separatorChar + target).isDirectory())
+					continue;
+				String targetDir = (String) params.targetList_.get(target);
+				if (targetDir == null)
+				{
+					throw new CommandLineException("--dest " + target + "=... must be set");
+				}
+				targetDir = new File(targetDir).getCanonicalFile().toURI().toURL().toExternalForm();
+				File home = new File(packageDir_, srvapp_ + File.separatorChar + target).getCanonicalFile();
+				if (home.canRead())
+				{
+					LOG.info("Install to " + targetDir);
+					apply.destination_ = targetDir;
+					RecursiveFiles.recursiveFiles(
+						home, ".", apply);
+				}
 			}
-		}
-		else
-			srvapp_ = params.appsrv_;
-
-		initVariables(params.propertieslist_);
-		prop_.putAll(params.cmdlineprop_);
-		xslprop_ = params.cmdlinexslprop_;
-
-		final ApplyInstall apply = new ApplyInstall();
-
-		final File f = new File(packageDir_, srvapp_);
-		if (!f.canRead())
-			throw new CommandLineException(f + " not found. Update the --appsrv parameter or add a --version");
-		final String[] targets = f.list();
-		for (int i = 0; i < targets.length; ++i)
-		{
-			final String target = targets[i];
-			if (!new File(packageDir_, srvapp_ + File.separatorChar + target).isDirectory())
-				continue;
-			String targetDir = (String) params.targetList_.get(target);
-			if (targetDir == null)
-			{
-				throw new CommandLineException("--dest " + target + "=... must be set");
-			}
-			targetDir = new File(targetDir).getCanonicalFile().toURI().toURL().toExternalForm();
-			File home = new File(packageDir_, srvapp_ + File.separatorChar + target).getCanonicalFile();
-			if (home.canRead())
-			{
-				LOG.info("Install to " + targetDir);
-				apply.destination_ = targetDir;
-				RecursiveFiles.recursiveFiles(
-					home, ".", apply);
-			}
+			if (tokens.hasMoreTokens())
+				LOG.info(LINE);
 		}
 	}
 

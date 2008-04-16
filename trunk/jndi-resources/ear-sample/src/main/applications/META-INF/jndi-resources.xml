@@ -19,7 +19,7 @@
 	xmlns="http://jndi-resources.googlecode.com/1.0/"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://jndi-resources.googlecode.com/1.0/ http://www.prados.fr/xsd/1.0/jndi-resources.xsd"
-	id="web-sample"
+	id="ear-sample"
 >
 	<!-- *** WAR resources *** -->
 	<resource name="web-sample/jdbc/Default" familly="jdbc/default" />

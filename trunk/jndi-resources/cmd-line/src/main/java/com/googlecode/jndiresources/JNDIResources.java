@@ -104,20 +104,20 @@ public final class JNDIResources
 		out.println("                      [-D<key>=<value>|xpath:<[ns,]xpath>]* \\");
 		out.println("                      [--xsl key=value>|xpath:<[ns,]xpath>]* \\");
 		out.println("                      [-P <url>]* -p <sourcepackage> \\");
-		out.println("                      [-a <jboss|...> -v <version>");
-		out.println("(-w|--war) <war|ear file>          : The jndi-resources descriptions in META-INF");
-		out.println("(-j|--jndi-file) <url[#id]>        : The jndi-resources descriptions fragment.");
-		out.println("(-t|--templates) <dir>             : The templates transformations to use.");
-		out.println("(-p|--package) <destination>       : The temporary configuration directory.");
-		out.println("(-d|--dest) <key>=<value>          : Define destination directories");
-		out.println("-D<key>=<value>|xpath:<[ns,]xpath> : Define property");
-		out.println("--xsl <key>=<value>|xpath:...      : Define XSL parameter");
-		out.println("(-P|--properties) <url>            : List of properties files");
-		out.println("(-a|--appsrv) <jboss|tomcat...>    : Familly of application server");
-		out.println("(-v|--version)                     : Application server version to use");
-		out.println("-l                                 : Log info.");
-		out.println("-ll                                : Log debug.");
-		out.println("(-h|--help)                        : This help");
+		out.println("                      [-a <jboss|...>[,...]* -v <version>");
+		out.println("(-w|--war) <war|ear file>              : The jndi-resources descriptions in META-INF");
+		out.println("(-j|--jndi-file) <url[#id]>            : The jndi-resources descriptions fragment.");
+		out.println("(-t|--templates) <dir>                 : The templates transformations to use.");
+		out.println("(-p|--package) <destination>           : The temporary configuration directory.");
+		out.println("(-d|--dest) <key>=<value>              : Define destination directories");
+		out.println("-D<key>=<value>|xpath:<[ns,]xpath>     : Define property");
+		out.println("--xsl <key>=<value>|xpath:...          : Define XSL parameter");
+		out.println("(-P|--properties) <url>                : List of properties files");
+		out.println("(-a|--appsrv) <jboss|tomcat...>[,...]* : Familly of application server");
+		out.println("(-v|--version)                         : Application server version to use");
+		out.println("-l                                     : Log info.");
+		out.println("-ll                                    : Log debug.");
+		out.println("(-h|--help)                            : This help");
 	}
 
 	/**
