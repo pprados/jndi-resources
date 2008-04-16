@@ -69,14 +69,14 @@
 							<groupId>com.googlecode.jndi-resources</groupId>
 							<artifactId>web-sample</artifactId>
 							<bundleFileName>
-								jndi-web-sample.war
+								web-sample.war
 							</bundleFileName>
 						</webModule>
 						<ejbModule>
 							<groupId>com.googlecode.jndi-resources</groupId>
 							<artifactId>ejb-sample</artifactId>
 							<bundleFileName>
-								jndi-ejb-sample.jar
+								ejb-sample.jar
 							</bundleFileName>
 						</ejbModule>
 					</modules>

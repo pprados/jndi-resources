@@ -34,7 +34,7 @@
 <xsl:include href="../../../jboss4_x/install-drivers.xslt"/>
 <xsl:variable name="lib"><xsl:value-of select="concat($targetdir,'jboss.server.conf/lib/')"/></xsl:variable>
 
-<xsl:variable  name="basefilename"><xsl:value-of select="concat('deploy/',$currentid,'/',$currentid,'_hosts-service')"/></xsl:variable>
+<xsl:variable  name="basefilename"><xsl:value-of select="concat('deploy/',$currentid,'/',$currentid,'_jcli_hosts-service')"/></xsl:variable>
 <xsl:variable  name="filename"><xsl:value-of select="concat($targetdir,'jboss.server.conf/',$basefilename,'.jndi')"/></xsl:variable>
 
 <xsl:template match="text()|comment()" />

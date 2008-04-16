@@ -207,6 +207,18 @@
 		<property name="preserve-ordering" value="false"/>
 	</resource>
 
+	<resource name="jndi-web-test/jms/ConnectionFactoryJBoss" familly="jms/jboss/cf"/>
+	<resource name="jndi-web-test/jms/TopicJBoss" familly="jms/jboss/topic"/>
+	<resource name="jndi-web-test/jms/QueueJBoss" familly="jms/jboss/queue"/>
+
+	<resource name="jndi-web-test/jms/ConnectionFactoryJBossMQ" familly="jms/jbossmq/cf"/>
+	<resource name="jndi-web-test/jms/TopicJBossMQ" familly="jms/jbossmq/topic"/>
+	<resource name="jndi-web-test/jms/QueueJBossMQ" familly="jms/jbossmq/queue"/>
+
+	<resource name="jndi-web-test/jms/ConnectionFactoryJBossMessaging" familly="jms/jboss-messaging/cf"/>
+	<resource name="jndi-web-test/jms/TopicJBossMessaging" familly="jms/jboss-messaging/topic"/>
+	<resource name="jndi-web-test/jms/QueueJBossMessaging" familly="jms/jboss-messaging/queue"/>
+
 <!-- ******************************************************** --> 
 <comment>Jndi</comment>
 	<resource name="jndi-web-test/jndi/file" familly="jndi/file"/>
@@ -215,7 +227,7 @@
 	<resource name="jndi-web-test/jndi/cos" familly="jndi/cos"/>
 	<resource name="jndi-web-test/jndi/ldap" familly="jndi/ldap"/>
 <!-- <resource name="jndi-web-test/jndi/dns" familly="jndi/dns"/>-->
-	<resource name="jndi-web-test/jndi/jboss" familly="jndi/jboss">
+	<resource name="jndi-web-test/jndi/jbossex" familly="jndi/jboss">
 extension=pour tous
 	    <extends appsrv="jboss3_x">
 ext=pour jboss 3.x

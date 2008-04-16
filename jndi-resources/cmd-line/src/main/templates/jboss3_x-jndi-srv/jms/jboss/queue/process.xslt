@@ -26,6 +26,8 @@
 		 http://jndi-resources.googlecode.com/1.0/ http://www.prados.fr/xsd/1.0/jndi-resources.xsd
 		"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	/>
+	>
+<xsl:template match="/" />
+</xsl:stylesheet>	
 
 

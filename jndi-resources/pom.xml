@@ -41,12 +41,12 @@
 	</distributionManagement>
 
 	<modules>
+		<module>web-test</module>
+		<module>ejb-sample</module>
+		<module>web-sample</module>
+		<module>ear-sample</module>
 		<module>plugins</module>
 		<module>cmd-line</module>
-		<module>web-test</module>
-		<module>web-sample</module>
-		<module>ejb-sample</module>
-		<module>ear-sample</module>
 	</modules>
 	<!-- BUG maven http://jira.codehaus.org/browse/MNG-2855
 		<mailingLists>
@@ -331,7 +331,6 @@
 	</reporting>
 
 	<dependencyManagement>
-
 		<dependencies>
 
 			<dependency>
@@ -400,11 +399,9 @@
 				<artifactId>plugins</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-
 		</dependencies>
 
 	</dependencyManagement>
-
 	<properties>
 		<current.version>0.4</current.version>
 		<url.home>http://www.prados.fr/mvn/jndi-resources</url.home>
