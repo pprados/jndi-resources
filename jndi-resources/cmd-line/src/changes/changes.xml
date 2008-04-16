@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * Copyright 2008 Philippe Prados.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+-->
+
+<document>
+  <properties>
+    <title>JNDI Resources</title>
+    <author email="jndi-resources@philippe.prados.name">Philippe PRADOS</author>
+  </properties>
+  <body>
+    <release version="0.4" date="2008-XX-XX" description="Corrections diverses">
+      <action dev="Philippe PRADOS" type="update">
+        * Modification du paramètre XidFactory de JBoss lors de l'utilisation d'un driver Oracle.
+        * Ajout d'un paramètre et d'une variable jndi.ldap.batchsize
+        * Permet d'indiquer plusieurs profil lors de l'installation
+        * Ajout de la famille link/default pour tenir compte des EJB.
+        * Exemple EJB
+        * Correction de bugs
+      </action>
+    </release>
+    <release version="0.3" date="2008-03-20" description="première version publique">
+      <action dev="Philippe PRADOS" type="update">
+        Première version publique.
+      </action>
+    </release>
+  </body>
+</document>
