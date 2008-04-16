@@ -56,8 +56,8 @@ Pour JBoss, il faut ajouter le fichier `META-INF/jboss.xml` suivant :
 L'archive ainsi produite est alors packagée dans un [EAR].
 
 == Client d'EJB ==
-L'annuaire JNDI de la Compta est généralement distant de l'annuaire de l'Intranet mais peut
-également être sur [architecture le même] annuaire que pour le client. 
+L'annuaire JNDI de la Compta est généralement distant de l'annuaire de l'Intranet 
+mais peut également être sur [architecture le même]. 
 Cela dépend de l'architecture choisie lors du déploiement, et des choix de 
 mutualisations des ressources. 
 
