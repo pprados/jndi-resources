@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+	* Copyright 2008 Philippe Prados.
+	*
+	* Licensed under the Apache License, Version 2.0 (the "License");
+	* you may not use this file except in compliance with the License.
+	* You may obtain a copy of the License at
+	*
+	*      http://www.apache.org/licenses/LICENSE-2.0
+	*
+	* Unless required by applicable law or agreed to in writing, software
+	* distributed under the License is distributed on an "AS IS" BASIS,
+	* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	* See the License for the specific language governing permissions and
+	* limitations under the License.
+	*
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.googlecode.jndi-resources</groupId>
+	<artifactId>main</artifactId>
+	<packaging>pom</packaging>
+	<version>0.4</version>
+	<name>jndi-resources</name>
+	<description>
+		jndi-resource est un utilitaire pour générer les fichiers de configuration 
+		afin de	publier toutes les ressources standards dans les annuaires JNDI,
+		pour différents serveurs d'applications.
+	</description>
+	<url>${url.home}</url>
+
+	<distributionManagement>
+		<site>
+			<id>www.prados.fr</id>
+			<url>${scp.home}/${project.name}</url>
+		</site>
+	</distributionManagement>
+
+	<modules>
+		<module>web-test</module>
+		<module>ejb-sample</module>
+		<module>web-sample</module>
+		<module>ear-sample</module>
+		<module>plugins</module>
+		<module>cmd-line</module>
+	</modules>
+	<!-- BUG maven http://jira.codehaus.org/browse/MNG-2855
+		<mailingLists>
+		<mailingList>
+		<name>JNDI-resources</name>
+		<subscribe>
+		jndi-resources-subscribe@yahoogroupes.fr
+		</subscribe>
+		<unsubscribe>
+		jndi-resources-unsubscribe@yahoogroupes.fr
+		</unsubscribe>
+		<post>jndi-resources@googlegroups.com</post>
+		<archive>
+		http://groups.google.com/group/jndi-resources
+		</archive>
+		</mailingList>
+		</mailingLists>
+	-->
+	<developers>
+		<developer>
+			<id>ppr</id>
+			<name>Philippe PRADOS</name>
+			<email>jndi-resources@philippe.prados.name</email>
+			<url>http://www.linkedin.com/in/pprados</url>
+			<organization>Atos Origin</organization>
+			<organizationUrl>http://www.atosorigin.com</organizationUrl>
+			<roles>
+				<role>Owner</role>
+			</roles>
+			<timezone>+0100</timezone>
+		</developer>
+	</developers>
+
+	<organization>
+		<name>Philippe Prados</name>
+		<url>http://www.prados.fr</url>
+	</organization>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+			<comments>Apache License, Version 2.0</comments>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>
+			scm:svn:http://jndi-resources.googlecode.com/svn/trunk/
+		</connection>
+		<developerConnection>
+			scm:svn:https://jndi-resources.googlecode.com/svn/trunk/
+		</developerConnection>
+		<url>http://code.google.com/p/jndi-resources/source/browse</url>
+	</scm>
+	
+	<build>
+		<plugins>
+
+			<!-- Archive des sources -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Generations de site en plusieurs langues. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<configuration>
+					<locales>fr</locales>
+					<inputEncoding>UTF-8</inputEncoding>
+					<outputEncoding>UTF-8</outputEncoding>
+				</configuration>
+			</plugin>
+
+			<!-- DOAP: Description Of A Projet -->
+			<!-- BUG
+				<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-doap-plugin</artifactId>
+				<configuration>
+				<category>build-management</category>
+				<language>Java</language>
+				</configuration>
+				</plugin>
+			-->
+
+			<!-- Documentation Checker -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-docck-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Annonce des évolutions -->
+			<!-- http://maven.apache.org/plugins/maven-changes-plugin/usage.html -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-changes-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>announcement-generate</goal>
+						</goals>
+						<id>announcement-generate</id>
+					</execution>
+					<execution>
+						<goals>
+							<goal>announcement-mail</goal>
+						</goals>
+						<id>announcement-mail</id>
+					</execution>
+				</executions>
+				<configuration>
+						<smtpHost>${smtp.host}</smtpHost>
+						<smtpPort implementation="java.lang.Integer">${smtp.port}</smtpPort>
+						<username>${smtp.username}</username>
+          				<password>${smtp.password}</password>
+					<toAddresses>
+						<toAddress implementation="java.lang.String">
+							jndi-resources@googlegroups.com
+						</toAddress>
+					</toAddresses>
+				</configuration>
+			</plugin>
+
+			<!-- Compatibilité descendante -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>clirr-maven-plugin</artifactId>
+				<configuration>
+					<comparisonVersion>0.1</comparisonVersion>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+
+
+	<reporting>
+		<plugins>
+
+			<!-- All reports -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>
+					maven-project-info-reports-plugin
+				</artifactId>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>license</report>
+							<report>mailing-list</report>
+							<report>summary</report>
+							<report>scm</report>
+							<report>project-team</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+
+			<!-- Javadoc -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+			</plugin>
+
+			<!--  Source XRef -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<configuration>
+					<linkJavadoc>true</linkJavadoc>
+				</configuration>
+			</plugin>
+
+			<!--  TAGLIST -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>taglist-maven-plugin</artifactId>
+				<configuration>
+					<tags>
+						<tag>TODO</tag>
+						<tag>FIXME</tag>
+						<tag>@todo</tag>
+						<tag>@deprecated</tag>
+					</tags>
+				</configuration>
+			</plugin>
+
+			<!-- PMD -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+			</plugin>
+
+			<!-- Find bugs -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<configuration>
+					<threshold>High</threshold>
+					<effort>Max</effort>
+				</configuration>
+			</plugin>
+
+			<!-- CheckStyle -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<configuration>
+				<configLocation>${checkstyle.url}</configLocation>
+				<format>html</format>
+				<linkXref>true</linkXref>
+				<sourceEncoding>utf-8</sourceEncoding>
+				<minimumTokens>100</minimumTokens>
+				</configuration>
+			</plugin>
+
+			<!-- Changes -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-changes-plugin</artifactId>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>changes-report</report>
+							<!-- IF SCM
+							<report>jira-report</report>
+							 -->
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+
+			<!-- Change log -->
+			<!-- 
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-changelog-plugin</artifactId>
+			</plugin>
+			 -->
+
+			<!-- Compatibilité descendante -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>clirr-maven-plugin</artifactId>
+			</plugin>
+
+
+			<!-- JDepend -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jdepend-maven-plugin</artifactId>
+				<version>2.0-beta-1</version>
+			</plugin>
+
+			<!-- SureFire : Unit test -->
+			<!-- 
+				<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				</plugin>
+			-->
+		</plugins>
+	</reporting>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>mail</artifactId>
+				<version>[1.0,)</version>
+			</dependency>
+
+			<dependency>
+				<groupId>xml-apis</groupId>
+				<artifactId>xml-apis</artifactId>
+				<version>1.0.b2</version>
+			</dependency>
+
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>1.2.13</version>
+			</dependency>
+
+			<dependency>
+				<groupId>net.sf.saxon</groupId>
+				<artifactId>saxon</artifactId>
+				<version>${saxon.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sf.saxon</groupId>
+				<artifactId>saxon-dom</artifactId>
+				<version>${saxon.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sf.saxon</groupId>
+				<artifactId>saxon-xpath</artifactId>
+				<version>${saxon.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-artifact</artifactId>
+				<version>${maven.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-settings</artifactId>
+				<version>${maven.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-project</artifactId>
+				<version>${maven.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-file</artifactId>
+				<version>${wagon.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-http-lightweight</artifactId>
+				<version>${wagon.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.googlecode.jndi-resources</groupId>
+				<artifactId>plugins</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+
+	</dependencyManagement>
+	<properties>
+		<current.version>0.4</current.version>
+		<url.home>http://www.prados.fr/mvn/jndi-resources</url.home>
+		<scp.home>scp://www.prados.fr/home/philippe/www/mvn</scp.home>
+		<saxon.version>8.7</saxon.version>
+		<maven.version>[2.0.1,)</maven.version>
+		<wagon.version>[1.0-beta-1,)</wagon.version>
+		<checkstyle.url>
+			http://www.prados.fr/mvn/checkstyle-pprados.xml
+		</checkstyle.url>
+	</properties>
+
+</project>
