@@ -17,7 +17,27 @@
  *
 -->
 
-<project name="Exemple simple WAR">
-  <body>
-  </body>
-</project>
+<document>
+
+	<properties>
+		<title>JNDI Resources EJB Sample</title>
+		<author
+			email="jndi-resources@philippe.prados.name">
+			Philippe Prados
+		</author>
+	</properties>
+
+
+	<body>
+		<section name="Introduction">
+			<p>
+				Exemple de fichier EJB pouvant utilisant différentes ressources JNDI.
+			</p>
+			<p>
+				Le composant doit être intégré dans un EAR.
+			</p>
+		</section>
+	</body>
+
+</document>
+

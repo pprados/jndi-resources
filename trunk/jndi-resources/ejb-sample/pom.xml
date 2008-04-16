@@ -129,7 +129,7 @@
 	<distributionManagement>
 		<site>
 			<id>www.prados.fr</id>
-			<url>${scp.home}/${project.name}</url>
+			<url>${scp.home}/jndi-resources/${project.name}</url>
 		</site>
 	</distributionManagement>
 </project>
