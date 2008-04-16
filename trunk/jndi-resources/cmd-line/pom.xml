@@ -32,7 +32,7 @@
           <archive>
             <index>false</index>
             <manifest>
-              <mainClass>com.googlecode.jndiresourcesinstall.JNDIInstall</mainClass>
+              <mainClass>com.googlecode.jndiresources.install.JNDIInstall</mainClass>
               <addClasspath>true</addClasspath>
               <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
