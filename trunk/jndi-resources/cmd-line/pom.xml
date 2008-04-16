@@ -7,7 +7,7 @@
 	</parent>
   	<modelVersion>4.0.0</modelVersion>
   	<groupId>com.googlecode.jndi-resources</groupId>
-  	<artifactId>cmd-line</artifactId>
+  	<artifactId>jndi-resources</artifactId>
 	<packaging>jar</packaging>
   	<name>cmd-line</name>
   	<description>Les utilitaires en ligne de commande.</description>
