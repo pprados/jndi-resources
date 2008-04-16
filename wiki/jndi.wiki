@@ -3,7 +3,9 @@
 
 = Famille JNDI =
 
-La famille `jndi` permet de lier plusieurs annuaires. Elle est généralement utilisé à l'insu du composant, et exploité via des liens entres clefs JNDI. Par exemple, pour référencer un EJB déclaré dans un autre annuaire JNDI.
+La famille `jndi` permet de lier plusieurs annuaires. Elle est généralement utilisé 
+à l'insu du composant, et exploité via des liens entres clefs JNDI. Par exemple, 
+pour référencer un EJB déclaré dans un autre annuaire JNDI.
 
 == Déclaration JEE ==
 La ressource doit être déclarée dans le fichier `web.xml` ou `ejb-jar.xml`.
@@ -18,7 +20,8 @@ La ressource doit être déclarée dans le fichier `web.xml` ou `ejb-jar.xml`.
 }}}
 
 == Déclaration jndi-resource ==
-Les métas-données pour décrire les exigences de la ressource doivent être exprimées dans le fichier [jndiResourcesXML jndi-resources.xml]. Par exemple :
+Les métas-données pour décrire les exigences de la ressource doivent être 
+exprimées dans le fichier [jndiResourcesXML jndi-resources.xml]. Par exemple :
 {{{
 ...
 <resource name="jndi-web-sample/jndi/default" familly="jndi/default" />
@@ -30,14 +33,16 @@ jnp.partitionName=${jndi.jboss.partitionName}
 }}}
 
 == Propriétés ==
-Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier [jndiResourcesXML jndi-resources.xml].
+Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier 
+[jndiResourcesXML jndi-resources.xml].
 
 |||| *Famille JNDI* ||
 || *Propriété* || *Description* ||
 || `archetype` || Indique l'archétype [http://maven.apache.org Maven] du _driver_ à utiliser. La valeur doit suivre le format suivant : `<groupe>:<archetype>:<version>`. La valeur par défaut dépend de la famille utilisée. ||
 
 == Extensions et limitations ==
-Pour ajouter des paramètres spécifiques à un serveur d'applications, il faut ajouter à la déclaration de ressources, des informations complémentaires dont voici des exemples.
+Pour ajouter des paramètres spécifiques à un serveur d'applications, il faut 
+ajouter à la déclaration de ressources, des informations complémentaires dont voici des exemples.
 {{{
 ...
 <resource name="jndi-web-sample/jndi/jboss" familly="jndi/jboss">
@@ -50,7 +55,8 @@ jnp.partitionName=jndi.jboss.partitionName
 }}}
 
 == Déclinaisons ==
-Les déclinaisons possibles pour le paramètre [familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
+Les déclinaisons possibles pour le paramètre [familles familly] du fichier 
+[jndiResourcesXML jndi-resources.xml] sont les suivantes :
 || *Famille* || *Description* ||
 || `jndi/default` || Propose un lien vers un annuaire JNDI de la même famille que celle du serveur d'application. ||
 || `jndi/cos` || Propose un lien vers un annuaire d'objets CORBA. ||

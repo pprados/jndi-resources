@@ -3,7 +3,8 @@
 
 = Les règles de codage =
 
-Si vous ajoutez de nouvelles ressources ou de nouveaux serveurs d'applications, vous devez suivre les règles suivantes :
+Si vous ajoutez de nouvelles ressources ou de nouveaux serveurs d'applications, 
+vous devez suivre les règles suivantes :
  * Le package d'installation doit être auto-suffisant. Il ne doit pas exiger la présence de [http://maven.apache.org Maven], ou d'autres utilitaires qui ne sont pas disponibles par défaut dans les serveurs d'applications.
  * Tous les fichiers nécessaires à l'exécution du script d'installation doivent être recopiés dans le package d'installation (feuilles XSLT, etc.)
  * Le JDK nécessaire ne doit pas être supérieur à 1.4, afin de permettre une installation avec de vieux serveurs, toujours en activité.

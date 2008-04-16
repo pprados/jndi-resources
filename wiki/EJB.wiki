@@ -2,7 +2,9 @@
 
 = Utilisation avec des EJB =
 Les EJB ont deux facettes : le client et le serveur. 
-Les deux composants peuvent être installés dans le même serveur d'applications ou dans des serveurs différents. Les annuaires des deux serveurs peuvent être [architecture séparées ou unifiés].
+Les deux composants peuvent être installés dans le même serveur d'applications ou 
+dans des serveurs différents. Les annuaires des deux serveurs peuvent être 
+[architecture séparées ou unifiés].
 
 == Serveur EJB ==
 Un composant EAR qui publie des EJBs doit les déclarer dans le fichier `ejb-jar.xml`.
@@ -25,7 +27,8 @@ Un composant EAR qui publie des EJBs doit les déclarer dans le fichier `ejb-jar
   <enterprise-beans>
 <ejb-jar>
 }}}
-Notez la valeur du paramètre `id` du marqueur `<ejb-jar/>`. Il correspond à l'identifiant du composant.
+Notez la valeur du paramètre `id` du marqueur `<ejb-jar/>`. Il correspond 
+à l'identifiant du composant.
 
 Nous souhaitons bénéficier de la normalisation du packaging du composant, 
 à savoir, la possibilité de l'utiliser sur tous les serveurs d'applications, 
@@ -54,7 +57,9 @@ L'archive ainsi produite est alors packagée dans un [EAR].
 
 == Client d'EJB ==
 L'annuaire JNDI de la Compta est généralement distant de l'annuaire de l'Intranet mais peut
-également être sur [architecture le même] annuaire que pour le client. Cela dépend de l'architecture choisie lors du déploiement, et des choix de mutualisations des ressources. 
+également être sur [architecture le même] annuaire que pour le client. 
+Cela dépend de l'architecture choisie lors du déploiement, et des choix de 
+mutualisations des ressources. 
 
 Coté client, on retrouve dans le fichier `web.xml`, le besoin d'avoir une référence sur l'EJB.
 {{{
@@ -70,7 +75,8 @@ Coté client, on retrouve dans le fichier `web.xml`, le besoin d'avoir une réf�
 </web-app>
 }}}
 
-Les fichiers spécifiques aux différents serveurs d'applications peuvent être générés à l'aide de [transformerWebXML filtre XSLT]. 
+Les fichiers spécifiques aux différents serveurs d'applications peuvent être 
+générés à l'aide de [transformerWebXML filtre XSLT]. 
 L'idée est de généré un mapping systématique entre un nom de la branche `java:comp/env/...` 
 vers un nom de la forme `java:<id>....` Par exemple, le fichier `jboss-web.xml` peut être le suivant :
 {{{
@@ -99,8 +105,10 @@ java.naming.provider.url=${jndi-compta}
 }}}
 
 Rien n'indique la location du serveur de la compta, s'il y a utilisation du 
-[architecture même annuaire ou de deux annuaires]. Lors de l'installation les choix de l'architecture de déploiement seront 
-effectué. Par exemple, lors de l'installation du client de l'EJB, il faut valoriser la variable `jndi-compta`.
+[architecture même annuaire ou de deux annuaires]. Lors de l'installation les 
+choix de l'architecture de déploiement seront 
+effectué. Par exemple, lors de l'installation du client de l'EJB, il faut 
+valoriser la variable `jndi-compta`.
 {{{
 >$JNDI_HOME/bin/jndi-install \
         --appsrv jboss --version 5.0 \

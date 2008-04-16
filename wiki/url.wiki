@@ -3,7 +3,8 @@
 
 = Famille URL =
 
-La famille `url` permet d'utiliser une URL vers un répertoire (protocole `file:`), un service Web (protocole `http:`) ou une ressources de la JVM (protocole `jar:`).
+La famille `url` permet d'utiliser une URL vers un répertoire (protocole `file:`), 
+un service Web (protocole `http:`) ou une ressources de la JVM (protocole `jar:`).
 
 == Déclaration JEE ==
 La ressource doit être déclarée dans le fichier `web.xml` ou `ejb-jar.xml`.
@@ -17,7 +18,10 @@ La ressource doit être déclarée dans le fichier `web.xml` ou `ejb-jar.xml`.
 </resource-ref>
 ...
 }}}
-Jboss 3.x impose de déclarer les URL dans l'archive WAR si le type de la ressource est `java.net.URL`. Soit vous souhaitez n'utiliser qu'une version supérieur et vous pouvez indiquer le type réel de l'instance, soit vous devez utilisez `java.lang.Object` pour contourner la limitation de Jboss 3.x.
+Jboss 3.x impose de déclarer les URL dans l'archive WAR si le type de la 
+ressource est `java.net.URL`. Soit vous souhaitez n'utiliser qu'une version 
+supérieur et vous pouvez indiquer le type réel de l'instance, soit vous devez 
+utilisez `java.lang.Object` pour contourner la limitation de Jboss 3.x.
 {{{
 ...
 <resource-ref>
@@ -30,7 +34,8 @@ Jboss 3.x impose de déclarer les URL dans l'archive WAR si le type de la ressou
 }}}
 
 == Déclaration jndi-resource ==
-Les métas-données pour décrire les exigences de la ressource doivent être décrite dans le fichier [jndiResourcesXML jndi-resources.xml]. Par exemple :
+Les métas-données pour décrire les exigences de la ressource doivent être décrite 
+dans le fichier [jndiResourcesXML jndi-resources.xml]. Par exemple :
 {{{
 ...
 <resource name="jndi-web-sample/url/default" familly="url/default" >
@@ -40,17 +45,22 @@ Les métas-données pour décrire les exigences de la ressource doivent être d�
 }}}
 
 == Propriétés ==
-Voici la propriété obligatoire que vous devez ajouter dans le fichier [jndiResourcesXML jndi-resources.xml].
+Voici la propriété obligatoire que vous devez ajouter dans le fichier 
+[jndiResourcesXML jndi-resources.xml].
 
 |||| *Famille URL* ||
 || *Propriété* || *Description* ||
-|| *`url`* || Ce paramètre permet d'indiquer une variable décrivant l'URL qui devra être valorisée lors de l'installation du composant. Cette URL est par défaut de type `file:` et peut alors référencer un répertoire partagé ou un répertoire relatif au serveur d'application.||
+|| *`url`* || Ce paramètre permet d'indiquer une variable décrivant l'URL 
+qui devra être valorisée lors de l'installation du composant. Cette URL est 
+par défaut de type `file:` et peut alors référencer un répertoire partagé ou 
+un répertoire relatif au serveur d'application.||
 
 == Extensions et limitations ==
 Il n'y a pas d'extension possible pour ce type de ressource.
 
 == Déclinaisons ==
-Les déclinaisons possibles pour le paramètre [familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
+Les déclinaisons possibles pour le paramètre [familles familly] du fichier 
+[jndiResourcesXML jndi-resources.xml] sont les suivantes :
 || *Famille* || *Description* ||
 || `url/default` || Déclare une URL à l'aide de la propriété `url`. ||
 

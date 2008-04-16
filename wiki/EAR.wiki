@@ -2,18 +2,31 @@
 
 = Utilisation des EAR =
 
-Les composants EAR peuvent agréger différents composants : plusieurs EJB-JAR, plusieurs WAR, etc. L'attribut `<ejb-link/>` des spécifications JEE permet de lier les composants entres eux dans le même EAR.
+Les composants EAR peuvent agréger différents composants : plusieurs EJB-JAR, 
+plusieurs WAR, etc. L'attribut `<ejb-link/>` des spécifications JEE permet de 
+lier les composants entres eux dans le même EAR.
 
-Pour lier les différents composants avec des ressources ou des EJB externes, il faut rédiger un fichier [jndiResourcesXML META-INF/jndi-resources.xml] et le placer éventuellement dans l'EAR. Ce fichier doit faire la synthèse des besoins en ressources des différents composants de l'EAR.
+Pour lier les différents composants avec des ressources ou des EJB externes, 
+il faut rédiger un fichier [jndiResourcesXML META-INF/jndi-resources.xml] et 
+le placer éventuellement dans l'EAR. Ce fichier doit faire la synthèse des 
+besoins en ressources des différents composants de l'EAR.
 
-En respectant les [conventions] de mapping des clefs locales (`java:comp/env`), en utilisant par exemple [transformerWebXML les filtres XSLT proposés], plusieurs stratégies d'intégrations sont possibles.  
+En respectant les [conventions] de mapping des clefs locales (`java:comp/env`), 
+en utilisant par exemple [transformerWebXML les filtres XSLT proposés], 
+plusieurs stratégies d'intégrations sont possibles.  
 
-Chaque composant doit posséder un identifiant présent dans l'attribut `id` du marqueur racine de sa description JEE ([exemple <web-app/>] ou [EJB <ejb-jar/>]). Soit tous les composants de l'EAR partagent le même identifiant, soit ils utilisent des identifiant différents.
+Chaque composant doit posséder un identifiant présent dans l'attribut `id` 
+du marqueur racine de sa description JEE ([exemple <web-app/>] ou 
+[EJB <ejb-jar/>]). Soit tous les composants de l'EAR partagent le même 
+identifiant, soit ils utilisent des identifiant différents.
 
 == Partage de l'identifiant ==
-S'ils partagent le même identifiant, les composants partagent naturellement les mêmes ressources. Par exemple, un WAR et un EJB peuvent partager la même datasource.
+S'ils partagent le même identifiant, les composants partagent naturellement 
+les mêmes ressources. Par exemple, un WAR et un EJB peuvent partager 
+la même datasource.
 
-Par exemple, avec l'identifiant unique `id="MonApp"`, le fichier [jndiResourcesXML jndi-resources.xml] ressemble à ceci :
+Par exemple, avec l'identifiant unique `id="MonApp"`, le fichier 
+[jndiResourcesXML jndi-resources.xml] ressemble à ceci :
 {{{
 <resources 
 	xmlns="http://jndi-resources.googlecode.com/1.0/"
@@ -26,12 +39,18 @@ Par exemple, avec l'identifiant unique `id="MonApp"`, le fichier [jndiResourcesX
 
 }}}
 
-Les mappings des clefs locales à chaque composant (`java:comp/env/jdbc/Default`) pointent vers la même clef globale (`java:MonApp/jdbc/Default`) référençant la source de données.
+Les mappings des clefs locales à chaque composant (`java:comp/env/jdbc/Default`) 
+pointent vers la même clef globale (`java:MonApp/jdbc/Default`) référençant la 
+source de données.
 
 == Identifiant spécifique ==
-Si chaque composant utilise un identifiant spécifique, le fichier [jndiResourcesXML jndi-resources.xml] d'intégration doit publier les ressources pour chaque composant.
+Si chaque composant utilise un identifiant spécifique, le fichier 
+[jndiResourcesXML jndi-resources.xml] d'intégration doit publier les 
+ressources pour chaque composant.
 
-Par exemple, un EAR possède un EJB-JAR avec `id="MonApp-ejb"` et un WAR avec `id="MonApp-war"`. Le fichier [jndiResourcesXML jndi-resources.xml] ressemble à ceci :
+Par exemple, un EAR possède un EJB-JAR avec `id="MonApp-ejb"` et un 
+WAR avec `id="MonApp-war"`. Le fichier [jndiResourcesXML jndi-resources.xml] 
+ressemble à ceci :
 {{{
 <resources 
 	xmlns="http://jndi-resources.googlecode.com/1.0/"
@@ -49,7 +68,9 @@ Par exemple, un EAR possède un EJB-JAR avec `id="MonApp-ejb"` et un WAR avec `i
 
 Deux DataSources sont proposées, sur des clefs JNDI différentes.
 
-Si l'intégrateur de composant souhaite partager les deux datasources afin de réduire le nombre de connexion à la base de donnée et la consommation mémoire des caches, il peut rédiger le fichier [jndiResourcesXML jndi-resources.xml] différemment :
+Si l'intégrateur de composant souhaite partager les deux datasources afin de 
+réduire le nombre de connexion à la base de donnée et la consommation mémoire 
+des caches, il peut rédiger le fichier [jndiResourcesXML jndi-resources.xml] différemment :
 {{{
 <resources 
 	xmlns="http://jndi-resources.googlecode.com/1.0/"

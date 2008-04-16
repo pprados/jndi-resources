@@ -3,7 +3,8 @@
 
 = Famille JMS =
 
-La famille `jms` permet de demander l'installation de _factories_, de _queue_ ou de _topic_ pour envoyer ou recevoir des messages.
+La famille `jms` permet de demander l'installation de _factories_, de _queue_ ou de 
+_topic_ pour envoyer ou recevoir des messages.
 
 == Déclaration JEE ==
 Les ressources doivent être déclarées dans le fichier `web.xml` ou `ejb-jar.xml`.
@@ -41,7 +42,8 @@ Les ressources doivent être déclarées dans le fichier `web.xml` ou `ejb-jar.x
 
 == Déclaration jndi-resource ==
 
-Les métas-données pour décrire les exigences de la ressource doivent être décrite dans le fichier [jndiResourcesXML jndi-resources.xml].
+Les métas-données pour décrire les exigences de la ressource doivent être décrite 
+dans le fichier [jndiResourcesXML jndi-resources.xml].
 Il existe plusieurs déclinaisons de ressources. Le suffixe doit être `cf`, `queue` ou `topic`.
 
 Par exemple :
@@ -77,7 +79,8 @@ Par exemple :
 }}}
 
 == Propriétés ==
-Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier [jndiResourcesXML jndi-resources.xml].
+Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier 
+[jndiResourcesXML jndi-resources.xml].
 |||| *Famille jms/_xxx_/cf ||
 || *Propriété* || *Description* ||
 || `archetype` || Indique l'archétype [http://maven.apache.org Maven] du _driver_ à utiliser. La valeur doit suivre le format suivant : `<groupe>:<archetype>:<version>`. La valeur par défaut dépend de la famille utilisée. ||
@@ -93,7 +96,9 @@ Les propriétés optionelles pour topic :
 || `full-size` || Le nombre maximum de messages dans la queue. La valeur par défaut est : `${jms.full-size}`||
 
 == Extensions et limitations ==
-Pour ajouter des paramètres spécifiques à un serveur d'application, il faut ajouter à la déclaration de ressources, des informations complémentaires dont voici des exemples.
+Pour ajouter des paramètres spécifiques à un serveur d'application, il faut 
+ajouter à la déclaration de ressources, des informations complémentaires dont 
+voici des exemples.
 {{{
 ...
 <resource name="jndi-web-sample/jms/Queue" familly="jms/default">
@@ -112,10 +117,12 @@ Pour ajouter des paramètres spécifiques à un serveur d'application, il faut a
 </resource>
 ...
 }}}
-Notez que les queues JbossMQ ne savent pas gérer des queues de messages morts spécifiques à chaque queue. Le paramètre `dead-letter-queue` est alors ignoré.
+Notez que les queues JbossMQ ne savent pas gérer des queues de messages morts 
+spécifiques à chaque queue. Le paramètre `dead-letter-queue` est alors ignoré.
 
 == Déclinaisons ==
-Les déclinaisons possibles pour le paramètre [familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
+Les déclinaisons possibles pour le paramètre [familles familly] du fichier 
+[jndiResourcesXML jndi-resources.xml] sont les suivantes :
 || *Famille* || *Description* ||
 || `jms/default` || Utilise les _drivers_ par défauts du serveur d'application. ||
 || `jms/jboss` || Utilise les _drivers_ du serveur JMS du JBoss courant (JBoss MQ ou JBoss Messaging suivant les cas). ||

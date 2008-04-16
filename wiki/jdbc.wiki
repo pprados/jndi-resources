@@ -20,7 +20,8 @@ La ressource doit être déclarée dans le fichier `web.xml` ou `ejb-jar.xml`.
 }}}
 
 == Déclaration jndi-resource ==
-Les métas-données pour décrire les exigences de la ressource doivent être décrites dans le fichier [jndiResourcesXML jndi-resources.xml]. Par exemple :
+Les métas-données pour décrire les exigences de la ressource doivent être 
+décrites dans le fichier [jndiResourcesXML jndi-resources.xml]. Par exemple :
 {{{
 ...
 <resource
@@ -36,7 +37,8 @@ Les métas-données pour décrire les exigences de la ressource doivent être d�
 }}}
 
 == Propriétés ==
-Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier [jndiResourcesXML jndi-resources.xml] pour décrire la ressource.
+Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier 
+[jndiResourcesXML jndi-resources.xml] pour décrire la ressource.
 |||| *Famille jdbc* ||
 || *Propriété* || *Description* ||
 || `archetype` || Indique l'archétype [http://maven.apache.org Maven] du _driver_ à utiliser. La valeur doit suivre le format suivant : `<groupe>:<archetype>:<version>`. La valeur par défaut dépend de la famille utilisée. ||
@@ -51,7 +53,8 @@ Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier [jnd
 || `validation-query` || Indique la requête SQL à invoquer pour vérifier la connexion à la base de données. La valeur par défaut dépend du type de la base de donnée. ||
 
 == Extensions et limitations ==
-Pour ajouter des paramètres spécifiques à un serveur d'applications, il faut ajouter à la déclaration de ressources, des informations complémentaires dont voici un exemple.
+Pour ajouter des paramètres spécifiques à un serveur d'applications, il faut 
+ajouter à la déclaration de ressources, des informations complémentaires dont voici un exemple.
 {{{
 ...
 <resource
@@ -73,7 +76,8 @@ Pour ajouter des paramètres spécifiques à un serveur d'applications, il faut 
 }}}
 
 == Déclinaisons ==
-Les déclinaisons possibles pour le paramètre [familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
+Les déclinaisons possibles pour le paramètre [familles familly] du fichier 
+[jndiResourcesXML jndi-resources.xml] sont les suivantes :
 || *Famille* || *Description* ||
 || `jdbc/default` || Utilise la base de données par défaut du serveur d'applications. Pour JBoss, il s'agit de la base décrite sous `java:DefaultDS`. C'est une base HSQLDB, entièrement codée en Java et s'exécutant dans le même processus. Pour l'architecture JBoss avec un annuaire JNDI déporté, une base HSQLDB est lancée en mode serveur à coté de l'annuaire JNDI de référence. Cette base est utilisée par les clients de l'annuaire JNDI. Pour Tomcat, il s'agit également d'une base HSQLDB dont il faut préciser l'utilisateur, le mot de passe et le fichier. ||
 || `jdbc/hsqldb` || Utilise une base de données de type [http://www.hsqldb.org HSQLDB] in process. Pour l'architecture JBoss avec un annuaire JNDI déporté, une base HSQLDB est lancée en mode serveur à coté de l'annuaire JNDI de référence. Cette base est utilisée par les clients de l'annuaire JNDI. ||

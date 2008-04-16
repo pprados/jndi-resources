@@ -4,6 +4,7 @@
  * ~~Rendre plus percutante la description du projet sur la homepage~~
  * ~~Ajouter une famille pour faire un mapping de clef JNDI~~
  * ~~Expliquer comment migrer une application vers l'approche JNDI~~
+ * Intégrer ActiveMQ et PostgreSQL
  * En faire un plugin Maven
  * Faire la désintallation
  * Étendre vers d'autres serveurs d'applications

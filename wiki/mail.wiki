@@ -3,7 +3,8 @@
 
 = Famille Mail =
 
-La famille `mail` permet de demander l'installation de sessions Javamail pour envoyer ou recevoir des mails avec les protocoles SMTP, POP3 et IMAP.
+La famille `mail` permet de demander l'installation de sessions Javamail pour envoyer 
+ou recevoir des mails avec les protocoles SMTP, POP3 et IMAP.
 
 == Déclaration JEE ==
 La ressource doit être déclarée dans le fichier `web.xml` ou `ejb-jar.xml`.
@@ -20,7 +21,8 @@ La ressource doit être déclarée dans le fichier `web.xml` ou `ejb-jar.xml`.
 }}}
 
 == Déclaration jndi-resource ==
-Les métas-données pour décrire les exigences de la ressource doivent être décrite dans le fichier [jndiResourcesXML jndi-resources.xml]. Par exemple :
+Les métas-données pour décrire les exigences de la ressource doivent être décrite 
+dans le fichier [jndiResourcesXML jndi-resources.xml]. Par exemple :
 {{{
 ...
 <resource
@@ -37,7 +39,8 @@ Les métas-données pour décrire les exigences de la ressource doivent être d�
 }}}
 
 == Propriétés ==
-Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier [jndiResourcesXML jndi-resources.xml].
+Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier 
+[jndiResourcesXML jndi-resources.xml].
 
 |||| *Famille Mail* ||
 || *Propriété* || *Description* ||
@@ -61,7 +64,8 @@ Voici les propriétés optionnelles que vous pouvez ajouter dans le fichier [jnd
 
 
 == Extensions et limitations ==
-Pour ajouter des paramètres spécifiques à un serveur d'application, il faut ajouter à la déclaration de ressources, des informations complémentaires dont voici des exemples.
+Pour ajouter des paramètres spécifiques à un serveur d'application, il faut ajouter 
+à la déclaration de ressources, des informations complémentaires dont voici des exemples.
 {{{
 ...
 <resource name="jndi-web-sample/mail/MonMail" familly="mail/default">
@@ -78,7 +82,8 @@ Pour ajouter des paramètres spécifiques à un serveur d'application, il faut a
 }}}
 
 == Déclinaisons ==
-Les déclinaisons possibles pour le paramètre [familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
+Les déclinaisons possibles pour le paramètre [familles familly] du fichier 
+[jndiResourcesXML jndi-resources.xml] sont les suivantes :
 || *Famille* || *Description* ||
 || `mail/default` || Utilise les _drivers_ par défauts de Javamail, à savoir SMTP pour le transport et POP3 ou IMAP pour la sauvegarde des messages. ||
 || `mail/email` || Un email unique, complémentaire à l'e-mail de la session Javamail. ||

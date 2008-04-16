@@ -1,14 +1,18 @@
 #summary Guide de migration
 = Migration d'un paramètre de déploiement =
 
-Si un composant utilise un fichier de propriétés ou une syntaxe XML regroupant des paramètres de déploiement et des paramètres applicatif, il faut le faire évoluer pour tenir comptes des spécifications JEE.
+Si un composant utilise un fichier de propriétés ou une syntaxe XML regroupant 
+des paramètres de déploiement et des paramètres applicatif, il faut le faire 
+évoluer pour tenir comptes des spécifications JEE.
 
-Par exemple, le fichier de propriété suivant intègre des paramètres fonctionnels et des paramètres de déploiement.
+Par exemple, le fichier de propriété suivant intègre des paramètres fonctionnels 
+et des paramètres de déploiement.
 {{{
 tva=10.5
 host=monserveur
 }}}
-La première étape consiste à modifier la valeur de la propriété `host` par une clef JNDI commençant par `java:comp/env`. Par exemple : `java:comp/env/host/MonHostAContacter`
+La première étape consiste à modifier la valeur de la propriété `host` par une clef 
+JNDI commençant par `java:comp/env`. Par exemple : `java:comp/env/host/MonHostAContacter`
 {{{
 tva=10.5
 host=java:comp/env/host/MonHostAContacter
@@ -27,9 +31,11 @@ Déclarez la clef dans le fichier `web.xml` ou `ejb-jar.xml`.
   ...
 </web-app>
 }}}
-Ajoutez également le [transformerWebXML nécessaire] dans les fichiers spécifiques aux serveurs d'applications (`context.xml`, `jboss-web.xml`, etc.)
+Ajoutez également le [transformerWebXML nécessaire] dans les fichiers spécifiques 
+aux serveurs d'applications (`context.xml`, `jboss-web.xml`, etc.)
 
-Modifiez le code exploitant cette information. Par exemple, dans le cas de la lecture d'une propriété pour obtenir le nom d'un host, la ligne suivante :
+Modifiez le code exploitant cette information. Par exemple, dans le cas de la lecture 
+d'une propriété pour obtenir le nom d'un host, la ligne suivante :
 {{{
 InetAddress host=InetAddress.getByName(prop.getProperty("host"));
 }}}
@@ -52,7 +58,9 @@ else
     host=InetAddress.getByName(hostname);
 }
 }}}
-La dernière étape consiste à [transformerWebXML paramétrer] le serveur d'application pour qu'il publie cette ressource. C'est ici qu'intervient *jndi-resources*. Ajoutez dans le fichier [jndiResourcesXML jndi-resources.xml] les lignes suivantes:
+La dernière étape consiste à [transformerWebXML paramétrer] le serveur d'application 
+pour qu'il publie cette ressource. C'est ici qu'intervient *jndi-resources*. 
+Ajoutez dans le fichier [jndiResourcesXML jndi-resources.xml] les lignes suivantes:
 {{{
 ...
 <resource name="mon-application/host/MonHostAContacter" familly="host/default" >
@@ -61,7 +69,8 @@ La dernière étape consiste à [transformerWebXML paramétrer] le serveur d'app
 ...
 }}}
 
-Lors de l'installation, il faudra valoriser la variable `${host.MonHostAContacter}` dans la [ligneDeCommandes ligne de commande] ou dans un fichier de propriétés.
+Lors de l'installation, il faudra valoriser la variable `${host.MonHostAContacter}` 
+dans la [ligneDeCommandes ligne de commande] ou dans un fichier de propriétés.
 {{{
 >$JNDI_HOME/bin/jndi-install ...\
         -Dhost.MonHostAContacter=localhost

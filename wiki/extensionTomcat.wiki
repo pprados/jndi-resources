@@ -2,9 +2,12 @@
 
 = Création d'une nouvelle ressource pour Tomcat =
 
-Pour ajouter une nouvelle ressource, sans possibilité de paramétrage autre que des [variables], il faut créer un simple fichier XSLT dans un répertoire.
+Pour ajouter une nouvelle ressource, sans possibilité de paramétrage autre que 
+des [variables], il faut créer un simple fichier XSLT dans un répertoire.
 
-Nous désirons utiliser une ressource de la nouvelle famille `jdbc/mydatasource`. Nous souhaitons, dans un premier temps, générer la ressource pour un serveur Tomcat, version 6.0 et supérieur.
+Nous désirons utiliser une ressource de la nouvelle famille `jdbc/mydatasource`. 
+Nous souhaitons, dans un premier temps, générer la ressource pour un serveur 
+Tomcat, version 6.0 et supérieur.
 
 Consultons le fichier `templates/versions.xml`.
 {{{
@@ -28,9 +31,16 @@ Consultons le fichier `templates/versions.xml`.
   <appsrv name="tomcat"         versions="[6.0,)"      target="tomcat6_0"/>
 </versions>
 }}}
-Ce fichier indique que la production pour le serveur Tomcat, version 6.0+ est portée par le répertoire `templates/tomcat6_0`. Nous créons alors un répertoire `templates/tomcat6_0/jdbc/mydatasource`. Dans ce répertoire, nous devons rédiger un fichier `process.xslt` qui se chargera de produire le fichier de paramètres.
+Ce fichier indique que la production pour le serveur Tomcat, version 6.0+ est 
+portée par le répertoire `templates/tomcat6_0`. Nous créons alors un 
+répertoire `templates/tomcat6_0/jdbc/mydatasource`. Dans ce répertoire, nous 
+devons rédiger un fichier `process.xslt` qui se chargera de produire le fichier 
+de paramètres.
 
-Commençons par rédiger une version « à la main » du fichier à produire. Nous souhaitons injecter un fragment XML dans le fichier `conf/server.xml`. Par exemple, le fichier `mydatasource.xml` ne reprend que le fragment et sa localisation (le marqueur racine indique où injecter le fragment).
+Commençons par rédiger une version « à la main » du fichier à produire. Nous 
+souhaitons injecter un fragment XML dans le fichier `conf/server.xml`. 
+Par exemple, le fichier `mydatasource.xml` ne reprend que le fragment et 
+sa localisation (le marqueur racine indique où injecter le fragment).
 {{{
 <Server>
   <GlobalNamingResources>
@@ -49,11 +59,14 @@ Commençons par rédiger une version « à la main » du fichier à produire. No
   </GlobalNamingResources>
 </Server>
 }}}
-Nous utilisons des [variables] pour les différents champs afin de permettre une adaptation de la ressource lors de l'installation.
+Nous utilisons des [variables] pour les différents champs afin de permettre 
+une adaptation de la ressource lors de l'installation.
 
 Renommons ce fichier en `process.xslt`. Ensuite, nous devons ajouter quelques lignes.
 
-Commençons par ajouter au tout début, les déclarations pour indiquer que le fichier est un filtre XSLT et ajoutons les différents espaces de noms. Nous déclarons également les différentes variables XSL accessibles dans le filtre.
+Commençons par ajouter au tout début, les déclarations pour indiquer que 
+le fichier est un filtre XSLT et ajoutons les différents espaces de noms. 
+Nous déclarons également les différentes variables XSL accessibles dans le filtre.
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet
@@ -74,7 +87,11 @@ Commençons par ajouter au tout début, les déclarations pour indiquer que le f
 ...
 }}}
 
-L'espace de nom `jndi` correspond à l'espace de nom de la syntaxe de l'utilitaire. L'espace de nom `tools` est un lien vers la classe [http://jndi-resources.googlecode.com/svn/trunk/jndi-resources/cmd-line/src/main/java/com/googlecode/jndiresources/tools/XSLTools.java XSLTools] de l'utilitaire permettant des copies de fichiers, des traces, la récupération des librairies à travers le repository [http://maven.apache.org Maven], etc.
+L'espace de nom `jndi` correspond à l'espace de nom de la syntaxe de 
+l'utilitaire. L'espace de nom `tools` est un lien vers la classe 
+[http://jndi-resources.googlecode.com/svn/trunk/jndi-resources/cmd-line/src/main/java/com/googlecode/jndiresources/tools/XSLTools.java XSLTools] 
+de l'utilitaire permettant des copies de fichiers, des traces, la récupération 
+des librairies à travers le repository [http://maven.apache.org Maven], etc.
 
 Déclarons ensuite deux variables pour le nom du fichier à produire.
 {{{
@@ -82,7 +99,8 @@ Déclarons ensuite deux variables pour le nom du fichier à produire.
 <xsl:variable  name="filename"><xsl:value-of select="concat($targetdir,$basefilename,'.jndi')"/></xsl:variable>
 }}}
 
-Nous pouvons ensuite déclarer un premier template XSLT pour gérer toutes les ressources de la mêmes famille à partir du même script.
+Nous pouvons ensuite déclarer un premier template XSLT pour gérer toutes 
+les ressources de la mêmes famille à partir du même script.
 {{{
 ...
 <xsl:template match="jndi:resources[@id=$currentid]">
@@ -107,9 +125,13 @@ Nous pouvons ensuite déclarer un premier template XSLT pour gérer toutes les r
 
 Nous retrouvons les marqueurs du noeud d'injection, à savoir `<Server/>` et `<GlobalNamingResources/>`.
 
-Notez la présence de deux `processing-instruction`. Elles permettront la transformation des variables lors de l'[moteurInstallation installation] effective du fichier dans le serveur d'application ; l'injection du noeud dans le fichier `server.xml` et la sauvegarde du résultat dans `conf/server.xml`.
+Notez la présence de deux `processing-instruction`. Elles permettront la 
+transformation des variables lors de l'[moteurInstallation installation] effective 
+du fichier dans le serveur d'application ; l'injection du noeud dans le fichier 
+`server.xml` et la sauvegarde du résultat dans `conf/server.xml`.
 
-Comme les instructions invoquent les [moteurInstallation filtre] `update-tomcat-server.xslt` et `save.xslt`, nous devons les copier dans le répertoire d'installation pour qu'ils soient disponible.
+Comme les instructions invoquent les [moteurInstallation filtre] `update-tomcat-server.xslt` 
+et `save.xslt`, nous devons les copier dans le répertoire d'installation pour qu'ils soient disponible.
 
 {{{
 <xsl:template match="jndi:resources[@id=$currentid]">
@@ -138,9 +160,17 @@ Ensuite, nous devons déclarer un template XSLT pour générer toutes les ressou
 </xsl:template>
 }}}
 
-Nous y avons inclus le modèle de production, à l'exclusion du marqueur racine `<GlobalNamingResources/>`. Nous injectons le nom de la ressource dans l'attribut `name`. Nous devons également doubler les accolades pour les variables, afin qu'elles restent présente dans le fichier généré.
+Nous y avons inclus le modèle de production, à l'exclusion du marqueur racine 
+`<GlobalNamingResources/>`. Nous injectons le nom de la ressource dans l'attribut 
+`name`. Nous devons également doubler les accolades pour les variables, afin 
+qu'elles restent présente dans le fichier généré.
 
-Notre script est maintenant capable de produire le fichier de ressource pour le serveur indiqué. Si un fichier [jndiResourcesXML jndi-resources.xml] déclare la famille `jdbc/mydatasource`, pour tous les autres serveurs, une alerte indique que la ressource n'est pas gérées pour le moment. En reproduisant les mêmes étapes pour les différents serveurs, vous pouvez faire sauter les alertes, et générer la ressource pour les différents environnement d'exécution.
+Notre script est maintenant capable de produire le fichier de ressource pour le 
+serveur indiqué. Si un fichier [jndiResourcesXML jndi-resources.xml] déclare la 
+famille `jdbc/mydatasource`, pour tous les autres serveurs, une alerte indique 
+que la ressource n'est pas gérées pour le moment. En reproduisant les mêmes 
+étapes pour les différents serveurs, vous pouvez faire sauter les alertes, et 
+générer la ressource pour les différents environnement d'exécution.
 
 Le fichier complet est alors comme ceci :
 {{{
@@ -200,12 +230,15 @@ Le fichier complet est alors comme ceci :
 </xsl:stylesheet>
 }}}
 
-S'il est également nécessaire d'ajouter une librairie dans le serveur d'application, il faut utiliser des utilitaires à cet effet. Ajoutons les deux lignes suivantes :
+S'il est également nécessaire d'ajouter une librairie dans le serveur d'application, 
+il faut utiliser des utilitaires à cet effet. Ajoutons les deux lignes suivantes :
 {{{
 <xsl:include href="../../install-drivers.xslt"/>
 <xsl:variable name="lib"><xsl:value-of select="concat($targetdir,'catalina.home/lib/')"/></xsl:variable>
 }}}
-Elles permettent de gérer la récupération d'une archive dans un repository [http://maven.apache.org Maven], et son installation future dans le serveur d'application. La variable `lib` correspond à l'emplacement définitif de la librairie.
+Elles permettent de gérer la récupération d'une archive dans un repository 
+[http://maven.apache.org Maven], et son installation future dans le serveur 
+d'application. La variable `lib` correspond à l'emplacement définitif de la librairie.
 
 Nous devons invoquer le template `install-drivers` dans le template principal.
 {{{
@@ -276,24 +309,33 @@ Sans paramètre, le _driver_ à utiliser est récupérer dans le fichier `templa
 </xsl:stylesheet>
 }}}
 
-Ce fichier permet d'associer une ou plusieurs artifacts Maven avec une famille de ressource. Vous pouvez ajouter votre nouvelle famille dans ce fichier.
+Ce fichier permet d'associer une ou plusieurs artifacts Maven avec une famille de 
+ressource. Vous pouvez ajouter votre nouvelle famille dans ce fichier.
 
 Sinon, vous pouvez valoriser différents paramètres lors de l'invocation du template.
 
-De même, vous pouvez proposer des valeurs par défaut pour les nouvelles [variables] dans le fichier `templates/templates.properties`.
+De même, vous pouvez proposer des valeurs par défaut pour les nouvelles [variables] 
+dans le fichier `templates/templates.properties`.
 
 Il faut procéder de même pour les différentes versions du serveur Tomcat.
 
-Maintenant, vous pouvez générer la ressource en déclarant la famille dans le fichier [jndiResourcesXML jndi-resources.xml].
+Maintenant, vous pouvez générer la ressource en déclarant la famille dans le 
+fichier [jndiResourcesXML jndi-resources.xml].
 {{{
 <resource name="jndi-web-sample/jdbc/MaDataSource" familly="jdbc/mydatasource"/>
 }}}
 
-Lors de la configuration à partir d'un fichier [jndiResourcesXML jndi-resources.xml] indiquant cette famille, le fichier `catalina.base/conf/mon-application_myds-ds.jndi` est généré dans le répertoire `package`.
+Lors de la configuration à partir d'un fichier [jndiResourcesXML jndi-resources.xml] 
+indiquant cette famille, le fichier `catalina.base/conf/mon-application_myds-ds.jndi` 
+est généré dans le répertoire `package`.
 
-Voilà pour la description rapide de la production d'une ressource spécifique. La meilleur documentation est le source lui-même. N'hésitez pas à y jeter un oeil pour vous inspirer des différentes approches utilisées lors de la production des différentes ressources.
+Voilà pour la description rapide de la production d'une ressource spécifique. 
+La meilleur documentation est le source lui-même. N'hésitez pas à y jeter un oeil 
+pour vous inspirer des différentes approches utilisées lors de la production des 
+différentes ressources.
 
-Pour tenir compte des différents paramètres présent dans le fichier [jndiResourcesXML jndi-resources.xml], il faut adapter la production du fichier `.jndi`.
+Pour tenir compte des différents paramètres présent dans le fichier 
+[jndiResourcesXML jndi-resources.xml], il faut adapter la production du fichier `.jndi`.
 
 
 Voir aussi : [moteurConfiguration Moteur de configuration], [extensionJBoss Nouvelle ressource pour JBoss], [reglesCodage Les règles de codage]

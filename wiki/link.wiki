@@ -19,7 +19,8 @@ La ressource doit être déclarée dans le fichier `web.xml` ou `ejb-jar.xml`.
 }}}
 
 == Déclaration `jndi-resource` ==
-Les métas-données pour décrire les exigences de la ressource doivent être décrite dans le fichier [jndiResourcesXML jndi-resources.xml]. Par exemple :
+Les métas-données pour décrire les exigences de la ressource doivent être 
+décrite dans le fichier [jndiResourcesXML jndi-resources.xml]. Par exemple :
 {{{
 ...
 <resource name="jndi-web-sample/link/default" familly="link/default" >
@@ -29,7 +30,8 @@ Les métas-données pour décrire les exigences de la ressource doivent être d�
 }}}
 
 == Propriétés ==
-Voici la propriété obligatoire que vous devez ajouter dans le fichier [jndiResourcesXML jndi-resources.xml].
+Voici la propriété obligatoire que vous devez ajouter dans le fichier 
+[jndiResourcesXML jndi-resources.xml].
 
 |||| *Famille link* ||
 || *Propriété* || *Description* ||
@@ -39,7 +41,8 @@ Voici la propriété obligatoire que vous devez ajouter dans le fichier [jndiRes
 Il n'y a pas d'extension possible pour ce type de ressource.
 
 == Déclinaisons ==
-Les déclinaisons possibles pour le paramètre [familles familly] du fichier [jndiResourcesXML jndi-resources.xml] sont les suivantes :
+Les déclinaisons possibles pour le paramètre [familles familly] du fichier 
+[jndiResourcesXML jndi-resources.xml] sont les suivantes :
 || *Famille* || *Description* ||
 || `link/default` || Déclare un lien à l'aide de la propriété `link`. ||
 

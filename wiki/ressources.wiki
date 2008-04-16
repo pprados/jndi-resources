@@ -3,7 +3,8 @@
 
 = Les ressources globales =
 
-Voici, pour chaque type de ressources, les différentes propriétés prises en compte, les différentes déclinaisons disponibles et les variables utilisées.
+Voici, pour chaque type de ressources, les différentes propriétés prises en compte, 
+les différentes déclinaisons disponibles et les variables utilisées.
 
 Avant tout, il existe une variable globale, indépendante des ressources utilisées.
 
@@ -20,8 +21,11 @@ Les familles possibles :
  * [url]
  * [link]
 
-Les différents drivers sont récupéré d'un repository [http://maven.apache.org Maven]. S'il s ne sont pas disponible, il faut les ajouter à la main.
-Par exemple, les librairies d'accès aux files JMS ne peuvent être publié dans le repository Maven, car Sun l'interdit. Si la librairie est nécessaire à l'installation de la ressource, les outils vont produire une exception indiquant à la démarche à suivre.
+Les différents drivers sont récupéré d'un repository [http://maven.apache.org Maven]. 
+S'il s ne sont pas disponible, il faut les ajouter à la main.
+Par exemple, les librairies d'accès aux files JMS ne peuvent être publié dans le 
+repository Maven, car Sun l'interdit. Si la librairie est nécessaire à l'installation 
+de la ressource, les outils vont produire une exception indiquant à la démarche à suivre.
 {{{
 Try downloading the file manually from the project website.
 
@@ -31,7 +35,8 @@ Then, install it using the command:
 Alternatively, if you host your own repository you can deploy the file there: 
     mvn deploy:deploy-file -DgroupId=javax.jms -DartifactId=jms -Dversion=1.1 -Dpackaging=jar -Dfile=/path/to/file -Durl=[url] -DrepositoryId=[id]
 }}}
-Téléchargez l'archive officielle sur le de site, puis utilisez Maven pour l'installer dans votre repository.
+Téléchargez l'archive officielle sur le de site, puis utilisez Maven pour l'installer 
+dans votre repository.
 
 Précédent : [jndiResourcesXML jndi-resources.xml]
 Suite : [utilisationAvancee Utilisation avancée]
