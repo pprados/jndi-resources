@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application
+	xmlns="http://www.bidon.org"
+	xmlns:jndi="http://jndi-resources.googlecode.com/1.0/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation=
+		"http://www.bidon.org application.xsd
+		http://www.jndi-resources.org jndi-resources.xsd"
+>
+<jndi:resources	id="JNDI-test" >
+
+	<jndi:resource name="JNDI-test/jdbc/Default" familly="jdbc/default" />
+
+	<jndi:resource name="JNDI-test/jdbc/OracleStd" familly="jdbc/oracle">
+		<jndi:property name="connection-url" value="jdbc:oracle:thin:@${my.host}:1521:${my.oracle.sid}"/>
+
+		<jndi:extends appsrv="tomcat5.5">
+		<bidon/>
+		</jndi:extends>
+
+		<jndi:extends appsrv="jboss3_x">
+			<!--
+			http://wiki.jboss.org/wiki/Wiki.jsp?page=ConfigDataSources
+			-->
+		<bidon/>
+		</jndi:extends>
+
+	</jndi:resource>
+
+</jndi:resources>
+
+<jndi:resources	id="JNDI-test2">
+<!-- 	<jndi:resource name="JNDI-test/jdbc/Default" familly="jdbc/default" />-->
+</jndi:resources>
+</application>

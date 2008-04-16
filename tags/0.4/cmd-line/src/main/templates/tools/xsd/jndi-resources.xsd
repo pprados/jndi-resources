@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * Copyright 2008 Philippe Prados.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+-->
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://jndi-resources.googlecode.com/1.0/"
+	xmlns:tns="http://jndi-resources.googlecode.com/1.0/"
+	elementFormDefault="qualified" attributeFormDefault="unqualified"
+	version="1.0"
+>
+
+	<element name="resources">
+		<annotation>
+				<documentation xml:lang="en">Describe JNDI resources.</documentation>
+				<documentation xml:lang="fr">Description des ressources JNDI.</documentation>
+		</annotation>
+		<complexType>
+			<choice minOccurs="0" maxOccurs="unbounded">
+				<element ref="tns:resource" />
+				<element ref="tns:comment" />
+				<any processContents="strict" namespace="##other" />
+			</choice>
+			<attribute name="id" type="ID" use="required"/>
+			<anyAttribute processContents="strict" />
+		</complexType>
+	</element>
+
+	<element name="resource">
+		<annotation>
+				<documentation xml:lang="en">Describe one JNDI resource.</documentation>
+				<documentation xml:lang="fr">Description d'une ressource JNDI.</documentation>
+		</annotation>
+		<complexType>
+			<sequence>
+				<choice minOccurs="0" maxOccurs="unbounded">
+					<element ref="tns:property" />
+					<element ref="tns:comment" />
+					<any processContents="skip" namespace="##other" />
+				</choice>
+				<choice minOccurs="0" maxOccurs="unbounded">
+					<element ref="tns:extends" />
+					<element ref="tns:comment" />
+					<any processContents="skip" namespace="##other" />
+				</choice>
+			</sequence>
+			<attribute name="name" type="string" use="required"></attribute>
+			<attribute name="familly" type="string" use="required"></attribute>
+		</complexType>
+	</element>
+
+	<element name="property">
+		<annotation>
+				<documentation xml:lang="en">A JNDI proprierty.</documentation>
+				<documentation xml:lang="fr">Propriété d'une ressource JNDI.</documentation>
+		</annotation>
+		<complexType>
+			<attribute name="name" type="string" use="required"></attribute>
+			<attribute name="value" type="string" use="required"></attribute>
+		</complexType>
+	</element>
+
+	<element name="extends">
+		<annotation>
+				<documentation xml:lang="en">Propriary extenstions for a JNDI resource.</documentation>
+				<documentation xml:lang="fr">Extension propriétaire d'une ressource JNDI.</documentation>
+		</annotation>
+		<complexType>
+			<sequence minOccurs="1" maxOccurs="unbounded">
+				<any processContents="skip" />
+			</sequence>
+			<attribute name="appsrv" type="string" use="required"></attribute>
+		</complexType>
+	</element>
+
+	<element name="comment" type="string" />
+
+	<element name="attribute">
+		<annotation>
+				<documentation xml:lang="fr">Additional attributs in an extension.</documentation>
+				<documentation xml:lang="fr">Attributs complémentaires dans une extension.</documentation>
+		</annotation>
+		<complexType>
+			<simpleContent>
+				<extension base="string">
+					<attribute name="name" type="string" use="required"></attribute>
+				</extension>
+			</simpleContent>
+		</complexType>
+	</element>
+
+</schema>
