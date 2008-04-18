@@ -23,7 +23,7 @@
     <author email="jndi-resources@philippe.prados.name">Philippe PRADOS</author>
   </properties>
   <body>
-    <release version="0.4" date="2008-XX-XX" description="Corrections diverses">
+    <release version="0.4" date="2008-04-18" description="Corrections diverses">
       <action dev="Philippe PRADOS" type="update">
         * Modification du paramètre XidFactory de JBoss lors de l'utilisation d'un driver Oracle.
         * Ajout d'un paramètre et d'une variable jndi.ldap.batchsize
