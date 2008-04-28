@@ -28,7 +28,7 @@
 	<parent>
 		<groupId>com.googlecode.jndi-resources</groupId>
 		<artifactId>main</artifactId>
-		<version>0.4</version>
+		<version>0.5-SNAPSHOT</version>
 	</parent>
 
 	<distributionManagement>
@@ -86,8 +86,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
+			<groupId>geronimo-spec</groupId>
+			<artifactId>geronimo-spec-javamail</artifactId>
+			<version>[1.0,)</version>
 			<scope>provided</scope>
 		</dependency>
 
