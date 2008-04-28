@@ -31,6 +31,7 @@
 <xsl:strip-space elements="*"/>
 <xsl:output method="xml" indent="yes" encoding="utf-8" omit-xml-declaration="no"/>
 <xsl:param name="version"/>
+<xsl:param name="appsrv"/>
 <xsl:param name="familly"/>
 <xsl:param name="currentid"/>
 <xsl:param name="targetdir"/>

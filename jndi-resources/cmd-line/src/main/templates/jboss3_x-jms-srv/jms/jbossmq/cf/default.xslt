@@ -33,7 +33,7 @@
 <xsl:strip-space elements="*"/>
 <xsl:output method="xml" indent="yes" encoding="utf-8" omit-xml-declaration="no"/>
 
-<xsl:variable  name="basefilename"><xsl:value-of select="concat('deploy/',$currentid,'/',$currentid,'_srv_cf-service')"/></xsl:variable>
+<xsl:variable  name="basefilename"><xsl:value-of select="concat('deploy/',$currentid,'/',$currentid,'_srv_jbossmq_cf-service')"/></xsl:variable>
 <xsl:variable  name="filename"><xsl:value-of select="concat($targetdir,'jboss.server.conf/',$basefilename,'.jndi')"/></xsl:variable>
 
 <xsl:template match="jndi:resources[@id=$currentid]">
@@ -72,7 +72,7 @@
       name="{$currentid}:jms={@name},service=InvocationLayer,type=UIL2,alias=UIL2ConnectionFactory">
       <attribute name="FromName"><xsl:value-of select="concat('${jndi-prefix}',@name)"/></attribute>
 	 <xsl:choose>
-	 	<xsl:when test="jndi:property[@name='xa']/@value = 'true'">
+	 	<xsl:when test="jndi:property[@name='xa' and @value!='no']">
 	      <attribute name="ToName">XAConnectionFactory</attribute>
 	 	</xsl:when>
 	 	<xsl:otherwise>

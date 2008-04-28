@@ -31,6 +31,6 @@
 <xsl:strip-space elements="*"/>
 <xsl:output method="xml" indent="yes" encoding="utf-8" omit-xml-declaration="no"/>
 
-<xsl:include href="../../jbossmq/cf/default.xslt"/>
+<xsl:include href="../../activemq/cf/default.xslt"/>
 
 </xsl:stylesheet>

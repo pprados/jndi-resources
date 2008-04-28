@@ -35,6 +35,6 @@
 <xsl:param name="currentid"/>
 <xsl:param name="targetdir"/>
 
-<xsl:include href="./default.xslt"/>
+<xsl:include href="../../jboss-messaging/queue/default.xslt"/>
 
 </xsl:stylesheet>

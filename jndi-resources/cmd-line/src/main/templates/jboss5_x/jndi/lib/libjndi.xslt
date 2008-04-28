@@ -74,10 +74,9 @@
 <xsl:value-of select="$Properties"/>
 <xsl:value-of select="text()"/>
 <xsl:for-each select="jndi:extends[@appsrv=$appsrv]">
-<xsl:value-of select="text()"/>
 <xsl:text>&#xA;</xsl:text>
 </xsl:for-each>
-	    </attribute>
+	    </attribute>	    
 	    <depends>jboss:service=Naming</depends>
 	</mbean>
 

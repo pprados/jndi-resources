@@ -34,15 +34,6 @@
 <xsl:variable  name="basefilename"><xsl:value-of select="concat('deploy/',$currentid,'/',$currentid,'_jcli_jndi_ldap-service')"/></xsl:variable>
 <xsl:variable  name="filename"><xsl:value-of select="concat($targetdir,'jboss.server.conf/',$basefilename,'.jndi')"/></xsl:variable>
 
-<xsl:variable name="InitialContext">javax.naming.InitialContext</xsl:variable>
-<xsl:variable name="Properties">
-java.naming.factory.initial=com.sun.jndi.ldap.LdapCtxFactory
-java.naming.provider.url=${jndi.ldap.url}
-java.naming.security.authentication=${jndi.ldap.security.authentication}
-java.naming.security.principal=${jndi.ldap.security.principal}
-java.naming.security.credentials=${jndi.ldap.security.credentials}
-java.naming.batchsize=${jndi.ldap.batchsize}
-</xsl:variable>
 <xsl:include href="../lib/jndi.xslt"/>
 
 <xsl:template name="footer"/>

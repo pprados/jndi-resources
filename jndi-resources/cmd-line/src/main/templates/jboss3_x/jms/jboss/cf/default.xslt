@@ -27,13 +27,11 @@
 		"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:jndi="http://jndi-resources.googlecode.com/1.0/"
+	exclude-result-prefixes="#all"
 	>
 <xsl:strip-space elements="*"/>
 <xsl:output method="xml" indent="yes" encoding="utf-8" omit-xml-declaration="no"/>
 
-<xsl:variable  name="basefilename"><xsl:value-of select="concat('deploy/',$currentid,'/',$currentid,'_cf-service')"/></xsl:variable>
-<xsl:variable  name="filename"><xsl:value-of select="concat($targetdir,'jboss.server.conf/',$basefilename,'.jndi')"/></xsl:variable>
-
-<xsl:include href="../lib/link.xslt"/>
+<xsl:include href="../../jbossmq/cf/default.xslt"/>
 
 </xsl:stylesheet>
