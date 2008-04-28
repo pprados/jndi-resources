@@ -32,12 +32,19 @@
 
 	<familly name="mail/email" artifact="com.googlecode.jndi-resources:jndi-resources-plugins:*"/>
 	<familly name="javamail">
-		<artifact>javax.activation:activation:1.1</artifact>
-		<artifact>javax.mail:mail:1.4</artifact>
+		<artifact>geronimo-spec:geronimo-spec-activation:1.0.2-rc4</artifact>
+		<artifact>geronimo-spec:geronimo-spec-javamail:1.3.1-rc5</artifact>
 	</familly>
 
-	<familly name="jms" artifact="javax.jms:jms:1.1"/>
-	<familly name="jms/jbossmq" artifact="jboss:jbossmq-client:4.0.2"/>
+	<familly name="jms" artifact="geronimo-spec:geronimo-spec-jms:1.1-rc4"/>
+<!--  TODO : Voir l'utilistation de ActivbeMQ avec un serveur externe et utilisation dans JBOss/Tomcat -->
+<!--  Ajouter un lien vers JNDI ActiveMQ -->
+	<familly name="jms/activemq">
+		<artifact>org.apache.activemq:activemq-core:5.0.0</artifact>
+ 	    <artifact>geronimo-spec:geronimo-spec-j2ee-management:1.0-rc4</artifact>
+		<artifact>commons-logging:commons-logging:1.1</artifact>
+		<artifact>geronimo-spec:geronimo-spec-jms:1.1-rc4</artifact>
+	</familly>
 
 	<familly name="jdbc/hsqldb" artifact="hsqldb:hsqldb:1.8.0.7"/>
 	<familly name="jdbc/oracle" artifact="ojdbc:ojdbc:14"/>
@@ -47,11 +54,14 @@
 	<familly name="jndi/file">
 		<artifact>com.sun.jndi:fscontext:1.2-beta-3</artifact>
 		<artifact>com.sun.jndi:providerutil:1.2</artifact>
-	</familly>   
+	</familly>
+<!-- 
 	<familly name="jndi/jboss">
 	  	<artifact>jboss:jboss-common:4.0.2</artifact>
 	  	<artifact>jboss:jnp-client:4.0.2</artifact>
 	</familly>
+-->
+	<familly name="jndi/activemq" artifact="org.apache.activemq:activemq-core:5.0.0"/>
 
 </xsl:variable>
 </xsl:stylesheet>

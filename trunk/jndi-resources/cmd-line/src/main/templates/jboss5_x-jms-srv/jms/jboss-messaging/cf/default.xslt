@@ -33,7 +33,7 @@
 <xsl:strip-space elements="*"/>
 <xsl:output method="xml" indent="yes" encoding="utf-8" omit-xml-declaration="no"/>
 
-<xsl:variable  name="basefilename"><xsl:value-of select="concat('deploy/',$currentid,'/',$currentid,'_srv_cf-service')"/></xsl:variable>
+<xsl:variable  name="basefilename"><xsl:value-of select="concat('deploy/',$currentid,'/',$currentid,'_srv_jboss-messaging_cf-service')"/></xsl:variable>
 <xsl:variable  name="filename"><xsl:value-of select="concat($targetdir,'jboss.server.conf/',$basefilename,'.jndi')"/></xsl:variable>
 
 <xsl:template match="jndi:resources[@id=$currentid]">
@@ -52,6 +52,7 @@
 </xsl:template>
 
 <xsl:template match="jndi:resources[@id=$currentid]/jndi:resource[@familly=$familly]">
+		<xsl:text>&#xA;</xsl:text>
 		<xsl:text>&#xA;   </xsl:text>
 		<xsl:comment>Register JMS factory for key <xsl:value-of select="@name"/></xsl:comment>
 		<xsl:text>&#xA;   </xsl:text>

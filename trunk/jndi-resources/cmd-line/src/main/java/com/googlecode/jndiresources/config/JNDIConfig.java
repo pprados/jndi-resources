@@ -495,9 +495,7 @@ public final class JNDIConfig
 							}
 							else
 							{
-								LOG
-										.warn("I can't generate resource with " + process + " for " + appsrv
-												+ '!');
+								LOG.warn(appsrv+": I can't generate resource with " + process + '!');
 							}
 						}
 					}

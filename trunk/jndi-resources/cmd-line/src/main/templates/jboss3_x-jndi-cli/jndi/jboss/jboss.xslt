@@ -34,12 +34,6 @@
 <xsl:variable  name="basefilename"><xsl:value-of select="concat('deploy/',$currentid,'/',$currentid,'_jcli_jndi_jboss-service')"/></xsl:variable>
 <xsl:variable  name="filename"><xsl:value-of select="concat($targetdir,'jboss.server.conf/',$basefilename,'.jndi')"/></xsl:variable>
 
-<xsl:variable name="InitialContext">javax.naming.InitialContext</xsl:variable>
-<xsl:variable name="Properties">
-java.naming.factory.initial=org.jnp.interfaces.NamingContextFactory
-java.naming.factory.url.pkgs=org.jboss.naming:org.jnp.interfaces
-java.naming.provider.url=${jndi.jboss.url}
-</xsl:variable>
 <xsl:include href="../lib/jndi.xslt"/>
 
 <xsl:template name="footer"/>

@@ -18,6 +18,7 @@
 -->
 
 <?xml-stylesheet type="text/xsl" href="../../../../xslt/xslt-to-xhtml.xslt" ?>
+<!-- jboss/jdbc/hsqldb -->
 <xsl:stylesheet
 	version="2.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -36,6 +37,6 @@
 <xsl:param name="currentid"/>
 <xsl:param name="targetdir"/>
 
-<xsl:include href="../../../jboss5_x/link/default/default.xslt"/>
+<xsl:include href="./default.xslt"/>
 
 </xsl:stylesheet>

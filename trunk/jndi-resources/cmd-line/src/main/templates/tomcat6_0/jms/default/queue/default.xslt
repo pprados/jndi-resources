@@ -31,6 +31,6 @@
 <xsl:strip-space elements="*"/>
 <xsl:output method="xml" indent="yes" encoding="utf-8" omit-xml-declaration="no"/>
 
-<xsl:include href="../../jbossmq/queue/default.xslt"/>
+<xsl:include href="../../activemq/queue/default.xslt"/>
 
 </xsl:stylesheet>

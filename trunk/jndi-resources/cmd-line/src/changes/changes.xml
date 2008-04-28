@@ -23,6 +23,12 @@
     <author email="jndi-resources@philippe.prados.name">Philippe PRADOS</author>
   </properties>
   <body>
+    <release version="0.5" date="2008-??-??" description="Nouvelles ressources">
+      <action dev="Philippe PRADOS" type="update">
+        * Ajout des familles jndi/activemq et jms/activemq
+        * Correction de bugs
+      </action>
+    </release>
     <release version="0.4" date="2008-04-18" description="Corrections diverses">
       <action dev="Philippe PRADOS" type="update">
         * Modification du paramètre XidFactory de JBoss lors de l'utilisation d'un driver Oracle.

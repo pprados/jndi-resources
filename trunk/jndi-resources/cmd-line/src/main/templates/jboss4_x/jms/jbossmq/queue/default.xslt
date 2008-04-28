@@ -31,7 +31,7 @@
 <xsl:strip-space elements="*"/>
 <xsl:output method="xml" indent="yes" encoding="utf-8" omit-xml-declaration="no"/>
 
-<xsl:variable  name="basefilename"><xsl:value-of select="concat('deploy/',$currentid,'/',$currentid,'_queue-service')"/></xsl:variable>
+<xsl:variable  name="basefilename"><xsl:value-of select="concat('deploy/',$currentid,'/',$currentid,'_jboss-messaging_queue-service')"/></xsl:variable>
 <xsl:variable  name="filename"><xsl:value-of select="concat($targetdir,'jboss.server.conf/',$basefilename,'.jndi')"/></xsl:variable>
 
 <xsl:include href="../lib/link.xslt"/>
