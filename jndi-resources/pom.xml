@@ -24,7 +24,7 @@
 	<groupId>com.googlecode.jndi-resources</groupId>
 	<artifactId>main</artifactId>
 	<packaging>pom</packaging>
-	<version>0.4</version>
+	<version>0.5-SNAPSHOT</version>
 	<name>jndi-resources</name>
 	<description>
 		jndi-resource est un utilitaire pour générer les fichiers de configuration 
@@ -336,8 +336,8 @@
 		<dependencies>
 
 			<dependency>
-				<groupId>javax.mail</groupId>
-				<artifactId>mail</artifactId>
+				<groupId>geronimo-spec</groupId>
+				<artifactId>geronimo-spec-javamail</artifactId>
 				<version>[1.0,)</version>
 			</dependency>
 
@@ -402,10 +402,10 @@
 				<version>${project.version}</version>
 			</dependency>
 		</dependencies>
-
 	</dependencyManagement>
+
 	<properties>
-		<current.version>0.4</current.version>
+		<current.version>0.5-SNAPSHOT</current.version>
 		<url.home>http://www.prados.fr/mvn/jndi-resources</url.home>
 		<scp.home>scp://www.prados.fr/home/philippe/www/mvn</scp.home>
 		<saxon.version>8.7</saxon.version>
