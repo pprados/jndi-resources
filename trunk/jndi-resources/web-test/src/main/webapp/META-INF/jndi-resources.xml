@@ -43,6 +43,7 @@
 	<comment>Default</comment>
 	<resource name="jndi-web-test/jdbc/Default" familly="jdbc/default" />
 
+<!-- 
 	<comment>HSQLDB</comment>
 	<resource name="jndi-web-test/jdbc/HSQLDBMinimum" familly="jdbc/hsqldb" />
 
@@ -88,6 +89,7 @@
 	</resource>
 
 	<resource name="jndi-web-test/jdbc/OracleMinimum" familly="jdbc/oracle" />
+-->
 
 <!-- ******************************************************** --> 
 <comment>Javamail</comment>
@@ -96,7 +98,7 @@
 	<resource name="jndi-web-test/mail/email" familly="mail/email">
  		<property name="email" value="${mon.e-mail}"/>
 	</resource>
-
+<!-- 
 	<resource name="jndi-web-test/mail/set" familly="mail/default">
  		<property name="user" value="user@user.org"/>
  		<property name="password" value="password"/>
@@ -149,6 +151,7 @@
 		<property name="transport.connectiontimeout" value="100"/>
 		<property name="transport.timeout" value="100"/>
 	</resource>
+-->
 
 <!-- ******************************************************** --> 
 <comment>URL</comment>
@@ -164,24 +167,121 @@
 
 <!-- ******************************************************** --> 
 <comment>Jms</comment>
-	<resource name="jndi-web-test/jms/ConnectionFactory" familly="jms/default/cf"/>
 
-	<resource name="jndi-web-test/jms/XAConnectionFactory" familly="jms/default/cf">
+<!-- 
+<resource name="jndi-web-test/jms/EmbeddedActiveMQ" familly="jndi/activemq">
+useEmbeddedBroker=true
+brokerXmlConfig=file:/home/pprados/bin/apache-activemq/conf/activemq.xml
+#queue.Queue = jndi-resources.Queue
+#topic.Topic = jndi-resources.Topic
+</resource>
+
+<resource name="jndi-web-test/jms/ConnectionFactory" familly="link/default">
+ <property name="link" value="java:jndi-web-test/jms/EmbeddedActiveMQ/ConnectionFactory"/>
+</resource>
+<resource name="jndi-web-test/jms/XAConnectionFactory" familly="link/default">
+ <property name="link" value="java:jndi-web-test/jms/EmbeddedActiveMQ/ConnectionFactory"/>
+</resource>
+<resource name="jndi-web-test/jms/Queue" familly="link/default">
+ <property name="link" value="java:jndi-web-test/jms/EmbeddedActiveMQ/Queue"/>
+</resource>
+<resource name="jndi-web-test/jms/Topic" familly="link/default">
+ <property name="link" value="java:jndi-web-test/jms/EmbeddedActiveMQ/Topic"/>
+</resource>
+-->
+
+<comment>JMS sur ActiveMQ externe</comment>
+<!--  Problème, le lien n'est pas sur / mais sur java: -->
+<!-- 
+ 	<resource name="jndi-web-test/jms/ConnectionFactory" 			familly="jms/default/cf"/>
+ 	<resource name="jndi-web-test/jms/XAConnectionFactory" 			familly="jms/default/cf">
 		<property name="xa" value="true"/>
 	</resource>
+	<resource name="jndi-web-test/jms/Queue" 						familly="jms/default/queue"/>
+	<resource name="jndi-web-test/jms/Topic" 						familly="jms/default/topic"/>
+-->
 
+	<resource name="jndi-web-test/jms/JBossConnectionFactory"		familly="jms/jboss/cf"/>
+	<resource name="jndi-web-test/jms/JBossTopic"					familly="jms/jboss/topic"/>
+	<resource name="jndi-web-test/jms/JBossQueue"					familly="jms/jboss/queue"/>
+	<resource name="jndi-web-test/jms/JBossXAConnectionFactory"		familly="jms/jboss/cf">
+		<property name="xa" value="xa"/>
+	</resource>
+	<resource name="jndi-web-test/jms/JBossLocalConnectionFactory"	familly="jms/jboss/cf">
+		<property name="xa" value="local"/>
+	</resource>
+	<resource name="jndi-web-test/jms/JBossNoConnectionFactory"		familly="jms/jboss/cf">
+		<property name="xa" value="no"/>
+	</resource>
+
+<!-- 
+<resource name="jndi-web-test/jms/_remoteactivemq" familly="jndi/activemq"/>
+<resource name="jndi-web-test/jms/ActiveMQConnectionFactory" familly="link/default">
+ <property name="link" value="jndi-web-test/jms/_remoteactivemq/ConnectionFactory"/>
+</resource>
+<resource name="jndi-web-test/jms/ActiveMQQueue" familly="link/default">
+ <property name="link" value="jndi-web-test/jms/_remoteactivemq/dynamicQueues/ActiveMQQueue"/>
+</resource>
+<resource name="jndi-web-test/jms/ActiveMQTopic" familly="link/default">
+ <property name="link" value="jndi-web-test/jms/_remoteactivemq/dynamicTopics/ActiveMQTopic"/>
+</resource>
+<resource name="jndi-web-test/jms/ActiveMQXAConnectionFactory" familly="link/default">
+ <property name="link" value="jndi-web-test/jms/_remoteactivemq/ConnectionFactory"/>
+</resource>
+<resource name="jndi-web-test/jms/ActiveMQLocalConnectionFactory" familly="link/default">
+ <property name="link" value="jndi-web-test/jms/_remoteactivemq/ConnectionFactory"/>
+</resource>
+<resource name="jndi-web-test/jms/ActiveMQNoConnectionFactory" familly="link/default">
+ <property name="link" value="jndi-web-test/jms/_remoteactivemq/ConnectionFactory"/>
+</resource>
+ -->
+ 
+ 	<resource name="jndi-web-test/jms/ActiveMQConnectionFactory"	familly="jms/activemq/cf"/>
+	<resource name="jndi-web-test/jms/ActiveMQQueue"				familly="jms/activemq/queue"/>
+	<resource name="jndi-web-test/jms/ActiveMQTopic"				familly="jms/activemq/topic"/>
+ 	<resource name="jndi-web-test/jms/ActiveMQXAConnectionFactory"	familly="jms/activemq/cf">
+		<property name="xa" value="xa"/>
+ 	</resource>
+ 	<resource name="jndi-web-test/jms/ActiveMQLocalConnectionFactory" familly="jms/activemq/cf">
+		<property name="xa" value="local"/>
+ 	</resource>
+ 	<resource name="jndi-web-test/jms/ActiveMQNoConnectionFactory" familly="jms/activemq/cf">
+		<property name="xa" value="no"/>
+ 	</resource>
+ 
+ 	<resource name="jndi-web-test/jms/RemoteActiveMQConnectionFactory"		familly="jms/remote-activemq/cf"/>
+	<resource name="jndi-web-test/jms/RemoteActiveMQQueue"					familly="jms/remote-activemq/queue"/>
+	<resource name="jndi-web-test/jms/RemoteActiveMQTopic"					familly="jms/remote-activemq/topic"/>
+ 	<resource name="jndi-web-test/jms/RemoteActiveMQXAConnectionFactory"	familly="jms/remote-activemq/cf">
+		<property name="xa" value="xa"/>
+ 	</resource>
+ 	<resource name="jndi-web-test/jms/RemoteActiveMQLocalConnectionFactory" familly="jms/remote-activemq/cf">
+		<property name="xa" value="local"/>
+ 	</resource>
+ 	<resource name="jndi-web-test/jms/RemoteActiveMQNoConnectionFactory" 	familly="jms/remote-activemq/cf">
+		<property name="xa" value="no"/>
+ 	</resource>
+ 
+<!--  
+	<resource name="jndi-web-test/jms/JBossMQConnectionFactory" familly="jms/jbossmq/cf"/>
+	<resource name="jndi-web-test/jms/JBossMQXAConnectionFactory" familly="jms/jbossmq/cf"/>
+	<resource name="jndi-web-test/jms/JBossMQTopic" familly="jms/jbossmq/topic"/>
+	<resource name="jndi-web-test/jms/JBossMQQueue" familly="jms/jbossmq/queue"/>
+
+	<resource name="jndi-web-test/jms/JBossMessagingConnectionFactory" familly="jms/jboss-messaging/cf"/>
+	<resource name="jndi-web-test/jms/JBossMessagingXAConnectionFactory" familly="jms/jboss-messaging/cf"/>
+	<resource name="jndi-web-test/jms/JBossMessagingTopic" familly="jms/jboss-messaging/topic"/>
+	<resource name="jndi-web-test/jms/JBossMessagingQueue" familly="jms/jboss-messaging/queue"/>
+-->
 	<resource name="jndi-web-test/jms/DeadLetterQueue" familly="jms/default/queue"/>
 	<resource name="jndi-web-test/jms/ExpiryQueue" familly="jms/default/queue"/>
 
-	<resource name="jndi-web-test/jms/Queue" familly="jms/default/queue"/>
 	<resource name="jndi-web-test/jms/QueueSpecial" familly="jms/default/queue">
 		<property name="dead-letter-queue" value="jndi-web-test/jms/DeadLetterQueue"/>
 		<property name="expiry-queue" value="jndi-web-test/jms/ExpiryQueue"/>
-
-	<property name="full-size" value="99999"/>
-	<property name="redelivery-delay" value="9"/>
-	<property name="message-counter-history-day-limit" value="9"/>
-	
+		<property name="full-size" value="99999"/>
+		<property name="redelivery-delay" value="9"/>
+		<property name="message-counter-history-day-limit" value="9"/>
 		<extends appsrv="jboss5_x-jms-srv">
 			<attribute name="SecurityConfig">
 				<security>
@@ -195,7 +295,6 @@
 		</extends>
 	</resource>
 	
-	<resource name="jndi-web-test/jms/Topic" familly="jms/default/topic"/>
 	<resource name="jndi-web-test/jms/TopicSpecial" familly="jms/default/topic">
 		<property name="dead-letter-queue" value="jndi-web-test/jms/DeadLetterQueue"/>
 		<property name="expiry-queue" value="jndi-web-test/jms/ExpiryQueue"/>
@@ -207,26 +306,17 @@
 		<property name="preserve-ordering" value="false"/>
 	</resource>
 
-	<resource name="jndi-web-test/jms/ConnectionFactoryJBoss" familly="jms/jboss/cf"/>
-	<resource name="jndi-web-test/jms/TopicJBoss" familly="jms/jboss/topic"/>
-	<resource name="jndi-web-test/jms/QueueJBoss" familly="jms/jboss/queue"/>
-
-	<resource name="jndi-web-test/jms/ConnectionFactoryJBossMQ" familly="jms/jbossmq/cf"/>
-	<resource name="jndi-web-test/jms/TopicJBossMQ" familly="jms/jbossmq/topic"/>
-	<resource name="jndi-web-test/jms/QueueJBossMQ" familly="jms/jbossmq/queue"/>
-
-	<resource name="jndi-web-test/jms/ConnectionFactoryJBossMessaging" familly="jms/jboss-messaging/cf"/>
-	<resource name="jndi-web-test/jms/TopicJBossMessaging" familly="jms/jboss-messaging/topic"/>
-	<resource name="jndi-web-test/jms/QueueJBossMessaging" familly="jms/jboss-messaging/queue"/>
-
 <!-- ******************************************************** --> 
+ 
 <comment>Jndi</comment>
+	<resource name="jndi-web-test/jndi/activemq-remote" familly="jndi/activemq"/>
+<!-- 
 	<resource name="jndi-web-test/jndi/file" familly="jndi/file"/>
 	<resource name="jndi-web-test/jndi/jboss" familly="jndi/jboss"/>
 	<resource name="jndi-web-test/jndi/rmi" familly="jndi/rmi"/>
 	<resource name="jndi-web-test/jndi/cos" familly="jndi/cos"/>
 	<resource name="jndi-web-test/jndi/ldap" familly="jndi/ldap"/>
-<!-- <resource name="jndi-web-test/jndi/dns" familly="jndi/dns"/>-->
+
 	<resource name="jndi-web-test/jndi/jbossex" familly="jndi/jboss">
 extension=pour tous
 	    <extends appsrv="jboss3_x">
@@ -248,11 +338,13 @@ ext=pour tomcat 5.5
 ext=pour tomcat 6.0
 	    </extends>
 	</resource>
+-->
 
 <!-- ******************************************************** --> 
 <comment>JAAS</comment>
 	<resource name="jndi-web-test/jaas/default" familly="jaas/default" />
 
+<!-- 
 	<comment>internet</comment>
 	<resource name="jndi-web-test/jaas/internet1" familly="jaas/internet" />
 	<resource name="jndi-web-test/jaas/internet2" familly="jaas/internet" />
@@ -260,12 +352,12 @@ ext=pour tomcat 6.0
 	<comment>intranet</comment>
 	<resource name="jndi-web-test/jaas/intranet1" familly="jaas/intranet" />
  	<resource name="jndi-web-test/jaas/intranet2" familly="jaas/intranet" />
-
+ -->
  	
 <!-- ******************************************************** --> 
 <comment>JNDI Link</comment>
 	<resource name="jndi-web-test/link" familly="link/default" >
-		<property name="link" value="/"/>
+		<property name="link" value="jndi-web-test"/>
 	</resource>
 
 </resources>

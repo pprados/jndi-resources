@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
->
-
+<project>
+	<parent>
+		<artifactId>main</artifactId>
+		<groupId>com.googlecode.jndi-resources</groupId>
+		<version>0.5-SNAPSHOT</version>
+	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.googlecode.jndi-resources</groupId>
 	<artifactId>web-test</artifactId>
@@ -11,20 +12,6 @@
 	<name>web-test</name>
 	<description>Sample with all kind of resources.</description>
 	<url>${url.home}/${project.name}</url>
-
-	<parent>
-		<groupId>com.googlecode.jndi-resources</groupId>
-		<artifactId>main</artifactId>
-		<version>0.4</version>
-	</parent>
-
-	<distributionManagement>
-		<site>
-			<id>www.prados.fr</id>
-			<url>${scp.home}/jndi-resources/${project.name}</url>
-		</site>
-	</distributionManagement>
-
 	<scm>
 		<connection>
 			scm:svn:http://jndi-resources.googlecode.com/svn/trunk/jndi-resources/${project.name}
@@ -34,7 +21,6 @@
 		</developerConnection>
 		<url>http://code.google.com/p/jndi-resources/source/browse</url>
 	</scm>
-	
 	<build>
 		<plugins>
 			<plugin>
@@ -177,30 +163,29 @@
 			</plugin>
 		</plugins>
 	</build>
-	
 	<dependencies>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.2</version>
+			<groupId>geronimo-spec</groupId>
+			<artifactId>geronimo-spec-servlet</artifactId>
+			<version>[2.4-rc4,)</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
+			<groupId>geronimo-spec</groupId>
+			<artifactId>geronimo-spec-javamail</artifactId>
 			<version>[1.0,)</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.jms</groupId>
-			<artifactId>jms</artifactId>
-			<version>[1.0,)</version>
+			<groupId>geronimo-spec</groupId>
+			<artifactId>geronimo-spec-jms</artifactId>
+			<version>[1.1-rc4,)</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.ejb</groupId>
-			<artifactId>ejb</artifactId>
-			<version>[1.0,)</version>
+			<groupId>geronimo-spec</groupId>
+			<artifactId>geronimo-spec-ejb</artifactId>
+			<version>[2.1-rc4,)</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -210,7 +195,12 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-	
+	<distributionManagement>
+		<site>
+			<id>www.prados.fr</id>
+			<url>${scp.home}/jndi-resources/${project.name}</url>
+		</site>
+	</distributionManagement>
 	<properties>
 		<project.build.verifier>
 			${project.build.testSourceDirectory}/../verifier

@@ -32,8 +32,20 @@ import java.util.Properties;
 import java.util.StringTokenizer;
 
 import javax.jms.ConnectionFactory;
+import javax.jms.Message;
+import javax.jms.MessageConsumer;
 import javax.jms.Queue;
+import javax.jms.QueueConnection;
+import javax.jms.QueueConnectionFactory;
+import javax.jms.QueueSender;
+import javax.jms.QueueSession;
+import javax.jms.TextMessage;
 import javax.jms.Topic;
+import javax.jms.TopicConnection;
+import javax.jms.TopicConnectionFactory;
+import javax.jms.TopicPublisher;
+import javax.jms.TopicSession;
+import javax.jms.TopicSubscriber;
 import javax.jms.XAConnectionFactory;
 import javax.mail.Address;
 import javax.mail.Session;
@@ -91,6 +103,16 @@ public class PingServlet extends HttpServlet
 	private List<InetAddress> host_ = new ArrayList<InetAddress>();
 
 	/**
+	 * The list of CF to check.
+	 */
+	private List<ConnectionFactory> cf_ = new ArrayList<ConnectionFactory>();
+
+	/**
+	 * The list of CF to check.
+	 */
+	private List<XAConnectionFactory> xacf_ = new ArrayList<XAConnectionFactory>();
+
+	/**
 	 * The list of jndi context to check.
 	 */
 	private List<Context> jndi_ = new ArrayList<Context>();
@@ -144,7 +166,7 @@ public class PingServlet extends HttpServlet
 			}
 			catch (Throwable x)
 			{
-				out.println("error " + x + "<br/>");
+				out.println("<b>error " + x + "</b><br/>");
 				x.printStackTrace();
 			}
 		}
@@ -243,7 +265,7 @@ public class PingServlet extends HttpServlet
 			}
 			catch (Throwable x)
 			{
-				out.println("error " + x + "<br/>");
+				out.println("<b>error " + x + "</b><br/>");
 				x.printStackTrace();
 			}
 		}
@@ -261,7 +283,7 @@ public class PingServlet extends HttpServlet
 			}
 			catch (Throwable x)
 			{
-				out.println("error " + x + "<br/>");
+				out.println("<b>error " + x + "</b><br/>");
 				x.printStackTrace();
 			}
 		}
@@ -370,7 +392,7 @@ public class PingServlet extends HttpServlet
 			}
 			catch (Exception e)
 			{
-				out.println("error " + e + "<br/>");
+				out.println("<b>error " + e + "</b><br/>");
 			}
 		}
 		try
@@ -395,7 +417,7 @@ public class PingServlet extends HttpServlet
 		}
 		catch (Exception e)
 		{
-			out.println("error " + e + "<br/>");
+			out.println("<b>error " + e + "</b><br/>");
 		}
 	}
 
@@ -408,74 +430,129 @@ public class PingServlet extends HttpServlet
 	{
 		System.out.println("Test JMS");
 		out.println("<h1>Test JMS</h1>");
+		int idx;
 
 		out.println("<h2>Connection Factory</h2>");
 		String s = getInitParameter("jms.cf");
-		for (StringTokenizer token = new StringTokenizer(s, "; \n\t"); token.hasMoreTokens();)
+		idx=0;
+		for (StringTokenizer token = new StringTokenizer(s, "; \n\t"); token.hasMoreTokens();++idx)
 		{
 			try
 			{
 
 				final String jndiName = token.nextToken();
-				ConnectionFactory jms = (ConnectionFactory) new InitialContext().lookup(jndiName);
-				// jms.createConnection().close();
-				out.println("<p>" + jndiName + " is " + jms.getClass() + "</p>");
+				out.print(jndiName + " is ");
+				ConnectionFactory cf = (ConnectionFactory) new InitialContext().lookup(jndiName);
+				cf_.add(idx,cf);
+				out.println(cf.getClass() + "<br/>");
+				cf.createConnection().close();
 			}
 			catch (Exception e)
 			{
-				out.println("error " + e + "<br/>");
+				out.println("<b>error " + e + "</b><br/>");
+				e.printStackTrace();
 			}
 		}
 
 		out.println("<h2>XA Connection Factory</h2>");
 		s = getInitParameter("jms.xacf");
-		for (StringTokenizer token = new StringTokenizer(s, "; \n\t"); token.hasMoreTokens();)
+		idx=0;
+		for (StringTokenizer token = new StringTokenizer(s, "; \n\t"); token.hasMoreTokens();++idx)
 		{
 			try
 			{
 
 				final String jndiName = token.nextToken();
-				XAConnectionFactory jms = (XAConnectionFactory) new InitialContext().lookup(jndiName);
-				// jms.createConnection().close();
-				out.println("<p>" + jndiName + " is " + jms.getClass() + "</p>");
+				out.print(jndiName + " is ");
+				XAConnectionFactory xacf = (XAConnectionFactory) new InitialContext().lookup(jndiName);
+				xacf_.add(idx,xacf);
+				out.println(xacf.getClass() + "<br/>");
+				xacf.createXAConnection().close();
 			}
 			catch (Exception e)
 			{
-				out.println("error " + e + "<br/>");
+				out.println("<b>error " + e + "</b><br/>");
+				e.printStackTrace();
 			}
 		}
 
 		out.println("<h2>Queue</h2>");
 		s = getInitParameter("jms.queue");
-		for (StringTokenizer token = new StringTokenizer(s, "; \n\t"); token.hasMoreTokens();)
+		idx=0;
+		for (StringTokenizer token = new StringTokenizer(s, "; \n\t"); token.hasMoreTokens();++idx)
 		{
 			try
 			{
 
 				final String jndiName = token.nextToken();
-				Queue jms = (Queue) new InitialContext().lookup(jndiName);
-				out.println("<p>" + jndiName + " is " + jms.getClass() + "</p>");
+				out.println(jndiName + " is ");
+				Queue queue = (Queue) new InitialContext().lookup(jndiName);
+				out.println(queue.getClass() + " ");
+
+				QueueConnectionFactory factory=(QueueConnectionFactory)cf_.get(idx);
+				if (factory!=null)
+				{
+					QueueConnection conn = factory.createQueueConnection();
+					conn.start();
+					QueueSession session = conn.createQueueSession(false,QueueSession.AUTO_ACKNOWLEDGE);
+					QueueSender sender=session.createSender(queue);
+					MessageConsumer consumer=session.createConsumer(queue);
+					TextMessage msg= session.createTextMessage("Hello");
+					sender.send(msg);
+	//				msg=(TextMessage)consumer.receive();
+	//				out.println("Receive " + msg.getText() + "<br/>");
+					sender.close();
+					session.close();
+					conn.stop();
+					conn.close();
+					out.println("and is functional");
+				}
+				out.println("<br/>");
 			}
 			catch (Exception e)
 			{
-				out.println("error " + e + "<br/>");
+				out.println("<b>error " + e + "</b><br/>");
+				e.printStackTrace();
 			}
 		}
 
 		out.println("<h2>Topic</h2>");
 		s = getInitParameter("jms.topic");
-		for (StringTokenizer token = new StringTokenizer(s, "; \n\t"); token.hasMoreTokens();)
+		idx=0;
+		for (StringTokenizer token = new StringTokenizer(s, "; \n\t"); token.hasMoreTokens();++idx)
 		{
 			try
 			{
 
 				final String jndiName = token.nextToken();
-				Topic jms = (Topic) new InitialContext().lookup(jndiName);
-				out.println("<p>" + jndiName + " is " + jms.getClass() + "</p>");
-			}
+				out.println(jndiName + " is ");
+				Topic topic = (Topic) new InitialContext().lookup(jndiName);
+				out.println(topic.getClass() + " ");
+				
+				TopicConnectionFactory factory=(TopicConnectionFactory)cf_.get(idx);
+				if (factory!=null)
+				{
+					TopicConnection conn = factory.createTopicConnection();
+					conn.start();
+					TopicSession session = conn.createTopicSession(false,TopicSession.AUTO_ACKNOWLEDGE);
+					TopicSubscriber subscriber = session.createSubscriber(topic);
+					TopicPublisher publisher=session.createPublisher(topic);
+					TextMessage msg=session.createTextMessage("Hello");
+					publisher.send(msg);
+	//				msg=(TextMessage)subscriber.receive();
+	//				out.println("Receive " + msg.getText() + "<br/>");
+					publisher.close();
+					session.close();
+					conn.stop();
+					conn.close();
+					out.println("and is functional");
+				}
+				out.println("<br/>");
+;			}
 			catch (Exception e)
 			{
-				out.println("error " + e + "<br/>");
+				out.println("<b>error " + e + "</b><br/>");
+				e.printStackTrace();
 			}
 		}
 	}
@@ -488,6 +565,7 @@ public class PingServlet extends HttpServlet
 	 */
 	private void jndiLookup(HttpServletRequest request, PrintWriter out)
 	{
+		out.println("<h1>Lookup</h1>");
 		String jndi=request.getParameter("jndi");
 		if (jndi!=null)
 		{
@@ -510,7 +588,7 @@ public class PingServlet extends HttpServlet
 			jndi="";
 		out.println("<form >");
 		out.println("JNDI name:<input name=\"jndi\" value=\""+jndi+"\"/>  <INPUT type=\"submit\" name=\"lookup\" value=\"lookup\">");
-		out.println("</body></html>");
+		out.println("</form>");
 	}
 
 	/**
@@ -526,7 +604,8 @@ public class PingServlet extends HttpServlet
 		}
 		catch (Throwable e)
 		{
-			out.print("<b>" + e + "</b>");
+			out.print("<b>" + e + "</b><br/>");
+			e.printStackTrace();
 		}
 		try
 		{
@@ -534,7 +613,8 @@ public class PingServlet extends HttpServlet
 		}
 		catch (Throwable e)
 		{
-			out.print("<b>" + e + "</b>");
+			out.print("<b>" + e + "</b><br/>");
+			e.printStackTrace();
 		}
 		try
 		{
@@ -542,7 +622,8 @@ public class PingServlet extends HttpServlet
 		}
 		catch (Throwable e)
 		{
-			out.print("<b>" + e + "</b>");
+			out.print("<b>" + e + "</b><br/>");
+			e.printStackTrace();
 		}
 		try
 		{
@@ -550,7 +631,8 @@ public class PingServlet extends HttpServlet
 		}
 		catch (Throwable e)
 		{
-			out.print("<b>" + e + "</b>");
+			out.print("<b>" + e + "</b><br/>");
+			e.printStackTrace();
 		}
 		try
 		{
@@ -558,7 +640,8 @@ public class PingServlet extends HttpServlet
 		}
 		catch (Throwable e)
 		{
-			out.print("<b>" + e + "</b>");
+			out.print("<b>" + e + "</b><br/>");
+			e.printStackTrace();
 		}
 		try
 		{
@@ -566,7 +649,8 @@ public class PingServlet extends HttpServlet
 		}
 		catch (Throwable e)
 		{
-			out.print("<b>" + e + "</b>");
+			out.print("<b>" + e + "</b><br/>");
+			e.printStackTrace();
 		}
 		try
 		{
@@ -574,7 +658,8 @@ public class PingServlet extends HttpServlet
 		}
 		catch (Throwable e)
 		{
-			out.print("<b>" + e + "</b>");
+			out.print("<b>" + e + "</b><br/>");
+			e.printStackTrace();
 		}
 		try
 		{
@@ -582,9 +667,12 @@ public class PingServlet extends HttpServlet
 		}
 		catch (Throwable e)
 		{
-			out.print("<b>" + e + "</b>");
+			out.print("<b>" + e + "</b><br/>");
+			e.printStackTrace();
 		}
 		jndiLookup(request, out);
+		out.println("</body></html>");
+		out.close();
 	}
 
 }

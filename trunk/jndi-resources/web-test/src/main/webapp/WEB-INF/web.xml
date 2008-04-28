@@ -28,6 +28,8 @@
         <display-name>Test Servlet</display-name>
         <description>A unit test of jndi-resources</description>
         <servlet-class>com.googlecode.jndiresources.web.test.PingServlet</servlet-class>
+        
+		<!-- ********* JDBC resources ********* -->
 		<init-param>
 			<param-name>jdbc</param-name>
 			<param-value>
@@ -42,6 +44,8 @@
 			java:comp/env/jdbc/OracleMinimum
 			</param-value>
 		</init-param>
+		
+		<!-- ********* Javamail resources ********* -->
 		<init-param>
 			<param-name>javamail</param-name>
 			<param-value>
@@ -51,24 +55,31 @@
 			java:comp/env/mail/freeprotocol
 			</param-value>
 		</init-param>
+		
 		<init-param>
 			<param-name>email</param-name>
 			<param-value>
 			java:comp/env/mail/email
 			</param-value>
 		</init-param>
+		
+		<!-- ********* URL resources ********* -->
 		<init-param>
 			<param-name>url</param-name>
 			<param-value>
 			java:comp/env/url/properties
 			</param-value>
 		</init-param>
+		
+		<!-- ********* Host resources ********* -->
 		<init-param>
 			<param-name>host</param-name>
 			<param-value>
 			java:comp/env/host/srvname
 			</param-value>
 		</init-param>
+		
+		<!-- ********* JNDI resources ********* -->
 		<init-param>
 			<param-name>jndi</param-name>
 			<param-value>
@@ -77,42 +88,67 @@
 			java:comp/env/jndi/rmi
 			java:comp/env/jndi/cos
 			java:comp/env/jndi/ldap
+			java:comp/env/jndi/activemq-remote
 <!--
 			java:comp/env/jndi/dns
 			java:comp/env/jndi/default
 -->
 			</param-value>
 		</init-param>
+		
+		<!-- ********* JMS resources ********* -->
 		<init-param>
 			<param-name>jms.cf</param-name>
 			<param-value>
-			java:comp/env/jms/ConnectionFactory
+			java:comp/env/jms/JBossConnectionFactory
+			java:comp/env/jms/ActiveMQConnectionFactory
+			java:comp/env/jms/RemoteActiveMQConnectionFactory
+
+			java:comp/env/jms/JBossLocalConnectionFactory
+			java:comp/env/jms/JBossNoConnectionFactory
+			java:comp/env/jms/ActiveMQLocalConnectionFactory
+			java:comp/env/jms/ActiveMQNoConnectionFactory
+			java:comp/env/jms/RemoteActiveMQLocalConnectionFactory
+			java:comp/env/jms/RemoteActiveMQNoConnectionFactory
 			</param-value>
 		</init-param>
+		
 		<init-param>
 			<param-name>jms.xacf</param-name>
 			<param-value>
-			java:comp/env/jms/XAConnectionFactory
+			java:comp/env/jms/JBossXAConnectionFactory
+			java:comp/env/jms/ActiveMQXAConnectionFactory
+			java:comp/env/jms/RemoteActiveMQXAConnectionFactory
 			</param-value>
 		</init-param>
+		
 		<init-param>
 			<param-name>jms.queue</param-name>
 			<param-value>
-			java:comp/env/jms/Queue
+			java:comp/env/jms/JBossQueue
+			java:comp/env/jms/ActiveMQQueue
+			java:comp/env/jms/RemoteActiveMQQueue
 			</param-value>
 		</init-param>
+		
 		<init-param>
 			<param-name>jms.topic</param-name>
 			<param-value>
-			java:comp/env/jms/Topic
+			java:comp/env/jms/JBossTopic
+			java:comp/env/jms/ActiveMQTopic
+			java:comp/env/jms/RemoteActiveMQTopic
 			</param-value>
 		</init-param>
+		
+		<!-- ********* Link resources ********* -->
 		<init-param>
 			<param-name>link</param-name>
 			<param-value>
 			java:comp/env/link
 			</param-value>
 		</init-param>
+		
+		<!-- ********* JAAS resources ********* -->
 		<init-param>
 			<param-name>jaas</param-name>
 			<param-value>
@@ -135,7 +171,7 @@
 		<welcome-file>/</welcome-file>
 	</welcome-file-list>
 
-
+<!-- ********* JDBC resources ********* -->
    <resource-ref id="jdbc-Default">
   	  <description>Datasource par défaut</description>
       <res-ref-name>jdbc/Default</res-ref-name>
@@ -199,7 +235,7 @@
    </resource-ref>
    
    
-<!-- Javamail resources -->
+<!-- ********* Javamail resources ********* -->
 	<resource-ref id="mail-email">
 	   <description>Un email</description>
 	   <res-ref-name>mail/email</res-ref-name>
@@ -217,8 +253,7 @@
 	   <res-sharing-scope>Shareable</res-sharing-scope>
 	</resource-ref>
 
-	<resource-ref id="mail-set
-	">
+	<resource-ref id="mail-set">
 	   <description>Javamail default</description>
 	   <res-ref-name>mail/set</res-ref-name>
 	   <res-type>javax.mail.Session</res-type>
@@ -242,7 +277,7 @@
 	   <res-sharing-scope>Shareable</res-sharing-scope>
 	</resource-ref>
 
-<!-- URL resources -->
+<!-- ********* URL resources ********* -->
 	<resource-ref id="url-ws">
 	   <description>Url</description>
 	   <res-ref-name>url/properties</res-ref-name>
@@ -252,7 +287,7 @@
 	   <res-sharing-scope>Shareable</res-sharing-scope>
 	</resource-ref>
 
-<!-- Host resources -->
+<!-- ********* Host resources ********* -->
 	<resource-ref id="host-srvname">
 	   <description>Host</description>
 	   <res-ref-name>host/srvname</res-ref-name>
@@ -262,54 +297,162 @@
 	</resource-ref>
 
 
-<!-- JMS resources -->
-	<resource-ref id="jms-ConnectionFactory">
+<!-- ********* JMS resources ********* -->
+
+	<!-- JBoss -->
+	<resource-ref id="jms-JBossConnectionFactory">
 	   <description>Serveurs de queues</description>
-	   <res-ref-name>jms/ConnectionFactory</res-ref-name>
+	   <res-ref-name>jms/JBossConnectionFactory</res-ref-name>
 	   <res-type>javax.jms.ConnectionFactory</res-type>
 	   <res-auth>Application</res-auth>
 	   <res-sharing-scope>Shareable</res-sharing-scope>
 	</resource-ref>
 
-	<resource-ref id="jms-XAConnectionFactory">
+	<resource-ref id="jms-JBossLocalConnectionFactory">
 	   <description>Serveurs de queues</description>
-	   <res-ref-name>jms/XAConnectionFactory</res-ref-name>
+	   <res-ref-name>jms/JBossLocalConnectionFactory</res-ref-name>
+	   <res-type>javax.jms.ConnectionFactory</res-type>
+	   <res-auth>Application</res-auth>
+	   <res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+
+	<resource-ref id="jms-JBossNoConnectionFactory">
+	   <description>Serveurs de queues</description>
+	   <res-ref-name>jms/JBossNoConnectionFactory</res-ref-name>
+	   <res-type>javax.jms.ConnectionFactory</res-type>
+	   <res-auth>Application</res-auth>
+	   <res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+
+	<!-- ActiveMQ -->
+
+	<resource-ref id="jms-ActiveMQConnectionFactory">
+	   <description>Serveurs de queues</description>
+	   <res-ref-name>jms/ActiveMQConnectionFactory</res-ref-name>
+	   <res-type>javax.jms.ConnectionFactory</res-type>
+	   <res-auth>Application</res-auth>
+	   <res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+
+	<resource-ref id="jms-ActiveMQLocalConnectionFactory">
+	   <description>Serveurs de queues</description>
+	   <res-ref-name>jms/ActiveMQLocalConnectionFactory</res-ref-name>
+	   <res-type>javax.jms.ConnectionFactory</res-type>
+	   <res-auth>Application</res-auth>
+	   <res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+
+	<resource-ref id="jms-ActiveMQNoConnectionFactory">
+	   <description>Serveurs de queues</description>
+	   <res-ref-name>jms/ActiveMQNoConnectionFactory</res-ref-name>
+	   <res-type>javax.jms.ConnectionFactory</res-type>
+	   <res-auth>Application</res-auth>
+	   <res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+
+	<!-- RemoteActiveMQ -->
+
+	<resource-ref id="jms-RemoteActiveMQConnectionFactory">
+	   <description>Serveurs de queues</description>
+	   <res-ref-name>jms/RemoteActiveMQConnectionFactory</res-ref-name>
+	   <res-type>javax.jms.ConnectionFactory</res-type>
+	   <res-auth>Application</res-auth>
+	   <res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+
+	<resource-ref id="jms-RemoteActiveMQLocalConnectionFactory">
+	   <description>Serveurs de queues</description>
+	   <res-ref-name>jms/RemoteActiveMQLocalConnectionFactory</res-ref-name>
+	   <res-type>javax.jms.ConnectionFactory</res-type>
+	   <res-auth>Application</res-auth>
+	   <res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+
+	<resource-ref id="jms-RemoteActiveMQNoConnectionFactory">
+	   <description>Serveurs de queues</description>
+	   <res-ref-name>jms/RemoteActiveMQNoConnectionFactory</res-ref-name>
+	   <res-type>javax.jms.ConnectionFactory</res-type>
+	   <res-auth>Application</res-auth>
+	   <res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+
+	<!-- XA -->
+
+	<resource-ref id="jms-JBossXAConnectionFactory">
+	   <description>Serveurs de queues</description>
+	   <res-ref-name>jms/JBossXAConnectionFactory</res-ref-name>
 	   <res-type>javax.jms.XAConnectionFactory</res-type>
 	   <res-auth>Application</res-auth>
 	   <res-sharing-scope>Shareable</res-sharing-scope>
 	</resource-ref>
 
-<!--
-	<resource-env-ref id="jms-Queue">
-	   <description>Une queues</description>
-	   <resource-env-ref-name>jms/Queue</resource-env-ref-name>
-	   <resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
-	</resource-env-ref>
--->
-	<resource-ref id="jms-Queue">
-	   <description>Une queues</description>
-	   <res-ref-name>jms/Queue</res-ref-name>
+	<resource-ref id="jms-JBossXAConnectionFactory">
+	   <description>Serveurs de queues</description>
+	   <res-ref-name>jms/ActiveMQXAConnectionFactory</res-ref-name>
+	   <res-type>javax.jms.XAConnectionFactory</res-type>
+	   <res-auth>Application</res-auth>
+	   <res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+
+	<resource-ref id="jms-RemoteActiveMQXAConnectionFactory">
+	   <description>Serveurs de queues</description>
+	   <res-ref-name>jms/RemoteActiveMQXAConnectionFactory</res-ref-name>
+	   <res-type>javax.jms.XAConnectionFactory</res-type>
+	   <res-auth>Application</res-auth>
+	   <res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+
+	<!-- Queue -->
+	<resource-ref id="jms-JBossQueue">
+	   <description>Une queue JBoss</description>
+	   <res-ref-name>jms/JBossQueue</res-ref-name>
 	   <res-type>javax.jms.Queue</res-type>
 	   <res-auth>Application</res-auth>
 	   <res-sharing-scope>Shareable</res-sharing-scope>
 	</resource-ref>
 	
-<!--
-	<resource-env-ref id="jms-Topic">
-	   <description>Un Topic</description>
-	   <resource-env-ref-name>jms/Topic</resource-env-ref-name>
-	   <resource-env-ref-type>javax.jms.Topic</resource-env-ref-type>
-	</resource-env-ref>
--->
-	<resource-ref id="jms-Topic">
-	   <description>Un Topic</description>
-	   <res-ref-name>jms/Topic</res-ref-name>
+	<resource-ref id="jms-ActiveMQQueue">
+	   <description>Une queue ActiveMQ</description>
+	   <res-ref-name>jms/ActiveMQQueue</res-ref-name>
+	   <res-type>javax.jms.Queue</res-type>
+	   <res-auth>Application</res-auth>
+	   <res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+	
+	<resource-ref id="jms-RemoteActiveMQQueue">
+	   <description>Une queue RemoteActiveMQ</description>
+	   <res-ref-name>jms/RemoteActiveMQQueue</res-ref-name>
+	   <res-type>javax.jms.Queue</res-type>
+	   <res-auth>Application</res-auth>
+	   <res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+	
+	<!-- Topic -->
+	<resource-ref id="jms-JBossTopic">
+	   <description>Un Topic JBoss</description>
+	   <res-ref-name>jms/JBossTopic</res-ref-name>
 	   <res-type>javax.jms.Topic</res-type>
 	   <res-auth>Application</res-auth>
 	   <res-sharing-scope>Shareable</res-sharing-scope>
 	</resource-ref>
 
-<!-- JNDI -->
+	<resource-ref id="jms-ActiveMQTopic">
+	   <description>Un Topic ActiveMQ</description>
+	   <res-ref-name>jms/ActiveMQTopic</res-ref-name>
+	   <res-type>javax.jms.Topic</res-type>
+	   <res-auth>Application</res-auth>
+	   <res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+
+	<resource-ref id="jms-RemoteActiveMQTopic">
+	   <description>Un Topic RemoteActiveMQ</description>
+	   <res-ref-name>jms/RemoteActiveMQTopic</res-ref-name>
+	   <res-type>javax.jms.Topic</res-type>
+	   <res-auth>Application</res-auth>
+	   <res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+
+<!-- ********* JNDI ********* -->
 	<!--
 	<resource-env-ref id="jndi-default">
 	   <description>Un Context</description>
@@ -417,7 +560,22 @@
 	   <res-sharing-scope>Shareable</res-sharing-scope>
 	</resource-ref>
 
-<!-- Link -->   
+<!--	
+	<resource-env-ref id="jndi-activemq-remote">
+	   <description>Un Context ActiveMQ</description>
+	   <resource-env-ref-name>jndi/activemq-remote</resource-env-ref-name>
+	   <resource-env-ref-type>javax.naming.Context</resource-env-ref-type>
+	</resource-env-ref>
+-->
+	<resource-ref id="jndi-activemq-remote">
+	   <description>Un Context ActiveMQ</description>
+	   <res-ref-name>jndi/activemq-remote</res-ref-name>
+	   <res-type>javax.naming.Context</res-type>
+	   <res-auth>Application</res-auth>
+	   <res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+
+<!-- ********* Link ********* -->   
    <resource-ref id="link-home">
 	  <description>Un lien JNDI</description>
       <res-ref-name>link</res-ref-name>
@@ -426,7 +584,7 @@
       <res-sharing-scope>Shareable</res-sharing-scope>
    </resource-ref>
 
-<!-- JAAS -->   
+<!-- ********* JAAS ********* -->   
    <resource-ref id="jaas-default">
 	  <description>Une authentification</description>
       <res-ref-name>jaas/default</res-ref-name>
