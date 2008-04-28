@@ -323,7 +323,7 @@ public class HelloJNDIServlet extends HttpServlet
 			jndi="";
 		out.println("<form >");
 		out.println("JNDI name:<input name=\"jndi\" value=\""+jndi+"\"/>  <INPUT type=\"submit\" name=\"lookup\" value=\"lookup\">");
-		out.println("</body></html>");
+		out.println("</form>");
 	}
 	
 	/**
