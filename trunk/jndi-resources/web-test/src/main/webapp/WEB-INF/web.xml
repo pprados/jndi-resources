@@ -115,8 +115,6 @@
 			<param-name>jms.xacf</param-name>
 			<param-value>
 			java:comp/env/jms/JBossXAConnectionFactory
-			java:comp/env/jms/ActiveMQXAConnectionFactory
-			java:comp/env/jms/RemoteActiveMQXAConnectionFactory
 			</param-value>
 		</init-param>
 		
