@@ -81,6 +81,7 @@
 			java:comp/env/jndi/rmi
 			java:comp/env/jndi/cos
 			java:comp/env/jndi/ldap
+			java:comp/env/jndi/activemq-remote
 <!--
 			java:comp/env/jndi/dns
 			java:comp/env/jndi/default
@@ -90,25 +91,42 @@
 		<init-param>
 			<param-name>jms.cf</param-name>
 			<param-value>
-			java:comp/env/jms/ConnectionFactory
+			java:comp/env/jms/JBossConnectionFactory
+			java:comp/env/jms/ActiveMQConnectionFactory
+			java:comp/env/jms/RemoteActiveMQConnectionFactory
+
+			java:comp/env/jms/JBossLocalConnectionFactory
+			java:comp/env/jms/JBossNoConnectionFactory
+			java:comp/env/jms/ActiveMQLocalConnectionFactory
+			java:comp/env/jms/ActiveMQNoConnectionFactory
+			java:comp/env/jms/RemoteActiveMQLocalConnectionFactory
+			java:comp/env/jms/RemoteActiveMQNoConnectionFactory
 			</param-value>
 		</init-param>
 		<init-param>
 			<param-name>jms.xacf</param-name>
 			<param-value>
-			java:comp/env/jms/XAConnectionFactory
+			java:comp/env/jms/JBossXAConnectionFactory
+<!-- 
+			java:comp/env/jms/ActiveMQXAConnectionFactory
+			java:comp/env/jms/RemoteActiveMQXAConnectionFactory
+-->			
 			</param-value>
 		</init-param>
 		<init-param>
 			<param-name>jms.queue</param-name>
 			<param-value>
-			java:comp/env/jms/Queue
+			java:comp/env/jms/JBossQueue
+			java:comp/env/jms/ActiveMQQueue
+			java:comp/env/jms/RemoteActiveMQQueue
 			</param-value>
 		</init-param>
 		<init-param>
 			<param-name>jms.topic</param-name>
 			<param-value>
-			java:comp/env/jms/Topic
+			java:comp/env/jms/JBossTopic
+			java:comp/env/jms/ActiveMQTopic
+			java:comp/env/jms/RemoteActiveMQTopic
 			</param-value>
 		</init-param>
 		<init-param>
