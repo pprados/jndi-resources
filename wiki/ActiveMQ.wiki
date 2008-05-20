@@ -29,7 +29,7 @@ Suivez les étapes jusqu'a "*Configuring JBoss*". Il n'est pas nécessaire de co
 
 Vous pouvez ensuite utiliser la [jms famille] `jms/activemq`. 
 Rien ne sera généré pour les [transformations cibles] `jboss-jms-srv` et `jboss-jndi-srv`.
-Par contre, la cible `jboss-jndi-cli` génère la publication des ressources dans le contexte `java:`.
+Par contre, les cibles `jboss` et `jboss-jndi-cli` génèrent la publication des ressources dans le contexte `java:`.
 
 Les serveurs JMS sont découvert dynamiquement par ActiveMQ.
 
