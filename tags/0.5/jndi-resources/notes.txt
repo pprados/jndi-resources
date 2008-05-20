@@ -1,0 +1,4 @@
+Faire une cible activemq pour la publication des queues JMS, une cible activemq-embedded.
+Voir l'approche liens externe via jndi/activemq.
+
+Ajouter Postgres et DerbyDB datasource.
