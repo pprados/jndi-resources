@@ -65,8 +65,9 @@ Par exemple :
 	
 	<property name="redelivery-delay"      value="0"/>
 	<property name="max-delivery-attempts" value="-1"/>
-	<property name="full-size"              value="-1"/>
+	<property name="max-size"              value="-1"/>
 	<property name="message-counter-history-day-limit" value="-1"/>
+	<property name="preserve-ordering"     value="false"/>
 </resource>
 	
 <resource name="JNDI-test/jms/QueueSpec"       familly="jms/default/queue">
@@ -116,8 +117,8 @@ voici des exemples.
 </resource>
 ...
 }}}
-Notez que les queues JbossMQ ne savent pas gérer des queues de messages morts 
-spécifiques à chaque queue. Le paramètre `dead-letter-queue` est alors ignoré.
+Notez que les files JbossMQ ne savent pas gérer des files de messages morts 
+spécifiques à chaque files. Le paramètre `dead-letter-queue` est alors ignoré.
 
 == Déclinaisons ==
 Les déclinaisons possibles pour le paramètre [familles familly] du fichier 
@@ -127,6 +128,8 @@ Les déclinaisons possibles pour le paramètre [familles familly] du fichier
 || `jms/jboss` || Utilise les _drivers_ du serveur JMS du JBoss courant (JBoss MQ ou JBoss Messaging suivant les cas). ||
 || `jms/jbossmq` || Utilise spécifiquement un serveur JMS JBoss MQ. ||
 || `jms/jboss-messaging` || Utilise spécifiquement un serveur JMS JBoss Messaging. ||
+|| `jms/activemq` || Utilise spécifiquement un serveur JMS inclus dans le serveur d'application [ActiveMQ]. ||
+|| `jms/remote-activemq` || Utilise spécifiquement un serveur JMS [ActiveMQ] via son annuaire JNDI. ||
 
 == Variables ==
 Les variables à valoriser lors de l'installation pour gérer ces ressources sont les suivantes :
@@ -134,6 +137,12 @@ Les variables à valoriser lors de l'installation pour gérer ces ressources son
 || `${jms.full-size}` || Le nombre maximum de message dans la queue. Valeur par défaut : 200000 ||
 || `${jms.redelivery-delay}` || Le délais avant de ré-émettre le message. Valeur par défaut : 0 ||
 || `${jms.message-counter-history-day-limit}` || La durée de vie maximum des messages dans la queue. Valeur par défaut : -1 ||
+|| `${jms.activemq.url}` || L'URL de connexion. Valeur par défaut : `vm://localhost,tcp://${jms.activemq.host}:${jms.activemq.port}` ||
+|| `${jms.activemq.port}` || Le port du serveur. Valeur par défaut : 61616 ||
+|| `${jms.activemq.host}` || Le host du serveur ActiveMQ. Valeur par défaut : localhost || 
+|| `${jms.activemq.url.vm}` || L'URL de connexion locale. Valeur par défaut : vm://localhost ||
+|| `${jms.activemq.url.tcp}` || L'URL de connexion tcp. Valeur par défaut : tcp://${jms.activemq.host}:${jms.activemq.port} ||
+|| `${jms.activemq.url}` || L'URL de connexion. Valeur par défaut : ${jms.activemq.url.vm},${jms.activemq.url.tcp} ||
 
 Références :
  * http://labs.jboss.com/file-access/default/members/jbossmessaging/freezone/docs/userguide-1.4.0.SP2/html/configuration.html#conf.destination.queue
