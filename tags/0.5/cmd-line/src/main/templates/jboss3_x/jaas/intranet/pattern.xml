@@ -1,0 +1,17 @@
+<!-- 
+Update the pattern to respect YOUR intranet model.
+It's possible to add a variable.
+ -->
+<!DOCTYPE policy PUBLIC "-//JBoss//DTD JBOSS Security Config 3.0//EN" "http://www.jboss.org/j2ee/dtd/security_config.dtd">
+
+<policy>
+    <application-policy name = "intranet">
+       <authentication>
+          <login-module code="org.jboss.security.auth.spi.UsersRolesLoginModule"
+             flag = "required">
+           <module-option name="usersProperties">props/intranet-users.properties</module-option>
+           <module-option name="rolesProperties">props/intranet-roles.properties</module-option>
+          </login-module>
+       </authentication>
+    </application-policy>
+</policy>
