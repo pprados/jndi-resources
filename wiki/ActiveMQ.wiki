@@ -17,7 +17,7 @@ et publie des ConnectionFactories pour permettre l'intégration standards des fi
 le serveur d'application, en partageant la JVM.
 
 === Utilisation sous JBoss ===
-JBoss ne respecte pas complètement les spécifications RAR. En effet, les ressources
+Avec JBoss, les ressources
 exposées par un composant RAR ne peuvent être visibles que dans le contexte `java:`.
 Il n'est donc pas possible de publier les ressources ActiveMQ dans un annuaire JNDI centralisé.
 
