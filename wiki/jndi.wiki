@@ -65,6 +65,7 @@ Les déclinaisons possibles pour le paramètre [familles familly] du fichier
 || `jndi/jboss` || Offre la manipulation d'un annuaire JNDI JBoss distant. ||
 || `jndi/ldap` || Manipule un annuaire LDAP. ||
 || `jndi/rmi` || Manipule un annuaire RMI. ||
+|| `jndi/activemq` || Manipule un annuaire JNDI publié par [ActiveMQ]. ||
 
 == Variables ==
 Les variables à valoriser lors de l'installation pour gérer ces ressources sont les suivantes :
@@ -82,5 +83,6 @@ Les variables à valoriser lors de l'installation pour gérer ces ressources son
 || *`${jndi.ldap.security.principal}`* || L'identité de connexion a l'annuaire LDAP. Il n'y a pas de valeur par défaut.||
 || *`${jndi.ldap.security.credentials}`* || Le mot de passe pour la connexion LDAP. Il n'y a pas de valeur par défaut.||
 || `${jndi.ldap.batchsize}` || Indique le nombre d'objet maximum retourné lors d'une requête à un référentiel CORBA. La valeur par défaut est 10.||
+|| `${jndi.activemq.url}` || Indique l'URL de connection au serveur ActiveMQ. La valeur par défaut est [jms ${jms.activemq.url}] ||
 
 [ressources Les autres ressources]
