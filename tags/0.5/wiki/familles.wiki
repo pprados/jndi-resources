@@ -1,0 +1,33 @@
+#summary Les familles de ressources
+#labels Phase-configuration,Featured
+
+= Familles de ressources =
+Le tableau suivant décrit les différentes familles de ressources gérés par l'outil. Il s'agit des types de ressources que peut générer l'outil. Bien entendu, d'autres ressources peuvent être nécessaire. Elles apparaîtront au fur et à mesure des évolutions de l'outil. Vous pouvez également l'[etendre étendre] pour générer vos propres ressources.
+
+|| *Famille* || *Description* ||
+|| [host host/default] || Déclare un host dans l'arbre JNDI. ||
+|| [jdbc jdbc/default] || Utilise la base de données par défaut du serveur d'applications. ||
+|| [jdbc jdbc/hsqldb] || Utilise une base de données de type [http://www.hsqldb.org HSQLDB].||
+|| [jdbc jdbc/mysql] || Utilise une base de données [http://www.mysql.com MySql]. ||
+|| [jdbc jdbc/oracle] || Utilise une base de données [http://www.oracle.com Oracle]. ||
+|| [jms jms/default] || Utilise les serveur JMS par défauts du serveur d'applications.||
+|| [jms jms/jboss] || Utilise les drivers du serveur JMS du JBoss courant (JBoss MQ ou JBoss Messaging suivant les cas). ||
+|| [jms jms/jbossmq] || Utilise spécifiquement un serveur JMS JBoss MQ. ||
+|| [jms jms/jboss-messaging] || Utilise spécifiquement un serveur JMS JBoss Messaging. ||
+|| [jndi jndi/default] || Propose un lien vers un annuaire JNDI de la même famille que celle du serveur d'application. ||
+|| [jndi jndi/cos] || Propose un lien vers un référentiel d'objets CORBA. ||
+|| [jndi jndi/dns] || Permet un accès à un serveur DNS ||
+|| [jndi jndi/file] || Permet un accès à un répertoire.||
+|| [jndi jndi/jboss] || Offre la manipulation d'un annuaire JNDI JBoss distant.||
+|| [jndi jndi/ldap] || Manipule un serveur LDAP ||
+|| [jndi jndi/rmi] || Consulte une référentiel RMI. ||
+|| [mail mail/default] || Une session Javamail.||
+|| [mail mail/email] || Une adresse email.||
+|| [url url/default] || Déclare une URL dans l'annuaire JNDI. Utile pour les [EJB] ou [EAR].||
+|| [link link/default] || Déclare un lien entre clefs JNDI.||
+|| [jaas jaas/default] || Authentifications par défaut de JBoss.||
+|| [jaas jaas/intranet] || Authentification Intranet pour JBoss.||
+|| [jaas jaas/internet] || Authentification Internet pour JBoss.||
+
+Précédent : [exemple Exemple rapide]
+Suite : [conventions Les conventions]
