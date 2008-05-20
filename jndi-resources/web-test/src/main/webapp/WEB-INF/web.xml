@@ -30,7 +30,7 @@
         <servlet-class>com.googlecode.jndiresources.web.test.PingServlet</servlet-class>
         
 		<!-- ********* JDBC resources ********* -->
-		<!--init-param-->
+		<init-param>
 			<param-name>jdbc</param-name>
 			<param-value>
 			java:comp/env/jdbc/HSQLDBMinimum
@@ -45,7 +45,7 @@
 			</param-value>
 		</init-param>
 		<!-- ********* Javamail resources ********* -->
-		<!-- init-param-->
+		<init-param>
 			<param-name>javamail</param-name>
 			<param-value>
 			java:comp/env/mail/default
@@ -55,7 +55,7 @@
 			</param-value>
 		</init-param>
 		
-		<!-- init-param-->
+		<init-param>
 			<param-name>email</param-name>
 			<param-value>
 			java:comp/env/mail/email
@@ -63,7 +63,7 @@
 		</init-param>
 		
 		<!-- ********* URL resources ********* -->
-		<!-- init-param-->
+		<init-param>
 			<param-name>url</param-name>
 			<param-value>
 			java:comp/env/url/properties
@@ -71,7 +71,7 @@
 		</init-param>
 		
 		<!-- ********* Host resources ********* -->
-		<!-- init-param-->
+		<init-param>
 			<param-name>host</param-name>
 			<param-value>
 			java:comp/env/host/srvname
@@ -147,7 +147,7 @@
 		</init-param>
 		
 		<!-- ********* JAAS resources ********* -->
-		<!-- init-param-->
+		<init-param>
 			<param-name>jaas</param-name>
 			<param-value>
 			java:comp/env/jaas/default
