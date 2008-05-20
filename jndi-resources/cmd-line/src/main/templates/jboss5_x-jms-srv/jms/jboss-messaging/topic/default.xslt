@@ -101,7 +101,7 @@
 			<xsl:with-param name="default">${jms.message-counter-history-day-limit}</xsl:with-param>
 		</xsl:call-template>
 
-		<xsl:copy-of select="jndi:extends[@appsrv=$appsrv]/*" copy-namespaces="no"/>
+		<xsl:apply-templates select="jndi:extends[@appsrv=$appsrv]/*" mode="remove-namespace"/>
 	</mbean>
 </xsl:template>
 
@@ -125,5 +125,22 @@
 </xsl:template>
 
 <xsl:template match="text()|comment()" />
+
+<!-- Remove name-space -->
+<xsl:template match="/|comment()|processing-instruction()" mode="remove-namespace">
+    <xsl:copy>
+      <xsl:apply-templates mode="remove-namespace"/>
+    </xsl:copy>
+</xsl:template>
+<xsl:template match="*" mode="remove-namespace">
+    <xsl:element name="{local-name()}">
+      <xsl:apply-templates select="@*|node()" mode="remove-namespace"/>
+    </xsl:element>
+</xsl:template>
+<xsl:template match="@*" mode="remove-namespace">
+    <xsl:attribute name="{local-name()}">
+      <xsl:value-of select="."/>
+    </xsl:attribute>
+</xsl:template>
 
 </xsl:stylesheet>

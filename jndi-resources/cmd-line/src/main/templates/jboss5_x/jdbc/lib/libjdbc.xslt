@@ -76,7 +76,7 @@
 
 				<xsl:call-template name="params"/>
 				<xsl:copy-of select="$jdbc.addon"/>
-				<xsl:copy-of select="jndi:extends[@appsrv=$appsrv]/*" copy-namespaces="no"/>
+				<xsl:apply-templates select="jndi:extends[@appsrv=$appsrv]/*" mode="remove-namespace"/>
 			</local-tx-datasource>
 		</xsl:if>
 
@@ -100,7 +100,7 @@
 
 				<xsl:call-template name="params"/>
 				<xsl:copy-of select="$jdbc.addon"/>
-				<xsl:copy-of select="jndi:extends[@appsrv=$appsrv]/*" copy-namespaces="no"/>
+				<xsl:apply-templates select="jndi:extends[@appsrv=$appsrv]/*" mode="remove-namespace"/>
 			</no-tx-datasource>
 		</xsl:if>
 
@@ -128,7 +128,7 @@
 				</xa-datasource-property>
 				<xsl:call-template name="params"/>
 				<xsl:copy-of select="$jdbc.xa.addon"/>
-				<xsl:copy-of select="jndi:extends[@appsrv=$appsrv]/*" copy-namespaces="no"/>
+				<xsl:apply-templates select="jndi:extends[@appsrv=$appsrv]/*" mode="remove-namespace"/>
 			</xa-datasource>
 		</xsl:if>
 
@@ -201,6 +201,23 @@
 	    	<xsl:otherwise>${jdbc.transaction-isolation}</xsl:otherwise>
 	    </xsl:choose>
     </transaction-isolation>
+</xsl:template>
+
+<!-- Remove name-space -->
+<xsl:template match="/|comment()|processing-instruction()" mode="remove-namespace">
+    <xsl:copy>
+      <xsl:apply-templates mode="remove-namespace"/>
+    </xsl:copy>
+</xsl:template>
+<xsl:template match="*" mode="remove-namespace">
+    <xsl:element name="{local-name()}">
+      <xsl:apply-templates select="@*|node()" mode="remove-namespace"/>
+    </xsl:element>
+</xsl:template>
+<xsl:template match="@*" mode="remove-namespace">
+    <xsl:attribute name="{local-name()}">
+      <xsl:value-of select="."/>
+    </xsl:attribute>
 </xsl:template>
 
 </xsl:stylesheet>

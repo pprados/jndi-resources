@@ -55,13 +55,13 @@
 	<xsl:text>&#xA;   </xsl:text>
 
 	<mbean code="org.jboss.naming.ExternalContext" 
-	       name="{$currentid}:service=ExternalContext,jndiName=_remoteActiveMQ">
+	       name="{$currentid}:service=ExternalContext,jndiName=_${jndi-prefix}_remoteActiveMQ">
 	    <attribute name="JndiName"><xsl:value-of select="concat('${jndi-prefix}','_remoteActiveMQ')"/></attribute>
 	    <attribute name="InitialContext">javax.naming.InitialContext</attribute>
 	    <attribute name="RemoteAccess">true</attribute>
 	    <attribute name="Properties">
 java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory
-java.naming.provider.url=${jndi.activemq.url}
+java.naming.provider.url=${jms.activemq.url.tcp}
 connectionFactoryNames = ConnectionFactory, QueueConnectionFactory, TopicConnectionFactory
 	    </attribute>	    
 	    <depends>jboss:service=Naming</depends>

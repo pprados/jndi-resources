@@ -59,22 +59,39 @@
    <mbean code="org.jboss.jms.server.connectionfactory.ConnectionFactory"
       name="{$currentid}:jms={@name},service=ConnectionFactory"
       xmbean-dd="xmdesc/ConnectionFactory-xmbean.xml">
-      <depends optional-attribute-name="ServerPeer">jboss.messaging:service=ServerPeer</depends>
-      <depends optional-attribute-name="Connector">jboss.messaging:service=Connector,transport=bisocket</depends>
- 	  <depends>jboss:service=Naming</depends>
-      <depends>jboss.messaging:service=PostOffice</depends>
+		<depends optional-attribute-name="ServerPeer">jboss.messaging:service=ServerPeer</depends>
+		<depends optional-attribute-name="Connector">jboss.messaging:service=Connector,transport=bisocket</depends>
+		<depends>jboss:service=Naming</depends>
+		<depends>jboss.messaging:service=PostOffice</depends>
+		
+		<attribute name="JNDIBindings">
+		     <bindings>
+		        <binding><xsl:value-of select="concat('${jndi-prefix}',@name)"/></binding>
+		     </bindings>
+		</attribute>
 
-      <attribute name="JNDIBindings">
-         <bindings>
-            <binding><xsl:value-of select="concat('${jndi-prefix}',@name)"/></binding>
-         </bindings>
-      </attribute>
+		<xsl:apply-templates select="jndi:extends[@appsrv=$appsrv]/*" mode="remove-namespace"/>
 
-	<xsl:copy-of select="jndi:extends[@appsrv=$appsrv]/*" copy-namespaces="no"/>
-
-   </mbean>
+	</mbean>
 </xsl:template>
 
 <xsl:template match="text()|comment()" />
+
+<!-- Remove name-space -->
+<xsl:template match="/|comment()|processing-instruction()" mode="remove-namespace">
+    <xsl:copy>
+      <xsl:apply-templates mode="remove-namespace"/>
+    </xsl:copy>
+</xsl:template>
+<xsl:template match="*" mode="remove-namespace">
+    <xsl:element name="{local-name()}">
+      <xsl:apply-templates select="@*|node()" mode="remove-namespace"/>
+    </xsl:element>
+</xsl:template>
+<xsl:template match="@*" mode="remove-namespace">
+    <xsl:attribute name="{local-name()}">
+      <xsl:value-of select="."/>
+    </xsl:attribute>
+</xsl:template>
 
 </xsl:stylesheet>

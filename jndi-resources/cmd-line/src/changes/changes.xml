@@ -25,18 +25,18 @@
   <body>
     <release version="0.5" date="2008-??-??" description="Nouvelles ressources">
       <action dev="Philippe PRADOS" type="update">
-        * Ajout des familles jndi/activemq et jms/activemq
-        * Correction de bugs
+        Ajout des familles jndi/activemq, jms/activemq et jms/remote-activemq.
+        Correction de bugs.
       </action>
     </release>
     <release version="0.4" date="2008-04-18" description="Corrections diverses">
       <action dev="Philippe PRADOS" type="update">
-        * Modification du paramètre XidFactory de JBoss lors de l'utilisation d'un driver Oracle.
-        * Ajout d'un paramètre et d'une variable jndi.ldap.batchsize
-        * Permet d'indiquer plusieurs profil lors de l'installation
-        * Ajout de la famille link/default pour tenir compte des EJB.
-        * Exemple EJB
-        * Correction de bugs
+        Modification du paramètre XidFactory de JBoss lors de l'utilisation d'un driver Oracle.
+        Ajout d'un paramètre et d'une variable jndi.ldap.batchsize.
+        Permet d'indiquer plusieurs profil lors de l'installation.
+        Ajout de la famille link/default pour tenir compte des EJB.
+        Exemple EJB.
+        Correction de bugs.
       </action>
     </release>
     <release version="0.3" date="2008-03-20" description="première version publique">

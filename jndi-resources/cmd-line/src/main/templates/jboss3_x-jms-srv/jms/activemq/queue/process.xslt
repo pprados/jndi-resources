@@ -17,7 +17,7 @@
  *
 -->
 
-<?xml-stylesheet type="text/xsl" href="../../../../xslt/xslt-to-xhtml.xslt" ?>
+<?xml-stylesheet type="text/xsl" href="../../xslt/xslt-to-xhtml.xslt" ?>
 <xsl:stylesheet
 	version="2.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -26,16 +26,9 @@
 		 http://jndi-resources.googlecode.com/1.0/ http://www.prados.fr/xsd/1.0/jndi-resources.xsd
 		"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:jndi="http://jndi-resources.googlecode.com/1.0/"
 	>
-<xsl:strip-space elements="*"/>
-<xsl:output method="xml" indent="yes" encoding="utf-8" omit-xml-declaration="no"/>
-<xsl:param name="version"/>
-<xsl:param name="appsrv"/>
-<xsl:param name="familly"/>
-<xsl:param name="currentid"/>
-<xsl:param name="targetdir"/>
-
-<xsl:include href="../../../../jboss5_x-jms-srv/jms/activemq/queue/default.xslt"/>
+<xsl:template match="/" />
 
 </xsl:stylesheet>
+
+
