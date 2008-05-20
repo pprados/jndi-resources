@@ -32,7 +32,7 @@
 	exclude-result-prefixes="#all"
 >
 
-<xsl:variable  name="basefilename"><xsl:value-of select="concat('deploy/',$currentid,'/',$currentid,'_links-service')"/></xsl:variable>
+<xsl:variable  name="basefilename"><xsl:value-of select="concat('deploy/',$currentid,'/',$currentid,'_jcli_links-service')"/></xsl:variable>
 <xsl:variable  name="filename"><xsl:value-of select="concat($targetdir,'jboss.server.conf/',$basefilename,'.jndi')"/></xsl:variable>
 
 <xsl:template match="text()|comment()" />
@@ -62,7 +62,7 @@
 		<xsl:comment>Register a JNDI link for key <xsl:value-of select="@name"/></xsl:comment>
 		<xsl:text>&#xA;   </xsl:text>
 		<mbean code="org.jboss.naming.NamingAlias"
-		       name="{$currentid}:jndiName={@name}">
+		       name="{$currentid}:jndiName={@name},jndiclient=true">
 		    <attribute name="FromName">java:<xsl:value-of select="@name"/></attribute>
 		    <attribute name="ToName"><xsl:value-of select="@name"/></attribute>
 

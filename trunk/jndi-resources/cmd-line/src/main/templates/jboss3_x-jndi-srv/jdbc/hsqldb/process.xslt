@@ -37,4 +37,6 @@
 <xsl:param name="targetdir"/>
 
 <xsl:include href="./hsqldb.xslt"/>
+<xsl:include href="../lib/jdbc.xslt"/>
+
 </xsl:stylesheet>

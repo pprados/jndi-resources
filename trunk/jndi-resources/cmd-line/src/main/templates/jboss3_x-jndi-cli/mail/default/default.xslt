@@ -60,7 +60,7 @@
 		<xsl:comment>Register link to Javamil for key <xsl:value-of select="@name"/></xsl:comment>
 		<xsl:text>&#xA;   </xsl:text>
 		<mbean code="org.jboss.naming.NamingAlias"
-		       name="{$currentid}:database={@name},jndiName={@name}">
+		       name="{$currentid}:database={@name},jndiName={@name},jndiclient=true">
 		    <attribute name="ToName">${jndi-prefix}/<xsl:value-of select="@name"/></attribute>
 		    <attribute name="FromName">java:<xsl:value-of select="@name"/></attribute>
 			<depends>jboss:service=Naming</depends>

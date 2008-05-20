@@ -58,7 +58,7 @@
 		<xsl:comment>Register link to JMS for key <xsl:value-of select="@name"/></xsl:comment>
 		<xsl:text>&#xA;   </xsl:text>
 		<mbean code="org.jboss.naming.NamingAlias"
-		       name="{$currentid}:jms={@name},jndiName={@name}">
+		       name="{$currentid}:jms={@name},jndiName={@name},jndiclient=true">
 		    <attribute name="ToName"><xsl:value-of select="concat('${jndi-prefix}/',@name)"/></attribute>
 		    <attribute name="FromName">java:<xsl:value-of select="@name"/></attribute>
 			<depends>jboss:service=Naming</depends>

@@ -61,7 +61,9 @@
 	  	<artifact>jboss:jnp-client:4.0.2</artifact>
 	</familly>
 -->
-	<familly name="jndi/activemq" artifact="org.apache.activemq:activemq-core:5.0.0"/>
+	<familly name="jndi/activemq">
+		<artifact>org.apache.activemq:activemq-core:5.0.0</artifact>
+	</familly>
 
 </xsl:variable>
 </xsl:stylesheet>

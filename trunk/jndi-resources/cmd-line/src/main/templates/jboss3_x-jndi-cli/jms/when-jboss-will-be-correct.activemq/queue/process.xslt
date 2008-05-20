@@ -26,6 +26,15 @@
 		 http://jndi-resources.googlecode.com/1.0/ http://www.prados.fr/xsd/1.0/jndi-resources.xsd
 		"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
->
-<xsl:include href="../../../jboss4_x-jndi-srv/jdbc/hsqldb/hsqldb.xslt"/>
+	xmlns:jndi="http://jndi-resources.googlecode.com/1.0/"
+	>
+<xsl:strip-space elements="*"/>
+<xsl:output method="xml" indent="yes" encoding="utf-8" omit-xml-declaration="no"/>
+<xsl:param name="version"/>
+<xsl:param name="familly"/>
+<xsl:param name="currentid"/>
+<xsl:param name="targetdir"/>
+
+<xsl:include href="./default.xslt"/>
+
 </xsl:stylesheet>

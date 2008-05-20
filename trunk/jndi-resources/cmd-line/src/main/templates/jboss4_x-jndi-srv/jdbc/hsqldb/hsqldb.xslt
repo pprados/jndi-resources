@@ -28,5 +28,4 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 >
 <xsl:include href="../../../jboss5_x/jdbc/hsqldb/hsqldb.xslt"/>
-<xsl:include href="../lib/jdbc.xslt"/>
 </xsl:stylesheet>

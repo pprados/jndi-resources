@@ -26,6 +26,14 @@
 		 http://jndi-resources.googlecode.com/1.0/ http://www.prados.fr/xsd/1.0/jndi-resources.xsd
 		"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
->
-<xsl:include href="../../../jboss4_x-jndi-srv/jdbc/hsqldb/hsqldb.xslt"/>
+	xmlns:jndi="http://jndi-resources.googlecode.com/1.0/"
+	>
+<xsl:strip-space elements="*"/>
+<xsl:output method="xml" indent="yes" encoding="utf-8" omit-xml-declaration="no"/>
+
+<xsl:variable  name="basefilename"><xsl:value-of select="concat('deploy/',$currentid,'/',$currentid,'_activemq_cf-service')"/></xsl:variable>
+<xsl:variable  name="filename"><xsl:value-of select="concat($targetdir,'jboss.server.conf/',$basefilename,'.jndi')"/></xsl:variable>
+
+<xsl:include href="../lib/link.xslt"/>
+
 </xsl:stylesheet>

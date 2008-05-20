@@ -58,9 +58,9 @@
 		<xsl:comment>Register link to Datasource for key <xsl:value-of select="@name"/></xsl:comment>
 		<xsl:text>&#xA;   </xsl:text>
 		<mbean code="org.jboss.naming.NamingAlias"
-		       name="{$currentid}:database={@name},jndiName={@name}">
-		    <attribute name="ToName">${jndi-prefix}/<xsl:value-of select="@name"/></attribute>
+		       name="{$currentid}:database={@name},jndiName={@name},jndiclient=true">
 		    <attribute name="FromName">java:<xsl:value-of select="@name"/></attribute>
+		    <attribute name="ToName">${jndi-prefix}/<xsl:value-of select="@name"/></attribute>
 			<depends>jboss:service=Naming</depends>
 		</mbean>
 </xsl:template>
