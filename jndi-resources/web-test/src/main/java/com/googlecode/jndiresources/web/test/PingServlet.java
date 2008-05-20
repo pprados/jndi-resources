@@ -32,7 +32,6 @@ import java.util.Properties;
 import java.util.StringTokenizer;
 
 import javax.jms.ConnectionFactory;
-import javax.jms.Message;
 import javax.jms.MessageConsumer;
 import javax.jms.Queue;
 import javax.jms.QueueConnection;
@@ -150,6 +149,7 @@ public class PingServlet extends HttpServlet
 		System.out.println("Test JDBC");
 		out.println("<h1>Test JDBC</h1>");
 		String s = getInitParameter("jdbc");
+		if (s==null || s.trim().length()==0) return;
 		for (StringTokenizer token = new StringTokenizer(s, "; \n\t"); token.hasMoreTokens();)
 		{
 			try
@@ -218,6 +218,7 @@ public class PingServlet extends HttpServlet
 		System.out.println("Test JAAS (JBoss)");
 		out.println("<h1>Test JAAS (Jboss)</h1>");
 		String s = getInitParameter("jaas");
+		if (s==null || s.trim().length()==0) return;
 		for (StringTokenizer token = new StringTokenizer(s, "; \n\t"); token.hasMoreTokens();)
 		{
 			final String jndiName = token.nextToken();
@@ -241,6 +242,7 @@ public class PingServlet extends HttpServlet
 		System.out.println("Test MAIL");
 		out.println("<h1>Test MAIL</h1>");
 		String s = getInitParameter("javamail");
+		if (s==null || s.trim().length()==0) return;
 		for (StringTokenizer token = new StringTokenizer(s, "; \n\t"); token.hasMoreTokens();)
 		{
 			try
@@ -271,6 +273,7 @@ public class PingServlet extends HttpServlet
 		}
 
 		s = getInitParameter("email");
+		if (s==null || s.trim().length()==0) return;
 		out.println("<h2>Email lookup</h2>");
 		for (StringTokenizer token = new StringTokenizer(s, "; \n\t"); token.hasMoreTokens();)
 		{
@@ -300,6 +303,7 @@ public class PingServlet extends HttpServlet
 		System.out.println("Test URL");
 		out.println("<h1>Test URL</h1>");
 		String s = getInitParameter("url");
+		if (s==null || s.trim().length()==0) return;
 		for (StringTokenizer token = new StringTokenizer(s, "; \n\t"); token.hasMoreTokens();)
 		{
 			final String jndiName = token.nextToken();
@@ -321,6 +325,7 @@ public class PingServlet extends HttpServlet
 		System.out.println("Test HOST");
 		out.println("<h1>Test HOST</h1>");
 		String s = getInitParameter("host");
+		if (s==null || s.trim().length()==0) return;
 		for (StringTokenizer token = new StringTokenizer(s, "; \n\t"); token.hasMoreTokens();)
 		{
 			final String jndiName = token.nextToken();
@@ -342,6 +347,7 @@ public class PingServlet extends HttpServlet
 		System.out.println("Test Link");
 		out.println("<h1>Test Links</h1>");
 		String s = getInitParameter("link");
+		if (s==null || s.trim().length()==0) return;
 		for (StringTokenizer token = new StringTokenizer(s, "; \n\t"); token.hasMoreTokens();)
 		{
 			final String jndiName = token.nextToken();
@@ -364,6 +370,7 @@ public class PingServlet extends HttpServlet
 		System.out.println("Test JNDI");
 		out.println("<h1>Test JNDI</h1>");
 		String s = getInitParameter("jndi");
+		if (s==null || s.trim().length()==0) return;
 		for (StringTokenizer token = new StringTokenizer(s, "; \n\t"); token.hasMoreTokens();)
 		{
 			try
@@ -434,6 +441,7 @@ public class PingServlet extends HttpServlet
 
 		out.println("<h2>Connection Factory</h2>");
 		String s = getInitParameter("jms.cf");
+		if (s==null || s.trim().length()==0) return;
 		idx=0;
 		for (StringTokenizer token = new StringTokenizer(s, "; \n\t"); token.hasMoreTokens();++idx)
 		{
@@ -442,6 +450,115 @@ public class PingServlet extends HttpServlet
 
 				final String jndiName = token.nextToken();
 				out.print(jndiName + " is ");
+				boolean val=false;
+//				if (val)
+//				{
+//					ActiveMQManagedConnectionFactory a=new ActiveMQManagedConnectionFactory();
+//					org.jboss.logging.util.LoggerPluginWriter writer=new org.jboss.logging.util.LoggerPluginWriter(new org.jboss.logging.LoggerPlugin()
+//					{
+//	
+//						public void debug(Object arg0)
+//						{
+//							// TODO Auto-generated method stub
+//							
+//						}
+//	
+//						public void debug(Object arg0, Throwable arg1)
+//						{
+//							// TODO Auto-generated method stub
+//							
+//						}
+//	
+//						public void error(Object arg0)
+//						{
+//							// TODO Auto-generated method stub
+//							
+//						}
+//	
+//						public void error(Object arg0, Throwable arg1)
+//						{
+//							// TODO Auto-generated method stub
+//							
+//						}
+//	
+//						public void fatal(Object arg0)
+//						{
+//							// TODO Auto-generated method stub
+//							
+//						}
+//	
+//						public void fatal(Object arg0, Throwable arg1)
+//						{
+//							// TODO Auto-generated method stub
+//							
+//						}
+//	
+//						public void info(Object arg0)
+//						{
+//							// TODO Auto-generated method stub
+//							
+//						}
+//	
+//						public void info(Object arg0, Throwable arg1)
+//						{
+//							// TODO Auto-generated method stub
+//							
+//						}
+//	
+//						public void init(String arg0)
+//						{
+//							// TODO Auto-generated method stub
+//							
+//						}
+//	
+//						public boolean isDebugEnabled()
+//						{
+//							// TODO Auto-generated method stub
+//							return false;
+//						}
+//	
+//						public boolean isInfoEnabled()
+//						{
+//							// TODO Auto-generated method stub
+//							return false;
+//						}
+//	
+//						public boolean isTraceEnabled()
+//						{
+//							// TODO Auto-generated method stub
+//							return false;
+//						}
+//	
+//						public void trace(Object arg0)
+//						{
+//							// TODO Auto-generated method stub
+//							
+//						}
+//	
+//						public void trace(Object arg0, Throwable arg1)
+//						{
+//							// TODO Auto-generated method stub
+//							
+//						}
+//	
+//						public void warn(Object arg0)
+//						{
+//							// TODO Auto-generated method stub
+//							
+//						}
+//	
+//						public void warn(Object arg0, Throwable arg1)
+//						{
+//							// TODO Auto-generated method stub
+//							
+//						}
+//					
+//					});
+//					a.setLogWriter(writer);
+//					new ObjectOutputStream(new ByteArrayOutputStream()).writeObject(new ActiveMQManagedConnectionFactory());
+//	//				new InitialContext().rebind("jndi-web-test/jms/ActiveMQConnectionFactory",new ActiveMQManagedConnectionFactory());
+//	//				new InitialContext().lookup("jndi-web-test/jms/ActiveMQConnectionFactory")
+//				}
 				ConnectionFactory cf = (ConnectionFactory) new InitialContext().lookup(jndiName);
 				cf_.add(idx,cf);
 				out.println(cf.getClass() + "<br/>");
@@ -451,11 +568,13 @@ public class PingServlet extends HttpServlet
 			{
 				out.println("<b>error " + e + "</b><br/>");
 				e.printStackTrace();
+				cf_.add(idx,null);
 			}
 		}
 
 		out.println("<h2>XA Connection Factory</h2>");
 		s = getInitParameter("jms.xacf");
+		if (s==null || s.trim().length()==0) return;
 		idx=0;
 		for (StringTokenizer token = new StringTokenizer(s, "; \n\t"); token.hasMoreTokens();++idx)
 		{
@@ -478,6 +597,7 @@ public class PingServlet extends HttpServlet
 
 		out.println("<h2>Queue</h2>");
 		s = getInitParameter("jms.queue");
+		if (s==null || s.trim().length()==0) return;
 		idx=0;
 		for (StringTokenizer token = new StringTokenizer(s, "; \n\t"); token.hasMoreTokens();++idx)
 		{
@@ -518,6 +638,7 @@ public class PingServlet extends HttpServlet
 
 		out.println("<h2>Topic</h2>");
 		s = getInitParameter("jms.topic");
+		if (s==null || s.trim().length()==0) return;
 		idx=0;
 		for (StringTokenizer token = new StringTokenizer(s, "; \n\t"); token.hasMoreTokens();++idx)
 		{
@@ -548,7 +669,7 @@ public class PingServlet extends HttpServlet
 					out.println("and is functional");
 				}
 				out.println("<br/>");
-;			}
+			}
 			catch (Exception e)
 			{
 				out.println("<b>error " + e + "</b><br/>");
