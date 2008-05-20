@@ -24,7 +24,7 @@
 	<groupId>com.googlecode.jndi-resources</groupId>
 	<artifactId>main</artifactId>
 	<packaging>pom</packaging>
-	<version>0.5-SNAPSHOT</version>
+	<version>0.5</version>
 	<name>jndi-resources</name>
 	<description>
 		jndi-resource est un utilitaire pour générer les fichiers de configuration 
@@ -410,7 +410,7 @@
 		<scp.home>scp://www.prados.fr/home/philippe/www/mvn</scp.home>
 		<saxon.version>8.7</saxon.version>
 		<maven.version>[2.0.1,)</maven.version>
-		<wagon.version>[1.0-beta-1,)</wagon.version>
+		<wagon.version>1.0-beta-2</wagon.version>
 		<checkstyle.url>
 			http://www.prados.fr/mvn/checkstyle-pprados.xml
 		</checkstyle.url>
