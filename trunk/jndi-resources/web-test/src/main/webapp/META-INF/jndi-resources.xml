@@ -55,6 +55,15 @@
 		<property name="xa" value="local"/>
 	</resource>
 
+	<comment>Postgresql</comment>
+	<resource name="jndi-web-test/jdbc/PostgreSQLNo" familly="jdbc/postgresql" />
+	<resource name="jndi-web-test/jdbc/PostgreSQLXA" familly="jdbc/postgresql">
+		<property name="xa" value="yes"/>
+	</resource>
+	<resource name="jndi-web-test/jdbc/PostgreSQLLocal" familly="jdbc/postgresql">
+		<property name="xa" value="local"/>
+	</resource>
+
 	<comment>Oracle</comment>
 	<resource name="jndi-web-test/jdbc/OracleNo" familly="jdbc/oracle">
 		<property name="artifact" value="ojdbc:ojdbc:14"/>

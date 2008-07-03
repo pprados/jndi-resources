@@ -24,6 +24,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.Reader;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Date;
 import java.util.HashMap;
@@ -483,10 +484,11 @@ public final class JNDIInstall
 	 * @throws XPathExpressionException If error.
 	 * @throws TransformerException If error.
 	 * @throws InvalidVersionSpecificationException If version is invalid.
+	 * @throws URISyntaxException If target is not an URL.
 	 */
 	public JNDIInstall(final ParamsInstall params) throws CommandLineException, IOException, SAXException,
 			ParserConfigurationException, XPathExpressionException, TransformerException,
-			InvalidVersionSpecificationException
+			InvalidVersionSpecificationException, URISyntaxException
 	{
 		for (StringTokenizer tokens=new StringTokenizer(params.appsrv_,",");tokens.hasMoreTokens();)
 		{
@@ -560,7 +562,8 @@ public final class JNDIInstall
 				{
 					throw new CommandLineException("--dest " + target + "=... must be set");
 				}
-				targetDir = new File(targetDir).getCanonicalFile().toURI().toURL().toExternalForm();
+//				targetDir = new File(targetDir).getCanonicalFile().toURI().toURL().toExternalForm();
+				targetDir = new File(targetDir).getAbsolutePath()+File.separator;
 				File home = new File(packageDir_, srvapp_ + File.separatorChar + target).getCanonicalFile();
 				if (home.canRead())
 				{

@@ -82,6 +82,7 @@ Les déclinaisons possibles pour le paramètre [familles familly] du fichier
 || `jdbc/default` || Utilise la base de données par défaut du serveur d'applications. Pour JBoss, il s'agit de la base décrite sous `java:DefaultDS`. C'est une base HSQLDB, entièrement codée en Java et s'exécutant dans le même processus. Pour l'architecture JBoss avec un annuaire JNDI déporté, une base HSQLDB est lancée en mode serveur à coté de l'annuaire JNDI de référence. Cette base est utilisée par les clients de l'annuaire JNDI. Pour Tomcat, il s'agit également d'une base HSQLDB dont il faut préciser l'utilisateur, le mot de passe et le fichier. ||
 || `jdbc/hsqldb` || Utilise une base de données de type [http://www.hsqldb.org HSQLDB] in process. Pour l'architecture JBoss avec un annuaire JNDI déporté, une base HSQLDB est lancée en mode serveur à coté de l'annuaire JNDI de référence. Cette base est utilisée par les clients de l'annuaire JNDI. ||
 || `jdbc/mysqsl` || Utilise une base de données [http://www-fr.mysql.com/ MySql].||
+|| `jdbc/postgresql` || Utilise une base de données [http://www.postgresql.org/ PostgreSQL].||
 || `jdbc/oracle` || Utilise une base de données [http://www.oracle.com/global/fr/index.html Oracle] ||
 
 == Variables ==
@@ -125,6 +126,18 @@ Chaque base de données définit ses variables.
 || `${jdbc.mysql.xa.driver}` || Valeur : `com.mysql.jdbc.jdbc2.optional.MysqlXADataSource` ||
 || `${jdbc.mysql.xa.url.default}` || Valeur : `jdbc:mysql://${jdbc.host}:${jdbc.mysql.port}/${jdbc.mysql.schema}` ||
 || `${jdbc.mysql.validation-query}` || Valeur : `select '1'` ||
+
+|||| *PostgreSQL* ||
+|| *Variable* || *Description* ||
+|| *`${jdbc.postgresql.schema}`* || Le schéma de la base [http://www.postgresql.org PostgreSQL]. Il n'y a pas de valeur par défaut. Cette variable doit être valorisée lors de l'installation si nécessaire. ||
+|| `${jdbc.postgresql.driver}` || Valeur : `org.postgresql.Driver` ||
+|| `${jdbc.postgresql.port}` || Valeur : 5432 ||
+|| `${jdbc.postgresql.url.default}` || Valeur : `jdbc:postgresql://${jdbc.host}:${jdbc.postgresql.port}/${jdbc.postgresql.schema}` ||
+|| `${jdbc.postgresql.username}` || Valeur : `${jdbc.username}` ||
+|| `${jdbc.postgresql.password}` || Valeur : `${jdbc.password}` ||
+|| `${jdbc.postgresql.xa.driver}` || Valeur : `org.postgresql.Driver` ||
+|| `${jdbc.postgresql.xa.url.default}` || Valeur : `jdbc:postgres://${jdbc.host}:${jdbc.postgres.port}/${jdbc.postgres.schema}` ||
+|| `${jdbc.postgresql.validation-query}` || Valeur : `select '1'` ||
 
 |||| *Oracle* ||
 || *Variable* || *Description* ||

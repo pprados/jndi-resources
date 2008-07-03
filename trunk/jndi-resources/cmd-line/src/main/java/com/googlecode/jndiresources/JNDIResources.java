@@ -19,6 +19,7 @@ package com.googlecode.jndiresources;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.net.URISyntaxException;
 import java.util.Date;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -182,10 +183,11 @@ public final class JNDIResources
 	 * @throws ArtifactNotFoundException If error
 	 * @throws InvalidVersionSpecificationException If error.
 	 * @throws ResourceDoesNotExistException If error.
+	 * @throws URISyntaxException If error.
 	 */
 	private JNDIResources(final Params params) throws XPathExpressionException, CommandLineException,
 			IOException, SAXException, ParserConfigurationException, TransformerException, 
-			InvalidVersionSpecificationException, ArtifactNotFoundException, ResourceDoesNotExistException
+			InvalidVersionSpecificationException, ArtifactNotFoundException, ResourceDoesNotExistException, URISyntaxException
 
 	{
 		final long start = System.currentTimeMillis();

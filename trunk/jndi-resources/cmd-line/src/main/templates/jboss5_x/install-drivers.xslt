@@ -63,6 +63,8 @@
 	<xsl:param name="alias"/>
  	<xsl:choose>
  		<xsl:when test="$alias=''">
+<xsl:value-of select="tools:debug(concat('Generate ',$artifact))"/>
+
 		 	<xsl:variable name="url" select="tools:mavenCopy($artifact,concat($targetdir,'../lib/'))"/>
 			<xsl:value-of select="tools:mkLink(concat($targetdir,'../lib/',$url),concat($lib,$url))"/>
 		</xsl:when>
