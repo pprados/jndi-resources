@@ -405,7 +405,7 @@
 	</dependencyManagement>
 
 	<properties>
-		<current.version>0.5</current.version>
+		<current.version>0.6</current.version>
 		<url.home>http://www.philippe.prados.name/mvn/jndi-resources</url.home>
 		<scp.home>scp://www.philippe.prados.name/home/philippe/www/mvn</scp.home>
 		<saxon.version>8.7</saxon.version>
