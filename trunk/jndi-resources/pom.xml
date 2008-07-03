@@ -24,7 +24,7 @@
 	<groupId>com.googlecode.jndi-resources</groupId>
 	<artifactId>main</artifactId>
 	<packaging>pom</packaging>
-	<version>0.5</version>
+	<version>0.6</version>
 	<name>jndi-resources</name>
 	<description>
 		jndi-resource est un utilitaire pour générer les fichiers de configuration 
