@@ -33,7 +33,7 @@
 
 	<distributionManagement>
 		<site>
-			<id>www.prados.fr</id>
+			<id>www.philippe.prados.name</id>
 			<url>${scp.home}/jndi-resources/${project.name}</url>
 		</site>
 	</distributionManagement>

@@ -39,6 +39,9 @@
 			java:comp/env/jdbc/MySQLNo
 			java:comp/env/jdbc/MySQLXA
 			java:comp/env/jdbc/MySQLLocal
+			java:comp/env/jdbc/PostgreSQLNo
+			java:comp/env/jdbc/PostgreSQLXA
+			java:comp/env/jdbc/PostgreSQLLocal
 			java:comp/env/jdbc/OracleNo
 			java:comp/env/jdbc/OracleXA
 			java:comp/env/jdbc/OracleLocal
@@ -171,6 +174,7 @@
       <res-auth>Application</res-auth>
       <res-sharing-scope>Shareable</res-sharing-scope>
    </resource-ref>
+   
    <resource-ref id="jdbc-MySQLNo">
       <res-ref-name>jdbc/MySQLNo</res-ref-name>
       <res-type>javax.sql.DataSource</res-type>
@@ -189,6 +193,26 @@
       <res-auth>Application</res-auth>
       <res-sharing-scope>Shareable</res-sharing-scope>
    </resource-ref>
+
+   <resource-ref id="jdbc-PostgreSQLNo">
+      <res-ref-name>jdbc/PostgreSQLNo</res-ref-name>
+      <res-type>javax.sql.DataSource</res-type>
+      <res-auth>Application</res-auth>
+      <res-sharing-scope>Shareable</res-sharing-scope>
+   </resource-ref>
+   <resource-ref id="jdbc-PostgreSQLXA">
+      <res-ref-name>jdbc/PostgreSQLXA</res-ref-name>
+      <res-type>javax.sql.DataSource</res-type>
+      <res-auth>Application</res-auth>
+      <res-sharing-scope>Shareable</res-sharing-scope>
+   </resource-ref>
+   <resource-ref id="jdbc-PostgreSQLLocal">
+      <res-ref-name>jdbc/PostgreSQLLocal</res-ref-name>
+      <res-type>javax.sql.DataSource</res-type>
+      <res-auth>Application</res-auth>
+      <res-sharing-scope>Shareable</res-sharing-scope>
+   </resource-ref>
+
    <resource-ref id="jdbc-OracleNo">
       <res-ref-name>jdbc/OracleNo</res-ref-name>
       <res-type>javax.sql.DataSource</res-type>

@@ -196,6 +196,24 @@
             	</xsl:choose>
             	</xsl:attribute>
 
+            	<xsl:attribute name="removeAbandoned">
+            	<xsl:choose>
+            		<xsl:when test=".//jndi:property[@name='remove-abandoned']">
+            			<xsl:value-of select=".//jndi:property[@name='remove-abandoned']/@value"/>
+            		</xsl:when>
+            		<xsl:otherwise>${jdbc.remove-abandoned}</xsl:otherwise>
+            	</xsl:choose>
+            	</xsl:attribute>
+
+            	<xsl:attribute name="removeAbandonedTimeout">
+            	<xsl:choose>
+            		<xsl:when test=".//jndi:property[@name='remove-abandoned-timeout']">
+            			<xsl:value-of select=".//jndi:property[@name='remove-abandoned-timeout']/@value"/>
+            		</xsl:when>
+            		<xsl:otherwise>${jdbc.remove-abandoned-timeout}</xsl:otherwise>
+            	</xsl:choose>
+            	</xsl:attribute>
+		
 				<xsl:for-each select="jndi:extends[@appsrv=$appsrv]/jndi:attribute">
 					<xsl:attribute name="{@name}">
 						<xsl:value-of select="."/>

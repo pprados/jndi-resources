@@ -80,6 +80,7 @@ public final class XSLTools
 	public static String getArtifact(final String artifact) throws MavenException, ArtifactNotFoundException,
 			ResourceDoesNotExistException
 	{
+		LOG.debug("getArtifact("+artifact+")");
 		return new Action()
 		{
 
@@ -125,6 +126,7 @@ public final class XSLTools
 	public static String mavenCopy(final String artifact, final String toStrFile)
 			throws ArtifactNotFoundException, ResourceDoesNotExistException, MavenException, IOException
 	{
+		LOG.debug("mavenCopy("+artifact+","+toStrFile+")");
 		return new Action()
 		{
 

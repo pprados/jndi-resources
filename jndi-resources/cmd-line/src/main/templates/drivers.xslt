@@ -49,6 +49,7 @@
 	<familly name="jdbc/hsqldb" artifact="hsqldb:hsqldb:1.8.0.7"/>
 	<familly name="jdbc/oracle" artifact="ojdbc:ojdbc:14"/>
 	<familly name="jdbc/mysql"  artifact="mysql:mysql-connector-java:5.1.5"/>
+	<familly name="jdbc/postgresql"  artifact="postgresql:postgresql:8.1-404.jdbc3"/>
 
 	<familly name="jndi/default" artifact="com.googlecode.jndi-resources:jndi-resources-plugins:*"/>
 	<familly name="jndi/file">

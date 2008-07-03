@@ -23,7 +23,13 @@
     <author email="jndi-resources@philippe.prados.name">Philippe PRADOS</author>
   </properties>
   <body>
-    <release version="0.5" date="2008-??-??" description="Nouvelles ressources">
+    <release version="0.6" date="2008-07-03" description="Nouvelles ressources">
+      <action dev="Philippe PRADOS" type="update">
+        Ajout de la famille jdbc/postgresql.
+        Correction de bugs sur les espaces dans les noms des fichiers.
+      </action>
+    </release>
+    <release version="0.5" date="2008-05-20" description="Nouvelles ressources">
       <action dev="Philippe PRADOS" type="update">
         Ajout des familles jndi/activemq, jms/activemq et jms/remote-activemq.
         Correction de bugs.
