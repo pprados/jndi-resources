@@ -35,7 +35,7 @@
 
 	<distributionManagement>
 		<site>
-			<id>www.prados.fr</id>
+			<id>www.philippe.prados.name</id>
 			<url>${scp.home}/${project.name}</url>
 		</site>
 	</distributionManagement>
@@ -82,7 +82,7 @@
 
 	<organization>
 		<name>Philippe Prados</name>
-		<url>http://www.prados.fr</url>
+		<url>http://www.philippe.prados.name</url>
 	</organization>
 
 	<licenses>
@@ -405,14 +405,14 @@
 	</dependencyManagement>
 
 	<properties>
-		<current.version>0.5-SNAPSHOT</current.version>
-		<url.home>http://www.prados.fr/mvn/jndi-resources</url.home>
-		<scp.home>scp://www.prados.fr/home/philippe/www/mvn</scp.home>
+		<current.version>0.5</current.version>
+		<url.home>http://www.philippe.prados.name/mvn/jndi-resources</url.home>
+		<scp.home>scp://www.philippe.prados.name/home/philippe/www/mvn</scp.home>
 		<saxon.version>8.7</saxon.version>
 		<maven.version>[2.0.1,)</maven.version>
 		<wagon.version>1.0-beta-2</wagon.version>
 		<checkstyle.url>
-			http://www.prados.fr/mvn/checkstyle-pprados.xml
+			http://www.philippe.prados.name/mvn/checkstyle-pprados.xml
 		</checkstyle.url>
 	</properties>
 
