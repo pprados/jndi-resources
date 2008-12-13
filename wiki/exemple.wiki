@@ -125,7 +125,7 @@ l'archive d'exemple pour tester l'utilisation des différents outils.
 }}}
 ou bien tester l'EAR possédant le composant WAR et un EJB.
 {{{
->wget http://jndi-resources.googlecode.com/files/web-sample.ear
+>wget http://jndi-resources.googlecode.com/files/ejb-sample.ear
 }}}
 
 Ce dernier exploite plus de ressources :
