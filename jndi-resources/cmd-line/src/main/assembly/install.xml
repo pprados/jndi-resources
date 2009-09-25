@@ -30,6 +30,8 @@
 
 	<fileSets>
 		<fileSet>
+			<directory>.</directory>
+			<outputDirectory>/</outputDirectory>
 			<lineEnding>unix</lineEnding>
 			<fileMode>640</fileMode>
 			<includes>
