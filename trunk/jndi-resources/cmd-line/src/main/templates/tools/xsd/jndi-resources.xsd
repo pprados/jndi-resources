@@ -46,17 +46,18 @@
 				<documentation xml:lang="fr">Description d'une ressource JNDI.</documentation>
 		</annotation>
 		<complexType>
-			<sequence>
-				<choice minOccurs="0" maxOccurs="unbounded">
+			<sequence maxOccurs="unbounded" minOccurs="0">
+				<choice>
 					<element ref="tns:property" />
 					<element ref="tns:comment" />
 					<any processContents="skip" namespace="##other" />
 				</choice>
-				<choice minOccurs="0" maxOccurs="unbounded">
+				<choice>
 					<element ref="tns:extends" />
 					<element ref="tns:comment" />
 					<any processContents="skip" namespace="##other" />
 				</choice>
+				<element name="NewElement" type="string"></element>
 			</sequence>
 			<attribute name="name" type="string" use="required"></attribute>
 			<attribute name="familly" type="string" use="required"></attribute>
